@@ -8,8 +8,10 @@ MARZO
 Día 18
 Logo en wepik.com
 Creación del header, me basé en el header de esta página https://www.curated.design/articles/linear-asks
+
 Día 19
 Creación de la página principal (Una sección minimalista en la que hay un bosque de fondo con degradado oscuro, un h1 y un párrafo)
+
 20 y 21 
 Creación de la galería - slider, con tooltips 
 
