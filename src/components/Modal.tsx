@@ -60,10 +60,10 @@ useEffect(() => {
               <button
                 onClick={() => previousHandle()}
                 type="button"
-                className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group "
                 data-carousel-prev
               >
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-full  bg-gray-100/30  group-hover:bg-gray-200/60 group-focus:ring-4 group-focus:ring-white group-focus:ring-gray-800/70 group-focus:outline-none">
+                <span className="flex items-center justify-center w-10 h-10 rounded-full  bg-gray-100/30  ">
                   <svg
                     className="w-4 h-4  text-gray-100 rtl:rotate-180"
                     aria-hidden="true"
@@ -88,7 +88,7 @@ useEffect(() => {
                 className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                 data-carousel-next
               >
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-full  bg-gray-100/30  group-hover:bg-gray-200/60 group-focus:ring-4 group-focus:ring-white group-focus:ring-gray-800/70 group-focus:outline-none">
+                <span className="inline-flex items-center justify-center w-10 h-10 rounded-full  bg-gray-100/30  ">
                   <svg
                     className="w-4 h-4  text-gray-100 rtl:rotate-180"
                     aria-hidden="true"
@@ -111,7 +111,7 @@ useEffect(() => {
               <button
                 onClick={handleModal}
                 type="button"
-                className=" sm:right-[5%] md:right-[-5%] absolute top-5 lg:right-[-10%] xl:right-[-10%] z-40 cursor-pointer p-2 rounded-full  bg-gray-700  hover:bg-gray-600 focus:ring-4  focus:ring-gray-600"
+                className=" sm:right-[5%] md:right-[-5%] absolute top-5 lg:right-[-10%] xl:right-[-10%] z-40 cursor-pointer p-2 rounded-full  bg-gray-700  hover:bg-gray-600 focus:ring-4  "
               >
                 <svg
                   
