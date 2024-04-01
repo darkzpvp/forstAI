@@ -39,6 +39,9 @@ Añadí sección de contacto y le puse una flecha en el home que te permite baja
 
 Recursos que utilicé:
 
+Dudas y relleno de texto
+ChatGPT y Bard
+
 Imágenes
 Freepik.com
 
