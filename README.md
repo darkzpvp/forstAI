@@ -1,30 +1,58 @@
-# React + TypeScript + Vite
+Página web que genera imágenes con inteligencia artificial usando el API de código abierto "Stable diffusion".
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+Repositorio subido por primera vez el Lunes 01/04/2024
+Comencé el Lunes 18/04/2024
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+MARZO
+Día 18
+Logo en wepik.com
+Creación del header, me basé en el header de esta página https://www.curated.design/articles/linear-asks
+Día 19
+Creación de la página principal
+20 y 21 
+Creación de la galería - slider, con tooltips 
 
-## Expanding the ESLint configuration
+Día 23 
+Cards con precios
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Día 24
+Acordeón. Me ayudé gracias a este vídeo https://www.youtube.com/watch?v=oOXExNA8A48&list=LL&index=2
 
-- Configure the top-level `parserOptions` property like this:
+Día 25 Footer
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+Día 26. Arreglé algunos bugs del slider, que evitaba que la modal se cerrara con el overlay
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Día 27. Repaso general en la página, especialmente en los botones. Añadí active y hover y mejoré la página
+
+Día 28. Añadí menú hamburguesa al header y decidí meter una seccion nueva "Contacto". 
+
+Día 30
+Sección de ventajas. Me basé en este https://imgur.com/a/xaeMvPq de la página de diseños curated.design
+
+Día 31
+Añadí sección de contacto y le puse una flecha en el home que te permite bajar a la introducción
+
+
+
+
+
+Recursos que utilicé:
+
+Imágenes
+Freepik.com
+
+Iconos
+https://heroicons.com
+
+Background
+https://mycolor.space/gradient
+
+Documentación Tailwind
+https://tailwindcss.com/docs
+
+Diseño (para ideas)
+https://www.curated.design
+
+
+
