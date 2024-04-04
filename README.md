@@ -1,13 +1,9 @@
-Notion
+<h1>Anteproyecto</h1>
+<h2>Notion</h2>
 
 https://faceted-binder-6cc.notion.site/Anteproyecto-1f21f41efbe444c48c01509a30aad739?pvs=25
 
 
-
-
-
------------------------------------
-<b><h1>OLVIDAD POR AHORA LO DE ABAJO. TENED EN CUENTA ÚNICAMENTE EL ENLACE DE NOTION PARA EL ANTEPROYECTO.</h1></b>
 
 Página web que genera imágenes con inteligencia artificial usando el API de código abierto "Stable diffusion".
 
