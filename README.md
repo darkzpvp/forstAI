@@ -67,7 +67,7 @@ Imágenes
 Freepik.com
 
 Iconos
-https://heroicons.com
+Flaticon.com
 
 Background
 https://mycolor.space/gradient
