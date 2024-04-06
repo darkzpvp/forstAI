@@ -42,12 +42,12 @@ const Home = () => {
           <p className="text-gray-300">
             Comienza a generar imágenes de forma gratuita.
           </p>
- 
-            <Link to="intro" offset={-50} duration={1} smooth={true}>
+
+          <Link to="intro" offset={-50} duration={1} smooth={true}>
             <a
-                  className="absolute bottom-6  p-2   rounded-lg text-gray-400 hover:bg-gray-600 active:bg-gray-700 cursor-pointer"
-                  aria-current="page"
-                >
+              className="absolute bottom-6  p-2   rounded-lg text-gray-400 hover:bg-gray-600 active:bg-gray-700 cursor-pointer"
+              aria-current="page"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -62,26 +62,28 @@ const Home = () => {
                   d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
                 />
               </svg>
-              </a>
-            </Link>
-
+            </a>
+          </Link>
         </div>
       </GradientBackground>
 
       <section
         id="intro"
-        className="grid lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-1"
+        className="grid lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-1 gap-2"
       >
         <div className="  ">
-      <img className=" hidden lg:flex justify-center mx-auto w-[100%] max-w-xl h-screen" src="/src/assets/img/about.svg"/>
+          <img
+            className=" hidden lg:flex justify-center mx-auto w-[100%] max-w-xl h-screen"
+            src="/src/assets/img/about.svg"
+          />
         </div>
-       
-        <div className="px-10 md:pr-20">
+
+        <div className=" px-14 lg:pr-14 lg:pl-0">
           <h1 className=" font-bold text-3xl text-gray-300 text-center mb-10 mt-10">
             Introducción
           </h1>
-          <div className="text-gray-300">
-            <p className="mb-7">
+          <div className="text-gray-300 w-[100%] max-w-2xl block justify-center mx-auto">
+            <p className="mb-7 ">
               Bienvenido a Generate AI! Tu puerta de entrada al futuro de la
               creatividad visual. En ForstAI, hemos llevado la generación de
               imágenes a un nivel completamente nuevo al combinar la intuición
@@ -114,7 +116,7 @@ const Home = () => {
       </section>
 
       <section id="galeria">
-        <h1 className="flex justify-center items-center mt-10 text-gray-300  font-bold text-3xl">
+        <h1 className="flex justify-center items-center mt-3 text-gray-300  font-bold text-3xl">
           Galería
         </h1>
         <p className="flex justify-center items-center mt-5 text-gray-300  font-bold text-lg text-center">
@@ -612,7 +614,7 @@ const Home = () => {
             <button
               type="button"
               className="transition ease-in duration-100 text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 flex justify-center w-full text-center active:bg-[#464f9d]"
-              >
+            >
               Enviar formulario
             </button>
           </div>

@@ -4,6 +4,7 @@ import Home from './pages/Home.tsx';
 import Login from './pages/Login.tsx';
 import Registrar from './pages/Registrar.tsx';
 import Olvide from './pages/Olvide.tsx'
+import Error from './pages/Error.tsx';
 function App() {
 
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login />} index />
         <Route path="/registrar" element={<Registrar />} index />
         <Route path="/olvide" element={<Olvide />} index />
+        <Route path="*" element={<Error />} />
 
         
       </Routes>

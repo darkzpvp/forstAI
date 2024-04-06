@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-scroll";
 import { useNavigate  } from "react-router-dom";
 const Header = () => {
@@ -16,6 +16,8 @@ const Header = () => {
     setMenu(false);
     navigate('/login'); 
   }
+ 
+
   return (
     <>
       <header className="fixed z-50 w-full bg-zinc-800">
