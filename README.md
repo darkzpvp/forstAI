@@ -1,6 +1,15 @@
-Página web que genera imágenes con inteligencia artificial usando el API de código abierto "Stable diffusion".
+<h1>Anteproyecto</h1>
+<h2>Notion</h2>
+
+https://faceted-binder-6cc.notion.site/Anteproyecto-1f21f41efbe444c48c01509a30aad739?pvs=25
 
 
+<h2>Bitácora de tareas</h2>
+El proyecto lo empecé antes de Semana Santa, para tener un avance mientras compaginaba las prácticas
+<br>
+<br>
+<br>
+<hr>
 Repositorio subido por primera vez el Lunes 01/04/2024
 Comencé el Lunes 18/04/2024
 
