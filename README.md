@@ -11,7 +11,7 @@ El proyecto lo empecé antes de Semana Santa, para tener un avance mientras comp
 <br>
 <hr>
 Repositorio subido por primera vez el Lunes 01/04/2024
-Comencé el Lunes 18/04/2024
+Comencé el Lunes 18/03/2024
 
 MARZO
 Día 18
@@ -50,7 +50,11 @@ Día 5
 Estuve investigando sobre varias formas de hacer el login, si centrarlo todo en un div o crear un grid con dos columnas, una que ocupe más (la de la imagen) para no dar sensación de vacío al formulario
 
 Día 6
-Acabo el login definitivamente
+Acabo el login definitivamente, además del registro y olvidé password. También modifiqué home y mejoré cosas del responsive
+
+Día 7
+
+Pasar a NextJS y dividir el proyecto el componentes para legibilidad (hasta ahora usando React Router DOM)
 
 
 
@@ -63,7 +67,7 @@ Imágenes
 Freepik.com
 
 Iconos
-https://heroicons.com
+Flaticon.com
 
 Background
 https://mycolor.space/gradient
