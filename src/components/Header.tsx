@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-scroll";
-
+import { useNavigate  } from "react-router-dom";
 const Header = () => {
   const [menu, setMenu] = useState(false);
+  const navigate = useNavigate();
 
   const handleMenu = () => {
     setMenu(!menu);
@@ -11,6 +12,10 @@ const Header = () => {
  
     setMenu(false);
   };
+  const handleSubmit = () => {
+    setMenu(false);
+    navigate('/login'); 
+  }
   return (
     <>
       <header className="fixed z-50 w-full bg-zinc-800">
@@ -85,7 +90,7 @@ const Header = () => {
           </div>
 
           <div className="flex  items-center w-[25%]  justify-end">
-            <button type="button" onClick={cerrarModal} className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7]  active:bg-[#464f9d] rounded-lg text-sm py-2.5 flex justify-center px-3 transition ease-in duration-100">
+            <button type="button" onClick={handleSubmit} className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7]  active:bg-[#464f9d] rounded-lg text-sm py-2.5 flex justify-center px-3 transition ease-in duration-100">
               Get started
             </button>
           </div>
