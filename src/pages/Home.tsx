@@ -9,6 +9,7 @@ const Home = () => {
   const [modal, setModal] = useState(false);
   const [imagen, setImagen] = useState({});
   const [overflow, setOverflow] = useState(false);
+
   const GradientBackground = styled.div`
     background: linear-gradient(rgba(33, 37, 41, 0.85), rgba(33, 37, 41, 0.85)),
       url("/src/assets/img/4598.jpg") center/cover no-repeat;
@@ -119,26 +120,25 @@ const Home = () => {
         <h1 className="flex justify-center items-center mt-3 text-gray-300  font-bold text-3xl">
           Galería
         </h1>
-        <p className="flex justify-center items-center mt-5 text-gray-300  font-bold text-lg text-center">
+        <p className="flex justify-center items-center mt-5 text-gray-300  font-bold text-lg text-center mb-5">
           Algunos de nuestros prompts...
         </p>
-        <div className="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mx-auto my-10 px-5 sm:px-5 ">
-          {galeria.images.map((imagen) => (
-            <div key={imagen.id}>
-              <a
-                onClick={() => handleGaleria(imagen)}
-                data-tooltip-id="my-tooltip"
-                data-tooltip-content={imagen.title}
-              >
-                <img
-                  className="rounded-lg cursor-pointer"
-                  src={imagen.url}
-                  alt={imagen.title}
-                />
-              </a>
-              <Tooltip id="my-tooltip" />
-            </div>
-          ))}
+        <div className="w-full max-w-5xl columns-2 md:columns-3 gap-5 mx-auto">
+        {galeria.images.map((imagen) => (
+  <div key={imagen.id} className="mb-5 w-full cursor-pointer relative">
+    <a onClick={() => handleGaleria(imagen)}>
+      <img
+        className="rounded-lg relative"
+        src={imagen.url}
+        alt={imagen.title}
+      />
+<div className="absolute inset-0 bg-black opacity-0 hover:opacity-50 transition-opacity duration-300 ">
+        <p className=" absolute text-gray-200 flex bottom-2 left-2">{imagen.title}</p>
+      </div>
+    </a>
+  </div>
+))}
+
 
           <Modal
             modal={modal}
@@ -150,7 +150,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="bg-gray-800 shadow border-gray-700 py-16 flex place-items-center justify-center w-full max-w-full">
+      <section className="bg-gray-800 shadow border-gray-700 py-16 flex place-items-center justify-center w-full max-w-full mt-10">
         <div className="flex flex-col md:flex-row justify-center items-center">
           <div className="flex flex-wrap md:flex-nowrap px-10 ">
             <div className="flex justify-center md:mb-0 mb-5">
