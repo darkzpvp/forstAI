@@ -44,7 +44,13 @@ Sección de ventajas. Me basé en este https://imgur.com/a/xaeMvPq de la página
 Día 31
 Añadí sección de contacto y le puse una flecha en el home que te permite bajar a la introducción
 
+ABRIL
 
+Día 5
+Estuve investigando sobre varias formas de hacer el login, si centrarlo todo en un div o crear un grid con dos columnas, una que ocupe más (la de la imagen) para no dar sensación de vacío al formulario
+
+Día 6
+Acabo el login definitivamente
 
 
 
