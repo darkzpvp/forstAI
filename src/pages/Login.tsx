@@ -27,7 +27,7 @@ const Registrar = () => {
     <div className="grid lg:grid-cols-3 md:grid-cols-2 h-screen ">
       <ImagenFondo className=" md:col-span-1 lg:col-span-2 hidden md:flex ">
         <div className="sm:my-20 text-[#272B30] p-5  rounded-md mx-7  ">
-          <h1 className="font-bold md:text-4xl sm:text-2xl text-xl mb-3 text-center">
+          <h1 className=" font-black md:text-4xl sm:text-2xl text-xl mb-3 text-center">
             ¡Logueate en ForstAI!
           </h1>
           <p className="text-center">Comienza a generar imágenes ya.</p>

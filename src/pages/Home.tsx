@@ -70,13 +70,13 @@ const Home = () => {
 
       <section
         id="intro"
-        className="grid lg:grid-cols-2 gap-4 sm:grid-cols-1 md:grid-cols-1"
+        className="grid lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-1"
       >
-        <img
-          className="lg:h-[calc(100vh-3.5rem)] md:w-[100%]"
-          src="/src/assets/img/about-section.jpg"
-        />
-        <div className="px-5 sm:px-10 xl:px-20">
+        <div className="  ">
+      <img className=" hidden lg:flex justify-center mx-auto w-[100%] max-w-xl h-screen" src="/src/assets/img/about.svg"/>
+        </div>
+       
+        <div className="px-10 md:pr-20">
           <h1 className=" font-bold text-3xl text-gray-300 text-center mb-10 mt-10">
             Introducción
           </h1>
