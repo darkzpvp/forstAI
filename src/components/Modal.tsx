@@ -63,9 +63,9 @@ useEffect(() => {
                 className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group "
                 data-carousel-prev
               >
-                <span className="flex items-center justify-center w-10 h-10 rounded-full  bg-gray-100/30  ">
+                <span className="flex items-center justify-center w-10 h-10 rounded-full  bg-gray-100/70  hover:bg-gray-300/70 active:bg-gray-500/70 ">
                   <svg
-                    className="w-4 h-4  text-gray-100 rtl:rotate-180"
+                    className="w-4 h-4  text-gray-800 rtl:rotate-180"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -88,9 +88,9 @@ useEffect(() => {
                 className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                 data-carousel-next
               >
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-full  bg-gray-100/30  ">
+                <span className="inline-flex items-center justify-center w-10 h-10 rounded-full  bg-gray-100/70  hover:bg-gray-300/70 active:bg-gray-500/70 ">
                   <svg
-                    className="w-4 h-4  text-gray-100 rtl:rotate-180"
+                    className="w-4 h-4  text-gray-800 rtl:rotate-180"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

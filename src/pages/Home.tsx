@@ -133,7 +133,7 @@ const Home = () => {
         alt={imagen.title}
       />
 <div className="absolute inset-0 bg-black opacity-0 hover:opacity-50 transition-opacity duration-300 ">
-        <p className=" absolute text-gray-200 flex bottom-2 left-2">{imagen.title}</p>
+        <p className=" absolute text-gray-200 flex bottom-2 left-2 text-sm">{imagen.title}</p>
       </div>
     </a>
   </div>
