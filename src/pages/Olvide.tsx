@@ -3,20 +3,17 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const ImagenFondo = styled.div`
-  background: 
-  linear-gradient(
+  background: linear-gradient(
       rgba(255, 255, 255, 0.123),
       rgba(33, 37, 41, 0.85)
     ),
-    url("/src/assets/img/fondoRegistro.jpg") center/cover no-repeat;
+    url("/src/assets/img/fondoLogin.jpg") center/cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
   @media (min-width: 768px) {
     align-items: start;
   }
-
-
 `;
 
 const Registrar = () => {
@@ -25,9 +22,9 @@ const Registrar = () => {
       <ImagenFondo className=" md:col-span-1 lg:col-span-2 hidden md:flex ">
         <div className="sm:my-20 text-[#272B30] p-5  rounded-md mx-7  ">
           <h1 className="font-bold md:text-4xl sm:text-2xl text-xl mb-3 text-center">
-            ¡Regístrate en ForstAI!
+            ¿Olvidaste la contraseña?
           </h1>
-          <p className="text-center">Estás a un paso de tener una cuenta.</p>
+          <p className="text-center">No te preocupes, pronto tendrás acceso</p>
         </div>
       </ImagenFondo>
 
@@ -76,43 +73,13 @@ const Registrar = () => {
         />
       </div>
 
-      <div className="w-full  max-w-72 lg:max-w-80">
-        <label
-          htmlFor="contraseña"
-          className="block mb-2 text-sm font-medium text-gray-300"
-        >
-          Contraseña
-        </label>
-        <input
-          type="password"
-          id="contraseña"
-          className="border text-sm rounded-lg block p-2.5 bg-gray-200 mb-4 text-black w-full"
-          placeholder="Escribe tu contraseña"
-          required
-        />
-      </div>
-
-      <div className="w-full  max-w-72 lg:max-w-80">
-        <label
-          htmlFor="contraseña2"
-          className="block mb-2 text-sm font-medium text-gray-300"
-        >
-          Repite contraseña
-        </label>
-        <input
-          type="password"
-          id="contraseña2"
-          className="border text-sm rounded-lg block p-2.5 bg-gray-200 mb-8 text-black w-full"
-          placeholder="Escribe tu contraseña"
-          required
-        />
-      </div>
+      
 
       <button
         type="button"
         className="transition ease-in duration-100 text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 block text-center active:bg-[#464f9d] w-full max-w-72 lg:max-w-80"
       >
-        Login
+        Enviar
       </button>
 
       <div className="text-center text-sm mt-5">

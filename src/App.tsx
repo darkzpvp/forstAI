@@ -3,6 +3,7 @@ import Layout from './layouts/Layout.tsx';
 import Home from './pages/Home.tsx';
 import Login from './pages/Login.tsx';
 import Registrar from './pages/Registrar.tsx';
+import Olvide from './pages/Olvide.tsx'
 function App() {
 
 
@@ -18,6 +19,7 @@ function App() {
         </Route>
         <Route path="/login" element={<Login />} index />
         <Route path="/registrar" element={<Registrar />} index />
+        <Route path="/olvide" element={<Olvide />} index />
 
         
       </Routes>
