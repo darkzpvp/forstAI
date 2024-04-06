@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 const ImagenFondo = styled.div`
   background: linear-gradient(
@@ -26,6 +27,26 @@ const Login = () => {
       </ImagenFondo>
 
       <div className="bg-[#272B30] text-gray-300 shadow-lg md:col-span-1 flex flex-col justify-center gap-0 md:gap-12">
+        <div className="absolute top-5 mx-5 cursor-pointer">
+            <Link to={'/'} className=" flex gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 19.5 8.25 12l7.5-7.5"
+            />
+          </svg>
+          <p>Atrás</p>
+          </Link>
+        </div>
+
         <div className=" flex justify-center">
           <img
             className="hidden md:flex md:w-28 cursor-pointer"
@@ -73,7 +94,7 @@ const Login = () => {
           </div>
 
           <div className=" text-center text-sm mt-5">
-            <a href="/">
+            <a href="/registrar">
               ¿Todavía no tienes una cuenta?{" "}
               <span className="text-[#8f95d3]">Regístrate</span>
             </a>
