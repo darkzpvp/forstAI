@@ -25,7 +25,7 @@ const Header = () => {
           <button className="w-[25%] ">
             <Link to="home" duration={1} smooth={true}>
               <img
-                className="w-[100%] min-w-16 max-w-16 cursor-pointer"
+                className="w-[100%] min-w-12 max-w-12 cursor-pointer"
                 src="/src/assets/img/prueba.png"
                 alt="..."
                 onClick={cerrarModal}

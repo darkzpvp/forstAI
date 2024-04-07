@@ -5,6 +5,7 @@ import Login from './pages/Login.tsx';
 import Registrar from './pages/Registrar.tsx';
 import Olvide from './pages/Olvide.tsx'
 import Error from './pages/Error.tsx';
+import Generar from './pages/Generar.tsx';
 function App() {
 
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/registrar" element={<Registrar />} index />
         <Route path="/olvide" element={<Olvide />} index />
         <Route path="*" element={<Error />} />
+        <Route path="/generar" element={<Generar />} index />
 
         
       </Routes>

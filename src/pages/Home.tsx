@@ -243,7 +243,7 @@ const Home = () => {
           <ul role="list" className="space-y-5 my-7">
             <li className="flex items-center">
               <svg
-                className=" w-4 h-4  text-blue-500"
+                className=" w-4 h-4  text-[#5D68CC]"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -257,7 +257,7 @@ const Home = () => {
             </li>
             <li className="flex">
               <svg
-                className=" w-4 h-4  text-blue-500"
+                className=" w-4 h-4  text-[#5D68CC]"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -271,7 +271,7 @@ const Home = () => {
             </li>
             <li className="flex">
               <svg
-                className=" w-4 h-4  text-blue-500"
+                className=" w-4 h-4  text-[#5D68CC]"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -285,7 +285,7 @@ const Home = () => {
             </li>
             <li className="flex">
               <svg
-                className=" w-4 h-4  text-blue-500"
+                className=" w-4 h-4  text-[#5D68CC]"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -349,7 +349,7 @@ const Home = () => {
           <ul role="list" className="space-y-5 my-7">
             <li className="flex items-center">
               <svg
-                className=" w-4 h-4  text-blue-500"
+                className=" w-4 h-4  text-[#5D68CC]"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -363,7 +363,7 @@ const Home = () => {
             </li>
             <li className="flex">
               <svg
-                className=" w-4 h-4  text-blue-500"
+                className=" w-4 h-4  text-[#5D68CC]"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -377,7 +377,7 @@ const Home = () => {
             </li>
             <li className="flex">
               <svg
-                className=" w-4 h-4  text-blue-500"
+                className=" w-4 h-4  text-[#5D68CC]"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -391,7 +391,7 @@ const Home = () => {
             </li>
             <li className="flex">
               <svg
-                className=" w-4 h-4  text-blue-500"
+                className=" w-4 h-4  text-[#5D68CC]"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -455,7 +455,7 @@ const Home = () => {
           <ul role="list" className="space-y-5 my-7">
             <li className="flex items-center">
               <svg
-                className=" w-4 h-4  text-blue-500"
+                className=" w-4 h-4  text-[#5D68CC]"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -469,7 +469,7 @@ const Home = () => {
             </li>
             <li className="flex">
               <svg
-                className=" w-4 h-4  text-blue-500"
+                className=" w-4 h-4  text-[#5D68CC]"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -483,7 +483,7 @@ const Home = () => {
             </li>
             <li className="flex">
               <svg
-                className=" w-4 h-4  text-blue-500"
+                className=" w-4 h-4  text-[#5D68CC]"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -497,7 +497,7 @@ const Home = () => {
             </li>
             <li className="flex">
               <svg
-                className=" w-4 h-4  text-blue-500"
+                className=" w-4 h-4  text-[#5D68CC]"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -511,7 +511,7 @@ const Home = () => {
             </li>
             <li className="flex">
               <svg
-                className=" w-4 h-4  text-blue-500"
+                className=" w-4 h-4  text-[#5D68CC]"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -526,7 +526,7 @@ const Home = () => {
 
             <li className="flex">
               <svg
-                className=" w-4 h-4  text-blue-500"
+                className=" w-4 h-4  text-[#5D68CC]"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
