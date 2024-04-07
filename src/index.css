@@ -37,7 +37,7 @@ html{
     height: 12px;
     width: 12px;
   }
-  
+
   ::-webkit-scrollbar-corner {
     background: transparent;
   }
@@ -71,6 +71,19 @@ html{
 
   
 
-  .oculto{
-    display: none;
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
   }
+  /* Ajustar el porcentaje final según la cantidad de imágenes */
+  100% {
+    transform: translateX(calc(-100% / 2)); /* Mitad del ancho total para que regrese a la primera imagen */
+  }
+}
+
+.animate-marquee {
+  animation: marquee 50s linear infinite; /* Duplicamos el tiempo para permitir que cada imagen se muestre durante 2 segundos */
+
+}
+
+

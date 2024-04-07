@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import generarImagenes from "../data/generarImagenes.json";
 
 const Generar = () => {
   const [menu, setMenu] = useState(false);
@@ -17,8 +18,8 @@ const Generar = () => {
   };
 
   return (
-    <>
-      <nav className="bg-zinc-800 px-10">
+    <div className="overflow-y-hidden overflow-x-hidden">
+      <nav className="bg-zinc-800 px-10 ">
         <div className=" flex flex-wrap items-center justify-between mx-auto p-2">
           <button className="w-[25%]">
             <Link to="/generar">
@@ -35,7 +36,7 @@ const Generar = () => {
               type="button"
               onClick={handleMenu}
               className="flex text-sm bg-gray-800 rounded-full"
-              id="user-menu-button"
+            
             >
               <span className="sr-only">Open user menu</span>
               <img
@@ -50,7 +51,7 @@ const Generar = () => {
 
       {menu && (
         <>
-          <div className="absolute z-50 my-2 text-base divide-y rounded-lg shadow bg-gray-800 divide-gray-600 w-fit block 2xl:right-16 right-0">
+          <div className="absolute z-50 my-2 text-base divide-y rounded-lg shadow bg-zinc-800 divide-gray-600 w-fit block 2xl:right-18 right-0">
             <div className="px-4 py-3">
               <span className="block text-sm text-white">Víctor Valverde</span>
               <span className="block text-sm text-gray-400">
@@ -92,14 +93,38 @@ const Generar = () => {
         className="bg-gray-700 h-[92.2vh] flex justify-center"
         onClick={handleCloseMenu}
       >
+<div className="md:flex md:relative hidden">
+  <div className="absolute flex gap-2 mx-auto animate-marquee">
+    {[...generarImagenes.images, ...generarImagenes.images].map((imagen, index) => (
+      <div key={index} className="mb-5 w-40 h-40 cursor-pointer relative">
+        <div className="relative">
+          <img
+            className="rounded-lg"
+            src={imagen.url}
+            alt={imagen.title}
+          />
+         
+          <div className="absolute inset-0 bg-black opacity-0 hover:opacity-50 transition-opacity duration-300 rounded-lg">
+          <p className=" absolute text-gray-200 flex bottom-2 left-2 text-sm">{imagen.title}</p>
+          </div>
+        </div>
+       
+      </div>
+    ))}
+  </div>
+</div>
+
+      
         <div className="block md:flex items-center px-5 justify-center mt-10 md:mt-0">
           <div className="md:text-left w-full md:w-[100%] mx-auto min-w-[50vh] px-10">
             <h1 className="md:text-5xl font-bold text-gray-300 mb-5 text-2xl">
-              Generador de Imágenes por IA
+              Genera con Stable Diffusion
             </h1>
             <p className="text-gray-400 md:text-lg text-md">
-              Nuestra herramienta de texto a imagen genera resultados infinitos
-              a tiempo real. ¿Quieres probarla?
+            ¿Te gustaría probar nuestra herramienta de conversión de texto a imagen en tiempo real?
+
+
+
             </p>
             <form className="mt-6" action="#">
               <div className="relative">
@@ -120,17 +145,27 @@ const Generar = () => {
           </div>
 
           <div className=" w-[100%] max-w-[50vh] mx-auto px-10 sm:px-0">
-            <div className=" mt-10 bg-gray-500 rounded-lg shadow-lg py-10 px-10  flex items-center justify-center mx-auto ">
+            <div className=" mt-10 bg-gray-500 rounded-lg shadow-lg py-10 px-10  flex items-center justify-center mx-auto">
               <img
-                className="w-[20vh] h-[20vh]"
+                className="w-[20vh] h-[20vh] "
                 src="/src/assets/img/imagenicono.svg"
                 alt="Imagen Icono"
               />
             </div>
+            <button
+                  type="submit"
+                  className="flex mt-2 justify-center mx-auto text-white bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] font-medium rounded-lg text-sm px-4 py-2"
+                >
+                  Descargar
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15M9 12l3 3m0 0 3-3m-3 3V2.25" />
+</svg>
+
+                </button>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

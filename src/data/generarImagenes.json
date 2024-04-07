@@ -1,0 +1,88 @@
+{
+    "images": [
+      {
+        "id": 1,
+        "title": "Capibara",
+        "url": "/src/assets/img/generar/1.jpg"
+       
+      },
+      {
+        "id": 2,
+        "title": "Montañero",
+        "url": "/src/assets/img/generar/2.jpg"
+    
+      },
+      {
+        "id": 3,
+        "title": "Oso polar en un iceberg",
+        "url": "/src/assets/img/generar/3.jpg"
+      
+      },
+      {
+        "id": 4,
+        "title": "Oso en su hábitat natural",
+        "url": "/src/assets/img/generar/4.jpg"
+      
+      },
+      {
+        "id": 5,
+        "title": "Bosque frondoso",
+        "url": "/src/assets/img/generar/5.jpg"
+      
+      },
+      {
+        "id": 6,
+        "title": "Oso pardo",
+        "url": "/src/assets/img/generar/6.jpg"
+      
+      },
+      {
+        "id": 7,
+        "title": "Chalet lujoso",
+        "url": "/src/assets/img/generar/7.jpg"
+      
+      },
+      {
+        "id": 8,
+        "title": "Perro disfrutando",
+        "url": "/src/assets/img/generar/8.jpg"
+      
+      },
+      {
+        "id": 9,
+        "title": "Barco rompiendo el hielo",
+        "url": "/src/assets/img/generar/9.jpg"
+      
+      },
+      {
+        "id": 10,
+        "title": "Precioso gatito",
+        "url": "/src/assets/img/generar/10.jpg"
+      
+      },
+      {
+        "id": 11,
+        "title": "Navidad en Alemania",
+        "url": "/src/assets/img/generar/11.jpg"
+      
+      },
+      {
+        "id": 12,
+        "title": "Vikingo con una barba canosa",
+        "url": "/src/assets/img/generar/12.jpg"
+      
+      },
+      {
+        "id": 13,
+        "title": "Familia de etnia blanca disfrutando",
+        "url": "/src/assets/img/generar/13.jpg"
+      
+      },
+      {
+        "id": 14,
+        "title": "Alemanes bebiendo cerveza",
+        "url": "/src/assets/img/generar/14.jpg"
+      
+      }
+    ]
+  }
