@@ -6,17 +6,25 @@ import generarImagenes from "../data/generarImagenes.json";
 
 const Generar = () => {
   const [menu, setMenu] = useState(false);
-
+  const [suscripcion, setSuscripcion] = useState(false);
+const handleSuscripcion = () => {
+  setSuscripcion(!suscripcion)
+}
   const handleMenu = () => {
     setMenu(!menu);
+    setSuscripcion(!suscripcion)
   };
 
   const handleCloseMenu = () => {
     if (menu) {
       setMenu(false);
+      setSuscripcion(!false)
     }
   };
+const arrowMenu = () => {
+  setSuscripcion(false)
 
+}
   return (
     <header className="fixed z-50 w-full bg-zinc-800">
     <div className="py-2 mx-auto flex items-center justify-between w-full max-w-4xl px-5">
@@ -60,47 +68,76 @@ const Generar = () => {
       </div>
 
       {menu && (
-        <>
-        <div className=" flex justify-end 2xl:px-60 xl:px-20 lg:px-14">
-<div className="absolute z-50 text-base divide-y rounded-b-lg shadow bg-zinc-800 divide-gray-600 w-full block sm:max-w-48 px-5 ">
-            <div className="px-4 py-3">
-              <span className="block text-sm text-white">Víctor Valverde</span>
-              <span className="block text-sm text-gray-400">
-                hola@correo.com
-              </span>
-            </div>
-            <ul className="py-2">
-              <li>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm hover:bg-gray-600 text-gray-200 hover:text-white"
-                >
-                  Suscripciones
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm hover:bg-gray-600 text-gray-200 hover:text-white"
-                >
-                  Configuración
-                </a>
-              </li>
+  <>
+  
+    <div className="flex justify-end 2xl:px-60 xl:px-20 lg:px-14 ">
+      
+      <div className="absolute z-50 text-base rounded-b-lg shadow bg-zinc-800  w-full block sm:max-w-56 px-5 h-40">
+     
+     <div className=" flex">
+      <div className=" w-[0%]">
+        {suscripcion && (
+           <div className="relative z-50 hover:bg-gray-600 active:bg-gray-700 rounded-lg p-1 stroke-gray-300 w-8 h-8" onClick={arrowMenu}>
+ <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="" className="">
+ <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+</svg>
+</div>
+        )}
+      
+   {!suscripcion && (
+            <div className=" relative z-50 hover:bg-gray-600 active:bg-gray-700 rounded-lg p-1 stroke-gray-300 w-8 h-8" onClick={handleCloseMenu}>
 
-              <li>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm hover:bg-gray-600 text-gray-200 hover:text-white"
-                >
-                  Logout
-                </a>
-              </li>
-            </ul>
-          </div>
-          </div>
-        </>
-      )}
+ <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="" className="">
+ <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+</svg>
+</div>
 
+        )}
+        </div>
+
+        <div className="w-[100%]">
+          <span className="block text-sm text-white text-center">Víctor Valverde</span>
+          <span className="block text-sm text-gray-400 text-center">hola@correo.com</span>
+        </div>
+</div>
+        
+        
+        {menu && !suscripcion && (
+         
+            <button
+              onClick={handleSuscripcion}
+              className="block px-4 py-2 text-sm hover:bg-gray-600  rounded-lg text-gray-200 hover:text-white cursor-pointer mx-auto sm:mx-0 w-full mt-6"
+            >
+              Suscripciones
+            </button>
+           
+        )}
+            {suscripcion && (
+<>
+              <p className="block px-4 text-sm rounded-lg text-gray-200 hover:text-white font-bold text-center  mt-6 mb-2">Plan: Estándar</p>
+ <button className="block px-4 py-2 text-sm bg-red-600 hover:bg-red-700 rounded-lg text-gray-200 hover:text-white text-center  mx-auto sm:mx-0 w-full">
+ Cancelar suscripción
+</button>
+</>
+            )}
+           
+        
+          {menu && !suscripcion && (
+          
+            <button
+              
+              className="block px-4 py-2 text-sm hover:bg-gray-600 rounded-lg text-gray-200 hover:text-white mx-auto sm:mx-0 w-full"
+            >
+              Logout
+            </button>
+        
+          )}
+          
+      
+      </div>
+    </div>
+  </>
+)}
       <section
         className="bg-gray-700 h-[92.2vh] flex justify-center"
         onClick={handleCloseMenu}
