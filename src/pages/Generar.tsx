@@ -18,9 +18,9 @@ const Generar = () => {
   };
 
   return (
-    <div className="overflow-y-hidden overflow-x-hidden">
-      <nav className="bg-zinc-800 px-10 ">
-        <div className=" flex flex-wrap items-center justify-between mx-auto p-2">
+    <header className="fixed z-50 w-full bg-zinc-800">
+    <div className="py-2 mx-auto flex items-center justify-between w-full max-w-4xl px-5">
+      
           <button className="w-[25%]">
             <Link to="/generar">
               <img
@@ -31,7 +31,14 @@ const Generar = () => {
             </Link>
           </button>
 
-          <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+          
+
+          <div>
+          <Link to="/">
+            <a className=" text-gray-300 cursor-pointer">Home</a>
+            </Link>
+          </div>
+          <div className="flex  items-center w-[25%]  justify-end">
             <button
               type="button"
               onClick={handleMenu}
@@ -45,13 +52,17 @@ const Generar = () => {
                 alt="user photo"
               />
             </button>
-          </div>
+            
+         
+       
         </div>
-      </nav>
+        
+      </div>
 
       {menu && (
         <>
-          <div className="absolute z-50 my-2 text-base divide-y rounded-lg shadow bg-zinc-800 divide-gray-600 w-fit block 2xl:right-18 right-0">
+        <div className=" flex justify-end 2xl:px-60 xl:px-20 lg:px-14">
+<div className="absolute z-50 text-base divide-y rounded-b-lg shadow bg-zinc-800 divide-gray-600 w-full block sm:max-w-48 px-5 ">
             <div className="px-4 py-3">
               <span className="block text-sm text-white">Víctor Valverde</span>
               <span className="block text-sm text-gray-400">
@@ -86,6 +97,7 @@ const Generar = () => {
               </li>
             </ul>
           </div>
+          </div>
         </>
       )}
 
@@ -93,13 +105,13 @@ const Generar = () => {
         className="bg-gray-700 h-[92.2vh] flex justify-center"
         onClick={handleCloseMenu}
       >
-<div className="md:flex md:relative hidden">
+<div className="flex relative ">
   <div className="absolute flex gap-2 mx-auto animate-marquee">
     {[...generarImagenes.images, ...generarImagenes.images].map((imagen, index) => (
-      <div key={index} className="mb-5 w-40 h-40 cursor-pointer relative">
+      <div key={index} className="mb-5 md:w-40 md:h-40 w-28 h-28 cursor-pointer relative">
         <div className="relative">
           <img
-            className="rounded-lg"
+            className="rounded-lg aspect-square "
             src={imagen.url}
             alt={imagen.title}
           />
@@ -115,13 +127,13 @@ const Generar = () => {
 </div>
 
       
-        <div className="block md:flex items-center px-5 justify-center mt-10 md:mt-0">
-          <div className="md:text-left w-full md:w-[100%] mx-auto min-w-[50vh] px-10">
+        <div className="block md:flex items-center px-5 justify-center mt-32 md:mt-0">
+          <div className=" w-full md:w-[100%] mx-auto min-w-[50vh] px-10 text-center md:text-left">
             <h1 className="md:text-5xl font-bold text-gray-300 mb-5 text-2xl">
               Genera con Stable Diffusion
             </h1>
             <p className="text-gray-400 md:text-lg text-md">
-            ¿Te gustaría probar nuestra herramienta de conversión de texto a imagen en tiempo real?
+            Empieza a generar imagenes increíbles ahora mismo
 
 
 
@@ -145,7 +157,7 @@ const Generar = () => {
           </div>
 
           <div className=" w-[100%] max-w-[50vh] mx-auto px-10 sm:px-0">
-            <div className=" mt-10 bg-gray-500 rounded-lg shadow-lg py-10 px-10  flex items-center justify-center mx-auto">
+            <div className=" md:mt-10 mt-5 bg-gray-500 rounded-lg shadow-lg py-10 px-10  flex items-center justify-center mx-auto">
               <img
                 className="w-[20vh] h-[20vh] "
                 src="/src/assets/img/imagenicono.svg"
@@ -165,7 +177,7 @@ const Generar = () => {
           </div>
         </div>
       </section>
-    </div>
+    </header>
   );
 };
 

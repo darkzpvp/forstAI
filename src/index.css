@@ -73,7 +73,7 @@ html{
 
 @keyframes marquee {
   0% {
-    transform: translateX(0);
+    transform: translateX(-10%);
   }
   /* Ajustar el porcentaje final según la cantidad de imágenes */
   100% {
