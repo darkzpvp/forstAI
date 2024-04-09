@@ -12,7 +12,7 @@ const Carrito = () => {
     }
   };
   return (
-    <div className="fixed z-50 w-full bg-zinc-800">
+    <div className="md:fixed z-50 w-full bg-zinc-800">
 
       <Header_Dos
         menu={menu}
@@ -22,7 +22,7 @@ const Carrito = () => {
       />
 
       <section
-        className=" bg-gray-700 h-screen py-7"
+        className=" bg-gray-700 md:h-screen h-full py-7"
         onClick={handleCloseMenu}
       >
         <div className=" flex justify-center  mx-auto w-[100%] max-w-3xl mb-10">
@@ -60,12 +60,12 @@ const Carrito = () => {
 
 
 
-        <div className=" w-[100%] max-w-6xl mx-auto ">
+        <div className=" w-[100%] max-w-6xl mx-auto px-5">
             <h1 className="text-gray-300 text-xl font-bold mb-5">Tu carrito</h1>
             <p className=" text-gray-300 text-sm mb-5">1 artículos</p>
 
-            <div className=" grid grid-cols-5 gap-5">
-            <div className=" col-span-3">
+            <div className=" grid md:grid-cols-5 gap-5">
+            <div className="md:col-span-3">
            
 <form className=" border border-gray-500 px-5 py-5 rounded-lg">
     <div className="grid gap-6 md:grid-cols-2">
@@ -114,7 +114,7 @@ const Carrito = () => {
 </form>
 
             </div>
-            <div className=" col-span-2 px-5 py-5 border border-gray-500 rounded-lg h-72">
+            <div className=" md:col-span-2 px-5 py-5 border border-gray-500 rounded-lg h-72 flex flex-col justify-center">
             <h1 className="text-gray-300 text-xl font-bold mb-5">Resumen</h1>
             <div className="flex">
             <p className="text-gray-300 mb-5 w-[74%]">Suscripción</p>
