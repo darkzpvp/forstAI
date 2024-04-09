@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import generarImagenes from "../data/generarImagenes.json";
 import Header_Dos from "../components/Header_Dos";
-
+import setBodyColor from "../setBodyColor";
 const Generar = () => {
   const [menu, setMenu] = useState(false);
   const [suscripcion, setSuscripcion] = useState(false);
@@ -15,12 +15,12 @@ const Generar = () => {
       setSuscripcion(false);
     }
   };
- 
+  setBodyColor({color: "#374151"})
   return (
     <header className="fixed z-50 w-full bg-zinc-800">
       <Header_Dos menu={menu} setMenu={setMenu} suscripcion={suscripcion} setSuscripcion={setSuscripcion}/>
       <section
-        className="bg-gray-700 h-[92.2vh] flex justify-center"
+        className="bg-gray-700 h-[92.2vh] flex justify-center body"
         onClick={handleCloseMenu}
       >
         <div className="flex relative ">

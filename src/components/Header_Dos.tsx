@@ -23,15 +23,16 @@ const Header_Dos = ({menu, setMenu, suscripcion, setSuscripcion}) => {
       };
   return (
    <>
+      <div className=" z-50 w-full bg-zinc-800 overlay">
    <div className="py-2 mx-auto flex items-center justify-between w-full max-w-4xl px-5" onClick={handleCloseMenu}>
         <button className="w-[25%]">
-          <Link to="/generar">
+          
             <img
               className="w-[100%] min-w-12 max-w-12 cursor-pointer"
               src="/src/assets/img/prueba.png"
               alt="..."
             />
-          </Link>
+         
         </button>
 
         <div>
@@ -127,11 +128,9 @@ const Header_Dos = ({menu, setMenu, suscripcion, setSuscripcion}) => {
               {suscripcion && (
                 <>
                   <p className="block px-4 text-sm rounded-lg text-gray-200 hover:text-white font-bold text-center  mt-6 mb-2 ">
-                    Plan: Estándar
+                    Aún no te has suscrito
                   </p>
-                  <button className="block px-4 py-2 text-sm bg-red-600 hover:bg-red-700 rounded-lg text-gray-200 hover:text-white text-center  mx-auto sm:mx-0 w-full">
-                    Cancelar suscripción
-                  </button>
+                
                 </>
               )}
 
@@ -144,6 +143,7 @@ const Header_Dos = ({menu, setMenu, suscripcion, setSuscripcion}) => {
           </div>
         </>
       )}
+      </div>
    </>
   )
 }

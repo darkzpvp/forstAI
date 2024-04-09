@@ -5,23 +5,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-  
-      
 
-
-      background-image: linear-gradient(
-        to bottom,
-        #40444b 0%,  
-        #25292d 30%,
-        #282d32 40%,
-        #21252a 60%,
-        #282c31 80%,
-        #343a41 100%  
-      );
-      
-
-}
 h1, p, a, button, h2, h3{
     font-family: "Kumbh Sans", sans-serif;
 
@@ -30,6 +14,14 @@ html{
     scroll-behavior: smooth;
   
     
+}
+:root {
+  --bodyColor: "#000000";
+
+}
+body {
+  background-color: var(--bodyColor);
+
 }
 
 ::-webkit-scrollbar {

@@ -1,11 +1,16 @@
 import styled from "styled-components";
 import galeria from "../data/galeria.json";
 import { Tooltip } from "react-tooltip";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "../components/Modal";
 import FAQ from "../components/FAQ";
 import { Link } from "react-scroll";
+import { useNavigate } from "react-router-dom";
+import setBodyColor, { setGradiente } from "../setBodyColor";
+
 const Home = () => {
+  const navigate = useNavigate();
+
   const [modal, setModal] = useState(false);
   const [imagen, setImagen] = useState({});
   const [overflow, setOverflow] = useState(false);
@@ -19,7 +24,18 @@ const Home = () => {
     background: linear-gradient(rgba(33, 37, 41, 0.477), rgba(33, 37, 41, 0.85)),
       url("/src/assets/img/12288.jpg") center/cover no-repeat;
   `;
-
+const GrisBackground = styled.div`
+  
+  background-image: linear-gradient(
+    to bottom,
+    #40444b 0%,  
+    #25292d 30%,
+    #282d32 40%,
+    #21252a 60%,
+    #282c31 80%,
+    #343a41 100%  
+  );
+`;
   const handleGaleria = (imagen) => {
     setModal(true);
     setImagen(imagen);
@@ -30,8 +46,15 @@ const Home = () => {
   } else {
     document.body.classList.remove("overflow-hidden");
   }
+  const carritoCompra = () => {
+    navigate('/carrito')
+  }
+
+
+  setGradiente()
   return (
     <>
+    <GrisBackground>
       <GradientBackground>
         <div
           id="home"
@@ -328,8 +351,10 @@ const Home = () => {
             </li>
           </ul>
           <button
+          onClick={carritoCompra}
             type="button"
             className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 flex justify-center w-full text-center active:bg-[#464f9d] transition ease-in duration-100"
+            
           >
             Elegir plan
           </button>
@@ -434,6 +459,7 @@ const Home = () => {
             </li>
           </ul>
           <button
+          onClick={carritoCompra}
             type="button"
             className=" transition ease-in duration-100 text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 flex justify-center w-full text-center active:bg-[#464f9d]"
           >
@@ -540,6 +566,7 @@ const Home = () => {
             </li>
           </ul>
           <button
+          onClick={carritoCompra}
             type="button"
             className=" transition ease-in duration-100 text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 flex justify-center w-full text-center active:bg-[#464f9d]"
           >
@@ -681,6 +708,7 @@ const Home = () => {
           </span>
         </div>
       </footer>
+      </GrisBackground>
     </>
   );
 };
