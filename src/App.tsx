@@ -6,6 +6,7 @@ import Registrar from './pages/Registrar.tsx';
 import Olvide from './pages/Olvide.tsx'
 import Error from './pages/Error.tsx';
 import Generar from './pages/Generar.tsx';
+import Carrito from './pages/Carrito.tsx';
 function App() {
 
 
@@ -24,7 +25,7 @@ function App() {
         <Route path="/olvide" element={<Olvide />} index />
         <Route path="*" element={<Error />} />
         <Route path="/generar" element={<Generar />} index />
-
+        <Route path="/carrito" element={<Carrito />} index />
         
       </Routes>
     </BrowserRouter>
