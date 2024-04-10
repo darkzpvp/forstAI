@@ -15,7 +15,7 @@ export default {
         '2xl': '1536px',
         // Aquí puedes agregar tu media query personalizado
         'xs': {'raw': '(max-width: 550px)'},
-        '2xs': {'raw': '(max-width: 503.10px)'},
+        '2xs': {'raw': '(max-width: 540px)'},
       }
     },
   },

@@ -54,22 +54,24 @@ const Admin = () => {
         className=" overflow-x-auto sm:rounded-lg m-10"
       >
         {responsive ? (
-          <div className="flex items-center justify-between pb-4  ">
+          <div      onClick={handleAction} className="flex items-center justify-between pb-4  ">
             <div className="w-[25%]">
               <button
-                onClick={handleAction}
+         
                 className={`${
                   action ? "" : "overlaymodal"
-                } inline-flex items-center font-medium rounded-lg text-sm px-3 py-1.5 bg-gray-800 text-gray-400  hover:bg-[#171f2b] `}
+                } inline-flex items-center font-medium rounded-lg text-sm p-2  bg-gray-800 text-gray-400  hover:bg-[#171f2b] `}
                 type="button"
               >
                 Acciones
                 <svg
-                  className="w-2.5 h-2.5 ms-2.5"
+                
+                  className="w-2.5 h-2.5 ms-2.5 "
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 10 6"
+               
                 >
                   <path
                     stroke="currentColor"
@@ -126,16 +128,18 @@ const Admin = () => {
                   onClick={handleAction}
                   className={`${
                     action ? "" : "overlaymodal"
-                  } inline-flex items-center font-medium rounded-lg text-sm px-3 py-1.5 bg-gray-800 text-gray-400  hover:bg-[#171f2b] `}
+                  } inline-flex items-center font-medium rounded-lg text-sm p-2 bg-gray-800 text-gray-400  hover:bg-[#171f2b] `}
                   type="button"
                  >
                   Acciones
                   <svg
-                    className="w-2.5 h-2.5 ms-2.5"
+                       
+                    className="w-2.5 h-2.5 ms-2.5 pointer-events-none"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 10 6"
+                
                   >
                     <path
                       stroke="currentColor"
@@ -356,7 +360,7 @@ const Admin = () => {
                 </a>
               </td>
             </tr>
-            <tr className=" bg-gray-800 hover: hover:bg-gray-600">
+            <tr className="  border-b bg-gray-800 border-gray-700 hover: hover:bg-gray-600">
               <td className="w-4 p-4">
                 <div className="flex items-center">
                   <input
@@ -380,6 +384,44 @@ const Admin = () => {
                 </div>
               </th>
               <td className="px-6 py-4">Plan estándar</td>
+              <td className="px-6 py-4">
+                <div className="flex items-center">
+                  <p>No</p>
+                </div>
+              </td>
+              <td className="px-6 py-4">
+                <a
+                  href="#"
+                  className="font-medium  text-blue-500 hover:underline"
+                >
+                  Editar usuario
+                </a>
+              </td>
+            </tr>
+            <tr className=" bg-gray-800 hover: hover:bg-gray-600">
+              <td className="w-4 p-4">
+                <div className="flex items-center">
+                  <input
+                    type="checkbox"
+                    className="w-4 h-4    rounded   bg-gray-700 "
+                  />
+                </div>
+              </td>
+              <th
+                scope="row"
+                className="flex items-center px-6 py-4 font-medium  whitespace-nowrap text-gray-300"
+              >
+                <img
+                  className="w-10 h-10 rounded-full"
+                  src="/src/assets/img/usuario.svg"
+                  alt="Imagen usuario"
+                />
+                <div className="ps-3">
+                  <div className="text-base font-semibold">Tomás González</div>
+                  <div className="font-normal ">tomas@hotmail.com</div>
+                </div>
+              </th>
+              <td className="px-6 py-4">Plan básico</td>
               <td className="px-6 py-4">
                 <div className="flex items-center">
                   <p>No</p>
