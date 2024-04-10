@@ -118,7 +118,7 @@ const Admin = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className=" border-b bg-gray-800 border-gray-700 hover: hover:bg-gray-600">
+            <tr className=" border-b bg-gray-800 border-gray-700  hover:bg-gray-600">
               <td className="w-4 p-4">
                 <div className="flex items-center">
                   <input

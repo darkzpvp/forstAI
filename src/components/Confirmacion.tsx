@@ -5,7 +5,7 @@ const Confirmacion = ({ continuar, setContinuar }) => {
     <div className="md:col-span-3">
       <div className="shadow-lg bg-gray-800 rounded-lg">
         
-          <h2 className="text-lg font-semibold mb-2 text-gray-400 bg-gray-900 py-5 px-5 rounded-lg">
+          <h2 className="text-lg font-semibold mb-2 text-gray-400 bg-gray-900 py-3 px-5 ">
             Información Personal:
           </h2>
           <div className="mb-4 px-5 py-5">
@@ -42,7 +42,7 @@ const Confirmacion = ({ continuar, setContinuar }) => {
         </div>
 
       
-          <h2 className="text-lg font-semibold mb-2 text-gray-400 bg-gray-900 py-5 px-5 rounded-lg">
+          <h2 className="text-lg font-semibold mb-2 text-gray-400 bg-gray-900 py-3 px-5">
             Datos de Facturación:
           </h2>
           <div className="mb-4 px-5 py-5">
