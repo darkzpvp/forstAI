@@ -7,6 +7,7 @@ import Olvide from './pages/Olvide.tsx'
 import Error from './pages/Error.tsx';
 import Generar from './pages/Generar.tsx';
 import Carrito from './pages/Carrito.tsx';
+import Admin from './pages/Admin.tsx';
 function App() {
 
 
@@ -15,18 +16,19 @@ function App() {
     <BrowserRouter>
       <Routes>
     
-        <Route element={<Layout />}> 
+     
         
           <Route path="/" element={<Home />} index />
 
-        </Route>
+      
         <Route path="/login" element={<Login />} index />
         <Route path="/registrar" element={<Registrar />} index />
         <Route path="/olvide" element={<Olvide />} index />
         <Route path="*" element={<Error />} />
         <Route path="/generar" element={<Generar />} index />
         <Route path="/carrito" element={<Carrito />} index />
-        
+        <Route path="/admin" element={<Admin />} index />
+
       </Routes>
     </BrowserRouter>
    

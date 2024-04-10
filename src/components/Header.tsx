@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-scroll";
 import { useNavigate  } from "react-router-dom";
-const Header = () => {
-  const [menu, setMenu] = useState(false);
+const Header = ({menuHeader, setMenuHeader}) => {
   const navigate = useNavigate();
 
   const handleMenu = () => {
-    setMenu(!menu);
+    setMenuHeader(!menuHeader);
   };
   const cerrarModal = () => {
  
-    setMenu(false);
+    setMenuHeader(false);
   };
   const handleSubmit = () => {
-    setMenu(false);
+    setMenuHeader(false);
     navigate('/login'); 
   }
  
@@ -98,7 +97,7 @@ const Header = () => {
           </div>
         </div>
 
-        {menu && (
+        {menuHeader && (
           <div className="w-full sm:hidden">
           <ul className="flex flex-col text-center font-medium rounded-lg bg-zinc-800" >
             <li >

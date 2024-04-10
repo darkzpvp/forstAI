@@ -1,41 +1,42 @@
 import styled from "styled-components";
 import galeria from "../data/galeria.json";
-import { Tooltip } from "react-tooltip";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Modal from "../components/Modal";
 import FAQ from "../components/FAQ";
 import { Link } from "react-scroll";
 import { useNavigate } from "react-router-dom";
-import setBodyColor, { setGradiente } from "../setBodyColor";
+import { setGradiente } from "../setBodyColor";
+import Header from "../components/Header";
+const GradientBackground = styled.div`
+background: linear-gradient(rgba(33, 37, 41, 0.85), rgba(33, 37, 41, 0.85)),
+  url("/src/assets/img/4598.jpg") center/cover no-repeat;
+`;
 
+const FondoContacto = styled.div`
+background: linear-gradient(rgba(33, 37, 41, 0.477), rgba(33, 37, 41, 0.85)),
+  url("/src/assets/img/12288.jpg") center/cover no-repeat;
+`;
+const GrisBackground = styled.div`
+
+background-image: linear-gradient(
+to bottom,
+#40444b 0%,  
+#25292d 30%,
+#282d32 40%,
+#21252a 60%,
+#282c31 80%,
+#343a41 100%  
+);
+`;
 const Home = () => {
   const navigate = useNavigate();
+  const [menuHeader, setMenuHeader] = useState(false);
 
   const [modal, setModal] = useState(false);
   const [imagen, setImagen] = useState({});
   const [overflow, setOverflow] = useState(false);
 
-  const GradientBackground = styled.div`
-    background: linear-gradient(rgba(33, 37, 41, 0.85), rgba(33, 37, 41, 0.85)),
-      url("/src/assets/img/4598.jpg") center/cover no-repeat;
-  `;
 
-  const FondoContacto = styled.div`
-    background: linear-gradient(rgba(33, 37, 41, 0.477), rgba(33, 37, 41, 0.85)),
-      url("/src/assets/img/12288.jpg") center/cover no-repeat;
-  `;
-const GrisBackground = styled.div`
-  
-  background-image: linear-gradient(
-    to bottom,
-    #40444b 0%,  
-    #25292d 30%,
-    #282d32 40%,
-    #21252a 60%,
-    #282c31 80%,
-    #343a41 100%  
-  );
-`;
   const handleGaleria = (imagen) => {
     setModal(true);
     setImagen(imagen);
@@ -50,11 +51,20 @@ const GrisBackground = styled.div`
     navigate('/carrito')
   }
 
-
+  const handleOverlayClick = (event) => {
+    if (event.target.classList.contains('overlaymodal')) {
+        setMenuHeader(true);
+    } else {
+        setMenuHeader(false);
+     
+    }
+};
   setGradiente()
   return (
     <>
-    <GrisBackground>
+    <Header menuHeader={menuHeader} setMenuHeader={setMenuHeader}/>
+
+    <GrisBackground className="overlaymodal" onClick={handleOverlayClick}>
       <GradientBackground>
         <div
           id="home"
@@ -146,7 +156,7 @@ const GrisBackground = styled.div`
         <p className="flex justify-center items-center mt-5 text-gray-300  font-bold text-lg text-center mb-5">
           Algunos de nuestros prompts...
         </p>
-        <div className="w-full max-w-5xl columns-2 md:columns-3 gap-5 mx-auto">
+        <div className="w-full max-w-5xl columns-2 md:columns-3 gap-5 mx-auto px-5">
         {galeria.images.map((imagen) => (
   <div key={imagen.id} className="mb-5 w-full cursor-pointer relative">
     <a onClick={() => handleGaleria(imagen)}>
