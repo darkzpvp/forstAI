@@ -93,7 +93,7 @@ const handlePassword = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 id="contraseña"
-                className="w-full p-2.5 bg-transparent placeholder-gray-400 focus:outline-none"
+                className="w-full text-sm p-2.5 bg-transparent placeholder-gray-400 focus:outline-none"
                 placeholder="Escribe tu contraseña"
                 required
               />
@@ -162,7 +162,7 @@ const handlePassword = () => {
         type="button"
         className="transition ease-in duration-100 text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 block text-center active:bg-[#464f9d] w-full max-w-72 lg:max-w-80"
       >
-        Login
+        Regístrate
       </button>
 
       <div className="text-center text-sm mt-5">

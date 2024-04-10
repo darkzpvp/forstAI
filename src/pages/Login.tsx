@@ -90,7 +90,7 @@ const Registrar = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 id="contraseña"
-                className="w-full p-2.5 bg-transparent placeholder-gray-400 focus:outline-none"
+                className="w-full text-sm p-2.5 bg-transparent placeholder-gray-400 focus:outline-none"
                 placeholder="Escribe tu contraseña"
                 required
               />
