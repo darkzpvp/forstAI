@@ -51,10 +51,10 @@ const Admin = () => {
 
       <div
         onClick={handleOverlayClick}
-        className=" overflow-x-auto sm:rounded-lg m-10"
+        className=" overflow-x-auto sm:rounded-lg m-9"
       >
         {responsive ? (
-          <div      onClick={handleAction} className="flex items-center justify-between pb-4  ">
+          <div      onClick={handleAction} className="flex items-center justify-between pb-4 mt-1">
             <div className="w-[25%]">
               <button
          
@@ -174,7 +174,7 @@ const Admin = () => {
                 </div>
                 <input
                   type="text"
-                  className="block p-2 ps-10 text-sm   rounded-lg   bg-gray-800  placeholder-gray-400 text-gray-300 "
+                  className="block p-2 ps-10 text-sm   rounded-lg   bg-gray-800  placeholder-gray-400 text-gray-300"
                   placeholder="Buscar usuarios"
                 />
               </div>
@@ -208,7 +208,7 @@ const Admin = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className=" border-b bg-gray-800 border-gray-700  hover:bg-gray-600">
+            <tr className=" border-b bg-gray-800 border-gray-700  hover:bg-[#2c3a4d] transform ease-in duration-75">
               <td className="w-4 p-4">
                 <div className="flex items-center">
                   <input
@@ -246,7 +246,7 @@ const Admin = () => {
                 </a>
               </td>
             </tr>
-            <tr className=" border-b bg-gray-800 border-gray-700 hover: hover:bg-gray-600">
+            <tr className=" border-b bg-gray-800 border-gray-700 hover: hover:bg-[#2c3a4d] transform ease-in duration-75">
               <td className="w-4 p-4">
                 <div className="flex items-center">
                   <input
@@ -284,7 +284,7 @@ const Admin = () => {
                 </a>
               </td>
             </tr>
-            <tr className=" border-b bg-gray-800 border-gray-700 hover: hover:bg-gray-600">
+            <tr className=" border-b bg-gray-800 border-gray-700 hover: hover:bg-[#2c3a4d] transform ease-in duration-75">
               <td className="w-4 p-4">
                 <div className="flex items-center">
                   <input
@@ -322,7 +322,7 @@ const Admin = () => {
                 </a>
               </td>
             </tr>
-            <tr className=" border-b bg-gray-800 border-gray-700 hover: hover:bg-gray-600">
+            <tr className=" border-b bg-gray-800 border-gray-700 hover: hover:bg-[#2c3a4d] transform ease-in duration-75">
               <td className="w-4 p-4">
                 <div className="flex items-center">
                   <input
@@ -360,7 +360,7 @@ const Admin = () => {
                 </a>
               </td>
             </tr>
-            <tr className="  border-b bg-gray-800 border-gray-700 hover: hover:bg-gray-600">
+            <tr className="  border-b bg-gray-800 border-gray-700 hover: hover:bg-[#2c3a4d] transform ease-in duration-75">
               <td className="w-4 p-4">
                 <div className="flex items-center">
                   <input
@@ -398,7 +398,7 @@ const Admin = () => {
                 </a>
               </td>
             </tr>
-            <tr className=" bg-gray-800 hover: hover:bg-gray-600">
+            <tr className=" bg-gray-800 hover: hover:bg-[#2c3a4d] transform ease-in duration-75">
               <td className="w-4 p-4">
                 <div className="flex items-center">
                   <input
