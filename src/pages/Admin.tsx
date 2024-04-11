@@ -66,7 +66,7 @@ const Admin = () => {
                 Acciones
                 <svg
                 
-                  className="w-2.5 h-2.5 ms-2.5 "
+                  className="w-2.5 h-2.5 ms-2.5 pointer-events-none "
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
