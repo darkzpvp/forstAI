@@ -1,0 +1,76 @@
+{
+    "images": [
+      {
+        "id": 1,
+        "title": "Familia disfrutando del atardecer",
+        "url": "1.jpg"
+       
+      },
+      {
+        "id": 2,
+        "title": "Castillo ubicado en España",
+        "url": "2.jpg"
+    
+      },
+      {
+        "id": 3,
+        "title": "Ciudad medieval en Alemania",
+        "url": "3.jpg"
+      
+      },
+      {
+        "id": 4,
+        "title": "Oso en su hábitat natural",
+        "url": "4.jpg"
+      
+      },
+      {
+        "id": 5,
+        "title": "Casa de estilo americano",
+        "url": "5.jpg"
+      
+      },
+      {
+        "id": 6,
+        "title": "Rancho antiguo",
+        "url": "6.jpg"
+      
+      },
+      {
+        "id": 7,
+        "title": "Hombre de mediana edad disfrutando",
+        "url": "7.jpg"
+      
+      },
+      {
+        "id": 8,
+        "title": "Hombre de mediana edad jugando pádel",
+        "url": "8.jpg"
+      
+      },
+      {
+        "id": 9,
+        "title": "Muñeco de nieve",
+        "url": "9.jpg"
+      
+      },
+      {
+        "id": 10,
+        "title": "Lobo enfadado sacando dientes",
+        "url": "10.jpg"
+      
+      },
+      {
+        "id": 11,
+        "title": "Niños jugando al fútbol",
+        "url": "11.jpg"
+      
+      },
+      {
+        "id": 12,
+        "title": "Mujer usando el portátil",
+        "url": "12.jpg"
+      
+      }
+    ]
+  }

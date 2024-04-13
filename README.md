@@ -1,82 +1,36 @@
-<h1>Anteproyecto</h1>
-<h2>Notion</h2>
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-https://faceted-binder-6cc.notion.site/Anteproyecto-1f21f41efbe444c48c01509a30aad739?pvs=25
+## Getting Started
 
+First, run the development server:
 
-<h2>Bitácora de tareas</h2>
-El proyecto lo empecé antes de Semana Santa, para tener un avance mientras compaginaba las prácticas
-<br>
-<br>
-<br>
-<hr>
-Repositorio subido por primera vez el Lunes 01/04/2024
-Comencé el Lunes 18/03/2024
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-MARZO
-Día 18
-Logo en wepik.com
-Creación del header, me basé en el header de esta página https://www.curated.design/articles/linear-asks
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Día 19
-Creación de la página principal (Una sección minimalista en la que hay un bosque de fondo con degradado oscuro, un h1 y un párrafo)
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-20 y 21 
-Creación de la galería - slider, con tooltips 
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-Día 23 
-Cards con precios
+## Learn More
 
-Día 24
-Acordeón. Me ayudé gracias a este vídeo https://www.youtube.com/watch?v=oOXExNA8A48&list=LL&index=2
+To learn more about Next.js, take a look at the following resources:
 
-Día 25 Footer
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-Día 26. Arreglé algunos bugs del slider, que evitaba que la modal se cerrara con el overlay
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-Día 27. Repaso general en la página, especialmente en los botones. Añadí active y hover y mejoré la página
+## Deploy on Vercel
 
-Día 28. Añadí menú hamburguesa al header y decidí meter una seccion nueva "Contacto". 
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Día 30
-Sección de ventajas. Me basé en este https://imgur.com/a/xaeMvPq de la página de diseños curated.design
-
-Día 31
-Añadí sección de contacto y le puse una flecha en el home que te permite bajar a la introducción
-
-ABRIL
-
-Día 5
-Estuve investigando sobre varias formas de hacer el login, si centrarlo todo en un div o crear un grid con dos columnas, una que ocupe más (la de la imagen) para no dar sensación de vacío al formulario
-
-Día 6
-Acabo el login definitivamente, además del registro y olvidé password. También modifiqué home y mejoré cosas del responsive
-
-Día 7
-
-Pasar a NextJS y dividir el proyecto el componentes para legibilidad (hasta ahora usando React Router DOM)
-
-
-
-Recursos que utilicé:
-
-Dudas y relleno de texto
-ChatGPT y Bard
-
-Imágenes
-Freepik.com
-
-Iconos
-Flaticon.com
-
-Background
-https://mycolor.space/gradient
-
-Documentación Tailwind
-https://tailwindcss.com/docs
-
-Diseño (para ideas)
-https://www.curated.design
-
-
-
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
