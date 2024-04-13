@@ -3,7 +3,7 @@ import paises from "../../data/paises.json";
 const FormularioCarrito = () => {
 
 
-    const numero = (event) => {
+    const numero = (event: any) => {
         let newValue = event.target.value;
         newValue = newValue.slice(0, 15);
         newValue = newValue.replace(/[^0-9]/g, "");
@@ -12,7 +12,7 @@ const FormularioCarrito = () => {
     
     
     
-      const nombre = (event) => {
+      const nombre = (event: any) => {
         const regex = /^[A-Za-z\s]*$/;
         let newValue = event.target.value;
         if (!regex.test(newValue)) {

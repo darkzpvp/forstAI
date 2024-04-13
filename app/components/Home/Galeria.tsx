@@ -2,8 +2,16 @@ import React from 'react'
 import Image from 'next/image'
 import Modal from './Modal'
 import galeria from "../../../app/data/galeria.json";
-const Galeria = ({modal, setModal, imagen, setImagen}) => {
-    const handleGaleria = (imagen) => {
+import { Imagen } from '@/app/types';
+interface GaleriaProps {
+    modal: boolean;
+    imagen: Imagen
+    setModal: (value: boolean) => void;
+    setImagen: (imagen: Imagen) => void
+}
+
+const Galeria = ({modal, setModal, imagen, setImagen} : GaleriaProps) => {
+    const handleGaleria = (imagen : Imagen) => {
         setModal(true);
         setImagen(imagen);
       };
@@ -40,7 +48,7 @@ const Galeria = ({modal, setModal, imagen, setImagen}) => {
         modal={modal}
         setModal={setModal}
         imagen={imagen}
-        setImagen={setImagen}
+       
       />
     </div>
   </section>

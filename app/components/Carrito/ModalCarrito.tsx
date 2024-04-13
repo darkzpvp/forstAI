@@ -1,7 +1,11 @@
-
-const ModalCarrito = ({ modal, setModal, setComprado }) => {
+interface ModalCarritoProps {
+  modal: boolean,
+  setModal: (value: boolean) => void,
+  setComprado: (value: boolean) => void
+}
+const ModalCarrito = ({ modal, setModal, setComprado } : ModalCarritoProps) => {
     
-  const handleOverlayClick = (event) => {
+  const handleOverlayClick = (event : any) => {
     // Verificar si el elemento clicado es el overlay
     if (event.target.classList.contains('overlay')) {
       setModal(false);

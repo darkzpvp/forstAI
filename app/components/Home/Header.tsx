@@ -1,7 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../../public/img/logo/prueba.png"
-const Header = ({menuHeader, setMenuHeader}) => {
+
+interface HeaderProps {
+  menuHeader: boolean,
+  setMenuHeader: (value: boolean) => void
+  }
+  
+const Header = ({menuHeader, setMenuHeader} : HeaderProps) => {
+
+
 
   const handleMenu = () => {
     setMenuHeader(!menuHeader);

@@ -1,7 +1,13 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { Imagen } from "@/app/types";
+interface ModalProps {
+  modal: boolean;
+  setModal: (value: boolean) => void;
+  imagen: Imagen
+}
 
-const Modal = ({ modal, setModal, imagen }) => {
+const Modal = ({ modal, setModal, imagen } : ModalProps) => {
 
 const [next, setNext] = useState(0)
 
@@ -41,7 +47,7 @@ useEffect(() => {
         setNext(nextImageIndex);
       };
       
-    const handleOverlayClick = (event) => {
+    const handleOverlayClick = (event: any) => {
         if (event.target.classList.contains("overlay")) {
           handleModal();
         }

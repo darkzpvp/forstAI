@@ -9,14 +9,22 @@ import Ventajas from "./components/Home/Ventajas";
 import Galeria from "./components/Home/Galeria";
 import Intro from "./components/Home/Intro";
 import Portada from "./components/Home/Portada";
+import { Imagen } from "./types";
+
+
+const imagenState : Imagen = {
+id: 0,
+title: '',
+url: ''
+}
 
 const Home = () => {
   const [menuHeader, setMenuHeader] = useState(false);
 
   const [modal, setModal] = useState(false);
-  const [imagen, setImagen] = useState({});
+  const [imagen, setImagen] = useState<Imagen>(imagenState);
 
-  const handleOverlayClick = (event) => {
+  const handleOverlayClick = (event: any) => {
     if (event.target.classList.contains("overlaymodal")) {
       setMenuHeader(true);
     } else {
@@ -29,7 +37,7 @@ const Home = () => {
       <div
         className=" overflow-hidden overlaymodal bg-grishome"
         onClick={handleOverlayClick}
-      >
+       >
         <Portada />
         <Intro />
         <Galeria

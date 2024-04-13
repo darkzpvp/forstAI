@@ -2,7 +2,15 @@ import React from "react";
 import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
-const Header_Dos = ({ menu, setMenu, suscripcion, setSuscripcion }) => {
+
+interface InterfazProps {
+  menu: boolean;
+  suscripcion: boolean;
+  setMenu: (value: boolean) => void;
+  setSuscripcion: (value: boolean) => void;
+}
+
+const Header_Dos = ({ menu, setMenu, suscripcion, setSuscripcion } : InterfazProps) => {
   const [noPlan, setNoPlan] = useState(false);
   const handleSuscripcion = () => {
     setSuscripcion(!suscripcion);

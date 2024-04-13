@@ -3,20 +3,30 @@ import React from "react";
 import Header_Dos from "../components/Header_Dos";
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
-
 import ResumenCarrito from "../components/Carrito/ResumenCarrito";
 import ProgresoCarrito from "../components/Carrito/ProgresoCarrito";
 import FormularioCarrito from "../components/Carrito/FormularioCarrito";
 import DatosBancarios from "../components/Carrito/DatosBancarios";
 import Confirmacion from "../components/Carrito/Confirmacion";
 
+type Continuar = {
+  continuar: number,
+  setContinuar: (value: number) => void
+}
+const continuarState : Continuar = {
+  continuar: 1,
+  
+  }
+
 const page = () => {
+
+
   const router = useRouter()
 
   const [comprado, setComprado] = useState(false);
   const [menu, setMenu] = useState(false);
   const [suscripcion, setSuscripcion] = useState(false);
-  const [continuar, setContinuar] = useState(1);
+  const [continuar, setContinuar] = useState<Continuar>(continuarState)
   const handleCloseMenu = () => {
     if (menu) {
       setMenu(false);
@@ -63,18 +73,17 @@ const page = () => {
           <div className=" grid md:grid-cols-5 gap-5">
             {continuar === 1 && (
               <FormularioCarrito
-                continuar={continuar}
-                setContinuar={setContinuar}
+               
+        
               />
             )}
             {continuar === 2 && (
               <DatosBancarios
-                continuar={continuar}
-                setContinuar={setContinuar}
+                
               />
             )}
             {continuar === 3 && (
-              <Confirmacion continuar={continuar} setContinuar={setContinuar} />
+              <Confirmacion  />
             )}
             <ResumenCarrito
               continuar={continuar}

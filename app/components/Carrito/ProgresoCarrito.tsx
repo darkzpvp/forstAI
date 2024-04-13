@@ -1,8 +1,14 @@
+import { Dispatch, SetStateAction } from "react";
 
-const ProgresoCarrito = ({ continuar, setContinuar }) => {
-  const handleContinuar = (id) => {
+interface ProgresoCarritoProps {
+    continuar: number;
+    setContinuar: Dispatch<SetStateAction<number>>;
+}
+
+const ProgresoCarrito = ({ continuar, setContinuar }: ProgresoCarritoProps) => {
+  const handleContinuar = (id: number) => { 
     setContinuar(id);
-    console.log(id); 
+    console.log(id);
   };
 
   return (
@@ -47,7 +53,7 @@ const ProgresoCarrito = ({ continuar, setContinuar }) => {
           </button>
         </li>
         <li className="flex items-center">
-        <button onClick={() => handleContinuar(3)} id="2">
+          <button onClick={() => handleContinuar(3)} id="3"> {/* Cambiar id="2" a id="3" */}
             <span className="flex items-center sm:after:hidden after:mx-2 after:text-gray-500">
               {/* <span className="me-2">2</span> */}
               {continuar === 3 ? (

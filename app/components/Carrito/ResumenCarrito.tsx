@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import ModalCarrito from './ModalCarrito';
 
-const ResumenCarrito = ({ continuar, setContinuar, comprado, setComprado }) => {
+interface ResumenProps {
+    continuar: number,
+    setContinuar: (value: number) => void,
+    comprado: boolean,
+    setComprado: (value: boolean) => void
+}
+
+
+const ResumenCarrito = ({ continuar, setContinuar, setComprado } : ResumenProps) => {
   const [enviar, setEnviar] = useState(false);
   const [modal, setModal] = useState(false);
   const handleContinuar = () => {
@@ -62,7 +70,7 @@ const handlePagar = () => {
 )}
     
 
-   <ModalCarrito modal={modal} setModal={setModal} comprado={comprado} setComprado={setComprado}/>
+   <ModalCarrito modal={modal} setModal={setModal} setComprado={setComprado}/>
 
    
 </div>

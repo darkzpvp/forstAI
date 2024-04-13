@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
-const Acordeon = ({ title, answer }) => {
+
+interface AcordeonProps {
+  title: string,
+  answer: string
+}
+const Acordeon = ({ title, answer } : AcordeonProps) => {
   const [accordionOpen, setAccordionOpen] = useState(false);
 
   return (

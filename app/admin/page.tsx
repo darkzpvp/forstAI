@@ -15,7 +15,7 @@ const page = () => {
 
   // Verificar si el elemento clicado es el overlay
 
-  const handleOverlayClick = (event) => {
+  const handleOverlayClick = (event: any) => {
     if (event.target.classList.contains("overlaymodal")) {
       setAction(true);
     } else {

@@ -1,26 +1,26 @@
 const DatosBancarios = () => {
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: any) => {
     let newValue = event.target.value;
     newValue = newValue.slice(0, 3);
     newValue = newValue.replace(/[^0-9]/g, "");
     event.target.value = newValue;
   };
 
-  const handleInputChangeCVC = (event) => {
+  const handleInputChangeCVC = (event: any) => {
     let newValue = event.target.value;
     newValue = newValue.slice(0, 4);
     newValue = newValue.replace(/[^0-9]/g, "");
     event.target.value = newValue;
   };
 
-  const handleInputChangeTarjeta = (event) => {
+  const handleInputChangeTarjeta = (event: any) => {
     let newValue = event.target.value;
     newValue = newValue.slice(0, 16);
     newValue = newValue.replace(/[^0-9]/g, "");
     event.target.value = newValue;
   };
 
-  const titularTarjeta = (event) => {
+  const titularTarjeta = (event: any) => {
     const regex = /^[A-Za-z\s]*$/;
     let newValue = event.target.value;
     if (!regex.test(newValue)) {
