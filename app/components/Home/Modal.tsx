@@ -17,14 +17,9 @@ useEffect(() => {
     
     };
   
-   
-  
     const previousHandle = () => {
         const currentImageIndex = next;
-      
         let previousImageIndex = currentImageIndex - 1;
-      
-  
         if (previousImageIndex < 1) {
           previousImageIndex = 12;
         }
