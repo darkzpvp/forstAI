@@ -10,6 +10,8 @@ El proyecto lo empecé antes de Semana Santa, para tener un avance mientras comp
 Repositorio subido por primera vez el Lunes 01/04/2024
 Comencé el Lunes 18/03/2024
 MARZO
+<br>
+<br>
 Día 18
 Logo en wepik.com
 <br>
@@ -42,6 +44,8 @@ Día 31
 Añadí sección de contacto y le puse una flecha en el home que te permite bajar a la introducción
 <br>
 ABRIL
+<br>
+<br>
 Día 5
 Estuve investigando sobre varias formas de hacer el login, si centrarlo todo en un div o crear un grid con dos columnas, una que ocupe más (la de la imagen) para no dar sensación de vacío al formulario
 <br>
