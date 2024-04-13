@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from "react";
 import Header_Dos from "../components/Header_Dos";
 import { useRouter } from 'next/navigation';
