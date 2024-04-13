@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 
 interface ProgresoCarritoProps {
     continuar: number;
-    setContinuar: Dispatch<SetStateAction<number>>;
+    setContinuar: (value: number) => void
 }
 
 const ProgresoCarrito = ({ continuar, setContinuar }: ProgresoCarritoProps) => {

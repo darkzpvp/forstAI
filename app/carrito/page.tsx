@@ -1,7 +1,5 @@
-'use client'
-import React from "react";
+import React, { useState } from "react";
 import Header_Dos from "../components/Header_Dos";
-import { useState } from "react";
 import { useRouter } from 'next/navigation';
 import ResumenCarrito from "../components/Carrito/ResumenCarrito";
 import ProgresoCarrito from "../components/Carrito/ProgresoCarrito";
@@ -9,24 +7,15 @@ import FormularioCarrito from "../components/Carrito/FormularioCarrito";
 import DatosBancarios from "../components/Carrito/DatosBancarios";
 import Confirmacion from "../components/Carrito/Confirmacion";
 
-type Continuar = {
-  continuar: number,
-  setContinuar: (value: number) => void
-}
-const continuarState : Continuar = {
-  continuar: 1,
-  
-  }
-
-const page = () => {
-
-
-  const router = useRouter()
+const Page = () => {
+  const router = useRouter();
 
   const [comprado, setComprado] = useState(false);
   const [menu, setMenu] = useState(false);
   const [suscripcion, setSuscripcion] = useState(false);
-  const [continuar, setContinuar] = useState<Continuar>(continuarState)
+
+  const [continuar, setContinuar] = useState<number>(0);
+
   const handleCloseMenu = () => {
     if (menu) {
       setMenu(false);
@@ -35,19 +24,14 @@ const page = () => {
   };
 
   if (comprado) {
-    
     setTimeout(() => {
       setComprado(false);
       router.push("/generar");
-      
     }, 5000);
   }
 
-
-
   return (
-    
-    <div className=" bg-gray-700 h-full">
+    <div className="bg-gray-700 h-full">
       <Header_Dos
         menu={menu}
         setMenu={setMenu}
@@ -55,7 +39,7 @@ const page = () => {
         setSuscripcion={setSuscripcion}
       />
 
-      <section className="   py-7" onClick={handleCloseMenu}>
+      <section className="py-7" onClick={handleCloseMenu}>
         {comprado && (
           <div className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-lg w-[100%] max-w-xl block mx-auto mb-5">
             <p className="text-lg font-semibold">
@@ -69,21 +53,16 @@ const page = () => {
         )}
         <ProgresoCarrito continuar={continuar} setContinuar={setContinuar} />
 
-        <div className=" w-[100%] max-w-6xl mx-auto px-5">
-          <div className=" grid md:grid-cols-5 gap-5">
+        <div className="w-[100%] max-w-6xl mx-auto px-5">
+          <div className="grid md:grid-cols-5 gap-5">
             {continuar === 1 && (
-              <FormularioCarrito
-               
-        
-              />
+              <FormularioCarrito />
             )}
             {continuar === 2 && (
-              <DatosBancarios
-                
-              />
+              <DatosBancarios />
             )}
             {continuar === 3 && (
-              <Confirmacion  />
+              <Confirmacion />
             )}
             <ResumenCarrito
               continuar={continuar}
@@ -98,4 +77,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
