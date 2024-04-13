@@ -8,8 +8,11 @@ El proyecto lo empecé antes de Semana Santa, para tener un avance mientras comp
 <br>
 <hr>
 Repositorio subido por primera vez el Lunes 01/04/2024
+PROVISIONAL, NO DEFINITIVO
 Comencé el Lunes 18/03/2024
-MARZO
+<br>
+<br>
+<h1>MARZO</h1>
 <br>
 <br>
 Día 18
@@ -43,7 +46,7 @@ Sección de ventajas. Me basé en este https://imgur.com/a/xaeMvPq de la página
 Día 31
 Añadí sección de contacto y le puse una flecha en el home que te permite bajar a la introducción
 <br>
-ABRIL
+<h1>ABRIL</h1>
 <br>
 <br>
 Día 5
