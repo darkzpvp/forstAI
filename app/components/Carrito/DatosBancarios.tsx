@@ -1,26 +1,28 @@
+import { ChangeEventHandler } from "react";
+
 const DatosBancarios = () => {
-  const handleInputChange = (event: any) => {
+  const handleInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     let newValue = event.target.value;
     newValue = newValue.slice(0, 3);
     newValue = newValue.replace(/[^0-9]/g, "");
     event.target.value = newValue;
   };
 
-  const handleInputChangeCVC = (event: any) => {
+  const handleInputChangeCVC: ChangeEventHandler<HTMLInputElement> = (event) => {
     let newValue = event.target.value;
     newValue = newValue.slice(0, 4);
     newValue = newValue.replace(/[^0-9]/g, "");
     event.target.value = newValue;
   };
 
-  const handleInputChangeTarjeta = (event: any) => {
-    let newValue = event.target.value;
-    newValue = newValue.slice(0, 16);
-    newValue = newValue.replace(/[^0-9]/g, "");
-    event.target.value = newValue;
-  };
+const handleInputChangeTarjeta: ChangeEventHandler<HTMLInputElement> = (event) => {
+  let newValue = event.target.value || ''; 
+  newValue = newValue.slice(0, 16);
+  newValue = newValue.replace(/[^0-9]/g, "");
+  event.target.value = newValue;
+};
 
-  const titularTarjeta = (event: any) => {
+  const titularTarjeta: ChangeEventHandler<HTMLInputElement> = (event) => {
     const regex = /^[A-Za-z\s]*$/;
     let newValue = event.target.value;
     if (!regex.test(newValue)) {

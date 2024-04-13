@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from "react";
+import React, { MouseEventHandler, useEffect, useState } from "react";
 import Header_Dos from "../components/Header_Dos";
 import ModalAdmin from "../components/Admin/ModalAdmin";
 import Link from "next/link";
@@ -15,8 +15,8 @@ const page = () => {
 
   // Verificar si el elemento clicado es el overlay
 
-  const handleOverlayClick = (event: any) => {
-    if (event.target.classList.contains("overlaymodal")) {
+  const handleOverlayClick: MouseEventHandler<HTMLDivElement> = (event) => {
+    if (event.currentTarget.classList.contains("overlaymodal")) {
       setAction(true);
     } else {
       setAction(false);

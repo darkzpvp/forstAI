@@ -1,3 +1,5 @@
+import { MouseEventHandler } from "react";
+
 interface ModalCarritoProps {
   modal: boolean,
   setModal: (value: boolean) => void,
@@ -5,9 +7,9 @@ interface ModalCarritoProps {
 }
 const ModalCarrito = ({ modal, setModal, setComprado } : ModalCarritoProps) => {
     
-  const handleOverlayClick = (event : any) => {
+  const handleOverlayClick: MouseEventHandler<HTMLDivElement> = (event) => {
     // Verificar si el elemento clicado es el overlay
-    if (event.target.classList.contains('overlay')) {
+    if (event.currentTarget.classList.contains('overlay')) {
       setModal(false);
     }
   };

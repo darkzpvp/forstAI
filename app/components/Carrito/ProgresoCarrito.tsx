@@ -1,5 +1,3 @@
-import { Dispatch, SetStateAction } from "react";
-
 interface ProgresoCarritoProps {
     continuar: number;
     setContinuar: (value: number) => void
