@@ -14,8 +14,8 @@ const Login = () => {
 
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 h-screen ">
-      <div className=" md:flex justify-center bg-login-gradient bg-center bg-cover bg-no-repeat md:col-span-1 lg:col-span-2 items-start ">
-        <div className="sm:my-20 text-[#272B30] p-5  rounded-md mx-7  ">
+      <div className=" flex justify-center bg-login-gradient bg-center bg-cover bg-no-repeat md:col-span-1 lg:col-span-2 md:items-start items-center ">
+        <div className="sm:my-20 text-[#272B30] p-5  rounded-md mx-7   my-10">
           <h1 className=" font-bold md:text-4xl sm:text-2xl text-xl mb-3 text-center">
             ¡Logueate en ForstAI!
           </h1>
@@ -23,7 +23,7 @@ const Login = () => {
         </div>
       </div>
 
-      <div className="bg-[#272B30] text-gray-300 shadow-lg md:col-span-1 flex flex-col justify-center gap-0 md:gap-12">
+      <div className="bg-[#272B30] text-gray-300 shadow-lg md:col-span-1 flex flex-col justify-center gap-0 md:gap-8">
       <div className="absolute top-5 mx-5 cursor-pointer">
           <Link href={"/"} className="flex gap-2">
             <svg
@@ -43,11 +43,12 @@ const Login = () => {
             <p className=" md:text-white text-black">Atrás</p>
           </Link>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center max-w-20 sm:max-w-24 mx-auto pt-5">
           <Image
-          width={100}
-          height={100}
-          sizes="100vw"
+          width={50}
+          height={50}
+          layout="responsive"
+        
             className=""
             src="/img/logo/prueba.png"
             alt="Prueba"
@@ -142,7 +143,7 @@ const Login = () => {
             <Link href="/olvide" legacyBehavior>¿Has olvidado la contraseña?</Link>
           </div>
 
-          <div className="text-center text-sm mt-5">
+          <div className="text-center text-sm my-5">
             <Link href="/registrar" legacyBehavior>
               <div className=" cursor-pointer">
               ¿No tienes una cuenta?{' '}

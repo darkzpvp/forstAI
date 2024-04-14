@@ -15,7 +15,7 @@ const Page = () => {
   const [menu, setMenu] = useState(false);
   const [suscripcion, setSuscripcion] = useState(false);
 
-  const [continuar, setContinuar] = useState<number>(0);
+  const [continuar, setContinuar] = useState<number>(1);
 
   const handleCloseMenu = () => {
     if (menu) {

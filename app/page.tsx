@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import FAQ from "../app/components/Home/FAQ";
 import Header from "../app/components/Home/Header";
 import Cards from "./components/Home/Cards";
@@ -24,8 +24,8 @@ const Home = () => {
   const [modal, setModal] = useState(false);
   const [imagen, setImagen] = useState<Imagen>(imagenState);
 
-  const handleOverlayClick = (event: any) => {
-    if (event.target.classList.contains("overlaymodal")) {
+  const handleOverlayClick: MouseEventHandler<HTMLDivElement> = (event) => {
+    if (event.currentTarget.classList.contains("overlaymodal")) {
       setMenuHeader(true);
     } else {
       setMenuHeader(false);

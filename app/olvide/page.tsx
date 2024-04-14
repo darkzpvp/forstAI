@@ -7,7 +7,7 @@ import Image from "next/image";
 const Olvide = () => {
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 h-screen ">
-      <div className=" bg-login-gradient justify-center bg-cover  block md:col-span-1 lg:col-span-2  md:flex ">
+      <div className=" bg-login-gradient justify-center bg-cover  md:col-span-1 lg:col-span-2 flex md:items-start items-center ">
         <div className="sm:my-20 text-[#272B30] p-5  rounded-md mx-7  ">
           <h1 className="font-bold md:text-4xl sm:text-2xl text-xl mb-3 text-center">
             ¿Olvidaste la contraseña?
@@ -16,7 +16,7 @@ const Olvide = () => {
         </div>
       </div>
 
-      <div className="bg-[#272B30] text-gray-300 shadow-lg md:col-span-1 flex flex-col justify-center gap-0 md:gap-12">
+      <div className="bg-[#272B30] text-gray-300 shadow-lg md:col-span-1 flex flex-col justify-start md:justify-center py-5 gap-0 md:gap-8">
       <div className="absolute top-5 mx-5 cursor-pointer">
           <Link href={"/"} className="flex gap-2">
             <svg
@@ -36,11 +36,12 @@ const Olvide = () => {
             <p className=" md:text-white text-black">Atrás</p>
           </Link>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center max-w-20 sm:max-w-24 mx-auto pt-5">
           <Image
-          width={100}
-          height={100}
-          sizes="100vw"
+          width={50}
+          height={50}
+          layout="responsive"
+        
             className=""
             src="/img/logo/prueba.png"
             alt="Prueba"

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { LoginProvider } from "./context/LoginContext";
+import { UsuariosProvider } from "./context/UsuariosContext";
 import "./globals.css";
 import { Kumbh_Sans} from 'next/font/google'
 const kumbh = Kumbh_Sans({
@@ -20,7 +21,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${kumbh.className}`}>{children}</body>
+      
+      <body className={`${kumbh.className}`}>
+<LoginProvider>
+  <UsuariosProvider>
+  {children}
+  </UsuariosProvider>
+</LoginProvider>
+     
+
+        </body>
     </html>
   );
 }

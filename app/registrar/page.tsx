@@ -1,10 +1,15 @@
 'use client'
 import React from "react";
-import { useState } from "react";
+import { useState, createRef } from "react";
 
 import Link from "next/link";
 import Image from "next/image";
 const Registrar = () => {
+const nameRef = createRef()
+const emailRef = createRef()
+const passwordRef = createRef()
+const passwordConfirmationRef = createRef()
+
     const [showPassword, setShowPassword] = useState(false);
 
 const handlePassword = () => {
@@ -13,7 +18,7 @@ const handlePassword = () => {
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 h-screen">
       <div className=" bg-registro-gradient bg-cover bg-center block justify-center md:col-span-1 lg:col-span-2 md:flex">
-        <div className="sm:my-20 text-[#272B30] p-5  rounded-md mx-7  ">
+        <div className="sm:my-20 text-[#272B30] p-5  rounded-md mx-7  my-10">
           <h1 className="font-bold md:text-4xl sm:text-2xl text-xl mb-3 text-center">
             ¡Regístrate en ForstAI!
           </h1>
@@ -21,7 +26,7 @@ const handlePassword = () => {
         </div>
       </div>
 
-      <div className="bg-[#272B30] text-gray-300 shadow-lg md:col-span-1 flex flex-col justify-center gap-0 md:gap-12">
+      <div className="bg-[#272B30] text-gray-300 shadow-lg md:col-span-1 flex flex-col justify-center gap-0 md:gap-8">
       <div className="absolute top-5 mx-5 cursor-pointer">
           <Link href={"/login"} className="flex gap-2">
             <svg
@@ -41,11 +46,12 @@ const handlePassword = () => {
             <p className=" md:text-white text-black">Atrás</p>
           </Link>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center max-w-20 sm:max-w-24 mx-auto pt-5">
           <Image
-          width={100}
-          height={100}
-          sizes="100vw"
+          width={50}
+          height={50}
+          layout="responsive"
+        
             className=""
             src="/img/logo/prueba.png"
             alt="Prueba"
@@ -53,6 +59,21 @@ const handlePassword = () => {
         </div>
 
        <div className="flex justify-center items-center flex-col px-4 lg:px-20">
+       <div className="w-full max-w-72 lg:max-w-80">
+        <label
+          htmlFor="nombre"
+          className="block mb-2 text-sm font-medium text-gray-300"
+        >
+          Nombre
+        </label>
+        <input
+          type="text"
+          id="nombre"
+          className="border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4"
+          placeholder="Víctor"
+          required
+        />
+      </div>
       <div className="w-full max-w-72 lg:max-w-80">
         <label
           htmlFor="email"
@@ -154,7 +175,7 @@ const handlePassword = () => {
 
       <div className="text-center text-sm mt-5">
         <Link href="/login">
-          <div>
+          <div className=" pb-5">
                ¿Tienes ya una cuenta?{" "}
           <span className="text-[#8f95d3]">Logueate</span>
           </div>
