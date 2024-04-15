@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header_Dos from "../components/Header_Dos";
 import { useRouter } from 'next/navigation';
 import ResumenCarrito from "../components/Carrito/ResumenCarrito";
@@ -7,8 +7,9 @@ import ProgresoCarrito from "../components/Carrito/ProgresoCarrito";
 import FormularioCarrito from "../components/Carrito/FormularioCarrito";
 import DatosBancarios from "../components/Carrito/DatosBancarios";
 import Confirmacion from "../components/Carrito/Confirmacion";
-
 const Page = () => {
+
+
   const router = useRouter();
 
   const [comprado, setComprado] = useState(false);

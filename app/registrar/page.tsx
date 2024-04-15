@@ -1,20 +1,39 @@
-'use client'
+"use client";
 import React from "react";
 import { useState, createRef } from "react";
-
 import Link from "next/link";
+import Alerta from "../components/Alerta";
 import Image from "next/image";
+import { useAuth } from "../hooks/useAuth";
 const Registrar = () => {
-const nameRef = createRef()
-const emailRef = createRef()
-const passwordRef = createRef()
-const passwordConfirmationRef = createRef()
 
-    const [showPassword, setShowPassword] = useState(false);
 
-const handlePassword = () => {
-  setShowPassword(!showPassword);
-}
+  const nameRef = createRef();
+  const emailRef = createRef();
+  const passwordRef = createRef();
+  const passwordConfirmationRef = createRef();
+
+  const [errores, setErrores] = useState([])
+  const {registro} = useAuth({middleware: 'guest', url: '/generar'})
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    const datos = {
+      name: nameRef.current.value,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+      password_confirmation: passwordConfirmationRef.current.value, // corrected property name
+    }
+ registro(datos, setErrores)
+    
+
+  };
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handlePassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 h-screen">
       <div className=" bg-registro-gradient bg-cover bg-center block justify-center md:col-span-1 lg:col-span-2 md:flex">
@@ -27,14 +46,14 @@ const handlePassword = () => {
       </div>
 
       <div className="bg-[#272B30] text-gray-300 shadow-lg md:col-span-1 flex flex-col justify-center gap-0 md:gap-8">
-      <div className="absolute top-5 mx-5 cursor-pointer">
+        <div className="absolute top-5 mx-5 cursor-pointer">
           <Link href={"/login"} className="flex gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
-              stroke="" 
+              stroke=""
               className="w-6 h-6 md:stroke-white stroke-black"
             >
               <path
@@ -48,51 +67,59 @@ const handlePassword = () => {
         </div>
         <div className="flex justify-center max-w-20 sm:max-w-24 mx-auto pt-5">
           <Image
-          width={50}
-          height={50}
-          layout="responsive"
-        
+            width={50}
+            height={50}
+            layout="responsive"
             className=""
             src="/img/logo/prueba.png"
             alt="Prueba"
           />
         </div>
+        <form
+          onSubmit={handleSubmit}
+          className="flex justify-center items-center flex-col px-4 lg:px-20"
+          
+         >
+          {errores ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>): null}
 
-       <div className="flex justify-center items-center flex-col px-4 lg:px-20">
-       <div className="w-full max-w-72 lg:max-w-80">
-        <label
-          htmlFor="nombre"
-          className="block mb-2 text-sm font-medium text-gray-300"
-        >
-          Nombre
-        </label>
-        <input
-          type="text"
-          id="nombre"
-          className="border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4"
-          placeholder="Víctor"
-          required
-        />
-      </div>
-      <div className="w-full max-w-72 lg:max-w-80">
-        <label
-          htmlFor="email"
-          className="block mb-2 text-sm font-medium text-gray-300"
-        >
-          Email
-        </label>
-        <input
-          type="email"
-          id="email"
-          className="border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4"
-          placeholder="hola@correo.com"
-          required
-        />
-      </div>
+          <div className="w-full max-w-72 lg:max-w-80">
+            <label
+              htmlFor="nombre"
+              className="block mb-2 text-sm font-medium text-gray-300"
+            >
+              Nombre
+            </label>
+            <input
+              type="text"
+              id="nombre"
+              className="border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4"
+              name="name"
+              placeholder="Víctor"
+              ref={nameRef}
+              
+            />
+          </div>
+          <div className="w-full max-w-72 lg:max-w-80">
+            <label
+              htmlFor="email"
+              className="block mb-2 text-sm font-medium text-gray-300"
+            >
+              Email
+            </label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              className="border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4"
+              placeholder="hola@correo.com"
+              ref={emailRef}
+              
+            />
+          </div>
 
-      <div className="w-full max-w-72 lg:max-w-80 relative">
-          <label
-              htmlFor="contraseña"
+          <div className="w-full max-w-72 lg:max-w-80 relative">
+            <label
+              htmlFor="password"
               className="block mb-2 text-sm font-medium text-gray-300"
             >
               Contraseña
@@ -100,10 +127,12 @@ const handlePassword = () => {
             <div className="flex items-center border rounded-lg bg-gray-200 mb-4 text-black w-full">
               <input
                 type={showPassword ? "text" : "password"}
-                id="contraseña"
+                id="password"
                 className="w-full text-sm p-2.5 bg-transparent placeholder-gray-400 focus:outline-none"
+                name="password"
                 placeholder="Escribe tu contraseña"
-                required
+                ref={passwordRef}
+                
               />
               <button
                 type="button"
@@ -150,42 +179,47 @@ const handlePassword = () => {
             </div>
           </div>
 
-      <div className="w-full  max-w-72 lg:max-w-80">
-        <label
-          htmlFor="contraseña2"
-          className="block mb-2 text-sm font-medium text-gray-300"
-        >
-          Repite contraseña
-        </label>
-        <input
-          type="password"
-          id="contraseña2"
-          className="border text-sm rounded-lg block p-2.5 bg-gray-200 mb-8 text-black w-full"
-          placeholder="Escribe tu contraseña"
-          required
-        />
-      </div>
-
-      <button
-        type="button"
-        className="transition ease-in duration-100 text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 block text-center active:bg-[#464f9d] w-full max-w-72 lg:max-w-80"
-      >
-        Regístrate
-      </button>
-
-      <div className="text-center text-sm mt-5">
-        <Link href="/login">
-          <div className=" pb-5">
-               ¿Tienes ya una cuenta?{" "}
-          <span className="text-[#8f95d3]">Logueate</span>
+          <div className="w-full  max-w-72 lg:max-w-80">
+            <label
+              htmlFor="password_confirmation"
+              className="block mb-2 text-sm font-medium text-gray-300"
+            >
+              Repite contraseña
+            </label>
+            <input
+              type="password"
+              name="password_confirmation"
+              id="password_confirmation"
+              className="border text-sm rounded-lg block p-2.5 bg-gray-200 mb-8 text-black w-full"
+              placeholder="Escribe tu contraseña"
+              ref={passwordConfirmationRef}
+              
+            />
           </div>
-       
-        </Link>
+
+          <button
+            type="submit"
+            className="transition ease-in duration-100 text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 block text-center active:bg-[#464f9d] w-full max-w-72 lg:max-w-80"
+          >
+            Regístrate
+          </button>
+
+          <div className="text-center text-sm mt-5">
+            <Link href="/login">
+              <div className=" pb-5">
+                ¿Tienes ya una cuenta?{" "}
+                <span className="text-[#8f95d3]">Logueate</span>
+              </div>
+            </Link>
+          </div>
+        </form>
       </div>
-    </div>
-    </div>
     </div>
   );
 };
 
 export default Registrar;
+
+
+
+

@@ -4,19 +4,18 @@ import { useState } from "react";
 import generarImagenes from "../data/generarImagenes.json";
 import Header_Dos from "../components/Header_Dos";
 import Image from "next/image";
-
+import { useAuth } from "../hooks/useAuth";
 const Generar = () => {
   const [menu, setMenu] = useState(false);
   const [suscripcion, setSuscripcion] = useState(false);
  
-
+const {user, error} = useAuth({middleware: 'auth'})
   const handleCloseMenu = () => {
     if (menu) {
       setMenu(false);
       setSuscripcion(false);
     }
   };
-
   return (
     <header className="fixed z-50 w-full bg-zinc-800">
       <Header_Dos menu={menu} setMenu={setMenu} suscripcion={suscripcion} setSuscripcion={setSuscripcion}/>

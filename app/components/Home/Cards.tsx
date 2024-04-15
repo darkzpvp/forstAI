@@ -1,9 +1,11 @@
 import React from 'react'
 import Link from 'next/link'
-
-
+import { useAuth } from '@/app/hooks/useAuth'
 
 const Cards = () => {
+  const {user} = useAuth({})
+
+
   return (
     <section className="justify-center grid grid-cols-1 md:grid-cols-3 md:gap-4 gap-5 xl:mx-56 lg:mx-40 md:mx-20 my-10 place-items-center ">
     <div className="w-full max-w-sm p-4 border  rounded-lg shadow sm:p-8 bg-gray-800 border-gray-700">
@@ -104,16 +106,26 @@ const Cards = () => {
           </span>
         </li>
       </ul>
-      <Link href={"/carrito"} legacyBehavior>
-      <button
-        type="button"
-        className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 flex justify-center w-full text-center active:bg-[#464f9d] transition ease-in duration-100"
-      >
-       
-          Elegir plan
-     
-      </button>
-      </Link>
+      {user ? (
+  <Link href="/carrito">
+    <button
+      type="submit"
+      className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 flex justify-center w-full text-center active:bg-[#464f9d] transition ease-in duration-100"
+    >
+      Elegir plan
+    </button>
+  </Link>
+) : (
+  <Link href="/login">
+    <button
+      type="submit"
+      className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 flex justify-center w-full text-center active:bg-[#464f9d] transition ease-in duration-100"
+    >
+      Elegir plan
+    </button>
+  </Link>
+)}
+
     </div>
 
     <div className="w-full max-w-sm p-4  border  rounded-lg shadow sm:p-8 bg-gray-800 border-gray-700">
@@ -214,16 +226,27 @@ const Cards = () => {
           </span>
         </li>
       </ul>
-      <Link href={"/carrito"} legacyBehavior>
-      <button
-        type="button"
-        className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 flex justify-center w-full text-center active:bg-[#464f9d] transition ease-in duration-100"
-      >
-       
-          Elegir plan
-     
-      </button>
-      </Link>
+    
+      {user ? (
+  <Link href="/carrito">
+    <button
+      type="submit"
+      className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 flex justify-center w-full text-center active:bg-[#464f9d] transition ease-in duration-100"
+    >
+      Elegir plan
+    </button>
+  </Link>
+) : (
+  <Link href="/login">
+    <button
+      type="submit"
+      className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 flex justify-center w-full text-center active:bg-[#464f9d] transition ease-in duration-100"
+    >
+      Elegir plan
+    </button>
+  </Link>
+)}
+  
     </div>
 
     <div className="w-full max-w-sm p-4  border  rounded-lg shadow sm:p-8 bg-gray-800 border-gray-700">
@@ -324,16 +347,27 @@ const Cards = () => {
           </span>
         </li>
       </ul>
-      <Link href={"/carrito"} legacyBehavior>
-      <button
-        type="button"
-        className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 flex justify-center w-full text-center active:bg-[#464f9d] transition ease-in duration-100"
-      >
-       
-          Elegir plan
-     
-      </button>
-      </Link>
+    
+      {user ? (
+  <Link href="/carrito">
+    <button
+      type="submit"
+      className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 flex justify-center w-full text-center active:bg-[#464f9d] transition ease-in duration-100"
+    >
+      Elegir plan
+    </button>
+  </Link>
+) : (
+  <Link href="/login">
+    <button
+      type="submit"
+      className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 flex justify-center w-full text-center active:bg-[#464f9d] transition ease-in duration-100"
+    >
+      Elegir plan
+    </button>
+  </Link>
+)}
+    
     </div>
   </section>
   )

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { LoginProvider } from "./context/LoginContext";
-import { UsuariosProvider } from "./context/UsuariosContext";
+
 import "./globals.css";
 import { Kumbh_Sans} from 'next/font/google'
 const kumbh = Kumbh_Sans({
@@ -19,15 +18,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
     <html lang="en">
       
       <body className={`${kumbh.className}`}>
-<LoginProvider>
-  <UsuariosProvider>
+
   {children}
-  </UsuariosProvider>
-</LoginProvider>
+
      
 
         </body>

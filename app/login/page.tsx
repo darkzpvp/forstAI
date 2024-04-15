@@ -1,11 +1,30 @@
 'use client'
-import React, { useState } from "react";
+import React, { useState, useRef, createRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-
-
-
+import Alerta from "../components/Alerta";
+import { useAuth } from "../hooks/useAuth";
 const Login = () => {
+ 
+  const emailRef = createRef();
+  const passwordRef = createRef();
+
+
+  const [errores, setErrores] = useState([])
+  const {login} = useAuth({
+    middleware: 'guest',
+    url: '/generar'
+  })
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    const datos = {
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    }
+login(datos, setErrores)
+
+
+  };
   const [showPassword, setShowPassword] = useState(false);
 
   const handlePassword = () => {
@@ -55,7 +74,9 @@ const Login = () => {
           />
         </div>
 
-        <div className="flex justify-center items-center flex-col px-4 lg:px-20">
+        <form onSubmit={handleSubmit} noValidate className="flex justify-center items-center flex-col px-4 lg:px-20">
+         {errores ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>): null}
+
           <div className="w-full max-w-72 lg:max-w-80">
             <label
               htmlFor="email"
@@ -68,6 +89,7 @@ const Login = () => {
               id="email"
               className="border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4"
               placeholder="hola@correo.com"
+              ref={emailRef}
               required
             />
           </div>
@@ -85,6 +107,7 @@ const Login = () => {
                 id="contraseña"
                 className="w-full text-sm p-2.5 bg-transparent placeholder-gray-400 focus:outline-none"
                 placeholder="Escribe tu contraseña"
+                ref={passwordRef}
                 required
               />
               <button
@@ -133,7 +156,7 @@ const Login = () => {
           </div>
 
           <button
-            type="button"
+            type="submit"
             className="transition ease-in duration-100 text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 block text-center active:bg-[#464f9d] w-full max-w-72 lg:max-w-80"
           >
             Login
@@ -152,7 +175,7 @@ const Login = () => {
             
             </Link>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

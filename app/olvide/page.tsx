@@ -49,7 +49,7 @@ const Olvide = () => {
         </div>
 
        <div className="flex justify-center items-center flex-col px-4 lg:px-20">
-      <div className="w-full max-w-72 lg:max-w-80">
+      <form className="w-full max-w-72 lg:max-w-80">
         <label
           htmlFor="email"
           className="block mb-2 text-sm font-medium text-gray-300"
@@ -63,7 +63,7 @@ const Olvide = () => {
           placeholder="hola@correo.com"
           required
         />
-      </div>
+      </form>
 
       
 

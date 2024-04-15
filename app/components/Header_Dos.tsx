@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
-
+import { useAuth } from "../hooks/useAuth";
 interface InterfazProps {
   menu: boolean;
   suscripcion: boolean;
@@ -11,6 +11,9 @@ interface InterfazProps {
 }
 
 const Header_Dos = ({ menu, setMenu, suscripcion, setSuscripcion } : InterfazProps) => {
+
+
+  const {logout, user} = useAuth({middleware: 'auth', url: '/'})
   const [noPlan, setNoPlan] = useState(false);
   const handleSuscripcion = () => {
     setSuscripcion(!suscripcion);
@@ -130,10 +133,10 @@ const Header_Dos = ({ menu, setMenu, suscripcion, setSuscripcion } : InterfazPro
 
                   <div className="w-[100%] ">
                     <span className="block text-sm text-white text-center">
-                      Víctor Valverde
+                      {user?.name}
                     </span>
                     <span className="block text-sm text-gray-400 text-center ">
-                      hola@correo.com
+                      {user?.email}
                     </span>
                   </div>
                 </div>
@@ -167,7 +170,7 @@ const Header_Dos = ({ menu, setMenu, suscripcion, setSuscripcion } : InterfazPro
                 )}
 
                 {menu && !suscripcion && (
-                  <button className="block px-4 py-2 text-sm hover:bg-gray-600 rounded-lg text-gray-200 hover:text-white mx-auto sm:mx-0 w-full">
+                  <button onClick={logout} type="submit" className="block px-4 py-2 text-sm hover:bg-gray-600 rounded-lg text-gray-200 hover:text-white mx-auto sm:mx-0 w-full">
                     Logout
                   </button>
                 )}
