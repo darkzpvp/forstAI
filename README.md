@@ -65,8 +65,12 @@ Me dedico a refactorizar, quitar errores, y mejorar aspecto visual de muchas pá
 <br>
 Día 13
 Migración completa a NEXTJS
-
-
+<br>
+Día 14
+Inicio con la autenticación de usuarios usando Laravel Sanctum. Modifico el registro y el login
+<br>
+Día 15
+Finalizo la autenticación, añado middleware, rutas protegidas
 
 Recursos que utilicé:
 Dudas y relleno de texto
