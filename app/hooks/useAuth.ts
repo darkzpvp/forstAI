@@ -4,11 +4,7 @@ import { useEffect } from "react";
 import { redirect } from "next/navigation";
 
 export const useAuth = ({ middleware, url }) => {
-  const {
-    data: user,
-    error,
-    mutate,
-  } = useSWR("/api/user", () =>
+  const {data: user, error, mutate} = useSWR("/api/user", () =>
     clienteAxios("/api/user", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("AUTH_TOKEN")}`,

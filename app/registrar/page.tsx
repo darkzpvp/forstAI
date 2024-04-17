@@ -21,7 +21,7 @@ const Registrar = () => {
       name: nameRef.current.value,
       email: emailRef.current.value,
       password: passwordRef.current.value,
-      password_confirmation: passwordConfirmationRef.current.value, // corrected property name
+      password_confirmation: passwordConfirmationRef.current.value,
     }
  registro(datos, setErrores)
     
@@ -80,6 +80,7 @@ const Registrar = () => {
           className="flex justify-center items-center flex-col px-4 lg:px-20"
           
          >
+          
           {errores ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>): null}
 
           <div className="w-full max-w-72 lg:max-w-80">
