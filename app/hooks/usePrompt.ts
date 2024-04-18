@@ -13,7 +13,7 @@ export const usePrompt = () => {
       return data.message;
     } catch (error) {
      
-
+console.log(error);
       setErrores(error.response.data.errors)
 
     }

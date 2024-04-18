@@ -6,8 +6,20 @@ import { useAuth } from "../hooks/useAuth";
 import { usePrompt } from "../hooks/usePrompt";
 import Image from "next/image";
 import Alerta from "../components/Alerta";
-
+import { io } from "socket.io-client";
 const Generar = () => {
+  useEffect(() => {
+    const socket = io("http://localhost:3005");
+  
+    socket.on("connect", () => {
+      console.log("Connected to Socket.IO server");
+    });
+  
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+  
   const { enviarFormulario } = usePrompt();
   const { user } = useAuth({ middleware: "auth" });
 
@@ -26,8 +38,6 @@ const Generar = () => {
   const [promptsDisponibles, setPromptsDisponibles] = useState(initialError);
   const [promptText, setPromptText] = useState("");
 
-
-
   const handleCloseMenu = () => {
     if (menu) {
       setMenu(false);
@@ -43,6 +53,7 @@ const Generar = () => {
     };
 
   enviarFormulario(datos, setErrores);
+  setPromptsDisponibles(promptsDisponibles - 1);
 
   };
 
@@ -50,30 +61,15 @@ const Generar = () => {
     if (user) {
       setPromptsDisponibles(user.free_prompts);
     }
+
     localStorage.setItem('prompts', JSON.stringify(promptsDisponibles))
     localStorage.setItem('errores', JSON.stringify(errores))
-
   }, [user, promptsDisponibles]);
 
 
   const handleChangePrompt = (e) => {
     setPromptText(e.target.value);
   };
-
-
-
-
-
-
-
-
-
-  
-
-
-  
-
-
 
   return (
     <header className=" overflow-x-hidden overflow-y-auto z-50 w-full bg-zinc-800">
@@ -93,8 +89,9 @@ const Generar = () => {
             ))}
           </div>
         </div>
-
         <div className="block md:flex items-center px-5 justify-center mt-32 gap-24">
+
+
           <div className=" mx-auto text-center md:text-left">
             <h1 className="md:text-5xl font-bold text-gray-300 mb-5 text-2xl md:mt-20 mt-0">Genera con Stable Diffusion</h1>
             <p className="text-gray-400 md:text-lg text-md">Empieza a generar imagenes increíbles ahora mismo</p>
@@ -125,7 +122,7 @@ const Generar = () => {
             </form>
           </div>
 
-          <div className=" w-[100%] max-w-[50vh] mx-auto  sm:px-0">
+          <div className=" w-[100%] max-w-[50vh] mx-auto  sm:px-0 md:mt-20 mt-0">
             <div className=" md:mt-10 mt-5 bg-gray-500 rounded-lg shadow-lg py-10   flex items-center justify-center mx-auto">
               <img className="w-[20vh] h-[20vh] " src="/img/generar/imagenicono.svg" alt="Imagen Icono" />
             </div>

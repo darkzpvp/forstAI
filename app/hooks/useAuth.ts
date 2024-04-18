@@ -33,6 +33,7 @@ export const useAuth = ({ middleware, url }) => {
       setErrores([]);
       await mutate();
     } catch (error) {
+      console.log(error);
       setErrores(Object.values(error.response.data.errors));
     }
   };
