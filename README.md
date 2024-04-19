@@ -79,7 +79,7 @@ Día 18
 Quito socket.io por su dificultad, especialmente de tener un servidor a parte, e implemento useEffect dentro de una petición GET para respuestas a tiempo real
 <br>
 Día 19
-Implemento HuggingFace para imágenes a tiempo real (Antes pensaba añadir Stable diffusion). El motivo es que éste ofrece una API gratuita, y la API de Stable Diffusion es de pago
+Implemento HuggingFace para imágenes (Antes pensaba añadir Stable diffusion). El motivo es que éste ofrece una API gratuita, y la API de Stable Diffusion es de pago
 <br>
 Recursos que utilicé:
 Dudas y relleno de texto
