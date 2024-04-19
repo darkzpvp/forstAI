@@ -1,6 +1,5 @@
 import clienteAxios from "../config/axios";
-import { useEffect } from "react";
-import { redirect } from "next/navigation";
+
 
 export const usePrompt = () => {
   const enviarFormulario = async (userId, setErrores) => {
@@ -19,8 +18,24 @@ console.log(error);
     }
     
   };
- 
+  const getPrompts = async (userId, setErrores) => {
+    try {
+      const token = localStorage.getItem("AUTH_TOKEN");
+      const response = await clienteAxios.get(`/api/prompts?user_id=${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      setErrores(response.data.errors)
+      return response.data.prompts;
+
+    } catch (error) {
+    
+    }
+  }
+
   return {
-    enviarFormulario
+    enviarFormulario,
+    getPrompts
   };
 };

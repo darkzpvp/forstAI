@@ -5,9 +5,10 @@ import Logo from "../../../public/img/logo/prueba.png"
 interface HeaderProps {
   menuHeader: boolean,
   setMenuHeader: (value: boolean) => void
+  modal: boolean;
   }
   
-const Header = ({menuHeader, setMenuHeader} : HeaderProps) => {
+const Header = ({menuHeader, setMenuHeader, modal} : HeaderProps) => {
 
 
 
@@ -26,6 +27,9 @@ const Header = ({menuHeader, setMenuHeader} : HeaderProps) => {
 
   return (
     <>
+    {!modal && (
+
+   
       <header className="fixed z-50 w-full bg-zinc-800">
         <div className="py-2 mx-auto flex items-center justify-between w-full max-w-4xl px-5">
           <button className="w-[25%] ">
@@ -172,7 +176,7 @@ const Header = ({menuHeader, setMenuHeader} : HeaderProps) => {
 
 
       </header>
-
+ )}
     </>
   );
 };

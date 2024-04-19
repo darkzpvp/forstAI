@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, MouseEventHandler } from "react";
 import { Imagen } from "@/app/types";
 interface ModalProps {
   modal: boolean;
@@ -17,6 +17,14 @@ useEffect(() => {
   }, [imagen]); 
   
 
+
+if(modal){
+  document.body.classList.add('overflow-hidden')
+
+} else {
+  document.body.classList.remove('overflow-hidden')
+
+}
     const handleModal = () => {
       setModal(false);
       
@@ -46,26 +54,32 @@ useEffect(() => {
       
         setNext(nextImageIndex);
       };
-      
-    const handleOverlayClick = (event: any) => {
-        if (event.target.classList.contains("overlay")) {
+    
+      const handleOverlayClick: MouseEventHandler<HTMLDivElement> = (event) => {
+        if (event.currentTarget.classList.contains('overlay')) {
           handleModal();
         }
       };
+
     return (
       <>
         {modal && (
           <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center z-40 overlay "  onClick={handleOverlayClick}>
             <div className="flex flex-col justify-center items-center max-w-2xl h-full relative overlay" >
-         
-              <Image height={600} width={600} className="rounded-md" src={`/img/galeria/${next}.jpg`} alt="Imagen en modal" 
+            
+
+      
+              <Image   onClick={(event) => event.stopPropagation()} height={600} width={600} className="rounded-md" src={`/img/galeria/${next}.jpg`} alt="Imagen en modal" 
                   sizes="100vw"
               />
               <button
-                onClick={() => previousHandle()}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  previousHandle();
+                }}
                 type="button"
                 className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group "
-                data-carousel-prev
+               
               >
                 <span className="flex items-center justify-center w-10 h-10 rounded-full  bg-gray-100/70  hover:bg-gray-300/70 active:bg-gray-500/70 ">
                   <svg
@@ -87,7 +101,10 @@ useEffect(() => {
                 </span>
               </button>
               <button
-                onClick={() => nextHandle()}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    nextHandle();
+                  }}
                 type="button"
                 className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                 data-carousel-next
@@ -115,7 +132,7 @@ useEffect(() => {
               <button
                 onClick={handleModal}
                 type="button"
-                className=" sm:right-[5%] md:right-[-5%] absolute top-5 lg:right-[-10%] xl:right-[-10%] z-40 cursor-pointer p-2 rounded-full  bg-gray-700  hover:bg-gray-600 focus:ring-4  "
+                className=" sm:right-[5%] md:right-[-5%] absolute top-5 lg:right-[-10%] xl:right-[-10%] z-40 cursor-pointer p-2 rounded-full  bg-gray-700  hover:bg-gray-600 "
               >
                 <svg
                   
@@ -134,8 +151,9 @@ useEffect(() => {
                   />
                 </svg>
               </button>
+              </div>
             </div>
-          </div>
+       
         )}
       </>
     );

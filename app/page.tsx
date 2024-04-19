@@ -33,7 +33,7 @@ const Home = () => {
   };
   return (
     <>
-      <Header menuHeader={menuHeader} setMenuHeader={setMenuHeader} />
+      <Header menuHeader={menuHeader} setMenuHeader={setMenuHeader} modal={modal} />
       <div
         className=" overflow-hidden overlaymodal bg-grishome"
         onClick={handleOverlayClick}
