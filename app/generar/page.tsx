@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import generarImagenes from "../data/generarImagenes.json";
 import Header_Dos from "../components/Header_Dos";
 import { useAuth } from "../hooks/useAuth";
@@ -8,6 +8,8 @@ import Image from "next/image";
 import Alerta from "../components/Alerta";
 import useImageGeneration from "../hooks/generarPrompt";
 import Modal from "../components/Generar/Modal";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Generar = () => {
   const { enviarFormulario, getPrompts } = usePrompt();
@@ -20,6 +22,11 @@ const Generar = () => {
   const [promptText, setPromptText] = useState("");
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
+  const notify = () => {
+    toast("¡Prompt generado con éxito! 🤗")
+  }
+
+  const textAreaRef = useRef(null);
 
   const handleCloseMenu = () => {
     if (menu) {
@@ -28,17 +35,19 @@ const Generar = () => {
     }
   };
   const handleDownload = () => {
-    if (imageBase64) {
+    if (imageBase64 && !loading) {
       const downloadLink = document.createElement("a");
       downloadLink.href = `data:image/png;base64,${imageBase64}`;
       downloadLink.download = "imagen_generada.png";
       downloadLink.click();
+     
     }
   };
   const handleEnviar = async (e) => {
     e.preventDefault();
     setPromptText("");
     setLoading(true);
+    notify()
     const datos = {
       user_id: user.id,
     };
@@ -54,7 +63,6 @@ const Generar = () => {
   };
 
   useEffect(() => {
-    // Llama a getPrompts dentro del efecto para obtener los datos
     const fetchData = async () => {
       try {
         const prompts = await getPrompts(user.id, setErrores);
@@ -68,7 +76,11 @@ const Generar = () => {
       fetchData();
     }
   }, [user]);
-
+  // Esto es para hacer growing automático al textarea. Iban a sacar una clase, pero aún no lo han hecho
+  useEffect(() => {
+    textAreaRef.current.style.height = "auto";
+    textAreaRef.current.style.height = textAreaRef.current.scrollHeight + "px";
+  }, [promptText])
   return (
     <header className=" overflow-x-hidden overflow-y-auto z-50 w-full bg-zinc-800">
       <Header_Dos
@@ -77,7 +89,7 @@ const Generar = () => {
         suscripcion={suscripcion}
         setSuscripcion={setSuscripcion}
       />
-  
+       <ToastContainer />
       <section className="bg-gray-700 flex" onClick={handleCloseMenu}>
         <div className="flex relative">
           <div className="absolute flex gap-2 mx-auto animate-marquee">
@@ -108,25 +120,27 @@ const Generar = () => {
         </div>
         <div className="block md:flex items-center px-5 mx-auto mt-28 gap-24">
           <div className=" mx-auto text-center md:text-left w-full max-w-lg">
-            <h1 className="md:text-5xl font-bold text-gray-300 mb-5 text-2xl md:mt-20 mt-0">
-              Genera imágenes con Huggingface
-            </h1>
+          <h1 className="md:text-5xl font-bold text-gray-300 mb-5 text-2xl md:mt-20 mt-10">
+  Genera imágenes con <span className="bg-[#5D68CC] md:text-2xl text-sm p-2 rounded-lg whitespace-nowrap">Huggingface<img className="w-8 h-8 inline-block ml-1 " src="/img/generar/hf-logo.png" alt="Huggingface Logo"/></span>
+</h1>
             <p className="text-gray-400 md:text-lg text-md">
               Empieza a generar imagenes increíbles ahora mismo
             </p>
             <form onSubmit={handleEnviar} className={`mt-6`} action="#">
               <div className="relative ">
-                <input
+                <textarea
                   type="text"
-                  className={` z-0 block w-full max-w-3xl p-4 text-sm rounded-lg bg-gray-200 ${
+                  className={` resize-none z-0 block w-full max-w-3xl p-4 text-sm rounded-lg bg-gray-200 active:outline-none focus:outline-none ${
                     promptsDisponibles === 0 || loading === true
                       ? "cursor-not-allowed disabled"
                       : ""
                   }`}
+                  
                   placeholder={`Escribe el prompt (0/${promptsDisponibles})`}
                   onChange={handleChangePrompt}
                   value={promptText}
                   disabled={promptsDisponibles === 0 || loading === true}
+                  rows="1" ref={textAreaRef}
                   required
                 />
                 {loading ? (
@@ -171,7 +185,7 @@ const Generar = () => {
                 )}
               </div>
               <div className="flex mt-5 w-full">
-                {promptsDisponibles === 0
+                {promptsDisponibles === 0 && !loading
                   ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>)
                   : null}
               </div>
@@ -208,7 +222,7 @@ const Generar = () => {
               type="submit"
               onClick={handleDownload}
               className={` mb-5 ${
-                promptsDisponibles === 0 || loading === true
+                !imageBase64 || loading === true
                   ? " bg-slate-600 cursor-not-allowed hover:bg-slate-600 active:bg-slate-600"
                   : ""
               } flex mt-2 justify-center mx-auto text-white bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] font-medium rounded-lg text-sm px-4 py-2`}

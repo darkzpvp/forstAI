@@ -18,6 +18,9 @@ console.log(error);
     }
     
   };
+ 
+
+
   const getPrompts = async (userId, setErrores) => {
     try {
       const token = localStorage.getItem("AUTH_TOKEN");

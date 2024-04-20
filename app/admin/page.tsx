@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { MouseEventHandler, useEffect, useState } from "react";
 import Header_Dos from "../components/Header_Dos";
 import ModalAdmin from "../components/Admin/ModalAdmin";
@@ -8,22 +8,23 @@ const page = () => {
   const [action, setAction] = useState(false);
   const [responsive, setResponsive] = useState(false);
 
-
-  const handleAction = () => {
+  const handleAction = (e) => {
+    e.stopPropagation();
     setAction(!action);
   };
 
-  // Verificar si el elemento clicado es el overlay
-
-  const handleOverlayClick: MouseEventHandler<HTMLDivElement> = (event) => {
-    if (event.currentTarget.classList.contains("overlaymodal")) {
-      setAction(true);
-    } else {
-      setAction(false);
-      setMenu(false);
+  const handleCloseMenu = () => {   
+    if(action){
+      setAction(false)
     }
   };
 
+const handleUserMenu = () => {
+  if (menu) {
+    setMenu(false);
+    setSuscripcion(false);
+  }
+}
   useEffect(() => {
     const handleResize = () => {
       const windowResponsive = window.innerWidth >= 768;
@@ -40,7 +41,7 @@ const page = () => {
   const [suscripcion, setSuscripcion] = useState(false);
 
   return (
-    <div className=" bg-gray-700 h-screen z-50 ">
+    <div className=" bg-gray-700 h-screen z-50 overlaymodal" onClick={handleCloseMenu }>
       <Header_Dos
         menu={menu}
         setMenu={setMenu}
@@ -48,15 +49,12 @@ const page = () => {
         setSuscripcion={setSuscripcion}
       />
 
-      <div
-        onClick={handleOverlayClick}
-        className=" overflow-x-auto sm:rounded-lg m-9"
-      >
+      <div className=" overflow-x-auto sm:rounded-lg m-9" onClick={handleUserMenu}>
         {responsive ? (
-          <div      onClick={handleAction} className="flex items-center justify-between pb-4 mt-1">
+          <div className="flex items-center justify-between pb-4 mt-1">
             <div className="w-[25%]">
               <button
-         
+                onClick={handleAction}
                 className={`${
                   action ? "" : "overlaymodal"
                 } inline-flex items-center font-medium rounded-lg text-sm p-2  bg-gray-800 text-gray-400  hover:bg-[#171f2b] `}
@@ -64,13 +62,11 @@ const page = () => {
               >
                 Acciones
                 <svg
-                
                   className="w-2.5 h-2.5 ms-2.5 pointer-events-none "
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 10 6"
-               
                 >
                   <path
                     stroke="currentColor"
@@ -129,16 +125,14 @@ const page = () => {
                     action ? "" : "overlaymodal"
                   } inline-flex items-center font-medium rounded-lg text-sm p-2 bg-gray-800 text-gray-400  hover:bg-[#171f2b] `}
                   type="button"
-                 >
+                >
                   Acciones
                   <svg
-                       
                     className="w-2.5 h-2.5 ms-2.5 pointer-events-none"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 10 6"
-                
                   >
                     <path
                       stroke="currentColor"
@@ -238,7 +232,7 @@ const page = () => {
               </td>
               <td className="px-6 py-4">
                 <Link
-                  href= {"#"}
+                  href={"#"}
                   className="font-medium  text-blue-500 hover:underline"
                 >
                   Editar usuario
@@ -275,10 +269,10 @@ const page = () => {
                 </div>
               </td>
               <td className="px-6 py-4">
-                <Link href={"#"}  className="font-medium  text-blue-500 hover:underline"
->
-                 
-               
+                <Link
+                  href={"#"}
+                  className="font-medium  text-blue-500 hover:underline"
+                >
                   Editar usuario
                 </Link>
               </td>
@@ -313,9 +307,10 @@ const page = () => {
                 </div>
               </td>
               <td className="px-6 py-4">
-                <Link href={"#"} className="font-medium  text-blue-500 hover:underline"
->
-                 
+                <Link
+                  href={"#"}
+                  className="font-medium  text-blue-500 hover:underline"
+                >
                   Editar usuario
                 </Link>
               </td>
@@ -350,10 +345,10 @@ const page = () => {
                 </div>
               </td>
               <td className="px-6 py-4">
-                <Link href={"#"} className="font-medium  text-blue-500 hover:underline"
->
-                 
-               
+                <Link
+                  href={"#"}
+                  className="font-medium  text-blue-500 hover:underline"
+                >
                   Editar usuario
                 </Link>
               </td>
@@ -388,10 +383,10 @@ const page = () => {
                 </div>
               </td>
               <td className="px-6 py-4">
-                <Link href={"#"} className="font-medium  text-blue-500 hover:underline">
-                
-                  
-                
+                <Link
+                  href={"#"}
+                  className="font-medium  text-blue-500 hover:underline"
+                >
                   Editar usuario
                 </Link>
               </td>
@@ -426,10 +421,10 @@ const page = () => {
                 </div>
               </td>
               <td className="px-6 py-4">
-                <Link href={"#"} className="font-medium  text-blue-500 hover:underline"
->
-            
-                
+                <Link
+                  href={"#"}
+                  className="font-medium  text-blue-500 hover:underline"
+                >
                   Editar usuario
                 </Link>
               </td>
