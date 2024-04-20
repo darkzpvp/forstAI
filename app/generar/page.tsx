@@ -118,8 +118,8 @@ const Generar = () => {
           </div>
         </div>
         <div className="block md:flex items-center px-5 mx-auto mt-28 gap-24">
-          <div className=" mx-auto text-center md:text-left w-full max-w-lg">
-            <h1 className="md:text-5xl font-bold text-gray-300 mb-5 text-2xl md:mt-20 mt-10">
+          <div className={` mx-auto text-center md:text-left w-full ${imageBase64 ? 'max-w-md' : 'max-w-lg' }`}>
+            <h1 className="md:text-5xl font-bold text-gray-300 mb-5 text-3xl md:mt-20 mt-10">
               Genera imágenes con{" "}
               <span className="bg-[#5D68CC] md:text-2xl text-sm p-2 rounded-lg whitespace-nowrap">
                 Huggingface
@@ -130,10 +130,10 @@ const Generar = () => {
                 />
               </span>
             </h1>
-            <p className="text-gray-400 md:text-lg text-md">
+            <p className="text-gray-400 md:text-lg text-lg">
               Empieza a generar imagenes increíbles ahora mismo
             </p>
-            <form className={`mt-6`} action="#">
+            <form className={`mt-6`} action="#"   onSubmit={handleEnviar}>
               <div className="relative ">
                 <textarea
                   type="text"
@@ -161,7 +161,7 @@ const Generar = () => {
                     <button
                       disabled
                       type="button"
-                      className={` z-40 bg-slate-600 cursor-not-allowed hover:bg-slate-600 active:bg-slate-600 absolute right-0 bottom-0 mb-2 mr-2 text-white font-medium rounded-lg text-sm px-4 py-2`}
+                      className={` z-40 bg-[#65738c] cursor-not-allowed hover:bg-[#65738c] active:bg-[#65738c] absolute right-0 bottom-0 mb-2 mr-2 text-white font-medium rounded-lg text-sm px-4 py-2`}
                     >
                       <svg
                         aria-hidden="true"
@@ -186,9 +186,10 @@ const Generar = () => {
                 ) : (
                   <button
                     type="submit"
+                  
                     className={` z-40 ${
                       promptsDisponibles === 0
-                        ? " bg-slate-600 cursor-not-allowed hover:bg-slate-600 active:bg-slate-600"
+                        ? " bg-[#65738c] cursor-not-allowed hover:bg-[#65738c] active:bg-[#65738c]"
                         : ""
                     } absolute right-0 bottom-0 mb-2 mr-2 text-white bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] font-medium rounded-lg text-sm px-4 py-2`}
                     disabled={promptsDisponibles === 0}
@@ -240,7 +241,7 @@ const Generar = () => {
               onClick={handleDownload}
               className={` mb-5 ${
                 !imageBase64 || loading === true
-                  ? " bg-slate-600 cursor-not-allowed hover:bg-slate-600 active:bg-slate-600"
+                  ? " bg-[#65738c] cursor-not-allowed hover:bg-[#65738c] active:bg-[#65738c]"
                   : ""
               } flex mt-2 justify-center mx-auto text-white bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] font-medium rounded-lg text-sm px-4 py-2`}
             >
