@@ -71,7 +71,16 @@ Inicio con la autenticación de usuarios usando Laravel Sanctum. Modifico el reg
 <br>
 Día 15
 Finalizo la autenticación, añado middleware, rutas protegidas
-
+<br>
+Día 17
+Intenté añadir socket.io para respuestas a tiempo real
+<br>
+Día 18 
+Quito socket.io por su dificultad, especialmente de tener un servidor a parte, e implemento useEffect dentro de una petición GET para respuestas a tiempo real
+<br>
+Día 19
+Implemento HuggingFace para imágenes (Antes pensaba añadir Stable diffusion). El motivo es que éste ofrece una API gratuita, y la API de Stable Diffusion es de pago
+<br>
 Recursos que utilicé:
 Dudas y relleno de texto
 ChatGPT y Bard
