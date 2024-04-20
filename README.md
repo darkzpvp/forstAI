@@ -85,6 +85,7 @@ Día 20
 Arreglé modal del home, admin y generar, ya que hice una modificación previa y dejaron de funcionar, creo que es por la migración de React Router DOM a NextJS.<br>
 Agregué una característica al textarea para que haga growing automático con javascript. Con CSS no se puede, iban a meter una clase, pero aún no lo han hecho<br>
 Mejoré aspecto visual de la página de generar<br>
+Agregué toastify<br>
 Recursos que utilicé:
 Dudas y relleno de texto
 ChatGPT y Bard
