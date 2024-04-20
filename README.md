@@ -81,6 +81,11 @@ Quito socket.io por su dificultad, especialmente de tener un servidor a parte, e
 Día 19
 Implemento HuggingFace para imágenes (Antes pensaba añadir Stable diffusion). El motivo es que éste ofrece una API gratuita, y la API de Stable Diffusion es de pago
 <br>
+Día 20
+Arreglé modal del home, admin y generar, ya que hice una modificación previa y dejaron de funcionar, creo que es por la migración de React Router DOM a NextJS.<br>
+Agregué una característica al textarea para que haga growing automático con javascript. Con CSS no se puede, iban a meter una clase, pero aún no lo han hecho<br>
+Mejoré aspecto visual de la página de generar<br>
+Agregué toastify<br>
 Recursos que utilicé:
 Dudas y relleno de texto
 ChatGPT y Bard
