@@ -62,19 +62,31 @@ html{
 
   
 
-@keyframes marquee {
-  0% {
-    transform: translateX(-10%);
-  }
-  /* Ajustar el porcentaje final según la cantidad de imágenes */
-  100% {
-    transform: translateX(calc(-100% / 2)); /* Mitad del ancho total para que regrese a la primera imagen */
-  }
+.slider{
+  margin: auto;
+  display: grid;
+  place-items: center;
 }
 
-.animate-marquee {
-  animation: marquee 50s linear infinite; /* Duplicamos el tiempo para permitir que cada imagen se muestre durante 2 segundos */
+.slide-track{
+  display: flex;
+  width: calc(250px * 18);
+  animation: scroll 40s linear infinite;
+  
+}
 
+@keyframes scroll {
+  0%{
+    transform: translateX(0);
+  }
+  100%{
+    transform: translateX(calc(-250px * 9));
+  
+  }
+}
+.slide{
+  display: flex;
+  align-items: center;
 }
 
 

@@ -12,6 +12,7 @@ const useImageGeneration = () => {
         inputs: promptText,
         parameters: {
           negative_prompt: "blurry",
+
         },
       });
 

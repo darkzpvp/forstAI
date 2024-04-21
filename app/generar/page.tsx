@@ -18,12 +18,18 @@ const Generar = () => {
   const [menu, setMenu] = useState(false);
   const [suscripcion, setSuscripcion] = useState("");
   const [errores, setErrores] = useState([]);
+  
   const [promptsDisponibles, setPromptsDisponibles] = useState(null);
   const [promptText, setPromptText] = useState("");
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
   const notify = () => {
-    toast("¡Prompt generado con éxito! 🤗");
+    toast("¡Prompt generado con éxito! 🚀", {
+      style: {
+        backgroundColor: "#1F2937", 
+        color: "#D1D5DB", 
+      },
+    });
   };
 
   const textAreaRef = useRef(null);
@@ -50,7 +56,9 @@ const Generar = () => {
     const datos = {
       user_id: user.id,
     };
-
+    document.addEventListener('DOMContentLoaded', function() {
+      document.body.classList.add('overflow-x-hidden');
+    });
     enviarFormulario(datos, setErrores);
     setPromptsDisponibles(promptsDisponibles - 1);
     await generateImage(promptText);
@@ -60,6 +68,10 @@ const Generar = () => {
   const handleChangePrompt = (e) => {
     setPromptText(e.target.value);
   };
+
+useEffect(() => {
+document.body.classList.add('overflow-x-hidden');
+}, [])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -89,51 +101,66 @@ const Generar = () => {
         setSuscripcion={setSuscripcion}
       />
       <ToastContainer />
-      <section className="bg-gray-700 flex" onClick={handleCloseMenu}>
-        <div className="flex relative">
-          <div className="absolute flex gap-2 mx-auto animate-marquee">
-            {[...generarImagenes.images, ...generarImagenes.images].map(
-              (imagen, index) => (
-                <div
-                  key={index}
-                  className="mb-5 md:w-40 md:h-40 w-28 h-28 cursor-pointer relative"
-                >
-                  <div className="relative">
-                    <Image
-                      width={200}
-                      height={200}
-                      className="rounded-lg aspect-square"
-                      src={imagen.url}
-                      alt={imagen.title}
-                    />
-                    <div className="absolute inset-0 bg-black opacity-0 hover:opacity-50 transition-opacity duration-300 rounded-lg">
-                      <p className=" absolute text-gray-200 flex bottom-2 left-2 text-sm">
-                        {imagen.title}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )
-            )}
+      <section className="bg-gray-700 flex overflow-x-hidden" onClick={handleCloseMenu}>
+      <div className="flex absolute">
+  <div className="slider">
+    <div className="slide-track">
+      {generarImagenes.images.map((imagen, index) => (
+        <div key={index} className="slide px-2 relative">
+          <div className="relative cursor-pointer">
+          <Image
+            width={200}
+            height={200}
+            className="rounded-lg aspect-square"
+            src={imagen.url}
+            alt={imagen.title}
+          />
+          <div className="absolute inset-0 bg-black opacity-0 hover:opacity-50 transition-opacity duration-300 rounded-lg">
+            <p className="absolute text-gray-200 bottom-2 left-2 text-sm">
+              {imagen.title}
+            </p>
+          </div>
           </div>
         </div>
-        <div className="block md:flex items-center px-5 mx-auto mt-28 gap-24">
-          <div className={` mx-auto text-center md:text-left w-full ${imageBase64 ? 'max-w-md' : 'max-w-lg' }`}>
+      ))}
+
+      {generarImagenes.images.map((imagen, index) => (
+        <div key={index + generarImagenes.images.length} className="slide px-2 relative">
+           <div className="relative cursor-pointer">
+          <Image
+            width={200}
+            height={200}
+            className="rounded-lg aspect-square"
+            src={imagen.url}
+            alt={imagen.title}
+          />
+          <div className="absolute inset-0  bg-black opacity-0 hover:opacity-50 transition-opacity duration-300 rounded-lg">
+            <p className="absolute text-gray-200 bottom-2 left-2 text-sm">
+              {imagen.title}
+            </p>
+          </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+        <div className="block md:flex items-center px-5 mx-auto mt-28 gap-24 mb-5">
+          <div
+            className={` mx-auto text-center md:text-left w-full ${
+              imageBase64 ? "max-w-md" : "max-w-md"
+            }`}
+          >
             <h1 className="md:text-5xl font-bold text-gray-300 mb-5 text-3xl md:mt-20 mt-10">
               Genera imágenes con{" "}
               <span className="bg-[#5D68CC] md:text-2xl text-sm p-2 rounded-lg whitespace-nowrap">
-                Huggingface
-                <img
-                  className="w-8 h-8 inline-block ml-1 "
-                  src="/img/generar/hf-logo.png"
-                  alt="Huggingface Logo"
-                />
+                IA
               </span>
             </h1>
             <p className="text-gray-400 md:text-lg text-lg">
               Empieza a generar imagenes increíbles ahora mismo
             </p>
-            <form className={`mt-6`} action="#"   onSubmit={handleEnviar}>
+            <form className={`mt-6`} action="#" onSubmit={handleEnviar}>
               <div className="relative ">
                 <textarea
                   type="text"
@@ -161,7 +188,7 @@ const Generar = () => {
                     <button
                       disabled
                       type="button"
-                      className={` z-40 bg-[#65738c] cursor-not-allowed hover:bg-[#65738c] active:bg-[#65738c] absolute right-0 bottom-0 mb-2 mr-2 text-white font-medium rounded-lg text-sm px-4 py-2`}
+                      className={` z-40 bg-gray-600 cursor-not-allowed hover:bg-gray-600 active:bg-gray-600 absolute right-0 bottom-0 mb-2 mr-2 text-white font-medium rounded-lg text-sm px-4 py-2`}
                     >
                       <svg
                         aria-hidden="true"
@@ -186,10 +213,9 @@ const Generar = () => {
                 ) : (
                   <button
                     type="submit"
-                  
                     className={` z-40 ${
                       promptsDisponibles === 0
-                        ? " bg-[#65738c] cursor-not-allowed hover:bg-[#65738c] active:bg-[#65738c]"
+                        ? " bg-gray-600 cursor-not-allowed hover:bg-gray-600 active:bg-gray-600"
                         : ""
                     } absolute right-0 bottom-0 mb-2 mr-2 text-white bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] font-medium rounded-lg text-sm px-4 py-2`}
                     disabled={promptsDisponibles === 0}
@@ -207,13 +233,7 @@ const Generar = () => {
           </div>
 
           <div className=" w-[100%] max-w-[50vh] mx-auto  sm:px-0 md:mt-20 mt-0">
-            <div
-              className={` mt-5 ${
-                imageBase64
-                  ? ""
-                  : "bg-gray-500 shadow-lg md:mt-10 w-full max-w-[80%] p-[10%]"
-              } rounded-lg    flex items-center justify-center mx-auto`}
-            >
+            <div className={``}>
               {imageBase64 ? (
                 <>
                   <Modal
@@ -229,20 +249,30 @@ const Generar = () => {
                   />
                 </>
               ) : (
-                <img
-                  className="w-full max-w-[90%]"
-                  src="/img/generar/imagenicono.svg"
-                  alt="Imagen Icono"
-                />
+                <div className="">
+                  <div className=" rounded-lg overflow-hidden shadow-lg bg-gray-800">
+                    <img
+                      className=" opacity-70 rounded-lg"
+                      src="/img/generar/gato.jpeg"
+                      alt="Imagen Icono"
+                    />
+                    <div className="px-6 py-4 ">
+                      <h5 className=" text-2xl font-bold tracking-tight text-gray-300 ">
+                        ¡Sugerencia!
+                      </h5>
+                      <p className="font-normal text-gray-400">
+                        Específica la máxima cantidad de detalles que puedas
+                      </p>
+                    </div>
+                  </div>
+                </div>
               )}
             </div>
             <button
               type="submit"
               onClick={handleDownload}
               className={` mb-5 ${
-                !imageBase64 || loading === true
-                  ? " bg-[#65738c] cursor-not-allowed hover:bg-[#65738c] active:bg-[#65738c]"
-                  : ""
+                !imageBase64 || loading === true ? " hidden" : ""
               } flex mt-2 justify-center mx-auto text-white bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] font-medium rounded-lg text-sm px-4 py-2`}
             >
               Descargar
