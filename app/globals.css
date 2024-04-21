@@ -90,3 +90,9 @@ html{
 }
 
 
+.animate-none {
+  animation-play-state: paused;
+}
+button[aria-label="close"] {
+color: white;
+}

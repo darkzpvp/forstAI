@@ -23,12 +23,15 @@ const Generar = () => {
   const [promptText, setPromptText] = useState("");
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
+  const [pausarCarrusel, setPausarCarrusel] = useState(false)
   const notify = () => {
     toast("¡Prompt generado con éxito! 🚀", {
       style: {
         backgroundColor: "#1F2937", 
         color: "#D1D5DB", 
+        
       },
+      
     });
   };
 
@@ -92,6 +95,10 @@ document.body.classList.add('overflow-x-hidden');
     textAreaRef.current.style.height = "auto";
     textAreaRef.current.style.height = textAreaRef.current.scrollHeight + "px";
   }, [promptText]);
+
+  const handleCarruselInfinito = () => {
+    setPausarCarrusel(!pausarCarrusel)
+  }
   return (
     <header className=" overflow-x-hidden overflow-y-auto z-50 w-full bg-zinc-800">
       <Header_Dos
@@ -103,11 +110,15 @@ document.body.classList.add('overflow-x-hidden');
       <ToastContainer />
       <section className="bg-gray-700 flex overflow-x-hidden" onClick={handleCloseMenu}>
       <div className="flex absolute">
-  <div className="slider">
-    <div className="slide-track">
+
+
+
+        
+  <div className="slider cursor-pointer" onClick={handleCarruselInfinito}>
+    <div className={`slide-track ${pausarCarrusel ? ' animate-none' : ''}`}>
       {generarImagenes.images.map((imagen, index) => (
         <div key={index} className="slide px-2 relative">
-          <div className="relative cursor-pointer">
+          <div className="relative ">
           <Image
             width={200}
             height={200}
@@ -126,7 +137,7 @@ document.body.classList.add('overflow-x-hidden');
 
       {generarImagenes.images.map((imagen, index) => (
         <div key={index + generarImagenes.images.length} className="slide px-2 relative">
-           <div className="relative cursor-pointer">
+           <div className="relative ">
           <Image
             width={200}
             height={200}
