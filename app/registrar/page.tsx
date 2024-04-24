@@ -77,7 +77,7 @@ const Registrar = () => {
         </div>
         <form
           onSubmit={handleSubmit}
-          className="flex justify-center items-center flex-col px-4 lg:px-20"
+          className="flex justify-center items-center flex-col  xl:px-28 lg:px-20 md:px-20 px-8"
           
          >
           

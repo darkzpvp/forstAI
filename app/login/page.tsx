@@ -74,7 +74,7 @@ login(datos, setErrores)
           />
         </div>
 
-        <form onSubmit={handleSubmit} noValidate className="flex justify-center items-center flex-col px-4 lg:px-20">
+        <form onSubmit={handleSubmit} noValidate className="flex justify-center items-center flex-col  xl:px-28 lg:px-20 md:px-20 px-8">
          {errores ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>): null}
 
           <div className="w-full max-w-72 lg:max-w-80">

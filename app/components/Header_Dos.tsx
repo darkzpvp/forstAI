@@ -14,7 +14,6 @@ const Header_Dos = ({ menu, setMenu, suscripcion, setSuscripcion } : InterfazPro
 
 
   const {logout, user} = useAuth({middleware: 'auth', url: '/'})
-  const [noPlan, setNoPlan] = useState(false);
   const handleSuscripcion = () => {
     setSuscripcion(!suscripcion);
   };
@@ -33,18 +32,12 @@ const Header_Dos = ({ menu, setMenu, suscripcion, setSuscripcion } : InterfazPro
     setSuscripcion(false);
   };
 
-  const esGenerar = location.pathname === "/generar";
 
-  useState(() => {
-    if (esGenerar) {
-      setNoPlan(true);
-    } else {
-      setNoPlan(false);
-    }
-  });
+
+
   return (
     <>
-      <div className=" z-50 w-full bg-zinc-800 overlay">
+      <div className=" z-50 w-full bg-gray-900">
         <div
           className="py-2 mx-auto flex items-center justify-between w-full max-w-4xl px-5"
           onClick={handleCloseMenu}
@@ -69,7 +62,7 @@ const Header_Dos = ({ menu, setMenu, suscripcion, setSuscripcion } : InterfazPro
             <button
               type="button"
               onClick={handleMenu}
-              className="flex text-sm bg-gray-800 rounded-full"
+              className="flex text-sm bg-gray-800 rounded-full nooverlay"
             >
               <img
                 className="w-8 h-8 rounded-full"
@@ -82,13 +75,13 @@ const Header_Dos = ({ menu, setMenu, suscripcion, setSuscripcion } : InterfazPro
 
         {menu && (
           <>
-            <div className="flex justify-end 2xl:px-60 xl:px-20 lg:px-14 ">
-              <div className="absolute z-50 text-base rounded-b-lg shadow bg-zinc-800  w-full block sm:max-w-56 px-5 h-40">
+            <div id="nooverlay" className="flex justify-end 2xl:px-60 xl:px-20 lg:px-14  " onClick={(e) => e.stopPropagation()}>
+              <div className="absolute z-50 text-base rounded-b-lg shadow py-4 bg-gray-900  w-full block sm:max-w-56 px-5 h-40 overlay">
                 <div className=" flex ">
                   <div className=" w-[0%] ">
                     {suscripcion && (
                       <div
-                        className="relative z-50 hover:bg-gray-600 active:bg-gray-700 rounded-lg p-1 stroke-gray-300 w-8 h-8"
+                        className="relative z-50 hover:bg-gray-700 active:bg-gray-800 rounded-lg p-1 stroke-gray-300 w-8 h-8"
                         onClick={arrowMenu}
                       >
                         <svg
@@ -110,7 +103,7 @@ const Header_Dos = ({ menu, setMenu, suscripcion, setSuscripcion } : InterfazPro
 
                     {!suscripcion && (
                       <div
-                        className=" relative z-50 hover:bg-gray-600 active:bg-gray-700 rounded-lg p-1 stroke-gray-300 w-8 h-8"
+                        className=" relative z-50 hover:bg-gray-700 active:bg-gray-800 rounded-lg p-1 stroke-gray-300 w-8 h-8"
                         onClick={handleCloseMenu}
                       >
                         <svg
@@ -144,33 +137,16 @@ const Header_Dos = ({ menu, setMenu, suscripcion, setSuscripcion } : InterfazPro
                 {menu && !suscripcion && (
                   <button
                     onClick={handleSuscripcion}
-                    className="block  px-4 py-2 text-sm hover:bg-gray-600  rounded-lg text-gray-200 hover:text-white cursor-pointer mx-auto sm:mx-0 w-full mt-6"
+                    className="block  px-4 py-2 text-sm hover:bg-gray-700  rounded-lg text-gray-200 hover:text-white cursor-pointer mx-auto sm:mx-0 w-full mt-6"
                   >
                     Suscripciones
                   </button>
                 )}
 
-                {suscripcion && !esGenerar && (
-                  <>
-                    <p className="block px-4 text-sm rounded-lg text-gray-200 hover:text-white font-bold text-center  mt-6 mb-2 ">
-                      Aún no te has suscrito
-                    </p>
-                  </>
-                )}
-
-                {suscripcion && esGenerar && (
-                  <>
-                    <p className="block px-4 text-sm rounded-lg text-gray-200 hover:text-white font-bold text-center mt-6 mb-2">
-                      Plan: Estándar
-                    </p>
-                    <button className="block px-4 py-2 text-sm bg-red-600 hover:bg-red-700 rounded-lg text-gray-200 hover:text-white text-center mx-auto sm:mx-0 w-full">
-                      Cancelar suscripción
-                    </button>
-                  </>
-                )}
+             
 
                 {menu && !suscripcion && (
-                  <button onClick={logout} type="submit" className="block px-4 py-2 text-sm hover:bg-gray-600 rounded-lg text-gray-200 hover:text-white mx-auto sm:mx-0 w-full">
+                  <button onClick={logout} type="submit" className="block px-4 py-2 text-sm hover:bg-gray-700 rounded-lg text-gray-200 hover:text-white mx-auto sm:mx-0 w-full">
                     Logout
                   </button>
                 )}

@@ -18,7 +18,7 @@ const Olvide = () => {
 
       <div className="bg-[#272B30] text-gray-300 shadow-lg md:col-span-1 flex flex-col justify-start md:justify-center py-5 gap-0 md:gap-8">
       <div className="absolute top-5 mx-5 cursor-pointer">
-          <Link href={"/"} className="flex gap-2">
+          <Link href={"/login"} className="flex gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -48,8 +48,8 @@ const Olvide = () => {
           />
         </div>
 
-       <div className="flex justify-center items-center flex-col px-4 lg:px-20">
-      <form className="w-full max-w-72 lg:max-w-80">
+       <div className="flex justify-center items-center flex-col xl:px-28 lg:px-20 md:px-20 px-8">
+      <form className="w-full max-w-72 lg:max-w-80 ">
         <label
           htmlFor="email"
           className="block mb-2 text-sm font-medium text-gray-300"

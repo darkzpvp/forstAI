@@ -23,6 +23,7 @@ console.log(error);
 
   const getPrompts = async (userId, setErrores) => {
     try {
+     
       const token = localStorage.getItem("AUTH_TOKEN");
       const response = await clienteAxios.get(`/api/prompts?user_id=${userId}`, {
         headers: {
