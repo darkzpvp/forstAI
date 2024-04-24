@@ -1,26 +1,34 @@
 "use client";
-import React, { MouseEventHandler, useEffect, useState } from "react";
+import React, { MouseEventHandler, useEffect, useRef, useState } from "react";
 import Header_Dos from "../components/Header_Dos";
 import ModalAdmin from "../components/Admin/ModalAdmin";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const page = () => {
   const [action, setAction] = useState(false);
   const [responsive, setResponsive] = useState(true);
-  const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
+  const [clickModificar, setClickModificar] = useState(false);
+  const [clickEliminar, setClickEliminar] = useState(false);
+  const [clickBanear, setClickBanear] = useState(false);
 
   const [actualizarTabla, setActualizarTabla] = useState(false);
 
   const handleAction = (e) => {
     e.stopPropagation();
     setAction(!action);
+    
   };
 
   const handleCloseMenu = () => {
     if (action) {
       setAction(false);
     }
+    // if(actualizarTabla){
+      
+    //   setActualizarTabla(false)
+    // }
   };
 
   const handleUserMenu = () => {
@@ -44,7 +52,7 @@ const page = () => {
   const [menu, setMenu] = useState(false);
   const [suscripcion, setSuscripcion] = useState(false);
 
-  const notify = () => {
+  const notifyModificar = () => {
     toast("¡Usuario cambiado con éxito! 🚀", {
       style: {
         backgroundColor: "#1F2937",
@@ -52,26 +60,67 @@ const page = () => {
       },
     });
   };
-
+  const notifyEliminar = () => {
+    toast("¡Usuario eliminado con éxito! 🚀", {
+      style: {
+        backgroundColor: "#1F2937",
+        color: "#D1D5DB",
+      },
+    });
+  };
+  const notifyBanear = () => {
+    toast("¡Usuario baneado con éxito! 🚀", {
+      style: {
+        backgroundColor: "#1F2937",
+        color: "#D1D5DB",
+      },
+    });
+  };
+  const handleActualizarMenu = () => {
+    if (actualizarTabla) {
+      setActualizarTabla(false);
+      
+    }
+  };
   const handleOutsideClick = () => {
     handleCloseMenu();
     handleUserMenu();
+    handleActualizarMenu()
   };
 
-  const handleActualizarTabla = (e) => {
-    const tdRect = e.target.getBoundingClientRect();
-    const position = {
-      x: tdRect.left + window.scrollX,
-      y: tdRect.bottom + window.scrollY,
-    };
-    setModalPosition(position);
+  const handleActualizarTabla = () => {
     setActualizarTabla(!actualizarTabla);
-  
-    // notify()
-  };
+   
+    }
+    const modificarUsuario = () => {
+      setClickModificar(true);
+      setActualizarTabla(false)
+      }
+      const handleEliminar = () => {
+        setClickEliminar(true);
+       
+        }
+        const handleBanear = () => {
+          setClickBanear(true);
+         
+          }
+
+          const handleSubmitModificar = () => {
+            setClickModificar(false);
+            notifyModificar()
+            }
+          const handleSubmitEliminar = () => {
+            setClickEliminar(false);
+            notifyEliminar()
+            }
+            const handleSubmitBanear = () => {
+              setClickBanear(false);
+              notifyBanear()
+              }
+
   return (
     <div
-      className=" bg-gray-700 z-20 overlaymodal "
+      className=" bg-gray-700 z-20 overlaymodal h-screen "
       onClick={() => {
         handleOutsideClick();
       }}
@@ -153,7 +202,7 @@ const page = () => {
                 </p>
               </div>
               <div className=" flex justify-between pb-4 ">
-                <div className="w-[25%]">
+                <div className="w-[25%] z-40">
                   <button
                     onClick={handleAction}
                     className={`${
@@ -242,7 +291,7 @@ const page = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="relative border-b bg-gray-800 border-gray-700  hover:bg-gray-900 transform ease-in duration-75">
+            <tr className=" z-40 relative border-b bg-gray-800 border-gray-700  hover:bg-gray-900 transform ease-in duration-75">
               <td className="w-4 p-4">
                 <div className="flex items-center">
                   <input
@@ -272,7 +321,7 @@ const page = () => {
               </td>
               <td className="px-6 py-2">
                 <div className="flex items-center">
-                  <span className="bg-gray-100 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
+                  <span className="  text-sm font-medium me-2 px-2.5 py-0.5 rounded bg-gray-700 text-gray-300">
                     Usuario
                   </span>
                 </div>
@@ -281,7 +330,7 @@ const page = () => {
 
               <td className="px-6 py-2">
                 <svg
-                  onClick={(e) => handleActualizarTabla(e)}
+                  onClick={(e) => handleActualizarTabla()}
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -295,7 +344,45 @@ const page = () => {
                     d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
                   />
                 </svg>
-               
+                {actualizarTabla && (
+         <div className=" modaloverlay absolute   z-40  rounded-lg shadow w-40 bg-gray-700 divide-gray-600 " >
+        <ul className=" py-1 text-sm  text-gray-200 ">
+          <li onClick={() => modificarUsuario()}>
+            <a
+              href="#"
+              className="block px-4 py-2  hover:bg-gray-800 transition duration-100 ease-in"
+            >
+              Modificar usuario
+            </a>
+          </li>
+
+          <li onClick={() => handleEliminar()}>
+            <a
+              href="#"
+              className="block px-4 py-2  hover:bg-gray-800 transition duration-100 ease-in"
+            >
+              Eliminar usuario
+            </a>
+          </li>
+          <li onClick={() => handleBanear()}>
+            <a
+              href="#"
+              className="block px-4 py-2  hover:bg-gray-800 transition duration-100 ease-in "
+            >
+              Banear usuario
+            </a>
+          </li>
+          <li >
+            <a
+              href="#"
+              className="block px-4 py-2  hover:bg-gray-800 transition duration-100 ease-in "
+            >
+             Ver detalles del usuario
+            </a>
+          </li>
+        </ul>
+      </div>
+      )}
               </td>
               
             </tr>
@@ -329,7 +416,7 @@ const page = () => {
               </td>
               <td className="px-6 py-2">
                 <div className="flex items-center">
-                  <span className="bg-gray-100 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
+                  <span className="  text-sm font-medium me-2 px-2.5 py-0.5 rounded bg-gray-700 text-gray-300">
                     Usuario
                   </span>
                 </div>
@@ -384,7 +471,7 @@ const page = () => {
               </td>
               <td className="px-6 py-2">
                 <div className="flex items-center">
-                  <span className="bg-gray-100 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
+                  <span className="  text-sm font-medium me-2 px-2.5 py-0.5 rounded bg-gray-700 text-gray-300">
                     Usuario
                   </span>
                 </div>
@@ -438,7 +525,7 @@ const page = () => {
               </td>
               <td className="px-6 py-2">
                 <div className="flex items-center">
-                  <span className="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                  <span className=" text-sm font-medium me-2 px-2.5 py-0.5 rounded bg-blue-900 text-blue-300">
                     Administrador
                   </span>
                 </div>
@@ -492,7 +579,7 @@ const page = () => {
               </td>
               <td className="px-6 py-2">
                 <div className="flex items-center">
-                  <span className="bg-gray-100 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
+                  <span className="  text-sm font-medium me-2 px-2.5 py-0.5 rounded bg-gray-700 text-gray-300">
                     Usuario
                   </span>
                 </div>
@@ -546,7 +633,7 @@ const page = () => {
               </td>
               <td className="px-6 py-2">
                 <div className="flex items-center">
-                  <span className="bg-gray-100 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
+                  <span className="  text-sm font-medium me-2 px-2.5 py-0.5 rounded bg-gray-700 text-gray-300">
                     Usuario
                   </span>
                 </div>
@@ -600,7 +687,7 @@ const page = () => {
               </td>
               <td className="px-6 py-2">
                 <div className="flex items-center">
-                  <span className="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                  <span className=" text-sm font-medium me-2 px-2.5 py-0.5 rounded bg-blue-900 text-blue-300">
                     Administrador
                   </span>
                 </div>
@@ -634,7 +721,7 @@ const page = () => {
             <li>
               <a
                 href="#"
-                class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                class="flex items-center justify-center px-4 h-10 ms-0 leading-tight  border border-e-0  rounded-s-lg hover:  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
               >
                 <span class="sr-only">Previous</span>
                 <svg
@@ -657,7 +744,7 @@ const page = () => {
             <li>
               <a
                 href="#"
-                class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                class="flex items-center justify-center px-4 h-10 leading-tight  border  hover:  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
               >
                 1
               </a>
@@ -665,7 +752,7 @@ const page = () => {
             <li>
               <a
                 href="#"
-                class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                class="flex items-center justify-center px-4 h-10 leading-tight  border  hover:  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
               >
                 2
               </a>
@@ -674,7 +761,7 @@ const page = () => {
               <a
                 href="#"
                 aria-current="page"
-                class="z-10 flex items-center justify-center px-4 h-10 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+                class="z-10 flex items-center justify-center px-4 h-10 leading-tight  border   hover:bg-blue-100 hover:text-blue-700 border-gray-700 bg-gray-700 text-white"
               >
                 3
               </a>
@@ -682,7 +769,7 @@ const page = () => {
             <li>
               <a
                 href="#"
-                class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                class="flex items-center justify-center px-4 h-10 leading-tight  border  hover:  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
               >
                 4
               </a>
@@ -690,7 +777,7 @@ const page = () => {
             <li>
               <a
                 href="#"
-                class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                class="flex items-center justify-center px-4 h-10 leading-tight  border  hover:  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
               >
                 5
               </a>
@@ -698,7 +785,7 @@ const page = () => {
             <li>
               <a
                 href="#"
-                class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                class="flex items-center justify-center px-4 h-10 leading-tight  border  rounded-e-lg hover:  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
               >
                 <span class="sr-only">Next</span>
                 <svg
@@ -725,72 +812,139 @@ const page = () => {
      
 
       {/* {actualizarTabla && (
-    <div className="fixed inset-0 flex items-center justify-center bg-zinc-900 bg-opacity-70">
-        <div className=" bg-gray-700 p-6 rounded-lg shadow-xl">
-          <div className="p-4 md:p-5 text-center">
-            <svg
-              className="mx-auto mb-4  w-12 h-12 text-gray-200"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 20"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-              />
-            </svg>
-            <h3 className="mb-5 text-lg font-normal text-gray-400 ">
-              ¡Estás a un paso de comprarlo!
-            </h3>
-
-            <button onClick={() => setActualizarTabla(false)} className="py-2.5 px-5 text-sm font-medium   rounded-lg bg-gray-800  border-gray-600 text-gray-300 hover:bg-[#1a212d] active:bg-[#151b25]">
-              No, cancela
-            </button>
-            <button onClick={handleActualizarTabla} className="text-white bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d]  font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-3">
-              Sí, estoy seguro
-            </button>
-          </div>
-        </div>
-      </div>
+   
 )} */}
 
 
-{actualizarTabla && (
-         <div className=" modaloverlay absolute  z-50  rounded-lg shadow w-44 bg-gray-700 divide-gray-600 ">
-        <ul className=" py-1 text-sm  text-gray-200 ">
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2  hover:bg-gray-800 transition duration-100 ease-in"
-            >
-              Agregar usuario
-            </a>
-          </li>
+{clickModificar && (
+ <div className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-900 bg-opacity-70" onClick={() => setClickModificar(false)}>
+ <div className=" bg-gray-800 p-6 rounded-lg shadow-xl" onClick={(e) => e.stopPropagation()}>
+ <form>
+    <div className="grid gap-6 mb-6 md:grid-cols-2">
+        <div>
+            <label htmlFor="first_name" className="block mb-2 text-sm font-medium  text-white">Nombre</label>
+            <input type="text" id="first_name" className=" border   text-sm rounded-lg   block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white  " placeholder="Marcos" required />
+        </div>
+        <div>
+            <label htmlFor="last_name" className="block mb-2 text-sm font-medium  text-white">Correo electrónico</label>
+            <input type="email" id="last_name" className=" border   text-sm rounded-lg   block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white  " placeholder="marcos@correo.com" required />
+        </div>
+        <div>
+            <label htmlFor="company" className="block mb-2 text-sm font-medium  text-white">Contraseña</label>
+            <input type="password" id="company" className=" border   text-sm rounded-lg   block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white  " placeholder="******" required />
+        </div>  
+        <div>
+            <label htmlFor="company" className="block mb-2 text-sm font-medium  text-white">Repite contraseña</label>
+            <input type="password" id="company" className=" border   text-sm rounded-lg   block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white  " placeholder="******" required />
+        </div>  
+        <div>
+            <label htmlFor="phone" className="block mb-2 text-sm font-medium  text-white">Prompts gratuitos</label>
+            <input type="number" id="phone" className=" border   text-sm rounded-lg   block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white  " placeholder="12345678" pattern="[0-9]{3}[0-9]{2}[0-9]{3}" required />
+        </div>
+        <div className="">
+  <label htmlFor="countries" className="block mb-2 text-sm font-medium  text-white">Selecciona la suscripción</label>
+  <select id="countries" className=" border   text-sm rounded-lg   block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white  ">
+    <option selected>Selecciona la suscripción</option>
+    <option value="US">Plan básico</option>
+    <option value="CA">Plan estándar</option>
+    <option value="FR">Plan Premium</option>
+  </select>
+</div>
+        <div className="flex items-center mb-4">
+    <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4    rounded  focus:ring-blue-600 ring-offset-gray-800 focus:ring-2 bg-gray-700 border-gray-600"/>
+    <label htmlFor="default-checkbox" className="ms-2 text-sm font-medium  text-gray-300">Admin</label>
+</div>
+    </div>
+</form>
 
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2  hover:bg-gray-800 transition duration-100 ease-in"
-            >
-              Eliminar usuario
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2  hover:bg-gray-800 transition duration-100 ease-in "
-            >
-              Banear usuario
-            </a>
-          </li>
-        </ul>
-      </div>
-      )}
+     <button onClick={() => setClickModificar(false)} className="py-2.5 px-5 text-sm font-medium   rounded-lg bg-gray-600 hover:bg-gray-700  border-gray-600 text-gray-300  ">
+       No, cancela
+     </button>
+     <button onClick={() => handleSubmitModificar()} className="text-white bg-[#5D68CC] hover:bg-[#525cb7]   font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-3">
+       Sí, estoy seguro
+     </button>
+   </div>
+ </div>
 
+)}
+
+
+
+
+
+
+
+
+{clickBanear   && (
+ <div className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-900 bg-opacity-70" onClick={() => setClickBanear(false)}>
+ <div className=" bg-gray-800 p-6 rounded-lg shadow-xl" onClick={(e) => e.stopPropagation()}>
+   <div className="p-4 md:p-5 text-center">
+     <svg
+       className="mx-auto mb-4  w-12 h-12 text-gray-200"
+       aria-hidden="true"
+       xmlns="http://www.w3.org/2000/svg"
+       fill="none"
+       viewBox="0 0 20 20"
+     >
+       <path
+         stroke="currentColor"
+         strokeLinecap="round"
+         strokeLinejoin="round"
+         strokeWidth="2"
+         d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+       />
+     </svg>
+     <h3 className="mb-5 text-lg font-normal text-gray-400 ">
+       ¡Estás a un paso de banearlo!
+     </h3>
+
+     <button onClick={() => setClickBanear(false)} className="py-2.5 px-5 text-sm font-medium   rounded-lg  bg-gray-600 hover:bg-gray-700  border-gray-600 text-gray-300  ">
+       No, cancela
+     </button>
+     <button onClick={() => handleSubmitBanear()} className="text-white bg-[#5D68CC] hover:bg-[#525cb7]   font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-3">
+       Sí, estoy seguro
+     </button>
+   </div>
+ </div>
+</div>
+)}
+
+
+
+
+{clickEliminar   && (
+ <div className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-900 bg-opacity-70" onClick={() => setClickEliminar(false)}>
+ <div className=" bg-gray-800 p-6 rounded-lg shadow-xl" onClick={(e) => e.stopPropagation()}>
+   <div className="p-4 md:p-5 text-center">
+     <svg
+       className="mx-auto mb-4  w-12 h-12 text-gray-200"
+       aria-hidden="true"
+       xmlns="http://www.w3.org/2000/svg"
+       fill="none"
+       viewBox="0 0 20 20"
+     >
+       <path
+         stroke="currentColor"
+         strokeLinecap="round"
+         strokeLinejoin="round"
+         strokeWidth="2"
+         d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+       />
+     </svg>
+     <h3 className="mb-5 text-lg font-normal text-gray-400 ">
+       ¡Estás a un paso de eliminarlo!
+     </h3>
+
+     <button onClick={() => setClickEliminar(false)} className="py-2.5 px-5 text-sm font-medium   rounded-lg bg-gray-600 hover:bg-gray-700  border-gray-600 text-gray-300  ">
+       No, cancela
+     </button>
+     <button onClick={() => handleSubmitEliminar()} className="text-white bg-[#5D68CC] hover:bg-[#525cb7]   font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-3">
+       Sí, estoy seguro
+     </button>
+   </div>
+ </div>
+</div>
+)}
     </div>
   );
 };
