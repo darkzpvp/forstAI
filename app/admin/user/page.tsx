@@ -32,16 +32,16 @@ const page = () => {
           <p className="mt-2 text-gray-400">victor1val@hotmail.es</p>
         </div>
       </div>
-      <div className=" mx-auto px-0 md:px-32 sm:px-20 mt-5 ">
-        <div className=" grid grid-cols-4 gap-5">
-          <div className=" col-span-2 w-full bg-gray-800 rounded-lg mt-5 p-10 ">
-            <h2 class="mb-2 mt-1 text-lg font-semibold text-gray-900 dark:text-white ">
+      <div className=" mx-auto px-5 md:px-24 sm:px-8 mt-5 ">
+        <div className=" block sm:grid sm:grid-cols-4 gap-5">
+          <div className="block sm:col-span-2 w-full bg-gray-800 rounded-lg mt-5 p-10 ">
+            <h2 className="mb-2 mt-1 text-lg font-semibold text-gray-900 dark:text-white ">
               Detalles de la cuenta
             </h2>
-            <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400 border-t border-gray-600">
-              <div className="  grid grid-cols-2">
-                <div className=" flex gap-2 mb-5  mt-8">
-                  <div className=" gradient w-10 h-10 rounded-lg flex items-center justify-center   stroke-indigo-900">
+            <ul className="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400 border-t border-gray-600">
+              <div className="block  lg:grid lg:grid-cols-2">
+                <div className=" flex gap-2  mt-8 mb-5 md:mb-0">
+                  <div className=" gradient min-w-10 min-h-10 max-w-10 max-h-10 w-10 h-10 rounded-lg flex items-center justify-center   stroke-indigo-900">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -63,8 +63,8 @@ const page = () => {
                   </div>
                 </div>
 
-                <div className=" flex gap-2  mt-8">
-                  <div className=" gradient w-10 h-10 rounded-lg flex items-center justify-center   stroke-indigo-900">
+                <div className=" flex gap-2  md:mt-8 mb-5 md:mb-0">
+                  <div className=" gradient min-w-10 min-h-10 max-w-10 max-h-10 w-10 h-10 rounded-lg flex items-center justify-center   stroke-indigo-900">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -86,8 +86,8 @@ const page = () => {
                   </div>
                 </div>
 
-                <div className=" flex gap-2">
-                  <div className=" gradient w-10 h-10 rounded-lg flex items-center justify-center   stroke-indigo-900">
+                <div className=" flex gap-2 md:mt-6 mb-5 md:mb-0">
+                  <div className=" gradient min-w-10 min-h-10 max-w-10 max-h-10 w-10 h-10 rounded-lg flex items-center justify-center   stroke-indigo-900">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -105,14 +105,14 @@ const page = () => {
                   </div>
                   <div className="  text-sm">
                     <h2 className="text-gray-300">
-                      Expiración de la suscripción
+                      Expiración
                     </h2>
                     <p className="text-gray-400">27/04/21</p>
                   </div>
                 </div>
 
-                <div className=" flex gap-2">
-                  <div className=" gradient w-10 h-10 rounded-lg flex items-center justify-center   stroke-indigo-900">
+                <div className=" flex gap-2 md:mt-6 mb-5 md:mb-0">
+                  <div className=" gradient min-w-10 min-h-10 max-w-10 max-h-10 w-10 h-10 rounded-lg flex items-center justify-center   stroke-indigo-900">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -162,7 +162,7 @@ const page = () => {
             </ul>
           </div>
           <div className="block  w-full col-span-4">
-            <div className="relative overflow-x-auto sm:rounded-lg container mx-w-xl mt-5 mx-auto">
+            <div className="relative overflow-x-auto sm:rounded-lg mx-w-xl mt-5 mx-auto">
               <table className="w-full text-sm text-left rtl:text-right  text-gray-400 bg-gray-600 mb-3">
                 <thead className="text-xs  uppercase bg-gray-600 text-gray-400">
                   <tr>
