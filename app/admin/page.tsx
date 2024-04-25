@@ -132,9 +132,9 @@ const page = () => {
         setSuscripcion={setSuscripcion}
       />
       <ToastContainer />
-      <div className=" overflow-x-auto z-50 bg-gray-900 sm:rounded-lg mx-12 mt-9">
+      <div className=" overflow-x-auto z-50 bg-gray-800 sm:rounded-lg mx-12 mt-9">
         {responsive ? (
-          <div className="flex items-center justify-between py-3 px-4 bg-gray-900 p-5 rounded-t-lg ">
+          <div className="flex items-center justify-between py-3 px-4 bg-gray-800 p-5 rounded-t-lg ">
             <div className="w-[25%]">
               <button
                 onClick={handleAction}
@@ -374,7 +374,7 @@ const page = () => {
           </li>
           <li >
             <a
-              href="#"
+              href="/admin/user"
               className="block px-4 py-2  hover:bg-gray-800 transition duration-100 ease-in "
             >
              Ver detalles del usuario
@@ -717,15 +717,15 @@ const page = () => {
           className=" flex justify-center py-2"
           aria-label="Page navigation example"
         >
-          <ul class="flex items-center -space-x-px h-10 text-base">
+          <ul className="flex items-center -space-x-px h-10 text-base">
             <li>
               <a
                 href="#"
-                class="flex items-center justify-center px-4 h-10 ms-0 leading-tight  border border-e-0  rounded-s-lg hover:  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
+                className="flex items-center justify-center px-4 h-10 ms-0 leading-tight  border border-e-0  rounded-s-lg hover:  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
               >
-                <span class="sr-only">Previous</span>
+                <span className="sr-only">Previous</span>
                 <svg
-                  class="w-3 h-3 rtl:rotate-180"
+                  className="w-3 h-3 rtl:rotate-180"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -744,7 +744,7 @@ const page = () => {
             <li>
               <a
                 href="#"
-                class="flex items-center justify-center px-4 h-10 leading-tight  border  hover:  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
+                className="flex items-center justify-center px-4 h-10 leading-tight  border  hover:  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
               >
                 1
               </a>
@@ -752,7 +752,7 @@ const page = () => {
             <li>
               <a
                 href="#"
-                class="flex items-center justify-center px-4 h-10 leading-tight  border  hover:  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
+                className="flex items-center justify-center px-4 h-10 leading-tight  border  hover:  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
               >
                 2
               </a>
@@ -761,7 +761,7 @@ const page = () => {
               <a
                 href="#"
                 aria-current="page"
-                class="z-10 flex items-center justify-center px-4 h-10 leading-tight  border   hover:bg-blue-100 hover:text-blue-700 border-gray-700 bg-gray-700 text-white"
+                className="z-10 flex items-center justify-center px-4 h-10 leading-tight  border   hover:bg-blue-100 hover:text-blue-700 border-gray-700 bg-gray-700 text-white"
               >
                 3
               </a>
@@ -769,7 +769,7 @@ const page = () => {
             <li>
               <a
                 href="#"
-                class="flex items-center justify-center px-4 h-10 leading-tight  border  hover:  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
+                className="flex items-center justify-center px-4 h-10 leading-tight  border  hover:  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
               >
                 4
               </a>
@@ -777,7 +777,7 @@ const page = () => {
             <li>
               <a
                 href="#"
-                class="flex items-center justify-center px-4 h-10 leading-tight  border  hover:  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
+                className="flex items-center justify-center px-4 h-10 leading-tight  border  hover:  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
               >
                 5
               </a>
@@ -785,11 +785,11 @@ const page = () => {
             <li>
               <a
                 href="#"
-                class="flex items-center justify-center px-4 h-10 leading-tight  border  rounded-e-lg hover:  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
+                className="flex items-center justify-center px-4 h-10 leading-tight  border  rounded-e-lg hover:  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
               >
-                <span class="sr-only">Next</span>
+                <span className="sr-only">Next</span>
                 <svg
-                  class="w-3 h-3 rtl:rotate-180"
+                  className="w-3 h-3 rtl:rotate-180"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
