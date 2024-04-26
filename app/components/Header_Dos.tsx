@@ -57,6 +57,25 @@ const Header_Dos = ({ menu, setMenu, suscripcion, setSuscripcion } : InterfazPro
             <Link href={"/"} legacyBehavior>
               <a className=" text-gray-300 cursor-pointer">Home</a>
             </Link>
+            
+          </div>
+          <div>
+            <Link href={"/"} legacyBehavior>
+              <a className=" text-gray-300 cursor-pointer">Precios</a>
+            </Link>
+            
+          </div>
+          <div>
+            <Link href={"/"} legacyBehavior>
+              <a className=" text-gray-300 cursor-pointer">Contacto</a>
+            </Link>
+            
+          </div>
+          <div>
+            <Link href={"https://huggingface.co/"} legacyBehavior>
+              <a target="_blank" className=" text-gray-300 cursor-pointer">API</a>
+            </Link>
+            
           </div>
           <div className="flex  items-center w-[25%]  justify-end">
             <button

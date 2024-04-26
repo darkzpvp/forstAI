@@ -101,7 +101,6 @@ color: white;
 * Created with https://www.css-gradient.com
 * Gradient link: https://www.css-gradient.com/?c1=7b8da7&c2=4e6389&gt=r&gd=dtl
 */
-background: #7B8DA7;
-background: radial-gradient(at left top, #7B8DA7, #4E6389);
+background: linear-gradient(to right, #8a9fe4, #5c66ab);
 }
 
