@@ -13,7 +13,7 @@ const page = () => {
 
       <div
         style={myStyles}
-        className=" h-44 rounded-md overflow-hidden bg-cover bg-bottom flex items-center justify-center "
+        className=" h-44  overflow-hidden bg-cover bg-center flex items-center justify-center "
       >
         <div className=" text-center px-10 max-w-xl mx-auto">
           <div className=" relative">
@@ -31,17 +31,17 @@ const page = () => {
           <p className="mt-2 text-gray-400">victor1val@hotmail.es</p>
         </div>
       </div>
-      <div className=" mx-auto px-5 md:px-24 sm:px-8 mt-5 xl:px-40  ">
+      <div className=" mx-auto px-5 md:px-18 sm:px-8 mt-5 xl:px-40  ">
         <div className=" block sm:grid sm:grid-cols-4 gap-5 ">
           <div className="block sm:col-span-2 w-full   mt-5 ">
             <div className=" bg-gray-800 rounded-lg ">
 
           
-            <h2 className=" rounded-t-lg  text-lg font-semibold bg-gray-900 p-5 text-gray-900 dark:text-white   ">
+            <h2 className=" rounded-t-lg  text-lg font-semibold bg-gray-900 p-5  text-gray-400   ">
               Detalles de la cuenta
             </h2>
-            <ul className=" p-10  space-y-1 text-gray-500  dark:text-gray-400">
-              <div className="block  lg:grid lg:grid-cols-2">
+            <ul className=" md:p-10 p-5  space-y-1 text-gray-500  dark:text-gray-400">
+              <div className=" grid grid-cols-2">
                 <div className=" flex gap-2  mb-5 md:mb-0">
                   <div className=" bg-gray-900 min-w-10 min-h-10 max-w-10 max-h-10 w-10 h-10 rounded-lg flex items-center justify-center   stroke-gray-500">
                     <svg
@@ -60,8 +60,8 @@ const page = () => {
                     </svg>
                   </div>
                   <div className="  text-sm">
-                    <h2 className="text-gray-300">Suscripción</h2>
-                    <p className="text-gray-400">Plan Premiúm</p>
+                    <h2 className="text-gray-400">Suscripción</h2>
+                    <p className="text-sm text-gray-200 font-semibold">Plan Premiúm</p>
                   </div>
                 </div>
 
@@ -83,8 +83,8 @@ const page = () => {
                     </svg>
                   </div>
                   <div className="  text-sm">
-                    <h2 className="text-gray-300">Prompts restantes</h2>
-                    <p className="text-gray-400">80</p>
+                    <h2 className="text-gray-400">Prompts restantes</h2>
+                    <p className="text-sm text-gray-200 font-semibold">80</p>
                   </div>
                 </div>
 
@@ -106,8 +106,8 @@ const page = () => {
                     </svg>
                   </div>
                   <div className="  text-sm">
-                    <h2 className="text-gray-300">Expiración</h2>
-                    <p className="text-gray-400">27/04/21</p>
+                    <h2 className="text-gray-400">Mes de expiración</h2>
+                    <p className="text-sm text-gray-200 font-semibold">27/04/21</p>
                   </div>
                 </div>
 
@@ -129,8 +129,53 @@ const page = () => {
                     </svg>
                   </div>
                   <div className="  text-sm">
-                    <h2 className="text-gray-300">IP</h2>
-                    <p className="text-gray-400">192.169.0.1</p>
+                    <h2 className="text-gray-400">IP</h2>
+                    <p className="text-sm text-gray-200 font-semibold">192.169.0.1</p>
+                  </div>
+                </div>
+                <div className=" flex gap-2 md:mt-6 mb-5 md:mb-0">
+                  <div className=" bg-gray-900 min-w-10 min-h-10 max-w-10 max-h-10 w-10 h-10 rounded-lg flex items-center justify-center   stroke-gray-500">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke=""
+                      class="w-6 h-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                      />
+                    </svg>
+                  </div>
+                  <div className="  text-sm">
+                    <h2 className="text-gray-400">Estado del usuario</h2>
+                    <p className="text-sm font-semibold text-gray-200">Conectado</p>
+                  </div>
+                </div>
+
+                <div className=" flex gap-2 md:mt-6 mb-5 md:mb-0">
+                  <div className=" bg-gray-900 min-w-10 min-h-10 max-w-10 max-h-10 w-10 h-10 rounded-lg flex items-center justify-center   stroke-gray-500">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke=""
+                      class="w-6 h-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"
+                      />
+                    </svg>
+                  </div>
+                  <div className="  text-sm">
+                    <h2 className="text-gray-400">Última actividad</h2>
+                    <p className="text-sm font-semibold text-gray-200">13/05/2024</p>
                   </div>
                 </div>
               </div>
@@ -138,29 +183,25 @@ const page = () => {
             </div>
           </div>
           <div className=" col-span-2 w-full bg-gray-800 rounded-lg mt-5 ">
-            <h2 class="p-5 text-lg font-semibold text-gray-900 bg-gray-900 rounded-t-lg dark:text-white  ">
+            <h2 class="p-5 font-semibold  bg-gray-900 rounded-t-lg text-gray-400 text-lg  ">
               Detalles de facturación
             </h2>
-            <ul class=" p-10 space-y-1 text-gray-500 dark:text-gray-400 text-left  ">
-              <div className=" grid grid-cols-2 text-sm  text-left ">
-                <h2 className="text-gray-300">Nombre completo</h2>
-                <p className="text-gray-400">Víctor Valverde Olmedo</p>
-              </div>
-
-              <div className=" grid grid-cols-2 text-sm  text-left">
-                <h2 className="text-gray-300">Dirección</h2>
-                <p className="text-gray-400">Av. Victor 9. Bloque 4, 4-3</p>
-              </div>
-
-              <div className="grid grid-cols-2 text-sm  text-left">
-                <h2 className="text-gray-300">País y provincia</h2>
-                <p className="text-gray-400">España, Málaga</p>
-              </div>
-              <div className=" grid grid-cols-2 text-sm  text-left">
-                <h2 className="text-gray-300">Municipio</h2>
-                <p className="text-gray-400">Málaga</p>
-              </div>
-            </ul>
+            <ul class=" md:p-10 p-5 space-y-1  text-gray-400 text-left  ">
+            <dl class="max-w-md  divide-y  text-gray-200 divide-gray-700">
+    <div class="flex flex-col pb-3">
+        <dt class="mb-1  text-gray-400 text-sm">Dirección de correo</dt>
+        <dd class="text-sm font-semibold">victor1val@hotmail.es</dd>
+    </div>
+    <div class="flex flex-col py-3">
+        <dt class="mb-1  text-sm text-gray-400">Dirección</dt>
+        <dd class="text-sm font-semibold">Avenida Boulevard Louis Pasteur 9, Málaga, España (29010)</dd>
+    </div>
+    <div class="flex flex-col pt-3">
+        <dt class="mb-1  text-sm text-gray-400">Número de teléfono</dt>
+        <dd class="text-sm font-semibold">+34 674 94 88 57</dd>
+    </div>
+</dl>
+  </ul>
           </div>
           <div className="block  w-full col-span-4">
             <div className="relative overflow-x-auto sm:rounded-lg mx-w-xl mt-5 mx-auto">
@@ -176,7 +217,7 @@ const page = () => {
                       scope="row"
                       className="px-6 py-4 font-medium whitespace-nowrap text-gray-300"
                     >
-                      Ejemplo frame 1
+                      Perro sentado en frente de un bosque lleno de vegetación y fauna
                     </th>
 
                     <td className="px-6 py-4"></td>
@@ -189,7 +230,7 @@ const page = () => {
                       scope="row"
                       className="px-6 py-4 font-medium dwhitespace-nowrap text-gray-300"
                     >
-                      Ejemplo frame 2
+                     Familia de acampada disfrutando con sus hijos
                     </th>
                     <td className="px-6 py-4"></td>
                     <td className="px-6 py-4"></td>
@@ -201,7 +242,7 @@ const page = () => {
                       scope="row"
                       className="px-6 py-4 font-medium dwhitespace-nowrap text-gray-300"
                     >
-                      Ejemplo frame 3
+                     Hoy es el primer día del resto de tu vida. ¡Hazlo memorable!
                     </th>
                     <td className="px-6 py-4"></td>
                     <td className="px-6 py-4"></td>
@@ -213,7 +254,7 @@ const page = () => {
                       scope="row"
                       className="px-6 py-4 font-medium dwhitespace-nowrap text-gray-300"
                     >
-                      Ejemplo frame 3
+                      Descubre el mundo lápiz en mano y deja que tus sueños sean tu brújula
                     </th>
                     <td className="px-6 py-4"></td>
                     <td className="px-6 py-4"></td>
@@ -225,7 +266,7 @@ const page = () => {
                       scope="row"
                       className="px-6 py-4 font-medium dwhitespace-nowrap text-gray-300"
                     >
-                      Ejemplo frame 3
+                      Arbol de 100 años en medio de un campo de flores
                     </th>
                     <td className="px-6 py-4"></td>
                     <td className="px-6 py-4"></td>
@@ -237,7 +278,7 @@ const page = () => {
                       scope="row"
                       className="px-6 py-4 font-medium dwhitespace-nowrap text-gray-300"
                     >
-                      Ejemplo frame 3
+                      Muñeco de nieve en un campo de hielo
                     </th>
                     <td className="px-6 py-4"></td>
                     <td className="px-6 py-4"></td>
@@ -249,7 +290,7 @@ const page = () => {
                       scope="row"
                       className="px-6 py-4 font-medium dwhitespace-nowrap text-gray-300"
                     >
-                      Ejemplo frame 3
+                     Leon en la sabana africana corriendo detrás de su presa
                     </th>
                     <td className="px-6 py-4"></td>
                     <td className="px-6 py-4"></td>
@@ -261,7 +302,7 @@ const page = () => {
                       scope="row"
                       className="px-6 py-4 font-medium dwhitespace-nowrap text-gray-300"
                     >
-                      Ejemplo frame 3
+                      Hijo de 10 años jugando en la playa con su perro
                     </th>
                     <td className="px-6 py-4"></td>
                     <td className="px-6 py-4"></td>
