@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        'contactobackground': 'linear-gradient(rgba(33, 37, 41, 0.477), rgba(33, 37, 41, 0.85)), url("/img/home/contacto.jpg")',
+        'contactobackground': 'linear-gradient(to right, rgba(27, 27, 27, 0.82),  rgba(96, 97, 117, 0.61)), url("/img/home/contacto.jpg");',
         'grisgradiente': 'linear-gradient(to bottom, #40444b 0%, #25292d 30%, #282d32 40%, #21252a 60%, #282c31 80%, #343a41 100%)',
         'grishome': 'linear-gradient(to bottom, #40444b 0%, #25292d 30%, #282d32 40%, #21252a 60%, #282c31 80%, #343a41 100%)',
         'introhome': 'linear-gradient(rgba(33, 37, 41, 0.85), rgba(33, 37, 41, 0.85)), url("/img/home/intro.jpg")',
