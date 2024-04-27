@@ -1,21 +1,49 @@
 "use client";
 import Header_Dos from "@/app/components/Header_Dos";
+import Link from "next/link";
 import React from "react";
-
+import { useState } from "react";
 const page = () => {
   const myStyles = {
     backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.534), rgba(17, 24, 39, 0.5)), url('/img/admin/layeredUserr.jpg')`,
   };
-
+  const [menu, setMenu] = useState(false);
+  const [suscripcion, setSuscripcion] = useState(false);
+  const [menuHamburguesa, setMenuHamburguesa] = useState(false);
+  const handleCloseMenu = () => {
+    if (menu) {
+      setMenu(false);
+      setSuscripcion(false);
+    }
+    if(menuHamburguesa){
+      setMenuHamburguesa(false)
+    }
+  };
   return (
     <>
-      <Header_Dos />
+      <Header_Dos
+         menu={menu}
+         setMenu={setMenu}
+         suscripcion={suscripcion}
+         setSuscripcion={setSuscripcion}
+         menuHamburguesa={menuHamburguesa}
+         setMenuHamburguesa={setMenuHamburguesa}
+      />
 
       <div
         style={myStyles}
-        className=" h-44  overflow-hidden bg-cover bg-center flex items-center justify-center "
-      >
-        <div className=" text-center px-10 max-w-xl mx-auto">
+        className="relative h-44  overflow-hidden bg-cover bg-center flex items-center justify-center "
+        onClick={handleCloseMenu}>
+        <div className="  text-center px-10 max-w-xl mx-auto">
+          <div className=" absolute top-5 left-5 cursor-pointer">
+            <Link href={'/admin'}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-6 h-6">
+  <path fill-rule="evenodd" d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z" clip-rule="evenodd" />
+</svg> 
+</Link>
+          </div>
+     
+
           <div className=" relative">
             <img
               className=" w-14 h-14 mx-auto"
@@ -73,7 +101,7 @@ const page = () => {
                       viewBox="0 0 24 24"
                       stroke-width="2"
                       stroke=""
-                      class="w-6 h-6"
+                      className="w-6 h-6"
                     >
                       <path
                         stroke-linecap="round"
@@ -96,7 +124,7 @@ const page = () => {
                       viewBox="0 0 24 24"
                       stroke-width="2"
                       stroke=""
-                      class="w-6 h-6"
+                      className="w-6 h-6"
                     >
                       <path
                         stroke-linecap="round"
@@ -119,7 +147,7 @@ const page = () => {
                       viewBox="0 0 24 24"
                       stroke-width="2"
                       stroke=""
-                      class="w-6 h-6"
+                      className="w-6 h-6"
                     >
                       <path
                         stroke-linecap="round"
@@ -135,7 +163,7 @@ const page = () => {
                 </div>
                 <div className=" flex gap-2 md:mt-6 mb-5 md:mb-0">
                   <div className=" bg-gray-900 min-w-10 min-h-10 max-w-10 max-h-10 w-10 h-10 rounded-lg flex items-center justify-center   stroke-gray-500">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="" class="w-6 h-6">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="" className="w-6 h-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 0 1 7.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 0 1 1.06 0Z" />
 </svg>
 
@@ -148,7 +176,7 @@ const page = () => {
 
                 <div className=" flex gap-2 md:mt-6 mb-5 md:mb-0">
                   <div className=" bg-gray-900 min-w-10 min-h-10 max-w-10 max-h-10 w-10 h-10 rounded-lg flex items-center justify-center   stroke-gray-500">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="" class="w-6 h-6">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="" className="w-6 h-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
 </svg>
 
@@ -163,22 +191,22 @@ const page = () => {
             </div>
           </div>
           <div className=" col-span-2 w-full bg-gray-800 rounded-lg mt-5 ">
-            <h2 class="p-5 font-semibold  bg-gray-900 rounded-t-lg text-gray-400 text-lg  ">
+            <h2 className="p-5 font-semibold  bg-gray-900 rounded-t-lg text-gray-400 text-lg  ">
               Detalles de facturación
             </h2>
-            <ul class=" md:p-10 p-5 space-y-1  text-gray-400 text-left  ">
-            <dl class="max-w-md  divide-y  text-gray-200 divide-gray-700">
-    <div class="flex flex-col pb-3">
-        <dt class="mb-1  text-gray-400 text-sm">Dirección de correo</dt>
-        <dd class="text-sm font-semibold">victor1val@hotmail.es</dd>
+            <ul className=" md:p-10 p-5 space-y-1  text-gray-400 text-left  ">
+            <dl className="max-w-md  divide-y  text-gray-200 divide-gray-700">
+    <div className="flex flex-col pb-3">
+        <dt className="mb-1  text-gray-400 text-sm">Dirección de correo</dt>
+        <dd className="text-sm font-semibold">victor1val@hotmail.es</dd>
     </div>
-    <div class="flex flex-col py-3">
-        <dt class="mb-1  text-sm text-gray-400">Dirección</dt>
-        <dd class="text-sm font-semibold">Avenida Boulevard Louis Pasteur 9, Málaga, España (29010)</dd>
+    <div className="flex flex-col py-3">
+        <dt className="mb-1  text-sm text-gray-400">Dirección</dt>
+        <dd className="text-sm font-semibold">Avenida Boulevard Louis Pasteur 9, Málaga, España (29010)</dd>
     </div>
-    <div class="flex flex-col pt-3">
-        <dt class="mb-1  text-sm text-gray-400">Número de teléfono</dt>
-        <dd class="text-sm font-semibold">+34 674 94 88 57</dd>
+    <div className="flex flex-col pt-3">
+        <dt className="mb-1  text-sm text-gray-400">Número de teléfono</dt>
+        <dd className="text-sm font-semibold">+34 674 94 88 57</dd>
     </div>
 </dl>
   </ul>
@@ -292,15 +320,15 @@ const page = () => {
                 </tbody>
               </table>
               <nav aria-label="Page navigation example">
-                <ul class="flex items-center -space-x-px h-10 text-base mb-5">
+                <ul className="flex items-center -space-x-px h-10 text-base mb-5">
                   <li>
                     <a
                       href="#"
-                      class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      className="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
-                      <span class="sr-only">Previous</span>
+                      <span className="sr-only">Previous</span>
                       <svg
-                        class="w-3 h-3 rtl:rotate-180"
+                        className="w-3 h-3 rtl:rotate-180"
                         aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -319,7 +347,7 @@ const page = () => {
                   <li>
                     <a
                       href="#"
-                      class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
                       1
                     </a>
@@ -327,7 +355,7 @@ const page = () => {
                   <li>
                     <a
                       href="#"
-                      class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
                       2
                     </a>
@@ -336,7 +364,7 @@ const page = () => {
                     <a
                       href="#"
                       aria-current="page"
-                      class="z-10 flex items-center justify-center px-4 h-10 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+                      className="z-10 flex items-center justify-center px-4 h-10 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
                     >
                       3
                     </a>
@@ -344,7 +372,7 @@ const page = () => {
                   <li>
                     <a
                       href="#"
-                      class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
                       4
                     </a>
@@ -352,7 +380,7 @@ const page = () => {
                   <li>
                     <a
                       href="#"
-                      class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
                       5
                     </a>
@@ -360,11 +388,11 @@ const page = () => {
                   <li>
                     <a
                       href="#"
-                      class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
-                      <span class="sr-only">Next</span>
+                      <span className="sr-only">Next</span>
                       <svg
-                        class="w-3 h-3 rtl:rotate-180"
+                        className="w-3 h-3 rtl:rotate-180"
                         aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"

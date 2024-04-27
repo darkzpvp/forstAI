@@ -15,12 +15,15 @@ const Modal = ({ modal, setModal, imageBase64 }) => {
           handleModal();
         }
       };
-      if(modal){
-        document.body.classList.add('overflow-hidden')
-      } else{
-        document.body.classList.remove('overflow-hidden')
-
-      }
+      useEffect(() => {
+        if(modal){
+          document.body.classList.add('overflow-hidden')
+        
+        } else {
+          document.body.classList.remove('overflow-hidden')
+        
+        }
+      }, [modal])
     return (
       <>
         {modal && (

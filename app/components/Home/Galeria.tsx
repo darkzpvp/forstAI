@@ -20,7 +20,7 @@ const Galeria = ({modal, setModal, imagen, setImagen} : GaleriaProps) => {
     <h1 className="flex justify-center items-center mt-3 text-gray-300  font-bold text-3xl">
       Galería
     </h1>
-    <p className="flex justify-center items-center mt-2 text-gray-400  text-xl text-center mb-5">
+    <p className="flex justify-center items-center mt-2 text-gray-400  text-center mb-5">
       Algunos de nuestros prompts...
     </p>
     <div className="w-full max-w-5xl columns-2 md:columns-3 gap-5 mx-auto px-5">

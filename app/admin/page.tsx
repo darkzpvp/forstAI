@@ -2,7 +2,6 @@
 import React, { MouseEventHandler, useEffect, useRef, useState } from "react";
 import Header_Dos from "../components/Header_Dos";
 import ModalAdmin from "../components/Admin/ModalAdmin";
-import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -12,6 +11,7 @@ const page = () => {
   const [clickModificar, setClickModificar] = useState(false);
   const [clickEliminar, setClickEliminar] = useState(false);
   const [clickBanear, setClickBanear] = useState(false);
+  const [menuHamburguesa, setMenuHamburguesa] = useState(false);
 
   const [actualizarTabla, setActualizarTabla] = useState(false);
 
@@ -35,6 +35,9 @@ const page = () => {
     if (menu) {
       setMenu(false);
       setSuscripcion(false);
+    }
+    if(menuHamburguesa){
+      setMenuHamburguesa(false)
     }
   };
   useEffect(() => {
@@ -130,6 +133,8 @@ const page = () => {
         setMenu={setMenu}
         suscripcion={suscripcion}
         setSuscripcion={setSuscripcion}
+        menuHamburguesa={menuHamburguesa}
+        setMenuHamburguesa={setMenuHamburguesa}
       />
       <ToastContainer />
       <div className=" overflow-x-auto z-50 bg-gray-800 sm:rounded-lg mx-12 mt-9">

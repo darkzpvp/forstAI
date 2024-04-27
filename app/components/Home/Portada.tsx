@@ -6,11 +6,11 @@ const Portada = () => {
     id="home"
     className="flex flex-col justify-center items-center h-screen gap-5 px-5 text-center bg-introhome"
    >
-    <div className=' max-w-md '>
+    <div className=' max-w-sm '>
         <h1 className="text-gray-200 text-4xl font-black sm:text-6xl mb-3">
       ForstAI
     </h1>
-    <p className="text-gray-400 text-xl">
+    <p className="text-gray-400 text-lg">
       Comienza a generar imágenes de forma gratuita.
     </p>
     </div>

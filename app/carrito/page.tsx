@@ -7,10 +7,12 @@ import ProgresoCarrito from "../components/Carrito/ProgresoCarrito";
 import FormularioCarrito from "../components/Carrito/FormularioCarrito";
 import DatosBancarios from "../components/Carrito/DatosBancarios";
 import Confirmacion from "../components/Carrito/Confirmacion";
+
 const Page = () => {
 
 
   const router = useRouter();
+  const [menuHamburguesa, setMenuHamburguesa] = useState(false);
 
   const [comprado, setComprado] = useState(false);
   const [menu, setMenu] = useState(false);
@@ -22,6 +24,9 @@ const Page = () => {
     if (menu) {
       setMenu(false);
       setSuscripcion(false);
+    }
+    if(menuHamburguesa){
+      setMenuHamburguesa(false);
     }
   };
 
@@ -39,6 +44,8 @@ const Page = () => {
         setMenu={setMenu}
         suscripcion={suscripcion}
         setSuscripcion={setSuscripcion}
+        menuHamburguesa={menuHamburguesa}
+        setMenuHamburguesa={setMenuHamburguesa}
       />
 
       <section className="py-7" onClick={handleCloseMenu}>

@@ -23,20 +23,18 @@ const Home = () => {
 
   const [modal, setModal] = useState(false);
   const [imagen, setImagen] = useState<Imagen>(imagenState);
-
-  const handleOverlayClick: MouseEventHandler<HTMLDivElement> = (event) => {
-    if (event.currentTarget.classList.contains("overlaymodal")) {
-      setMenuHeader(true);
-    } else {
+  const handleOutsideClick = () => {
+    if (menuHeader) {
       setMenuHeader(false);
     }
-  };
+ }
+
   return (
     <>
       <Header menuHeader={menuHeader} setMenuHeader={setMenuHeader} modal={modal} />
       <div
         className=" overflow-hidden overlaymodal bg-grishome"
-        onClick={handleOverlayClick}
+        onClick={handleOutsideClick}
        >
         <Portada />
         <Intro />

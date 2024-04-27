@@ -22,6 +22,7 @@ const Generar = () => {
   const [promptText, setPromptText] = useState("");
   const [loading, setLoading] = useState(false);
   const [loadingPage, setLoadingPage] = useState(true);
+  const [menuHamburguesa, setMenuHamburguesa] = useState(false);
 
   const [modal, setModal] = useState(false);
   const [pausarCarrusel, setPausarCarrusel] = useState(false)
@@ -42,6 +43,9 @@ const Generar = () => {
     if (menu) {
       setMenu(false);
       setSuscripcion(false);
+    }
+    if(menuHamburguesa){
+      setMenuHamburguesa(false)
     }
   };
   const handleDownload = () => {
@@ -108,6 +112,8 @@ const Generar = () => {
         setMenu={setMenu}
         suscripcion={suscripcion}
         setSuscripcion={setSuscripcion}
+        menuHamburguesa={menuHamburguesa}
+        setMenuHamburguesa={setMenuHamburguesa}
       />
       <ToastContainer />
       <section className="bg-gray-700 flex overflow-x-hidden" onClick={handleCloseMenu}>

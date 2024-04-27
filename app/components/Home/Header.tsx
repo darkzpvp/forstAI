@@ -23,16 +23,20 @@ const Header = ({menuHeader, setMenuHeader, modal} : HeaderProps) => {
     setMenuHeader(false);
  
   }
- 
+const handleClose = () => {
+  if (menuHeader) {
+    setMenuHeader(false);
+  }
+}
 
   return (
     <>
     {!modal && (
 
    
-      <header className="fixed z-50 w-full bg-zinc-800">
-        <div className="py-2 mx-auto flex items-center justify-between w-full max-w-4xl px-5">
-          <button className="w-[25%] ">
+      <header className="fixed z-50 w-full bg-zinc-800" >
+        <div className="py-2 mx-auto flex items-center justify-between w-full max-w-4xl px-5" onClick={(e) => handleClose()}>
+          <button className="w-[25%] " >
             <Link href="#home" legacyBehavior>
               <div className="w-[100%] min-w-12 max-w-12 cursor-pointer">
 
@@ -46,7 +50,7 @@ const Header = ({menuHeader, setMenuHeader, modal} : HeaderProps) => {
             </Link>
           </button>
 
-          <div className="text-gray-300 items-center hidden sm:flex">
+          <div className="text-gray-300 items-center hidden sm:flex " >
             <ul className="flex items-center gap-0 sm:gap-4 md:gap-6">
               <li className="cursor-pointer hover:text-gray-400 ">
                 <Link href="#intro" legacyBehavior>
@@ -86,7 +90,7 @@ const Header = ({menuHeader, setMenuHeader, modal} : HeaderProps) => {
               className="flex items-center justify-center p-2 w-10 h-10 text-sm  rounded-lg    text-gray-400 hover:bg-gray-600 active:bg-gray-700 "
               aria-controls="navbar-hamburger"
               aria-expanded="false"
-            >
+             >
               
               <svg
                 className="w-5 h-5"
@@ -117,8 +121,8 @@ const Header = ({menuHeader, setMenuHeader, modal} : HeaderProps) => {
         </div>
 
         {menuHeader && (
-          <div className="w-full sm:hidden">
-          <ul className="flex flex-col text-center font-medium rounded-lg bg-zinc-800" >
+          <div className="w-full sm:hidden" onClick={() => setMenuHeader(false)}>
+          <ul className="flex flex-col text-center font-medium rounded-lg bg-zinc-800" onClick={(e) => e.stopPropagation()} >
             <li >
               <Link href="#intro" legacyBehavior>
                 <a

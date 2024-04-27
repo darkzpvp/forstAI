@@ -17,14 +17,16 @@ useEffect(() => {
   }, [imagen]); 
   
 
+useEffect(() => {
+  if(modal){
+    document.body.classList.add('overflow-hidden')
+  
+  } else {
+    document.body.classList.remove('overflow-hidden')
+  
+  }
+}, [modal])
 
-if(modal){
-  document.body.classList.add('overflow-hidden')
-
-} else {
-  document.body.classList.remove('overflow-hidden')
-
-}
     const handleModal = () => {
       setModal(false);
       

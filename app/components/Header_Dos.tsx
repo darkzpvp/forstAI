@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
@@ -8,15 +8,23 @@ interface InterfazProps {
   suscripcion: boolean;
   setMenu: (value: boolean) => void;
   setSuscripcion: (value: boolean) => void;
+  menuHamburguesa: boolean;
+  setMenuHamburguesa: (value: boolean) => void;
 }
 
-const Header_Dos = ({ menu, setMenu, suscripcion, setSuscripcion } : InterfazProps) => {
-
-
-  const {logout, user} = useAuth({middleware: 'auth', url: '/'})
+const Header_Dos = ({
+  menu,
+  setMenu,
+  suscripcion,
+  setSuscripcion,
+  menuHamburguesa,
+  setMenuHamburguesa
+}: InterfazProps) => {
+  const { logout, user } = useAuth({ middleware: "auth", url: "/" });
   const handleSuscripcion = () => {
     setSuscripcion(!suscripcion);
   };
+
   const handleMenu = () => {
     setMenu(!menu);
     setSuscripcion(false);
@@ -27,20 +35,45 @@ const Header_Dos = ({ menu, setMenu, suscripcion, setSuscripcion } : InterfazPro
       setMenu(false);
       setSuscripcion(false);
     }
+    if(menuHamburguesa){
+      setMenuHamburguesa(false)
+    }
   };
   const arrowMenu = () => {
     setSuscripcion(false);
   };
+const handleMenuHamburguesa = () => {
+  setMenuHamburguesa(!menuHamburguesa)
+}
 
 
 
-
+useEffect(() => {
+  if(menuHamburguesa){
+    setMenu(false)
+    setMenuHamburguesa(true)
+  } else {
+    setMenuHamburguesa(false)
+  }
+  if(menu){
+    setMenuHamburguesa(false)
+    setMenu(true)
+  } else {
+    setMenu(false)
+  } 
+}, [menuHamburguesa, menu])
   return (
     <>
-      <div className=" z-50 w-full bg-gray-900">
+      <div
+        className=" z-50 w-full bg-gray-900"
+       
+      >
         <div
           className="py-2 mx-auto flex items-center justify-between w-full max-w-4xl px-5"
-          onClick={handleCloseMenu}
+          onClick={(e) => {
+            handleCloseMenu();
+            e.stopPropagation();
+          }}
          >
           <button className="w-[25%]">
             <Image
@@ -52,30 +85,56 @@ const Header_Dos = ({ menu, setMenu, suscripcion, setSuscripcion } : InterfazPro
               alt="..."
             />
           </button>
+          <div className="sm:hidden flex flex-col items-center">
+            <button
+              data-collapse-toggle="navbar-hamburger"
+              type="button"
+              onClick={handleMenuHamburguesa}
+              className="flex items-center justify-center p-2 w-10 h-10 text-sm  rounded-lg    text-gray-400 hover:bg-gray-600 active:bg-gray-700 "
+              aria-controls="navbar-hamburger"
+              aria-expanded="false"
+            >
+              <svg
+                className="w-5 h-5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 17 14"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M1 1h15M1 7h15M1 13h15"
+                />
+              </svg>
+            </button>
+          </div>
 
-          <div>
-            <Link href={"/"} legacyBehavior>
-              <a className=" text-gray-300 cursor-pointer">Home</a>
-            </Link>
-            
-          </div>
-          <div>
-            <Link href={"/"} legacyBehavior>
-              <a className=" text-gray-300 cursor-pointer">Precios</a>
-            </Link>
-            
-          </div>
-          <div>
-            <Link href={"/"} legacyBehavior>
-              <a className=" text-gray-300 cursor-pointer">Contacto</a>
-            </Link>
-            
-          </div>
-          <div>
-            <Link href={"https://huggingface.co/"} legacyBehavior>
-              <a target="_blank" className=" text-gray-300 cursor-pointer">API</a>
-            </Link>
-            
+          <div className=" hidden sm:flex gap-0 sm:gap-6 md:gap-8">
+            <div>
+              <Link href={"/"} legacyBehavior>
+                <a className=" text-gray-300 cursor-pointer">Home</a>
+              </Link>
+            </div>
+            <div>
+              <Link href={"/#precios"} legacyBehavior>
+                <a className=" text-gray-300 cursor-pointer">Comprar</a>
+              </Link>
+            </div>
+            <div>
+              <Link href={"/#contacto"} legacyBehavior>
+                <a className=" text-gray-300 cursor-pointer">Contacto</a>
+              </Link>
+            </div>
+            <div>
+              <Link href={"https://huggingface.co/"} legacyBehavior>
+                <a target="_blank" className=" text-gray-300 cursor-pointer">
+                  API
+                </a>
+              </Link>
+            </div>
           </div>
           <div className="flex  items-center w-[25%]  justify-end">
             <button
@@ -94,7 +153,11 @@ const Header_Dos = ({ menu, setMenu, suscripcion, setSuscripcion } : InterfazPro
 
         {menu && (
           <>
-            <div id="nooverlay" className="flex justify-end 2xl:px-60 xl:px-20 lg:px-14  " onClick={(e) => e.stopPropagation()}>
+            <div
+              id="nooverlay"
+              className="flex justify-end 2xl:px-60 xl:px-20 lg:px-14  "
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="absolute z-50 text-base rounded-b-lg shadow py-4 bg-gray-900  w-full block sm:max-w-56 px-5 h-40 overlay">
                 <div className=" flex ">
                   <div className=" w-[0%] ">
@@ -162,16 +225,72 @@ const Header_Dos = ({ menu, setMenu, suscripcion, setSuscripcion } : InterfazPro
                   </button>
                 )}
 
-             
-
                 {menu && !suscripcion && (
-                  <button onClick={logout} type="submit" className="block px-4 py-2 text-sm hover:bg-gray-700 rounded-lg text-gray-200 hover:text-white mx-auto sm:mx-0 w-full">
+                  <button
+                    onClick={logout}
+                    type="submit"
+                    className="block px-4 py-2 text-sm hover:bg-gray-700 rounded-lg text-gray-200 hover:text-white mx-auto sm:mx-0 w-full"
+                  >
                     Logout
                   </button>
                 )}
               </div>
             </div>
           </>
+        )}
+        {menuHamburguesa && (
+          <div
+            className="w-full sm:hidden"
+            onClick={() => setMenuHamburguesa(false)}
+          >
+            <ul
+              className="flex flex-col text-center font-medium rounded-lg bg-gray-900 pb-5"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <li>
+                <Link href="/" legacyBehavior>
+                  <a
+                    className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
+                    aria-current="page"
+                  >
+                    Home
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/#precios" legacyBehavior>
+                  <a
+                    className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
+                    aria-current="page"
+                  >
+                    Comprar
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/#contacto" legacyBehavior>
+                  <a
+                    className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
+                    aria-current="page"
+                  >
+                    Contacto
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href={"https://huggingface.co/"} legacyBehavior>
+                  <a
+                    className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
+                    aria-current="page"
+                    target="_blank"
+                  >
+                    API
+                  </a>
+                </Link>
+              </li>
+             
+            </ul>
+          </div>
         )}
       </div>
     </>
