@@ -861,13 +861,15 @@ const page = () => {
 </div>
     </div>
 </form>
-
-     <button onClick={() => setClickModificar(false)} className="py-2.5 px-5 text-sm font-medium   rounded-lg bg-gray-600 hover:bg-gray-700  border-gray-600 text-gray-300  ">
+<div className=" flex justify-center mx-auto gap-2">
+      <button onClick={() => setClickModificar(false)} className="py-2.5 px-5 text-sm font-medium   rounded-lg bg-gray-600 hover:bg-gray-700  border-gray-600 text-gray-300  ">
        No, cancela
      </button>
-     <button onClick={() => handleSubmitModificar()} className="text-white bg-[#5D68CC] hover:bg-[#525cb7]   font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-3">
+     <button onClick={() => handleSubmitModificar()} className="text-white bg-[#5D68CC] hover:bg-[#525cb7]   font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center ">
        Sí, estoy seguro
      </button>
+</div>
+ 
    </div>
  </div>
 
@@ -902,13 +904,15 @@ const page = () => {
      <h3 className="mb-5 text-lg font-normal text-gray-400 ">
        ¡Estás a un paso de banearlo!
      </h3>
-
-     <button onClick={() => setClickBanear(false)} className="py-2.5 px-5 text-sm font-medium   rounded-lg  bg-gray-600 hover:bg-gray-700  border-gray-600 text-gray-300  ">
+<div className=" flex justify-center mx-auto gap-2">
+   <button onClick={() => setClickBanear(false)} className="py-2.5 px-5 text-sm font-medium   rounded-lg  bg-gray-600 hover:bg-gray-700  border-gray-600 text-gray-300  ">
        No, cancela
      </button>
-     <button onClick={() => handleSubmitBanear()} className="text-white bg-[#5D68CC] hover:bg-[#525cb7]   font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-3">
+     <button onClick={() => handleSubmitBanear()} className="text-white bg-[#5D68CC] hover:bg-[#525cb7]   font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
        Sí, estoy seguro
      </button>
+</div>
+    
    </div>
  </div>
 </div>
@@ -939,13 +943,15 @@ const page = () => {
      <h3 className="mb-5 text-lg font-normal text-gray-400 ">
        ¡Estás a un paso de eliminarlo!
      </h3>
-
-     <button onClick={() => setClickEliminar(false)} className="py-2.5 px-5 text-sm font-medium   rounded-lg bg-gray-600 hover:bg-gray-700  border-gray-600 text-gray-300  ">
+<div className=" flex gap-2 justify-center mx-auto">
+    <button onClick={() => setClickEliminar(false)} className="py-2.5 px-5 text-sm font-medium   rounded-lg bg-gray-600 hover:bg-gray-700  border-gray-600 text-gray-300  ">
        No, cancela
      </button>
-     <button onClick={() => handleSubmitEliminar()} className="text-white bg-[#5D68CC] hover:bg-[#525cb7]   font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-3">
+     <button onClick={() => handleSubmitEliminar()} className="text-white bg-[#5D68CC] hover:bg-[#525cb7]   font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
        Sí, estoy seguro
      </button>
+</div>
+   
    </div>
  </div>
 </div>

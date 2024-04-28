@@ -21,6 +21,7 @@ const config: Config = {
         'md': '768px',
         'lg': '1024px',
         'xl': '1280px',
+        'custom': {'raw': '(max-width: 873px)'},
         '2xl': '1536px',
         'xs': {'raw': '(max-width: 550px)'},
         '2xs': {'raw': '(max-width: 540px)'},

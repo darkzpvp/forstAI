@@ -3,6 +3,9 @@ import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 import { useAuth } from "../hooks/useAuth";
+import { usePathname } from "next/navigation";
+
+
 interface InterfazProps {
   menu: boolean;
   suscripcion: boolean;
@@ -24,6 +27,10 @@ const Header_Dos = ({
   const handleSuscripcion = () => {
     setSuscripcion(!suscripcion);
   };
+const pathname = usePathname()
+
+console.log(pathname);
+ 
 
   const handleMenu = () => {
     setMenu(!menu);
@@ -62,11 +69,11 @@ useEffect(() => {
     setMenu(false)
   } 
 }, [menuHamburguesa, menu])
+
   return (
     <>
       <div
-        className=" z-50 w-full bg-gray-900"
-       
+        className={`${pathname == '/perfil' ? 'fixed' : ''} z-50 w-full bg-gray-900`}
       >
         <div
           className="py-2 mx-auto flex items-center justify-between w-full max-w-4xl px-5"
@@ -158,7 +165,7 @@ useEffect(() => {
               className="flex justify-end 2xl:px-60 xl:px-20 lg:px-14  "
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="absolute z-50 text-base rounded-b-lg shadow py-4 bg-gray-900  w-full block sm:max-w-56 px-5 h-40 overlay">
+              <div className="absolute z-50 text-base rounded-b-lg shadow py-4 bg-gray-900  w-full block sm:max-w-56 px-5 h-52 overlay">
                 <div className=" flex ">
                   <div className=" w-[0%] ">
                     {suscripcion && (
@@ -217,15 +224,23 @@ useEffect(() => {
                 </div>
 
                 {menu && !suscripcion && (
+                  <>
+                  <Link href={'/perfil'} legacyBehavior >
+                   <a  className=" text-center block  px-4 py-2 text-sm hover:bg-gray-700  rounded-lg text-gray-200 hover:text-white cursor-pointer mx-auto sm:mx-0 w-full mt-6">
+                    Ver perfil
+                   </a>
+                  </Link>
                   <button
                     onClick={handleSuscripcion}
-                    className="block  px-4 py-2 text-sm hover:bg-gray-700  rounded-lg text-gray-200 hover:text-white cursor-pointer mx-auto sm:mx-0 w-full mt-6"
-                  >
+                    className="block  px-4 py-2 text-sm hover:bg-gray-700  rounded-lg text-gray-200 hover:text-white cursor-pointer mx-auto sm:mx-0 w-full "
+                   >
                     Suscripciones
                   </button>
+                  </>
                 )}
 
                 {menu && !suscripcion && (
+                  
                   <button
                     onClick={logout}
                     type="submit"

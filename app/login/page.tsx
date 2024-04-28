@@ -95,7 +95,7 @@ login(datos, setErrores)
           </div>
 
           <div className="w-full max-w-72 lg:max-w-80 relative">
-          <label
+           <label
               htmlFor="contraseña"
               className="block mb-2 text-sm font-medium text-gray-300"
             >
