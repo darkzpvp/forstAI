@@ -3,7 +3,7 @@ import React from "react";
 const Confirmacion = () => {
   return (
     <div className="md:col-span-3 shadow-lg bg-gray-800 rounded-lg">
-      <table className=" w-full rounded-lg">
+      <table className=" rounded-lg w-full ">
         
           <thead  className="bg-gray-900  rounded-t-lg font-bold uppercase text-xs text-gray-400 ">
           <tr>
@@ -47,7 +47,7 @@ const Confirmacion = () => {
                     25884493F
                 </td>
                 <td  class="text-gray-400 pb-5 px-5">
-                   Av. de Gregorio Prieto 9, 29010, Málaga, Málaga, España Bloq 2, 5-5.
+                   Av. de Gregorio Prieto 9. 28027 Madrid, España
                 </td>
             </tr>
           
@@ -67,7 +67,7 @@ const Confirmacion = () => {
       
      
             <tr  className=" text-sm font-medium text-gray-300  ">
-            <td   class="  px-5 pt-5 w-1/2 text-gray-200">
+            <td   class="  px-5 pt-5 text-gray-200">
                     Número de tarjeta
                 </td>
                 <td  class="text-gray-300 pt-5 px-5">
@@ -97,7 +97,7 @@ const Confirmacion = () => {
                     232
                 </td>
                 <td  class=" text-gray-400 pb-5 px-5">
-                   Koldo García Sánchez Koldo García Sánchez Koldo García Sánchez
+                   Koldo García Sánchez
                 </td>
             </tr>
        

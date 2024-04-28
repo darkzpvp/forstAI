@@ -199,16 +199,16 @@ const page = () => {
                     />
                   </div>
                 </div>
-                <div className=" border-b border-gray-600 px-5  ">
-                  <div className="  py-2  flex  max-w-sm justify-between    ">
-                    <h1 className="text-gray-400 text-sm ">Nueva contraseña</h1>
-                    <input
-                      className=" bg-gray-700 rounded-lg w-36 pt-1 px-2   "
-                      type="password"
-                      placeholder="*****"
-                    />
-                  </div>
-                </div>
+                <div className="border-b border-gray-600 px-5">
+  <div className="py-2 flex max-w-sm justify-between items-center">
+    <h1 className="text-gray-400 text-sm ">Nueva contraseña</h1>
+    <input
+      className="bg-gray-700 rounded-lg w-36 pt-1 px-2 flex-shrink-0"
+      type="password"
+      placeholder="*****"
+    />
+  </div>
+</div>
                 <div className=" py-3 px-3">
                   <button
                     type="button"
@@ -270,8 +270,11 @@ const page = () => {
                         <th className="text-gray-400 text-left font-normal">
                           Precio
                         </th>
-                        <th className="text-gray-400 text-left font-normal">
+                        <th className="md:flex hidden text-gray-400 text-left font-normal whitespace-nowrap">
                           Prompts disponibles
+                        </th>
+                        <th className="flex md:hidden text-gray-400 text-left font-normal">
+                          Prompts
                         </th>
                       </tr>
                     </thead>
