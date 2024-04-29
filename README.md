@@ -1,104 +1,66 @@
-<h1>Anteproyecto</h1>
-<h2>Notion</h2>
-https://faceted-binder-6cc.notion.site/Anteproyecto-1f21f41efbe444c48c01509a30aad739?pvs=25
-<h2>Bitácora de tareas</h2>
-El proyecto lo empecé antes de Semana Santa, para tener un avance mientras compaginaba las prácticas
-<br>
-<br>
-<br>
-<hr>
-Repositorio subido por primera vez el Lunes 01/04/2024
-PROVISIONAL, NO DEFINITIVO
-Comencé el Lunes 18/03/2024
-<br>
-<br>
-<h1>MARZO</h1>
-<br>
-<br>
-Día 18
-Logo en wepik.com
-<br>
-Creación del header, me basé en el header de esta página https://www.curated.design/articles/linear-asks
-<br>
-Día 19
-Creación de la página principal (Una sección minimalista en la que hay un bosque de fondo con degradado oscuro, un h1 y un párrafo)
-<br>
-20 y 21 
-Creación de la galería - slider, con tooltips 
-<br>
-Día 23 
-Cards con precios
-<br>
-Día 24
-Acordeón. Me ayudé gracias a este vídeo https://www.youtube.com/watch?v=oOXExNA8A48&list=LL&index=2
-<br>
-Día 25 Footer
-<br>
-Día 26. Arreglé algunos bugs del slider, que evitaba que la modal se cerrara con el overlay
-<br>
-Día 27. Repaso general en la página, especialmente en los botones. Añadí active y hover y mejoré la página
-<br>
-Día 28. Añadí menú hamburguesa al header y decidí meter una seccion nueva "Contacto". 
-<br>
-Día 30
-Sección de ventajas. Me basé en este https://imgur.com/a/xaeMvPq de la página de diseños curated.design
-<br>
-Día 31
-Añadí sección de contacto y le puse una flecha en el home que te permite bajar a la introducción
-<br>
-<h1>ABRIL</h1>
-<br>
-<br>
-Día 5
-Estuve investigando sobre varias formas de hacer el login, si centrarlo todo en un div o crear un grid con dos columnas, una que ocupe más (la de la imagen) para no dar sensación de vacío al formulario
-<br>
-Día 6
-Acabo el login definitivamente, además del registro y olvidé password. También modifiqué home y mejoré cosas del responsive
-<br>
-Día 7
-Haciendo página de generar
-<br>
-Día 8 Haciendo página de carrito
-<br>
-Día 9, 10, 11, 12, 13
-Me dedico a refactorizar, quitar errores, y mejorar aspecto visual de muchas páginas
-<br>
-Día 13
-Migración completa a NEXTJS
-<br>
-Día 14
-Inicio con la autenticación de usuarios usando Laravel Sanctum. Modifico el registro y el login
-<br>
-Día 15
-Finalizo la autenticación, añado middleware, rutas protegidas
-<br>
-Día 17
-Intenté añadir socket.io para respuestas a tiempo real
-<br>
-Día 18 
-Quito socket.io por su dificultad, especialmente de tener un servidor a parte, e implemento useEffect dentro de una petición GET para respuestas a tiempo real
-<br>
-Día 19
-Implemento HuggingFace para imágenes (Antes pensaba añadir Stable diffusion). El motivo es que éste ofrece una API gratuita, y la API de Stable Diffusion es de pago
-<br>
-Día 20
-Arreglé modal del home, admin y generar, ya que hice una modificación previa y dejaron de funcionar, creo que es por la migración de React Router DOM a NextJS.<br>
-Agregué una característica al textarea para que haga growing automático con javascript. Con CSS no se puede, iban a meter una clase, pero aún no lo han hecho<br>
-Mejoré aspecto visual de la página de generar<br>
-Agregué toastify<br>
-Recursos que utilicé:
-Dudas y relleno de texto
-ChatGPT y Bard
-Imágenes
-Freepik.com
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-Iconos
-https://heroicons.com
-Flaticon.com
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-Background
-https://mycolor.space/gradient
-Documentación Tailwind
-https://tailwindcss.com/docs
-Diseño (para ideas)
-https://www.curated.design
+## About Laravel
+
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
+
+## Learning Laravel
+
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+
+## Laravel Sponsors
+
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+
+### Premium Partners
+
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[WebReinvent](https://webreinvent.com/)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Jump24](https://jump24.co.uk)**
+- **[Redberry](https://redberry.international/laravel/)**
+- **[Active Logic](https://activelogic.com)**
+- **[byte5](https://byte5.de)**
+- **[OP.GG](https://op.gg)**
+
+## Contributing
+
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+
+## Code of Conduct
+
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+
+## Security Vulnerabilities
+
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+
+## License
+
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
