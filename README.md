@@ -18,7 +18,7 @@ Comencé el Lunes 18/03/2024
 Día 18
 Logo en wepik.com
 <br>
-Creación del header, me basé en el header de esta página https://www.curated.design/articles/linear-asks
+Creación del header, me basé en el header de esta página
 <br>
 Día 19
 Creación de la página principal (Una sección minimalista en la que hay un bosque de fondo con degradado oscuro, un h1 y un párrafo)
@@ -41,7 +41,7 @@ Día 27. Repaso general en la página, especialmente en los botones. Añadí act
 Día 28. Añadí menú hamburguesa al header y decidí meter una seccion nueva "Contacto". 
 <br>
 Día 30
-Sección de ventajas. Me basé en este https://imgur.com/a/xaeMvPq de la página de diseños curated.design
+Sección de ventajas
 <br>
 Día 31
 Añadí sección de contacto y le puse una flecha en el home que te permite bajar a la introducción
@@ -125,19 +125,22 @@ Finalizo la API para verificar usuarios, cambiar contraseña en caso de olvido m
 
 
 
-Recursos que utilicé:
-Dudas y relleno de texto
-ChatGPT y Bard
-Imágenes
-Freepik.com
+Recursos que utilicé:<br>
+Dudas y relleno de texto<br>
+ChatGPT y Bard<br>
+Freepik.com<br>
+Wepik.com<br>
+Stackoverflow<br>
+Github issues<br>
+Udemy<br>
+Documentación de tailwind, laravel, react, nextjs...<br>
+Páginas de diseños como curated.design o dark.design<br>
+Youtube<br>
+<br>
+Iconos<br>
+https://heroicons.com<br>
+Flaticon.com<br>
+<br>
+Background<br>
+https://mycolor.space/gradient<br>
 
-Iconos
-https://heroicons.com
-Flaticon.com
-
-Background
-https://mycolor.space/gradient
-Documentación Tailwind
-https://tailwindcss.com/docs
-Diseño (para ideas)
-https://www.curated.design
