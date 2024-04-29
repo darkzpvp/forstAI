@@ -124,7 +124,9 @@ Día 29
 Finalizo la API para verificar usuarios, cambiar contraseña en caso de olvido mediante un correo, cambio de contraseña normal y formulario de contacto en el que me llegan los datos desde el cliente
 
 
-
+<br>
+<br>
+<br>
 Recursos que utilicé:<br>
 Dudas y relleno de texto<br>
 ChatGPT y Bard<br>
