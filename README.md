@@ -49,6 +49,12 @@ Añadí sección de contacto y le puse una flecha en el home que te permite baja
 <h1>ABRIL</h1>
 <br>
 <br>
+Día 3
+Implemento API de registro
+<br>
+Día 4
+Implemento API de login
+<br>
 Día 5
 Estuve investigando sobre varias formas de hacer el login, si centrarlo todo en un div o crear un grid con dos columnas, una que ocupe más (la de la imagen) para no dar sensación de vacío al formulario
 <br>
@@ -86,6 +92,39 @@ Arreglé modal del home, admin y generar, ya que hice una modificación previa y
 Agregué una característica al textarea para que haga growing automático con javascript. Con CSS no se puede, iban a meter una clase, pero aún no lo han hecho<br>
 Mejoré aspecto visual de la página de generar<br>
 Agregué toastify<br>
+Día 21
+Mejoré interfaz y la galería de la página generar la cambié entera, debido a unos fallos relacionado con la experiencia de usuario
+<br>
+Día 22
+Empiezo con el desarrollo de la página de usuarios dentro del panel de admin. Éste contiene datos generales de la cuenta y de su historial de prompts para tener a los usuarios controlados
+<br>
+Día 23
+Continuo desarrollando la página de usuarios dentro del panel de admin
+<br>
+Día 24
+Continuo desarrollando la página de usuarios dentro del panel de admin
+Arreglé modal de admin e implementé la modal para el panel de administrador y otras mejoras
+<br>
+Día 25
+Para la petición asíncrona en el state, quité el loading y lo sustituí por un "skeleton". Tengo pensado añadirlo en más partes dónde se requieran datos del servidor
+Termino la página de usuarios dentro del panel de admin
+<br>
+Día 26
+Mejoré detalles de la página de usuarios del panel de admin
+<br>
+Día 27
+Añado menú hamburguesa al header, ya que añado nuevas secciones
+El home cambio muchas cosas para darle un aspecto visual más bonito: el formulario de contacto usé los colores siguiendo el patrón de la web y la sección de introducción al verlo mucho texto, preferí quitarlo y añadí otra cosa más agradable en su lugar
+Empiezo con la página de perfil de usuarios. Aquí los usuarios tendrán accceso de su historial de prompts, que el código es el mismo que el de admin. También podrán cambiar las contraseñas si sienten que la contraseña ha sido comprometida o incluso darse de baja de forma definitiva
+<br>
+Día 28
+Finalizo la sección de perfil de usuarios, y además la página del carrito, la parte del resumen no usaba la estructura de una tabla, a pesar de ser una tabla, usaba en su lugar divs. Eso lo he cambiado, además de mejorar su aspecto visual
+Empiezo a investigar como verificar los usuarios a través de correo electrónico, pero no lo consigo
+Día 29
+Finalizo la API para verificar usuarios, cambiar contraseña en caso de olvido mediante un correo, cambio de contraseña normal y formulario de contacto en el que me llegan los datos desde el cliente
+
+
+
 Recursos que utilicé:
 Dudas y relleno de texto
 ChatGPT y Bard
