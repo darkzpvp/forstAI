@@ -18,7 +18,7 @@ Comencé el Lunes 18/03/2024
 Día 18
 Logo en wepik.com
 <br>
-Creación del header, me basé en el header de esta página https://www.curated.design/articles/linear-asks
+Creación del header, me basé en el header de esta página
 <br>
 Día 19
 Creación de la página principal (Una sección minimalista en la que hay un bosque de fondo con degradado oscuro, un h1 y un párrafo)
@@ -41,13 +41,19 @@ Día 27. Repaso general en la página, especialmente en los botones. Añadí act
 Día 28. Añadí menú hamburguesa al header y decidí meter una seccion nueva "Contacto". 
 <br>
 Día 30
-Sección de ventajas. Me basé en este https://imgur.com/a/xaeMvPq de la página de diseños curated.design
+Sección de ventajas
 <br>
 Día 31
 Añadí sección de contacto y le puse una flecha en el home que te permite bajar a la introducción
 <br>
 <h1>ABRIL</h1>
 <br>
+<br>
+Día 3
+Implemento API de registro
+<br>
+Día 4
+Implemento API de login
 <br>
 Día 5
 Estuve investigando sobre varias formas de hacer el login, si centrarlo todo en un div o crear un grid con dos columnas, una que ocupe más (la de la imagen) para no dar sensación de vacío al formulario
@@ -86,19 +92,57 @@ Arreglé modal del home, admin y generar, ya que hice una modificación previa y
 Agregué una característica al textarea para que haga growing automático con javascript. Con CSS no se puede, iban a meter una clase, pero aún no lo han hecho<br>
 Mejoré aspecto visual de la página de generar<br>
 Agregué toastify<br>
-Recursos que utilicé:
-Dudas y relleno de texto
-ChatGPT y Bard
-Imágenes
-Freepik.com
+Día 21
+Mejoré interfaz y la galería de la página generar la cambié entera, debido a unos fallos relacionado con la experiencia de usuario
+<br>
+Día 22
+Empiezo con el desarrollo de la página de usuarios dentro del panel de admin. Éste contiene datos generales de la cuenta y de su historial de prompts para tener a los usuarios controlados
+<br>
+Día 23
+Continuo desarrollando la página de usuarios dentro del panel de admin
+<br>
+Día 24
+Continuo desarrollando la página de usuarios dentro del panel de admin
+Arreglé modal de admin e implementé la modal para el panel de administrador y otras mejoras
+<br>
+Día 25
+Para la petición asíncrona en el state, quité el loading y lo sustituí por un "skeleton". Tengo pensado añadirlo en más partes dónde se requieran datos del servidor
+Termino la página de usuarios dentro del panel de admin
+<br>
+Día 26
+Mejoré detalles de la página de usuarios del panel de admin
+<br>
+Día 27
+Añado menú hamburguesa al header, ya que añado nuevas secciones
+El home cambio muchas cosas para darle un aspecto visual más bonito: el formulario de contacto usé los colores siguiendo el patrón de la web y la sección de introducción al verlo mucho texto, preferí quitarlo y añadí otra cosa más agradable en su lugar
+Empiezo con la página de perfil de usuarios. Aquí los usuarios tendrán accceso de su historial de prompts, que el código es el mismo que el de admin. También podrán cambiar las contraseñas si sienten que la contraseña ha sido comprometida o incluso darse de baja de forma definitiva
+<br>
+Día 28
+Finalizo la sección de perfil de usuarios, y además la página del carrito, la parte del resumen no usaba la estructura de una tabla, a pesar de ser una tabla, usaba en su lugar divs. Eso lo he cambiado, además de mejorar su aspecto visual
+Empiezo a investigar como verificar los usuarios a través de correo electrónico, pero no lo consigo
+Día 29
+Finalizo la API para verificar usuarios, cambiar contraseña en caso de olvido mediante un correo, cambio de contraseña normal y formulario de contacto en el que me llegan los datos desde el cliente
 
-Iconos
-https://heroicons.com
-Flaticon.com
 
-Background
-https://mycolor.space/gradient
-Documentación Tailwind
-https://tailwindcss.com/docs
-Diseño (para ideas)
-https://www.curated.design
+<br>
+<br>
+<br>
+Recursos que utilicé:<br>
+Dudas y relleno de texto<br>
+ChatGPT y Bard<br>
+Freepik.com<br>
+Wepik.com<br>
+Stackoverflow<br>
+Github issues<br>
+Udemy<br>
+Documentación de tailwind, laravel, react, nextjs...<br>
+Páginas de diseños como curated.design o dark.design<br>
+Youtube<br>
+<br>
+Iconos<br>
+https://heroicons.com<br>
+Flaticon.com<br>
+<br>
+Background<br>
+https://mycolor.space/gradient<br>
+
