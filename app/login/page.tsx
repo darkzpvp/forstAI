@@ -75,6 +75,7 @@ login(datos, setErrores)
         </div>
 
         <form onSubmit={handleSubmit} noValidate className="flex justify-center items-center flex-col  xl:px-28 lg:px-20 md:px-20 px-8">
+          
          {errores ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>): null}
 
           <div className="w-full max-w-72 lg:max-w-80">
@@ -87,7 +88,8 @@ login(datos, setErrores)
             <input
               type="email"
               id="email"
-              className="border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4"
+              
+              className="focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4"
               placeholder="hola@correo.com"
               ref={emailRef}
               required

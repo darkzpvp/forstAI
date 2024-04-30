@@ -1,10 +1,27 @@
-import React from "react";
+'use client'
+import React, { useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
-
+import { useAuth } from "../hooks/useAuth";
 
 const Olvide = () => {
+  const { user } = useAuth({});
+
+const [email, setEmail] = useState("")
+const [error, setError] = useState([])
+const [status, setStatus] = useState(null)
+const handleSubmit = async (e) => {
+e.preventDefault()
+const res = await fetch("/api/olvide", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ email }),
+})
+}
+
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 h-screen ">
       <div className=" bg-login-gradient justify-center bg-cover  md:col-span-1 lg:col-span-2 flex md:items-start items-center ">
@@ -59,7 +76,7 @@ const Olvide = () => {
         <input
           type="email"
           id="email"
-          className="border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4"
+          className="focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4"
           placeholder="hola@correo.com"
           required
         />

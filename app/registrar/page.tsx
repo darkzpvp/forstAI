@@ -93,7 +93,7 @@ const Registrar = () => {
             <input
               type="text"
               id="nombre"
-              className="border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4"
+              className="focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4"
               name="name"
               placeholder="Víctor"
               ref={nameRef}
@@ -111,7 +111,7 @@ const Registrar = () => {
               type="text"
               id="email"
               name="email"
-              className="border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4"
+              className="focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4"
               placeholder="hola@correo.com"
               ref={emailRef}
               
@@ -125,7 +125,7 @@ const Registrar = () => {
             >
               Contraseña
             </label>
-            <div className="flex items-center border rounded-lg bg-gray-200 mb-4 text-black w-full">
+            <div className="focus:outline-none flex items-center border rounded-lg bg-gray-200 mb-4 text-black w-full">
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
@@ -191,7 +191,7 @@ const Registrar = () => {
               type="password"
               name="password_confirmation"
               id="password_confirmation"
-              className="border text-sm rounded-lg block p-2.5 bg-gray-200 mb-8 text-black w-full"
+              className="focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 mb-8 text-black w-full"
               placeholder="Escribe tu contraseña"
               ref={passwordConfirmationRef}
               

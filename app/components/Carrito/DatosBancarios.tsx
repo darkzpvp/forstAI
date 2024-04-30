@@ -43,6 +43,7 @@ const handleInputChangeTarjeta: ChangeEventHandler<HTMLInputElement> = (event) =
             </label>
             <div className="relative">
               <input
+              id="numero_tarjeta"
                 onChange={handleInputChangeTarjeta}
                 type="text"
                 className="  text-sm rounded-lg  block w-full pe-10 p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 text-gray-300 "

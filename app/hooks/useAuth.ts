@@ -22,19 +22,27 @@ export const useAuth = ({ middleware, url }) => {
       setErrores([]);
       await mutate();
     } catch (error) {
-      setErrores(Object.values(error.response.data.errors));
+      if (error.response.status === 419) {
+        // Handle expired session or CSRF token mismatch
+        console.error("Session expired or CSRF token mismatch");
+        localStorage.removeItem("AUTH_TOKEN"); // Clear token
+        // Redirect to login page or prompt re-authentication
+      } else {
+        setErrores(Object.values(error.response.data.errors));
+      }
     }
   };
 
   const registro = async (datos, setErrores) => {
     try {
-      const { data } = await clienteAxios.post("/api/registro", datos);
+      await clienteAxios("/sanctum/csrf-cookie");
+      const { data } = await clienteAxios.post("/api/registro", datos); 
       localStorage.setItem("AUTH_TOKEN", data.token);
       setErrores([]);
       await mutate();
     } catch (error) {
       console.log(error);
-      setErrores(Object.values(error.response.data.errors));
+      setErrores(Object.values(error?.response?.data.errors));
     }
   };
 

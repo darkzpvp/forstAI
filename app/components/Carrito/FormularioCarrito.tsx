@@ -44,14 +44,14 @@ const FormularioCarrito = () => {
 
         <div>
           <label
-            htmlFor="nombre"
+            htmlFor="apellidos"
             className="block mb-2 text-sm font-medium text-gray-300"
           >
             Apellidos
           </label>
           <input
             type="text"
-            id="nombre"
+            id="apellidos"
             className="bg-gray-700 text-gray-300 text-sm rounded-lg  block w-full p-2.5  placeholder-gray-500   "
             placeholder="Valverde"
             onChange={nombre}
@@ -84,6 +84,7 @@ const FormularioCarrito = () => {
           </label>
 
           <select
+          id="countries"
             defaultValue={`ES`}
             className=" text-sm rounded-lg  block w-full p-2.5 bg-gray-700 placeholder-gray-500 text-gray-300  "
           >
@@ -116,14 +117,14 @@ const FormularioCarrito = () => {
         </div>
         <div>
           <label
-            htmlFor="last_name"
+            htmlFor="provincia"
             className="block mb-2 text-sm font-medium text-gray-300"
           >
             Provincia
           </label>
           <input
             type="text"
-            id="last_name"
+            id="provincia"
             className="bg-gray-700 text-gray-300 text-sm rounded-lg  block w-full p-2.5  placeholder-gray-500  "
             placeholder="Málaga"
             onChange={nombre}
@@ -132,14 +133,14 @@ const FormularioCarrito = () => {
         </div>
         <div className='md:col-span-2'>
           <label
-            htmlFor="last_name"
+            htmlFor="NIFNIE"
             className="block mb-2 text-sm font-medium text-gray-300"
           >
             NIF / NIE
           </label>
           <input
             type="text"
-            id="last_name"
+            id="NIFNIE"
             className="bg-gray-700 text-gray-300 text-sm rounded-lg  block w-full p-2.5  placeholder-gray-500   "
             placeholder="44332255G"
             required
