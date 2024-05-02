@@ -122,8 +122,16 @@ Finalizo la sección de perfil de usuarios, y además la página del carrito, la
 Empiezo a investigar como verificar los usuarios a través de correo electrónico, pero no lo consigo
 Día 29
 Finalizo la API para verificar usuarios, cambiar contraseña en caso de olvido mediante un correo, cambio de contraseña normal y formulario de contacto en el que me llegan los datos desde el cliente
-
-
+<br>
+Día 30
+Revisando las APIs del día anterior, me doy cuenta que verificar usuarios y cambiar contraseña no funciona como quería, ya que el token no se enviaba por parámetros de la url, sino por parte de request. Me pongo en marcha con las dos APIS
+<br>
+Día 1
+Tras un intenso día y debido a la escasa documentación de Laravel con React finalizo la API de olvidar password, también conecto exitosamente el frontend. Creo una peticion GET con el token, en el cliente leo los parametros de la URL, si es correcta, renderiza un formulario para cambiar la contraseña, si no, directamente no permite al usuario cambiar la contraseña. El tóken expira en un día
+<br>
+Día 2
+Lo mismo que ayer, nula documentación. Finalizo la API de verificar email, ajusto middleware para que los usuarios que entren a rutas protegidas sean aquellos verificados y registrados. Para la verificación, si el usuario se loguea y no está verificado, se le avisa para confirmar la cuenta. En el registro, al registrarse también se le avisa para ello. El tóken tiene fecha de expiración.
+<br>
 <br>
 <br>
 <br>
