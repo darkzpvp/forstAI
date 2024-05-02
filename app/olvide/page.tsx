@@ -1,26 +1,51 @@
 'use client'
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "../hooks/useAuth";
-
+import { useRef } from "react";
+import useOlvidePassword from "../hooks/useOlvidePassword";
+import Alerta from "../components/Alerta";
+import AlertaOk from "../components/AlertaOk";
 const Olvide = () => {
-  const { user } = useAuth({});
 
-const [email, setEmail] = useState("")
-const [error, setError] = useState([])
-const [status, setStatus] = useState(null)
-const handleSubmit = async (e) => {
-e.preventDefault()
-const res = await fetch("/api/olvide", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({ email }),
-})
-}
+
+  const emailRef = useRef();
+
+  const [errores, setErrores] = useState([]);
+  const [mensajeOk, setMensajeOk] = useState("");
+  const [loading, setLoading] = useState(false);
+ const {olvidePassword} = useOlvidePassword();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+    const datos = {
+      email: emailRef.current.value,
+    };
+
+    await olvidePassword(datos, setErrores, setMensajeOk);
+    setLoading(false);
+
+    emailRef.current.value = "";
+ 
+  };
+
+  useEffect(() => {
+    if (errores.length > 0) {
+      setTimeout(() => {
+        setErrores([]);
+      }, 10000);
+    }
+  }, [errores]);
+
+
+
+
+
+
 
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 h-screen ">
@@ -66,7 +91,12 @@ const res = await fetch("/api/olvide", {
         </div>
 
        <div className="flex justify-center items-center flex-col xl:px-28 lg:px-20 md:px-20 px-8">
-      <form className="w-full max-w-72 lg:max-w-80 ">
+      <form noValidate onSubmit={handleSubmit} className="w-full max-w-72 lg:max-w-80 ">
+      {errores
+            ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>)
+            : null}
+          {mensajeOk ? <AlertaOk>{mensajeOk}</AlertaOk> : null}
+
         <label
           htmlFor="email"
           className="block mb-2 text-sm font-medium text-gray-300"
@@ -78,18 +108,21 @@ const res = await fetch("/api/olvide", {
           id="email"
           className="focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4"
           placeholder="hola@correo.com"
-          required
+          ref={emailRef}
+          
         />
-      </form>
 
-      
-
-      <button
-        type="button"
+          <button
+        type="submit"
         className="transition ease-in duration-100 text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 block text-center active:bg-[#464f9d] w-full max-w-72 lg:max-w-80"
       >
         Enviar
       </button>
+      </form>
+
+      
+
+    
 
       <div className="text-center text-sm mt-5">
         <Link href="/login">

@@ -1,64 +1,80 @@
-'use client'
-import React, { useState, useRef, createRef } from "react";
+"use client";
+import useOlvidePassword from "@/app/hooks/useOlvidePassword";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Alerta from "../components/Alerta";
-import { useAuth } from "../hooks/useAuth";
-import AlertaOk from "../components/AlertaOk";
-const Login = () => {
- 
-  const emailRef = createRef();
-  const passwordRef = createRef();
+import Alerta from "@/app/components/Alerta";
+import AlertaOk from "@/app/components/AlertaOk";
+export default function page({ params }: { params: { token: string } }) {
 
-
-  const [errores, setErrores] = useState([])
-  const [mensajeOk, setMensajeOk] = useState('')	
-  const {login} = useAuth({
-    middleware: 'guest',
-    url: '/generar'
-  })
-  const handleSubmit = async(e) => {
-    e.preventDefault();
-    const datos = {
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-    }
-    const email = {
-      email: emailRef.current.value
-    
-    }
-login(datos, setErrores, email, setMensajeOk)
-
-
-  };
+  const [errores, setErrores] = useState([]);
+  const [mensajeOk, setMensajeOk] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [tokenUrl, setTokenUrl] = useState(params.token);
+  const [tokenValido, setTokenValido] = useState([]);
+
+  const { resetPassword, comprobarToken } = useOlvidePassword();
+  const passwordRef = useRef();
+  const passwordRepeatRef = useRef();
+  
+
+  useEffect(() => {
+    if (errores.length > 0) {
+      setTimeout(() => {
+        setErrores([]);
+      }, 10000);
+    }
+  }, [errores]);
+
+  useEffect(() => {
+    if (mensajeOk) {
+      setTimeout(() => {
+        setMensajeOk("");
+      }, 10000);
+    }
+  }, [mensajeOk]);
 
   const handlePassword = () => {
     setShowPassword(!showPassword);
   };
-  setTimeout(() => {
-    setErrores([])
-    }, 10000)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const datos = {
+      password: passwordRef.current.value,
+      password_confirmation: passwordRepeatRef.current.value,
+    };
+    await resetPassword(datos, tokenUrl, setErrores, setMensajeOk);
+  };
+  useEffect(() => {
+    comprobarToken(tokenUrl, setTokenValido);
+  }, [tokenUrl])
+
+
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 h-screen ">
       <div className=" flex justify-center bg-login-gradient bg-center bg-cover bg-no-repeat md:col-span-1 lg:col-span-2 md:items-start items-center ">
         <div className="sm:my-20 text-[#272B30] p-5  rounded-md mx-7   my-10">
           <h1 className=" font-bold md:text-4xl sm:text-2xl text-xl mb-3 text-center">
-            ¡Logueate en ForstAI!
+            Reestablece la contraseña
           </h1>
-          <p className="text-center">Comienza a generar imágenes ya.</p>
+          <p className="text-center">Recuerda de poner una contraseña segura</p>
         </div>
       </div>
 
-      <div className="bg-[#272B30] text-gray-300 shadow-lg md:col-span-1 flex flex-col justify-center gap-0 md:gap-8">
-      <div className="absolute top-5 mx-5 cursor-pointer">
+   <div className={`bg-[#272B30] text-gray-300 shadow-lg md:col-span-1 flex flex-col gap-0 md:gap-8 ${tokenValido ? 'justify-normal pt-14' : 'justify-center'}`}>
+
+
+    {!tokenValido ? (
+      <>
+    <div className="absolute top-5 mx-5 cursor-pointer">
           <Link href={"/"} className="flex gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
-              stroke="" 
+              stroke=""
               className="w-6 h-6 md:stroke-white stroke-black"
             >
               <path
@@ -69,50 +85,35 @@ login(datos, setErrores, email, setMensajeOk)
             </svg>
             <p className=" md:text-white text-black">Atrás</p>
           </Link>
-        </div>
-        <div className="flex justify-center max-w-20 sm:max-w-24 mx-auto pt-5">
+         </div>
+         <div className="flex justify-center max-w-20 sm:max-w-24 mx-auto pt-5">
           <Image
-          width={50}
-          height={50}
-          layout="responsive"
-        
+            width={50}
+            height={50}
+            layout="responsive"
             className=""
             src="/img/logo/prueba.png"
             alt="Prueba"
           />
-        </div>
+         </div>
 
-        <form onSubmit={handleSubmit} noValidate className="flex justify-center items-center flex-col  xl:px-28 lg:px-20 md:px-20 px-8">
-          
-         {errores ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>): null}
-         {mensajeOk ? <AlertaOk>{mensajeOk}</AlertaOk> : null}
-
-          <div className="w-full max-w-72 lg:max-w-80">
-            <label
-              htmlFor="email"
-              className="block mb-2 text-sm font-medium text-gray-300"
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              
-              className="focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4"
-              placeholder="hola@correo.com"
-              ref={emailRef}
-              required
-            />
-          </div>
-
+         <form
+          onSubmit={handleSubmit}
+          noValidate
+          className="flex justify-center items-center flex-col  xl:px-28 lg:px-20 md:px-20 px-8"
+         >
+          {errores
+            ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>)
+            : null}
+            {mensajeOk ? <AlertaOk>{mensajeOk}</AlertaOk> : null}
           <div className="w-full max-w-72 lg:max-w-80 relative">
-           <label
+            <label
               htmlFor="contraseña"
               className="block mb-2 text-sm font-medium text-gray-300"
             >
               Contraseña
             </label>
-            <div className="flex items-center border rounded-lg bg-gray-200 mb-8 text-black w-full">
+            <div className="flex items-center border rounded-lg bg-gray-200 mb-4 text-black w-full">
               <input
                 type={showPassword ? "text" : "password"}
                 id="contraseña"
@@ -164,32 +165,45 @@ login(datos, setErrores, email, setMensajeOk)
                 )}
               </button>
             </div>
+            <label
+              htmlFor="contraseña2"
+              className="block mb-2 text-sm font-medium text-gray-300"
+            >
+              Repite contraseña
+            </label>
+            <div className="flex items-center border rounded-lg bg-gray-200 mb-4 text-black w-full">
+              <input
+                type="password"
+                id="contraseña2"
+                className="w-full text-sm p-2.5 bg-transparent placeholder-gray-400 focus:outline-none"
+                placeholder="Escribe tu contraseña"
+                ref={passwordRepeatRef}
+                required
+              />
+            </div>
           </div>
-
           <button
             type="submit"
             className="transition ease-in duration-100 text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 block text-center active:bg-[#464f9d] w-full max-w-72 lg:max-w-80"
           >
-            Login
+            Reestablecer contraseña
           </button>
+         </form>
+         </>
+    ) : (
+     <div className="">
+   {tokenValido
+            ? tokenValido.map((error, i) => <Alerta key={i}>{error}</Alerta>)
+            : null}
+     
 
-          <div className="text-center text-sm mt-5">
-            <Link href="/olvide" legacyBehavior>¿Has olvidado la contraseña?</Link>
-          </div>
+     </div>
+    )}
+    
 
-          <div className="text-center text-sm my-5">
-            <Link href="/registrar" legacyBehavior>
-              <div className=" cursor-pointer">
-              ¿No tienes una cuenta?{' '}
-              <span className="text-[#8f95d3]">Regístrate</span>
-              </div>
-            
-            </Link>
-          </div>
-        </form>
       </div>
+
+     
     </div>
   );
-};
-
-export default Login;
+}

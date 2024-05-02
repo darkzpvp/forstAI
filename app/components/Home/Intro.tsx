@@ -6,7 +6,7 @@ const Intro = () => {
   return (
     <section id="intro" className="sm:grid sm:grid-cols-9 block mx-auto px-10">
       <div className="flex flex-col justify-center items-center max-w-md col-span-5 mx-auto xl:col-start-3 xl:col-end-6 ">
-        <div className="flex mt-10 sm:mt-0 ">
+        <div className="sm:pt-5 pt-0 flex mt-10 sm:mt-0 ">
           <h1 className="text-4xl text-sky-600 font-black">
             Genera más y mejor
             <span className="text-gray-200 font-black text-4xl ">

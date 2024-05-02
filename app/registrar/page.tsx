@@ -5,6 +5,7 @@ import Link from "next/link";
 import Alerta from "../components/Alerta";
 import Image from "next/image";
 import { useAuth } from "../hooks/useAuth";
+import AlertaOk from "../components/AlertaOk";
 const Registrar = () => {
 
 
@@ -14,20 +15,30 @@ const Registrar = () => {
   const passwordConfirmationRef = createRef();
 
   const [errores, setErrores] = useState([])
-  const {registro} = useAuth({middleware: 'guest', url: '/generar'})
+  const [mensajeOk, setMensajeOk] = useState('')
+
+  const {registro, mandarEmailVerificacion} = useAuth({middleware: 'guest', url: '/generar'})
   const handleSubmit = async(e) => {
     e.preventDefault();
+    setMensajeOk('');
     const datos = {
       name: nameRef.current.value,
       email: emailRef.current.value,
       password: passwordRef.current.value,
       password_confirmation: passwordConfirmationRef.current.value,
     }
- registro(datos, setErrores)
+    const email = {
+      email: emailRef.current.value
     
+    }
+ await registro(datos, setErrores, email, setMensajeOk)
 
   };
 
+setTimeout(() => {
+setErrores([])
+}, 10000)
+  
   const [showPassword, setShowPassword] = useState(false);
 
   const handlePassword = () => {
@@ -82,7 +93,7 @@ const Registrar = () => {
          >
           
           {errores ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>): null}
-
+          {mensajeOk ? <AlertaOk>{mensajeOk}</AlertaOk> : null}
           <div className="w-full max-w-72 lg:max-w-80">
             <label
               htmlFor="nombre"
@@ -93,7 +104,8 @@ const Registrar = () => {
             <input
               type="text"
               id="nombre"
-              className="focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4"
+              className={`${mensajeOk && ' cursor-not-allowed disabled'} focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4`}
+              disabled={mensajeOk && true}
               name="name"
               placeholder="Víctor"
               ref={nameRef}
@@ -111,7 +123,8 @@ const Registrar = () => {
               type="text"
               id="email"
               name="email"
-              className="focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4"
+              disabled={mensajeOk && true}
+              className={`${mensajeOk && ' cursor-not-allowed disabled'}focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4`}
               placeholder="hola@correo.com"
               ref={emailRef}
               
@@ -129,8 +142,9 @@ const Registrar = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
-                className="w-full text-sm p-2.5 bg-transparent placeholder-gray-400 focus:outline-none"
+                className={`${mensajeOk && ' cursor-not-allowed disabled'} w-full text-sm p-2.5 bg-transparent placeholder-gray-400 focus:outline-none`}
                 name="password"
+                disabled={mensajeOk && true}
                 placeholder="Escribe tu contraseña"
                 ref={passwordRef}
                 
@@ -191,7 +205,8 @@ const Registrar = () => {
               type="password"
               name="password_confirmation"
               id="password_confirmation"
-              className="focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 mb-8 text-black w-full"
+              disabled={mensajeOk && true}
+              className={` ${mensajeOk && ' cursor-not-allowed disabled'} focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 mb-8 text-black w-full`}
               placeholder="Escribe tu contraseña"
               ref={passwordConfirmationRef}
               
