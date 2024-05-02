@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password as PasswordRules;
 
 class ResetPasswordRequest extends FormRequest
 {
@@ -22,9 +23,25 @@ class ResetPasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email', // Ensure that the email field is present and is a valid email address
-            'token' => 'required',
-            'password' => 'required|confirmed|min:8', // Ensure that the password field is present, confirmed, and meets the minimum length requirement
+            'password' => [
+                'required',
+                PasswordRules::min(8)->letters()->symbols()->numbers()
+            ],
+            'password_confirmation' => 'required'
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'password.required' => 'Todos los campos son obligatorios',
+            'password' => 'El password debe contener al menos 8 caracteres, un símbolo y un número',
+            'password_confirmation' => 'Las contraseñas no coinciden'
         ];
     }
 }

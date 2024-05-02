@@ -18,13 +18,18 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::post('/enviar_formulario', [PromptController::class, 'enviarFormulario']);
     Route::get('/prompts', [PromptController::class, 'getPrompts']);
     Route::post('/change-password', [AuthController::class, 'changePassword']);
-    Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail']);
-    Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify');
+    
+  
 });
-
+Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail'])->middleware(['auth:sanctum']);
+Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify')->middleware(['auth:sanctum']);
 // Public routes without authentication middleware
+Route::post('/reset', [AuthController::class, 'reset']);
+Route::get('/reset', [AuthController::class, 'reset']);
+
 Route::post('/registro', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/forgot', [AuthController::class, 'forgot']);
-Route::post('/reset', [AuthController::class, 'reset']);
+Route::get('/check-token', [AuthController::class, 'checkToken']);
+
 Route::post('/receive-email', [EmailController::class, 'receiveEmail']);

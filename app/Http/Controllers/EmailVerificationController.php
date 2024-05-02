@@ -20,7 +20,7 @@ class EmailVerificationController extends Controller
 
         $request->user()->sendEmailVerificationNotification();
 
-        return ['status' => 'verification-link-sent'];
+        return ['status' => '¡Se ha enviado un enlace de verificación a tu correo electrónico!'];
     }
 
     public function verify(EmailVerificationRequest $request)

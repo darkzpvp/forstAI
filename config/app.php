@@ -55,9 +55,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
-
-    'asset_url' => env('ASSET_URL'),
+    'url' => env('APP_URL', 'http://localhost:3000'),
+    'signed_url' => env('SIGNED_URL_BASE', 'http://localhost:3000'),
+    'asset_url' => env('ASSET_URL:3000'),
 
     /*
     |--------------------------------------------------------------------------
