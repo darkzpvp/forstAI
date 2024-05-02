@@ -6,7 +6,6 @@ import Image from "next/image";
 import Alerta from "@/app/components/Alerta";
 import AlertaOk from "@/app/components/AlertaOk";
 export default function page({ params }: { params: { token: string } }) {
-
   const [errores, setErrores] = useState([]);
   const [mensajeOk, setMensajeOk] = useState("");
   const [showPassword, setShowPassword] = useState(false);
