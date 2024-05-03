@@ -17,19 +17,16 @@ const Login = () => {
     middleware: 'guest',
     url: '/generar'
   })
-  const handleSubmit = async(e) => {
+  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const datos = {
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
+      email: (emailRef.current as HTMLInputElement).value || '',
+      password: (passwordRef.current as HTMLInputElement).value || '',
     }
     const email = {
-      email: emailRef.current.value
-    
+      email: (emailRef.current as HTMLInputElement).value
     }
-login(datos, setErrores, email, setMensajeOk)
-
-
+    login(datos, setErrores, email, setMensajeOk)
   };
   const [showPassword, setShowPassword] = useState(false);
 
@@ -100,7 +97,7 @@ login(datos, setErrores, email, setMensajeOk)
               
               className="focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4"
               placeholder="hola@correo.com"
-              ref={emailRef}
+              ref={emailRef as React.LegacyRef<HTMLInputElement> | undefined}
               required
             />
           </div>
@@ -118,7 +115,7 @@ login(datos, setErrores, email, setMensajeOk)
                 id="contraseña"
                 className="w-full text-sm p-2.5 bg-transparent placeholder-gray-400 focus:outline-none"
                 placeholder="Escribe tu contraseña"
-                ref={passwordRef}
+                ref={passwordRef as React.LegacyRef<HTMLInputElement> | undefined}
                 required
               />
               <button

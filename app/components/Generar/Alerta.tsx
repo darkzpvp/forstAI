@@ -1,6 +1,7 @@
 import React from 'react'
 
-const Alerta = ({children}) => {
+const Alerta = ({children}: {children: React.ReactNode}) => {
+
   return (
     <div className="flex items-center p-4 mb-4 text-sm rounded-lg  bg-gray-800 text-red-400" role="alert">
     <svg className="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">

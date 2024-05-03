@@ -1,7 +1,7 @@
 "use client";
 import useOlvidePassword from "@/app/hooks/useOlvidePassword";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { LegacyRef, MutableRefObject, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Alerta from "@/app/components/Alerta";
 import AlertaOk from "@/app/components/AlertaOk";
@@ -37,7 +37,7 @@ export default function page({ params }: { params: { token: string } }) {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const datos = {
       password: passwordRef.current.value,
@@ -118,7 +118,7 @@ export default function page({ params }: { params: { token: string } }) {
                 id="contraseña"
                 className="w-full text-sm p-2.5 bg-transparent placeholder-gray-400 focus:outline-none"
                 placeholder="Escribe tu contraseña"
-                ref={passwordRef}
+                ref={passwordRef as unknown as LegacyRef<HTMLInputElement> | undefined}
                 required
               />
               <button
@@ -176,7 +176,7 @@ export default function page({ params }: { params: { token: string } }) {
                 id="contraseña2"
                 className="w-full text-sm p-2.5 bg-transparent placeholder-gray-400 focus:outline-none"
                 placeholder="Escribe tu contraseña"
-                ref={passwordRepeatRef}
+                ref={passwordRepeatRef as LegacyRef<HTMLInputElement> | undefined}
                 required
               />
             </div>

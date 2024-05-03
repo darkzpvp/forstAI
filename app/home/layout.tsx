@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 
-import "./globals.css";
+import "../globals.css";
 import { Kumbh_Sans} from 'next/font/google'
-import { useEffect } from "react";
 const kumbh = Kumbh_Sans({
   subsets: ['latin'],
   variable: '--font-kumbh',
@@ -10,7 +9,7 @@ const kumbh = Kumbh_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "Página no encontrada",
+  title: "Generador de imágenes",
   description: "Generador de imágenes",
 };
 
@@ -21,10 +20,9 @@ export default function RootLayout({
 }>) {
   
   return (
-    <html lang="en" className=" ">
-
+    <html lang="en" className=" overflow-x-hidden">
+      
       <body className={`${kumbh.className}`}>
-      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
 
   {children}
 

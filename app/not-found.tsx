@@ -4,6 +4,8 @@ import React from 'react';
 const NotFound = () => {
   return (
     <div className='bg-zinc-800 h-screen'>
+    
+ 
 
       <div>
         <Image width={450} height={450} alt='Error' className='flex flex-row justify-start mx-auto' src='/img/error/error.svg' />
@@ -20,7 +22,9 @@ const NotFound = () => {
           </a>
         </button>
       </div>
+      
     </div>
+   
   );
 }
 

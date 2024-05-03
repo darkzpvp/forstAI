@@ -1,7 +1,7 @@
 "use client";
 import { MouseEventHandler, useState } from "react";
-import FAQ from "../app/components/Home/FAQ";
-import Header from "../app/components/Home/Header";
+import FAQ from "./components/Home/FAQ";
+import Header from "./components/Home/Header";
 import Cards from "./components/Home/Cards";
 import Contacto from "./components/Home/Contacto";
 import Footer from "./components/Home/Footer";

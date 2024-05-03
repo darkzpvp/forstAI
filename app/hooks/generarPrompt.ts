@@ -2,9 +2,9 @@ import { useState } from "react";
 import { HfInference } from "@huggingface/inference";
 
 const useImageGeneration = () => {
-  const [imageBase64, setImageBase64] = useState(null);
+  const [imageBase64, setImageBase64] = useState('');
 
-  const generateImage = async (promptText) => {
+  const generateImage = async (promptText: string) => {
     try {
       const inference = new HfInference("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");
       const imageBlob = await inference.textToImage({

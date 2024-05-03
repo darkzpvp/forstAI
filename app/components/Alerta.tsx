@@ -1,6 +1,6 @@
 import React from 'react'
+const Alerta = ({children}: {children: React.ReactNode}) => {
 
-const Alerta = ({children}) => {
   return (
 
 

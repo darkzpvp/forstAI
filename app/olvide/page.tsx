@@ -14,11 +14,11 @@ const Olvide = () => {
   const emailRef = useRef();
 
   const [errores, setErrores] = useState([]);
-  const [mensajeOk, setMensajeOk] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [mensajeOk, setMensajeOk] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
  const {olvidePassword} = useOlvidePassword();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     setLoading(true);

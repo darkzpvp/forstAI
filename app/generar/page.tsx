@@ -13,12 +13,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Generar = () => {
   const { enviarFormulario, getPrompts } = usePrompt();
-  const { user } = useAuth({ middleware: "auth" });
+  const { user } = useAuth({ middleware: "auth", url:'/generar' });
   const { imageBase64, generateImage } = useImageGeneration();
   const [menu, setMenu] = useState(false);
   const [suscripcion, setSuscripcion] = useState("");
   const [errores, setErrores] = useState([]);
-  const [promptsDisponibles, setPromptsDisponibles] = useState(null);
+  const [promptsDisponibles, setPromptsDisponibles] = useState(0);
   const [promptText, setPromptText] = useState("");
   const [loading, setLoading] = useState(false);
   const [loadingPage, setLoadingPage] = useState(true);
@@ -56,12 +56,12 @@ const Generar = () => {
       downloadLink.click();
     }
   };
-  const handleEnviar = async (e) => {
+  const handleEnviar = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setPromptText("");
     setLoading(true);
     notify();
-    const datos = {
+    const datos: FormData = {
       user_id: user.id,
     };
    
@@ -71,7 +71,7 @@ const Generar = () => {
     setLoading(false);
   };
 
-  const handleChangePrompt = (e) => {
+  const handleChangePrompt = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setPromptText(e.target.value);
   };
 
@@ -203,7 +203,7 @@ const Generar = () => {
                   onChange={handleChangePrompt}
                   value={promptText}
                   disabled={promptsDisponibles === 0 || loading === true}
-                  rows="1"
+                  rows={1}
                   ref={textAreaRef}
                   required
                   onKeyDown={(e) => {

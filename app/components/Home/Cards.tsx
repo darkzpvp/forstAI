@@ -3,8 +3,9 @@ import Link from 'next/link'
 import { useAuth } from '@/app/hooks/useAuth'
 
 const Cards = () => {
-  const {user} = useAuth({})
 
+  const authToken = localStorage.getItem("AUTH_TOKEN") || null;
+  console.log(authToken);
 
   return (
     <section className="justify-center grid grid-cols-1 md:grid-cols-3 md:gap-4 gap-5 xl:mx-56 lg:mx-40 md:mx-20 my-10 place-items-center ">
@@ -106,7 +107,7 @@ const Cards = () => {
           </span>
         </li>
       </ul>
-      {user ? (
+      {authToken ? (
   <Link href="/carrito">
     <button
       type="submit"
@@ -227,7 +228,7 @@ const Cards = () => {
         </li>
       </ul>
     
-      {user ? (
+      {authToken ? (
   <Link href="/carrito">
     <button
       type="submit"
@@ -348,7 +349,7 @@ const Cards = () => {
         </li>
       </ul>
     
-      {user ? (
+      {authToken ? (
   <Link href="/carrito">
     <button
       type="submit"
