@@ -132,6 +132,8 @@ Tras un intenso día y debido a la escasa documentación de Laravel con React fi
 Día 2
 Lo mismo que ayer, nula documentación. Finalizo la API de verificar email, ajusto middleware para que los usuarios que entren a rutas protegidas sean aquellos verificados y registrados. Para la verificación, si el usuario se loguea y no está verificado, se le avisa para confirmar la cuenta. En el registro, al registrarse también se le avisa para ello. El tóken tiene fecha de expiración.
 <br>
+Día 3
+Me dedico a añadir tipados que faltan, pero todo empieza a fallar y tengo que revertir la carpeta al día anterior
 <br>
 <br>
 <br>
