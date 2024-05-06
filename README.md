@@ -126,6 +126,11 @@ Finalizo la API para verificar usuarios, cambiar contraseña en caso de olvido m
 Día 30
 Revisando las APIs del día anterior, me doy cuenta que verificar usuarios y cambiar contraseña no funciona como quería, ya que el token no se enviaba por parámetros de la url, sino por parte de request. Me pongo en marcha con las dos APIS
 <br>
+<br>
+<br>
+<h1>MAYO</h1>
+<br>
+<br>
 Día 1
 Tras un intenso día y debido a la escasa documentación de Laravel con React finalizo la API de olvidar password, también conecto exitosamente el frontend. Creo una peticion GET con el token, en el cliente leo los parametros de la URL, si es correcta, renderiza un formulario para cambiar la contraseña, si no, directamente no permite al usuario cambiar la contraseña. El tóken expira en un día
 <br>
@@ -133,8 +138,16 @@ Día 2
 Lo mismo que ayer, nula documentación. Finalizo la API de verificar email, ajusto middleware para que los usuarios que entren a rutas protegidas sean aquellos verificados y registrados. Para la verificación, si el usuario se loguea y no está verificado, se le avisa para confirmar la cuenta. En el registro, al registrarse también se le avisa para ello. El tóken tiene fecha de expiración.
 <br>
 Día 3
-Me dedico a añadir tipados que faltan, pero todo empieza a fallar y tengo que revertir la carpeta al día anterior
+Me dedico a añadir tipados que faltan, pero todo empieza a fallar y tengo que revertir la carpeta al día anterior. Además, finalizo la sección de contacto, añadí validación tanto en el frontend como en el backend, y llegan los correos correctamente
 <br>
+Día 4
+Investigo las diferentes formas para almacenar fotos, en este caso me decanto por el servidor local de Laravel, ya que es menos costoso y mi aplicación es pequeña. Amazon S3 para un futuro, y empiezo a desarrollar la funcionalidad para cambiar fotos de usuario, teniendo la oportunidad de recortar la foto, usando una librería externa
+<br>
+Día 5
+Preparo el frontend para recortar imágenes de los usuarios e intento acabar el backend. Pero me surgen problemas, especialmente por el formato de las imágenes. En el frontend se me generaban imágenes tipo BLOB y mi intención era subirlas en formato JPG para que se alojaran en la carpeta. Además, intenté procesar las imágenes en Laravel, pero la biblioteca Intervention Image me daba error. 
+<br>
+Día 6
+Finalizo la funcionalidad de cambio de avatar, proceso las imágenes en el cliente,  y al servidor las envío en formato JPG en lugar de BLOB, además de crear dos endpoints, uno para alojar las imágenes y otro para hacer un GET desde el cliente
 <br>
 <br>
 Recursos que utilicé:<br>
