@@ -138,7 +138,7 @@ Día 2
 Lo mismo que ayer, nula documentación. Finalizo la API de verificar email, ajusto middleware para que los usuarios que entren a rutas protegidas sean aquellos verificados y registrados. Para la verificación, si el usuario se loguea y no está verificado, se le avisa para confirmar la cuenta. En el registro, al registrarse también se le avisa para ello. El tóken tiene fecha de expiración.
 <br>
 Día 3
-Me dedico a añadir tipados que faltan, pero todo empieza a fallar y tengo que revertir la carpeta al día anterior
+Me dedico a añadir tipados que faltan, pero todo empieza a fallar y tengo que revertir la carpeta al día anterior. Además, finalizo la sección de contacto, añadí validación tanto en el frontend como en el backend, y llegan los correos correctamente
 <br>
 Día 4
 Investigo las diferentes formas para almacenar fotos, en este caso me decanto por el servidor local de Laravel, ya que es menos costoso y mi aplicación es pequeña. Amazon S3 para un futuro, y empiezo a desarrollar la funcionalidad para cambiar fotos de usuario, teniendo la oportunidad de recortar la foto, usando una librería externa
