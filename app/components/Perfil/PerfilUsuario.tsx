@@ -250,7 +250,7 @@ const page = () => {
                     <span className=" text-xs font-medium me-2 px-2.5 py-0.5 rounded bg-gray-700 text-gray-300">
                       Actualmente
                     </span>
-                    <h1 className=" text-gray-200 text-sm">Plan Premium</h1>
+                    <h1 className=" text-gray-200 text-sm mt-2">Plan Premium</h1>
                     <p className=" text-gray-400 text-sm ">
                       Pago mensual | Expira el 11/05/2024
                     </p>

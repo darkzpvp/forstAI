@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   
   return (
-    <html lang="en" className=" overflow-x-hidden ">
+    <html lang="en" className="  ">
 <head>
   <title>Generador de imagenes</title>
   <meta name="description" content="Generador de imagenes" />

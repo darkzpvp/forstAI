@@ -167,32 +167,10 @@ useEffect(() => {
               className="flex justify-end 2xl:px-60 xl:px-20 lg:px-14  "
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="absolute z-50 text-base rounded-b-lg shadow py-4 bg-gray-900  w-full block sm:max-w-56 px-5 h-52 overlay">
+              <div className="absolute z-50 text-base rounded-b-lg shadow py-4 bg-gray-900  w-full block sm:max-w-56 px-5 h-44 overlay">
                 <div className=" flex ">
                   <div className=" w-[0%] ">
-                    {suscripcion && (
-                      <div
-                        className="relative z-50 hover:bg-gray-700 active:bg-gray-800 rounded-lg p-1 stroke-gray-300 w-8 h-8"
-                        onClick={arrowMenu}
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={1.5}
-                          stroke=""
-                          className=""
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
-                          />
-                        </svg>
-                      </div>
-                    )}
-
-                    {!suscripcion && (
+  
                       <div
                         className=" absolute top-0 z-50 hover:bg-gray-700 active:bg-gray-800 rounded-lg p-1 stroke-gray-300 w-8 h-8"
                         onClick={handleCloseMenu}
@@ -212,7 +190,7 @@ useEffect(() => {
                           />
                         </svg>
                       </div>
-                    )}
+             
                   </div>
 
                   <div className="w-[100%] mt-5 ">
@@ -225,24 +203,14 @@ useEffect(() => {
                   </div>
                 </div>
 
-                {menu && !suscripcion && (
-                  <>
+             
+           
                   <Link href={'/perfil'} legacyBehavior >
                    <a  className=" text-center block  px-4 py-2 text-sm hover:bg-gray-700  rounded-lg text-gray-200 hover:text-white cursor-pointer mx-auto sm:mx-0 w-full mt-3">
                     Ver perfil
                    </a>
                   </Link>
-                  <button
-                    onClick={handleSuscripcion}
-                    className="block  px-4 py-2 text-sm hover:bg-gray-700  rounded-lg text-gray-200 hover:text-white cursor-pointer mx-auto sm:mx-0 w-full "
-                   >
-                    Suscripciones
-                  </button>
-                  </>
-                )}
-
-                {menu && !suscripcion && (
-                  
+              
                   <button
                     onClick={logout}
                     type="submit"
@@ -250,7 +218,7 @@ useEffect(() => {
                   >
                     Logout
                   </button>
-                )}
+              
               </div>
             </div>
           </>
