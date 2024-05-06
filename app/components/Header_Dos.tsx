@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useAuth } from "../hooks/useAuth";
 import { usePathname } from "next/navigation";
+import useUsuarioContext from "../hooks/useUsuarioContext";
 
 
 interface InterfazProps {
@@ -29,7 +30,8 @@ const Header_Dos = ({
   };
 const pathname = usePathname()
 
-console.log(pathname);
+const { avatarUrl, setAvatarUrl } = useUsuarioContext();
+
  
 
   const handleMenu = () => {
@@ -151,7 +153,7 @@ useEffect(() => {
             >
               <img
                 className="w-8 h-8 rounded-full"
-                src="/img/usuario.svg"
+                src={avatarUrl || "img/usuario.svg"}
                 alt="user photo"
               />
             </button>
@@ -192,7 +194,7 @@ useEffect(() => {
 
                     {!suscripcion && (
                       <div
-                        className=" relative z-50 hover:bg-gray-700 active:bg-gray-800 rounded-lg p-1 stroke-gray-300 w-8 h-8"
+                        className=" absolute top-0 z-50 hover:bg-gray-700 active:bg-gray-800 rounded-lg p-1 stroke-gray-300 w-8 h-8"
                         onClick={handleCloseMenu}
                       >
                         <svg
@@ -213,7 +215,7 @@ useEffect(() => {
                     )}
                   </div>
 
-                  <div className="w-[100%] ">
+                  <div className="w-[100%] mt-5 ">
                     <span className="block text-sm text-white text-center">
                       {user?.name}
                     </span>
@@ -226,7 +228,7 @@ useEffect(() => {
                 {menu && !suscripcion && (
                   <>
                   <Link href={'/perfil'} legacyBehavior >
-                   <a  className=" text-center block  px-4 py-2 text-sm hover:bg-gray-700  rounded-lg text-gray-200 hover:text-white cursor-pointer mx-auto sm:mx-0 w-full mt-6">
+                   <a  className=" text-center block  px-4 py-2 text-sm hover:bg-gray-700  rounded-lg text-gray-200 hover:text-white cursor-pointer mx-auto sm:mx-0 w-full mt-3">
                     Ver perfil
                    </a>
                   </Link>

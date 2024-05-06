@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "server/index.mjs", "server/config.mjs"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "server/index.mjs", "server/config.mjs", "app/components/CambiarPerfil/ImageCropper.tsx", "app/setCanvasPreview.js"],
   "exclude": ["node_modules"]
 }

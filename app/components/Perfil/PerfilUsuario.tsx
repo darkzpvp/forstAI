@@ -1,19 +1,30 @@
 "use client";
 import Header_Dos from "@/app/components/Header_Dos";
 import Link from "next/link";
+import "react-image-crop/dist/ReactCrop.css";
 
 import React, { useEffect } from "react";
 import { useState } from "react";
+import Profile from "../CambiarPerfil/Profile";
+import { usePathname, useRouter } from "next/navigation";
+import Modal from "../CambiarPerfil/Modal";
+import useUsuarioContext from "@/app/hooks/useUsuarioContext";
 const page = () => {
+
+  const Router = usePathname()
   const [pestañaPerfil, setPestañaPerfil] = useState(true);
   const [gestionarPlan, setGestionarPlan] = useState(false);
   const [cancelarPlan, setCancelarPlan] = useState(false);
   const [eliminarCuenta, setEliminarCuenta] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [cambiarPerfil, setCambiarPerfil] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const handlePassword = () => {
     setShowPassword(!showPassword);
   };
+
+
   const handleCancelarPlan = () => {
     setCancelarPlan(!cancelarPlan);
   };
@@ -23,13 +34,19 @@ const page = () => {
   const handleGestionarPlan = () => {
     setGestionarPlan(!gestionarPlan);
   };
+  const { avatarUrl, setAvatarUrl } = useUsuarioContext();
+
+  const updateAvatar = (imgSrc) => {
+    setAvatarUrl(imgSrc)
+  };
   return (
     <>
+    
       <aside
         id="logo-sidebar"
-        className=" fixed  left-0 z-40 w-64 h-screen transition-transform -translate-x-full  border-r  sm:translate-x-0 bg-gray-800 border-gray-700"
+        className=" fixed z-30 left-0 w-64 h-screen transition-transform -translate-x-full  border-r  sm:translate-x-0 bg-gray-800 border-gray-700"
         aria-label="Sidebar"
-      >
+       >
         <div className="h-full px-3 pb-4 overflow-y-auto  bg-gray-900">
           <ul className="relative mt-12 space-y-2 text-sm ">
             <div className="  mb-10 text-center px-10 max-w-xl mx-auto">
@@ -50,19 +67,10 @@ const page = () => {
                 </Link>
               </div>
 
-              <div className="relative">
-                <img
-                  className=" w-14 h-14 mx-auto"
-                  src="/img/usuario.svg"
-                  alt="User"
-                />
-                <span className="bottom-0 left-22 absolute  w-4 h-4 bg-green-400 border-2  border-gray-800 rounded-full"></span>
-              </div>
+          
+              <Profile modalOpen={modalOpen} setModalOpen={setModalOpen}/>
 
-              <h2 className="text-lg text-white mt-4">
-                Víctor Valverde Olmedo
-              </h2>
-              <p className="mt-2 text-gray-400">victor1val@hotmail.es</p>
+
             </div>
 
             <li onClick={() => setPestañaPerfil(true)}>
@@ -83,10 +91,19 @@ const page = () => {
             </li>
             <li onClick={() => setPestañaPerfil(false)}>
               <a className=" cursor-pointer flex items-center p-2 rounded-lg text-white  hover:bg-gray-700 group">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="flex-shrink-0 w-5 h-5  transition duration-75 text-gray-400  group-hover:text-white">
-  <path fill-rule="evenodd" d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z" clip-rule="evenodd" />
-  <path d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
-</svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="flex-shrink-0 w-5 h-5  transition duration-75 text-gray-400  group-hover:text-white"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z"
+                    clip-rule="evenodd"
+                  />
+                  <path d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
+                </svg>
 
                 <span className="flex-1 ms-3 whitespace-nowrap text-gray-300">
                   Historial de prompts
@@ -98,7 +115,7 @@ const page = () => {
                 href="/generar"
                 className="flex items-center p-2  rounded-lg text-white  hover:bg-gray-700 group"
               >
-               <svg
+                <svg
                   className="flex-shrink-0 w-5 h-5  transition duration-75 text-gray-400  group-hover:text-white"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
@@ -119,7 +136,6 @@ const page = () => {
                 href="#"
                 className="flex items-center p-2  rounded-lg text-white  hover:bg-gray-700 group"
               >
-           
                 <svg
                   className="flex-shrink-0 w-5 h-5  transition duration-75 text-gray-400  group-hover:text-white"
                   aria-hidden="true"
@@ -200,15 +216,15 @@ const page = () => {
                   </div>
                 </div>
                 <div className="border-b border-gray-600 px-5">
-  <div className="py-2 flex max-w-sm justify-between items-center">
-    <h1 className="text-gray-400 text-sm ">Nueva contraseña</h1>
-    <input
-      className="bg-gray-700 rounded-lg w-36 pt-1 px-2 flex-shrink-0"
-      type="password"
-      placeholder="*****"
-    />
-  </div>
-</div>
+                  <div className="py-2 flex max-w-sm justify-between items-center">
+                    <h1 className="text-gray-400 text-sm ">Nueva contraseña</h1>
+                    <input
+                      className="bg-gray-700 rounded-lg w-36 pt-1 px-2 flex-shrink-0"
+                      type="password"
+                      placeholder="*****"
+                    />
+                  </div>
+                </div>
                 <div className=" py-3 px-3">
                   <button
                     type="button"
@@ -238,7 +254,6 @@ const page = () => {
                     <p className=" text-gray-400 text-sm ">
                       Pago mensual | Expira el 11/05/2024
                     </p>
-                 
                   </div>
                   <div className=" md:flex md:gap-2 hidden px-3   mt-5">
                     <button
@@ -284,7 +299,6 @@ const page = () => {
                         <td className="text-gray-400">1</td>
                         <td className="text-gray-400">20€</td>
                         <td className="text-gray-400">40</td>
-
                       </tr>
                     </tbody>
                   </table>
@@ -323,7 +337,7 @@ const page = () => {
                 </div>
                 <div className=" py-3 px-3">
                   <button
-                  onClick={handleEliminarCuenta}
+                    onClick={handleEliminarCuenta}
                     type="submit"
                     className=" px-3 text-gray-200 bg-red-700 hover:bg-red-800  active:bg-red-900 rounded-lg text-sm py-2 flex justify-center transition ease-in duration-100"
                   >
@@ -609,139 +623,169 @@ const page = () => {
         </div>
       )}
 
-
-
-
-{cancelarPlan   && (
- <div className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-900 bg-opacity-70" onClick={() => setCancelarPlan(false)}>
- <div className=" bg-gray-800 p-6 rounded-lg shadow-xl" onClick={(e) => e.stopPropagation()}>
-   <div className="p-4 md:p-5 text-center">
-     <svg
-       className="mx-auto mb-4  w-12 h-12 text-gray-200"
-       aria-hidden="true"
-       xmlns="http://www.w3.org/2000/svg"
-       fill="none"
-       viewBox="0 0 20 20"
-     >
-       <path
-         stroke="currentColor"
-         strokeLinecap="round"
-         strokeLinejoin="round"
-         strokeWidth="2"
-         d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-       />
-     </svg>
-     <h3 className="mb-5 text-lg font-normal text-gray-300 ">
-       ¡Estás a un paso de cancelar la suscripción!
-     </h3>
-<div className=" flex justify-center mx-auto gap-2">
-   <button onClick={() => setCancelarPlan(false)} className="py-2.5 px-5 text-sm font-medium   rounded-lg  bg-gray-600 hover:bg-gray-700  border-gray-600 text-gray-300  ">
-       No, cancela
-     </button>
-     <button onClick={() => handleCancelarPlan()} className="text-white bg-red-600 hover:bg-red-700   font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
-       Sí, cancelar suscripción
-     </button>
-</div>
-    
-   </div>
- </div>
-</div>
-)}
-
-{eliminarCuenta   && (
- <div className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-900 bg-opacity-70" onClick={() => setEliminarCuenta(false)}>
- <div className=" bg-gray-800 p-6 rounded-lg shadow-xl" onClick={(e) => e.stopPropagation()}>
-   <div className="p-4 md:p-5 text-center">
-     <svg
-       className="mx-auto mb-4  w-12 h-12 text-gray-200"
-       aria-hidden="true"
-       xmlns="http://www.w3.org/2000/svg"
-       fill="none"
-       viewBox="0 0 20 20"
-     >
-       <path
-         stroke="currentColor"
-         strokeLinecap="round"
-         strokeLinejoin="round"
-         strokeWidth="2"
-         d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-       />
-     </svg>
-     <div className=" max-w-md">
-           <h3 className="mb-5 text-lg font-normal text-gray-300 ">
-       ¡Esta opción es irreversible! ¿Estás seguro de que quieres eliminar tu cuenta?
-     </h3>
-     </div>
-  
-     <div className="w-full max-w-72 lg:max-w-80 relative flex justify-center mx-auto">
-        
-            <div className="flex items-center rounded-lg bg-gray-700 mb-8 text-gray-300 w-full">
-              <input
-                type={showPassword ? "text" : "password"}
-                id="contraseña"
-                className="w-full text-sm p-2.5 bg-gray-700 rounded-lg  placeholder-gray-400 focus:outline-none"
-                placeholder="Escribe tu contraseña"
-              
-                required
-              />
-              <button
-                type="button"
-                className="absolute right-4 focus:outline-none"
-                onClick={handlePassword}
+      {cancelarPlan && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-900 bg-opacity-70"
+          onClick={() => setCancelarPlan(false)}
+        >
+          <div
+            className=" bg-gray-800 p-6 rounded-lg shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="p-4 md:p-5 text-center">
+              <svg
+                className="mx-auto mb-4  w-12 h-12 text-gray-200"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
               >
-                {showPassword ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="white"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="white"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"
-                    />
-                  </svg>
-                )}
-              </button>
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+              <h3 className="mb-5 text-lg font-normal text-gray-300 ">
+                ¡Estás a un paso de cancelar la suscripción!
+              </h3>
+              <div className=" flex justify-center mx-auto gap-2">
+                <button
+                  onClick={() => setCancelarPlan(false)}
+                  className="py-2.5 px-5 text-sm font-medium   rounded-lg  bg-gray-600 hover:bg-gray-700  border-gray-600 text-gray-300  "
+                >
+                  No, cancela
+                </button>
+                <button
+                  onClick={() => handleCancelarPlan()}
+                  className="text-white bg-red-600 hover:bg-red-700   font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
+                >
+                  Sí, cancelar suscripción
+                </button>
+              </div>
             </div>
           </div>
-<div className=" flex justify-center mx-auto gap-2">
-   <button onClick={() => setEliminarCuenta(false)} className="py-2.5 px-5 text-sm font-medium   rounded-lg  bg-gray-600 hover:bg-gray-700  border-gray-600 text-gray-300  ">
-       No, cancela
-     </button>
-     <button onClick={() => handleEliminarCuenta()} className="text-white bg-red-600 hover:bg-red-700   font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
-       Eliminar cuenta
-     </button>
-</div>
-    
-   </div>
- </div>
-</div>
+        </div>
+      )}
+
+      {eliminarCuenta && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-900 bg-opacity-70"
+          onClick={() => setEliminarCuenta(false)}
+         >
+          <div
+            className=" bg-gray-800 p-6 rounded-lg shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+           >
+            <div className="p-4 md:p-5 text-center">
+              <svg
+                className="mx-auto mb-4  w-12 h-12 text-gray-200"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+              <div className=" max-w-md">
+                <h3 className="mb-5 text-lg font-normal text-gray-300 ">
+                  ¡Esta opción es irreversible! ¿Estás seguro de que quieres
+                  eliminar tu cuenta?
+                </h3>
+              </div>
+
+              <div className="w-full max-w-72 lg:max-w-80 relative flex justify-center mx-auto">
+                <div className="flex items-center rounded-lg bg-gray-700 mb-8 text-gray-300 w-full">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="contraseña"
+                    className="w-full text-sm p-2.5 bg-gray-700 rounded-lg  placeholder-gray-400 focus:outline-none"
+                    placeholder="Escribe tu contraseña"
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="absolute right-4 focus:outline-none"
+                    onClick={handlePassword}
+                  >
+                    {showPassword ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="white"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="white"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"
+                        />
+                      </svg>
+                    )}
+                  </button>
+                </div>
+              </div>
+
+   
+              <div className=" flex justify-center mx-auto gap-2">
+                <button
+                  onClick={() => setEliminarCuenta(false)}
+                  className="py-2.5 px-5 text-sm font-medium   rounded-lg  bg-gray-600 hover:bg-gray-700  border-gray-600 text-gray-300  "
+                >
+                  No, cancela
+                </button>
+                <button
+                  onClick={() => handleEliminarCuenta()}
+                  className="text-white bg-red-600 hover:bg-red-700   font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
+                >
+                  Eliminar cuenta
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+
+{modalOpen && (
+  <div className="fixed inset-0 z-30 flex items-center justify-center bg-zinc-900 bg-opacity-70">
+      <Modal
+          updateAvatar={updateAvatar}
+          closeModal={() => setModalOpen(false)}
+        />
+</div>  
 )}
-      
+
     </>
   );
 };

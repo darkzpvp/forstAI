@@ -1,18 +1,16 @@
+'use client'
 import type { Metadata } from "next";
-
+import "tailwindcss/tailwind.css";
 import "./globals.css";
 import { Kumbh_Sans} from 'next/font/google'
-import { useEffect } from "react";
+import { UsuarioProvider } from "./context/UsuarioProvider";
 const kumbh = Kumbh_Sans({
   subsets: ['latin'],
   variable: '--font-kumbh',
   display: 'swap',
 })
 
-export const metadata: Metadata = {
-  title: "Página no encontrada",
-  description: "Generador de imágenes",
-};
+
 
 export default function RootLayout({
   children,
@@ -21,12 +19,16 @@ export default function RootLayout({
 }>) {
   
   return (
-    <html lang="en" className=" ">
-
+    <html lang="en" className=" overflow-x-hidden ">
+<head>
+  <title>Generador de imagenes</title>
+  <meta name="description" content="Generador de imagenes" />
+</head>
       <body className={`${kumbh.className}`}>
-      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<UsuarioProvider>
+    {children}
 
-  {children}
+</UsuarioProvider>
 
      
 

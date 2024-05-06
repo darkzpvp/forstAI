@@ -31,14 +31,11 @@ export const useAuth = ({ middleware, url }) => {
       await mutate();
     } catch (error) {
       console.log(error);
-      if (error.response.status === 419) {
-        console.error("Session expired or CSRF token mismatch");
-        localStorage.removeItem("AUTH_TOKEN");
-      } else {
+    
         setErrores(Object.values(error.response.data.errors));
       }
     }
-  };
+  
 
   const registro = async (datos, setErrores, email, setMensajeOk) => {
     try {
