@@ -8,6 +8,7 @@ use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\CambiarPerfilController;
 
 // Routes requiring authentication
 Route::middleware(['auth:sanctum', 'verified'])->group(function(){
@@ -19,7 +20,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/prompts', [PromptController::class, 'getPrompts']);
     Route::post('/change-password', [AuthController::class, 'changePassword']);
     
-  
+    Route::post('/cambiar-perfil', [CambiarPerfilController::class, 'subirImagen']);
+    Route::get('/imagen-perfil', [CambiarPerfilController::class, 'obtenerImagenPerfil']);
+
 });
 Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail'])->middleware(['auth:sanctum']);
 Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify')->middleware(['auth:sanctum']);

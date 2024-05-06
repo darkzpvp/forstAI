@@ -21,7 +21,6 @@ class PromptController extends Controller
                 'errors' => ['Suscríbete para seguir lanzando prompts.']
             ], 422);
         }
-        
     }
 
   public function getPrompts(Request $request)
