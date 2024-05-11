@@ -1,4 +1,5 @@
 <h1>Anteproyecto</h1>
+<h1>Vídeo https://youtu.be/lLUtOqzvXV4</h1>
 <h2>Notion</h2>
 https://faceted-binder-6cc.notion.site/Anteproyecto-1f21f41efbe444c48c01509a30aad739?pvs=25
 <h2>Bitácora de tareas</h2>
