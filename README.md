@@ -149,6 +149,9 @@ Preparo el frontend para recortar imágenes de los usuarios e intento acabar el 
 Día 6
 Finalizo la funcionalidad de cambio de avatar, proceso las imágenes en el cliente,  y al servidor las envío en formato JPG en lugar de BLOB, además de crear dos endpoints, uno para alojar las imágenes y otro para hacer un GET desde el cliente
 <br>
+Día 7
+<br>
+Panel de admin rediseñado, añado mejoras estéticas importantes
 <br>
 Recursos que utilicé:<br>
 Dudas y relleno de texto<br>
