@@ -19,15 +19,11 @@ interface InterfazProps {
 const Header_Dos = ({
   menu,
   setMenu,
-  suscripcion,
-  setSuscripcion,
   menuHamburguesa,
   setMenuHamburguesa
 }: InterfazProps) => {
   const { logout, user } = useAuth({ middleware: "auth", url: "/" });
-  const handleSuscripcion = () => {
-    setSuscripcion(!suscripcion);
-  };
+
 const pathname = usePathname()
 
 const { avatarUrl, setAvatarUrl } = useUsuarioContext();
@@ -36,21 +32,17 @@ const { avatarUrl, setAvatarUrl } = useUsuarioContext();
 
   const handleMenu = () => {
     setMenu(!menu);
-    setSuscripcion(false);
   };
 
   const handleCloseMenu = () => {
     if (menu) {
       setMenu(false);
-      setSuscripcion(false);
     }
     if(menuHamburguesa){
       setMenuHamburguesa(false)
     }
   };
-  const arrowMenu = () => {
-    setSuscripcion(false);
-  };
+
 const handleMenuHamburguesa = () => {
   setMenuHamburguesa(!menuHamburguesa)
 }
@@ -153,7 +145,7 @@ useEffect(() => {
             >
               <img
                 className="w-8 h-8 rounded-full"
-                src={avatarUrl || "img/usuario.svg"}
+                src={avatarUrl || "/img/usuario.svg"}
                 alt="user photo"
               />
             </button>

@@ -1,89 +1,342 @@
-'use client'
-import React, { useState, useEffect } from "react";
-import Header_Dos from "../components/Header_Dos";
-import { useRouter } from 'next/navigation';
-import ResumenCarrito from "../components/Carrito/ResumenCarrito";
-import ProgresoCarrito from "../components/Carrito/ProgresoCarrito";
-import FormularioCarrito from "../components/Carrito/FormularioCarrito";
-import DatosBancarios from "../components/Carrito/DatosBancarios";
-import Confirmacion from "../components/Carrito/Confirmacion";
+"use client";
+import Header_Dos from "@/app/components/Header_Dos";
+import React, { useEffect, useState } from "react";
+import useInformacionPersonal from "@/app/hooks/useInformacionPersonal";
+
+import paises from "@/app/data/paises.json";
+import { redirect, usePathname, useRouter } from "next/navigation";
+import useUsuarioContext from "../hooks/useUsuarioContext";
+import suscripciones from "@/app/data/suscripciones.json";
 
 const Page = () => {
-
-
-  const router = useRouter();
+  const Router = useRouter();
+  const Path = usePathname()
   const [menuHamburguesa, setMenuHamburguesa] = useState(false);
+  const {suscripcionElegida} = useUsuarioContext()
 
-  const [comprado, setComprado] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    errors,
+    informacionPersonal,
+    onSubmit,
+  } = useInformacionPersonal();
+
   const [menu, setMenu] = useState(false);
-  const [suscripcion, setSuscripcion] = useState(false);
-
-  const [continuar, setContinuar] = useState<number>(1);
 
   const handleCloseMenu = () => {
     if (menu) {
       setMenu(false);
-      setSuscripcion(false);
     }
-    if(menuHamburguesa){
+    if (menuHamburguesa) {
       setMenuHamburguesa(false);
     }
   };
 
-  if (comprado) {
-   setTimeout(() => {
-       setComprado(false);
-     router.push("/generar");
-    }, 5000);
+
+
+
+  const initialCart = () => {
+    try {
+          const localStorageCart = localStorage.getItem('carrito')
+    return localStorageCart ? JSON.parse(localStorageCart) : {}
+    } catch (error) {
+      console.log(error);
+    }
+
+}
+  const [suscripcionObjeto, setSuscripcionObjeto] = useState(initialCart);
+
+
+
+useEffect(() => {
+
+  const suscripcionSeleccionada = suscripciones.suscripciones.find(suscripcion => suscripcion.id === suscripcionElegida)
+  setSuscripcionObjeto(suscripcionSeleccionada)
+  localStorage.setItem('carrito', JSON.stringify(suscripcionObjeto))
+
+}, [suscripcionObjeto]);
+
+useEffect(() => {
+  if(localStorage.getItem('suscripcionElegida') === null || 
+    localStorage.getItem('suscripcionElegida') === undefined ||
+    localStorage.getItem('suscripcionElegida') === '' ||
+    localStorage.getItem('suscripcionElegida') === '0'){
+      redirect('/')
   }
+ 
+}, [])
+
 
   return (
     <div className="bg-gray-700 h-full">
       <Header_Dos
         menu={menu}
         setMenu={setMenu}
-        suscripcion={suscripcion}
-        setSuscripcion={setSuscripcion}
         menuHamburguesa={menuHamburguesa}
         setMenuHamburguesa={setMenuHamburguesa}
       />
 
       <section className="py-7" onClick={handleCloseMenu}>
-        {comprado && (
-          <div className="flex justify-center ">
-     <div className="flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
-      <svg className="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-      </svg>
-      <span className="sr-only">Info</span>
-      <div>
-        <span className="font-medium">¡Compra con éxito!</span> Ya puede comenzar a generar imágenes.
-      </div>
-     </div>
+        <form onSubmit={handleSubmit(onSubmit)} className="">
+          <div className="flex justify-center mx-auto w-[100%] max-w-3xl mb-10">
+            <ol className="flex items-center w-full text-sm font-medium text-center text-gray-300 sm:text-base">
+              <li className="flex md:w-full items-center sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 after:border-gray-500">
+                <button id="1">
+                  <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-500">
+                    <svg
+                      className="w-3.5 h-3.5 sm:w-4 sm:h-4 me-2.5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="#5D68CC"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                    </svg>
+                    Información{" "}
+                    <span className="hidden sm:inline-flex sm:ms-2">
+                      Personal
+                    </span>
+                  </span>
+                </button>
+              </li>
+              <li className="flex md:w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-500 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 ">
+                <button onClick={handleSubmit(onSubmit)} id="2">
+                  <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-500">
+                    <span className="me-2">2</span>
+                    Datos{" "}
+                    <span className="hidden sm:inline-flex sm:ms-2">
+                      bancarios
+                    </span>
+                  </span>
+                </button>
+              </li>
+              <li className="flex items-center">
+                <button id="3">
+                  <span className="flex items-center sm:after:hidden after:mx-2 after:text-gray-500">
+                    <span className="me-2">3</span>
+                    Confirmación
+                  </span>
+                </button>
+              </li>
+            </ol>
           </div>
-  
-        )}
-        <ProgresoCarrito continuar={continuar} setContinuar={setContinuar} />
 
-        <div className="w-[100%] max-w-6xl mx-auto px-5">
-          <div className="grid md:grid-cols-5 gap-5">
-            {continuar === 1 && (
-              <FormularioCarrito />
-            )}
-            {continuar === 2 && (
-              <DatosBancarios />
-            )}
-            {continuar === 3 && (
-              <Confirmacion />
-            )}
-            <ResumenCarrito
-              continuar={continuar}
-              setContinuar={setContinuar}
-              setComprado={setComprado}
-              comprado={comprado}
-            />
+          <div className="w-[100%] max-w-6xl mx-auto px-5">
+            <div className="grid md:grid-cols-5 gap-5">
+              <div className="md:col-span-3">
+                <div className=" shadow-lg bg-gray-800 px-5 py-5 rounded-lg">
+                  <div className="grid gap-6 md:grid-cols-2">
+                    <div>
+                      <label
+                        htmlFor="nombre"
+                        className="block mb-2 text-sm font-medium text-gray-300"
+                      >
+                        Nombre
+                      </label>
+                      <input
+                        type="text"
+                        id="nombre"
+                        className="bg-gray-700 text-gray-300 text-sm rounded-lg  block w-full p-2.5  placeholder-gray-500  "
+                        placeholder="Víctor"
+                        {...register("nombre")}
+                      />
+                      <div className=" text-sm text-red-600">
+                        {errors?.nombre?.message && (
+                          <p>{errors?.nombre?.message}</p>
+                        )}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="apellidos"
+                        className="block mb-2 text-sm font-medium text-gray-300"
+                      >
+                        Apellidos
+                      </label>
+                      <input
+                        type="text"
+                        id="apellidos"
+                        className="bg-gray-700 text-gray-300 text-sm rounded-lg  block w-full p-2.5  placeholder-gray-500   "
+                        placeholder="Valverde"
+                        {...register("apellidos")}
+                      />
+                      <div className=" text-sm text-red-600">
+                        {errors?.apellidos?.message && (
+                          <p>{errors?.apellidos?.message}</p>
+                        )}
+                      </div>
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="telefono"
+                        className="block mb-2 text-sm font-medium text-gray-300"
+                      >
+                        Número de teléfono
+                      </label>
+                      <input
+                        type="number"
+                        id="telefono"
+                        className="bg-gray-700 text-gray-300 text-sm rounded-lg  block w-full p-2.5  placeholder-gray-500   "
+                        placeholder="654958823"
+                        {...register("numero_telefono")}
+                      />
+                      <div className=" text-sm text-red-600">
+                        {errors?.numero_telefono?.message && (
+                          <p>{errors?.numero_telefono?.message}</p>
+                        )}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="countries"
+                        className="block mb-2 text-sm font-medium text-gray-300"
+                      >
+                        Selecciona tu país
+                      </label>
+
+                      <select
+                        id="countries"
+                        {...register("pais")}
+                        defaultValue={`Spain`}
+                        className="text-sm rounded-lg block w-full p-2.5 bg-gray-700 placeholder-gray-500 text-gray-300"
+                      >
+                        <option value="" disabled>
+                          --Selecciona un país--
+                        </option>
+                        {paises.map((pais) => (
+                          <option key={pais.code} value={pais.name}>
+                            {pais.name}
+                          </option>
+                        ))}
+                      </select>
+                      <p className=" text-sm text-red-600">
+                        {errors?.pais?.message && (
+                          <p>{errors?.pais?.message}</p>
+                        )}
+                      </p>
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="last_name"
+                        className="block mb-2 text-sm font-medium text-gray-300"
+                      >
+                        Población
+                      </label>
+                      <input
+                        type="text"
+                        id="last_name"
+                        className="bg-gray-700 text-gray-300 text-sm rounded-lg  block w-full p-2.5  placeholder-gray-500   "
+                        placeholder="Málaga"
+                        {...register("poblacion")}
+                      />
+                      <div className=" text-sm text-red-600">
+                        {errors?.poblacion?.message && (
+                          <p>{errors?.poblacion?.message}</p>
+                        )}
+                      </div>
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="provincia"
+                        className="block mb-2 text-sm font-medium text-gray-300"
+                      >
+                        Provincia
+                      </label>
+                      <input
+                        type="text"
+                        id="provincia"
+                        className="bg-gray-700 text-gray-300 text-sm rounded-lg  block w-full p-2.5  placeholder-gray-500  "
+                        placeholder="Málaga"
+                        {...register("provincia")}
+                      />
+                      <div className=" text-sm text-red-600">
+                        {errors?.provincia?.message && (
+                          <p>{errors?.provincia?.message}</p>
+                        )}
+                      </div>
+                    </div>
+                    <div className="md:col-span-2">
+                      <label
+                        htmlFor="NIFNIE"
+                        className="block mb-2 text-sm font-medium text-gray-300"
+                      >
+                        NIF / NIE
+                      </label>
+                      <input
+                        type="text"
+                        id="NIFNIE"
+                        {...register("nif_nie")}
+                        className="bg-gray-700 text-gray-300 text-sm rounded-lg  block w-full p-2.5  placeholder-gray-500   "
+                        placeholder="44332255G"
+                      />
+                      <div className=" text-sm text-red-600">
+                        {errors?.nif_nie?.message && (
+                          <p>{errors?.nif_nie?.message}</p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center mt-5 text-gray-400 text-sm gap-2 fill-gray-400">
+                    <p>
+                      Tus datos se encuentran protegidos según la Ley de
+                      protección de datos
+                    </p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm11.378-3.917c-.89-.777-2.366-.777-3.255 0a.75.75 0 0 1-.988-1.129c1.454-1.272 3.776-1.272 5.23 0 1.513 1.324 1.513 3.518 0 4.842a3.75 3.75 0 0 1-.837.552c-.676.328-1.028.774-1.028 1.152v.75a.75.75 0 0 1-1.5 0v-.75c0-1.279 1.06-2.107 1.875-2.502.182-.088.351-.199.503-.331.83-.727.83-1.857 0-2.584ZM12 18a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div className=" md:col-span-2  shadow-lg bg-gray-800 px-5 py-5 rounded-lg h-72 flex flex-col justify-center">
+                <h1 className="text-gray-300 text-xl font-bold mb-5">
+                  Resumen
+                </h1>
+              
+   <div>
+                <div className="flex">
+                  <p className="text-gray-300 mb-5 w-[100%]">Suscripción</p>
+                  <p className="flex text-gray-300 font-bold whitespace-nowrap">
+                 {suscripcionObjeto?.plan}
+                  </p>
+                </div>
+
+                <div className="flex">
+                  <p className="text-gray-300 mb-5 w-full">
+                    Subtotal artículos
+                  </p>
+                  <p className="text-gray-300 mb-5">{suscripcionObjeto?.precio}€</p>
+                </div>
+                <div className="flex items-center">
+                  <p className="text-gray-300 mb-5 w-full">Total</p>
+                  <p className="text-gray-300 mb-5 text-3xl font-bold ">{suscripcionObjeto?.precio}€</p>
+                </div>
+                </div>
+            
+                <button
+                  type="submit"
+                  className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] rounded-lg text-sm py-2.5 flex justify-center px-3 transition ease-in duration-100 w-full"
+                >
+                  Guardar y continuar
+                </button>
+             
+             
+              </div>
+            </div>
           </div>
-        </div>
+        </form>
       </section>
     </div>
   );

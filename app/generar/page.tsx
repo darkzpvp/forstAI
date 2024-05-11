@@ -58,6 +58,9 @@ const Generar = () => {
   };
   const handleEnviar = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (promptText.trim() === "") {
+      return;
+    }
     setPromptText("");
     setLoading(true);
     notify();
@@ -205,7 +208,7 @@ const Generar = () => {
                   disabled={promptsDisponibles === 0 || loading === true}
                   rows={1}
                   ref={textAreaRef}
-                  required
+                  
                   onKeyDown={(e) => {
                     if (e.key === "Enter" && !e.shiftKey) {
                       e.preventDefault();

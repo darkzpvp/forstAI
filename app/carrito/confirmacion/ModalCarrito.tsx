@@ -1,21 +1,31 @@
 import { MouseEventHandler } from "react";
-
+import useComprar from "@/app/hooks/useComprar";
+import { useRouter } from "next/navigation";
 interface ModalCarritoProps {
   modal: boolean,
   setModal: (value: boolean) => void,
   setComprado: (value: boolean) => void
 }
 const ModalCarrito = ({ modal, setModal, setComprado } : ModalCarritoProps) => {
-    
+  const Router = useRouter()
+    const { comprar } = useComprar();
   const handleOverlayClick: MouseEventHandler<HTMLDivElement> = (event) => {
-    // Verificar si el elemento clicado es el overlay
     if (event.currentTarget.classList.contains('overlay')) {
       setModal(false);
     }
   };
-const  handleComprar = () => {
+  const suscripcion = localStorage.getItem('suscripcionElegida')
+const  handleComprar = async() => {
+  
     setModal(false)
 setComprado(true)
+const datos = {
+  id_suscripcion: suscripcion
+}
+await comprar(datos)
+setTimeout(() => {
+Router.push('/generar')
+}, 4000)
 }
   return (
     <>

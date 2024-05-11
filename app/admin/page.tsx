@@ -210,7 +210,7 @@ const page = () => {
 
 
 <div className=" flex justify-center mx-8">
-  <div className=" overflow-x-auto z-50 bg-gray-800 sm:rounded-lg  mt-4 w-full max-w-7xl mb-10">
+  <div className=" overflow-x-auto z-40 bg-gray-800 sm:rounded-lg  mt-4 w-full max-w-7xl mb-10">
         {responsive ? (
           <div className="flex items-center justify-between py-3 px-4 bg-gray-900 p-5 rounded-t-lg ">
             <div className="w-[25%]">

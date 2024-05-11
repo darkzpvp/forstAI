@@ -1,5 +1,6 @@
 "use client";
 import Header_Dos from "@/app/components/Header_Dos";
+import useUsuarioContext from "@/app/hooks/useUsuarioContext";
 import Link from "next/link";
 
 import React, { useEffect } from "react";
@@ -12,6 +13,7 @@ const page = () => {
   const [menu, setMenu] = useState(false);
   const [suscripcion, setSuscripcion] = useState(false);
   const [menuHamburguesa, setMenuHamburguesa] = useState(false);
+  const { avatarUrl, setAvatarUrl } = useUsuarioContext();
 
 
   const handleCloseMenu = () => {
@@ -61,8 +63,8 @@ const page = () => {
 
           <div className=" relative">
             <img
-              className=" w-14 h-14 mx-auto"
-              src="/img/usuario.svg"
+              className=" w-20 h-20 mx-auto rounded-full"
+              src={avatarUrl}
               alt="User"
             />
             <span className="bottom-0 left-32 absolute  w-4 h-4 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>

@@ -8,9 +8,7 @@ import useUsuarioContext from "@/app/hooks/useUsuarioContext";
 const Profile = ({modalOpen, setModalOpen}) => {
 const { avatarUrl, setAvatarUrl } = useUsuarioContext();
 
-  const updateAvatar = (imgSrc) => {
-    setAvatarUrl(imgSrc)
-  };
+ 
 
   return (
  

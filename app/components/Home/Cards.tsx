@@ -1,11 +1,22 @@
 import React from 'react'
 import Link from 'next/link'
-import { useAuth } from '@/app/hooks/useAuth'
+import { useRouter } from 'next/navigation';
+import useUsuarioContext from '@/app/hooks/useUsuarioContext';
 
 const Cards = () => {
-
+const Router = useRouter()
+const {suscripcionElegida, setSuscripcionElegida} = useUsuarioContext()
   const authToken = localStorage.getItem("AUTH_TOKEN") || null;
   console.log(authToken);
+
+
+const handleSubmit = (e, id) => {
+  e.preventDefault();
+  Router.push('/carrito')
+  setSuscripcionElegida(id)
+  
+}
+
 
   return (
     <section className="justify-center grid grid-cols-1 md:grid-cols-3 md:gap-4 gap-5 xl:mx-56 lg:mx-40 md:mx-20 my-10 place-items-center ">
@@ -108,14 +119,15 @@ const Cards = () => {
         </li>
       </ul>
       {authToken ? (
-  <Link href="/carrito">
+  
     <button
+    onClick={(e) => handleSubmit(e, 1)}
       type="submit"
       className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 flex justify-center w-full text-center active:bg-[#464f9d] transition ease-in duration-100"
     >
       Elegir plan
     </button>
-  </Link>
+
 ) : (
   <Link href="/login">
     <button
@@ -229,14 +241,15 @@ const Cards = () => {
       </ul>
     
       {authToken ? (
-  <Link href="/carrito">
+ 
     <button
+        onClick={(e) => handleSubmit(e, 2)}
       type="submit"
       className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 flex justify-center w-full text-center active:bg-[#464f9d] transition ease-in duration-100"
     >
       Elegir plan
     </button>
-  </Link>
+ 
 ) : (
   <Link href="/login">
     <button
@@ -350,14 +363,15 @@ const Cards = () => {
       </ul>
     
       {authToken ? (
-  <Link href="/carrito">
+ 
     <button
+        onClick={(e) => handleSubmit(e, 3)}
       type="submit"
       className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 flex justify-center w-full text-center active:bg-[#464f9d] transition ease-in duration-100"
     >
       Elegir plan
     </button>
-  </Link>
+
 ) : (
   <Link href="/login">
     <button

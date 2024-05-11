@@ -1,0 +1,22 @@
+{
+    "suscripciones": [
+        {
+            "id": 1,
+            "plan": "Plan básico",
+            "precio": 9,
+            "prompts": 10
+        },
+        {
+            "id": 2,
+            "plan": "Plan estándar",
+            "precio": 19,
+            "prompts": 25
+        },
+        {
+            "id": 3,
+            "plan": "Plan Premium",
+            "precio": 25,
+            "prompts": 9999
+        }
+    ]
+}
