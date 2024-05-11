@@ -165,6 +165,8 @@ Finalizo la otra parte, la página de datos de facturación. En este caso no man
 Día 11
 Creo la API para comprar suscripción. La lógica finalmente es la siguiente: Tengo una tabla suscripciones, y este a su vez tiene 6 columnas: id, id_user (foreign key), tipo, prompts_disponibles, precio, created_at. En la API le envío un único dato, que es un número del 1 al 3. Por ejemplo, si escoge el plan básico, le correspondería el 1, y lo que hago ahora es una condición. Si la id que le llega es 1, que asigne las siguientes columnas a la tabla de suscripciones: tipo: básico, prompts_disponibles: 10, precio: 9. Y la misma lógica para el resto. Ahora, creo un comando para que me establezca las columnas al valor inicial, y configuro un schedule para que ese comando lo ejecute diariamente. Entonces, cada usuario a comienzo del día tendría los prompts reseteados a su valor inicial, como se prometió en la página de compras.
 <br>
+Además, implemento la lógica para el total de prompts disponibles que se muestra en el placeholder. Lo que hago es sumar free_prompts de la tabla user + prompts_disponibles de la tabla suscripciones.
+<br>
 Recursos que utilicé:<br>
 Dudas y relleno de texto<br>
 ChatGPT y Bard<br>
