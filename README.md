@@ -153,6 +153,18 @@ Día 7
 <br>
 Panel de admin rediseñado, añado mejoras estéticas importantes
 <br>
+Día 8
+Empiezo a hacer el carrito de compras funcionar. Veo un problema potencial y lo arreglo. El problema en cuestión era que el input para enviar formulario estaba en otro componente, y para enviar datos es obligatorio que el input esté dentro del propio formulario. Tuve que cambiar toda la lógica y practicamente rehacer el carrito de compras desde cero, ya que era completamente incompatible.
+<br>
+Día 9
+Investigo sobre las mejores formas para validar un formulario y me decanto por React Hook Form para los datos y ZOD para la validación de los datos. Termino la página de la información personal, además de crear su correspondiente API para almacenar los datos personales del usuario.
+<br>
+Día 10
+Finalizo la otra parte, la página de datos de facturación. En este caso no mando ninguna API, ya que es **ILEGAL**. Únicamente almaceno de forma temporal en un hook esos datos, para luego mostrarlos encriptados en la página de confirmación. Además, implemento la lógica para la redirección, es decir, middleware, por ejemplo, que no puedas acceder a confirmación a través de la URL si no completaste un paso. Para eso me ayudo con un useState.
+<br>
+Día 11
+Creo la API para comprar suscripción. La lógica finalmente es la siguiente: Tengo una tabla suscripciones, y este a su vez tiene 6 columnas: id, id_user (foreign key), tipo, prompts_disponibles, precio, created_at. En la API le envío un único dato, que es un número del 1 al 3. Por ejemplo, si escoge el plan básico, le correspondería el 1, y lo que hago ahora es una condición. Si la id que le llega es 1, que asigne las siguientes columnas a la tabla de suscripciones: tipo: básico, prompts_disponibles: 10, precio: 9. Y la misma lógica para el resto. Ahora, creo un comando para que me establezca las columnas al valor inicial, y configuro un schedule para que ese comando lo ejecute diariamente. Entonces, cada usuario a comienzo del día tendría los prompts reseteados a su valor inicial, como se prometió en la página de compras.
+<br>
 Recursos que utilicé:<br>
 Dudas y relleno de texto<br>
 ChatGPT y Bard<br>
