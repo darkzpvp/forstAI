@@ -1,5 +1,8 @@
 <h1>Anteproyecto</h1>
 <h1>Vídeo https://youtu.be/lLUtOqzvXV4</h1>
+<h1>Figma https://www.figma.com/file/6WtYirOMLAj0LMfy7B4ieR/Victor?type=design&node-id=0%3A1&mode=design&t=fNP7U6DKcMdvrzSe-1</h1>
+<h1>Documentación: PENDIENTE</h1>
+
 <h2>Notion</h2>
 https://faceted-binder-6cc.notion.site/Anteproyecto-1f21f41efbe444c48c01509a30aad739?pvs=25
 <h2>Bitácora de tareas</h2>
