@@ -175,7 +175,7 @@ Día 12
 Creo un command como el del día anterior que se ejecuta a diario en el Kernel gracias al cronjob. Este lo que hará será buscar suscripciones expiradas, y si la suscripción expirada es menor o igual que la fecha actual, entonces lo borrará. Además, creo la lógica para obtener la IP del usuario, que es con el propio request de Laravel, además de usar una API externa, ya que Laravel lo que me da es la IP privadad, y yo necesito la pública del Router. Y por último, implemento la lógica para obtener la actividad del usuario, es decir, si está conectado o desconectado o la última actividad. Esto lo he logrado gracias a una biblioteca que funciona en el cliente, llamada "idletimer", éste capta eventos como scroll, clicks, navegación del usuario, etcétera. Si se captura un evento, quiere seteamos el estado del usuario a conectado, en caso contrario, como desconectado
 <br>
 Día 13
-Creo la API para cancelar suscripción, y la de eliminar cuenta que funciona unicamente si la contraseña que se da es correcta. Además, llevo partes del backend al cliente 
+Creo la API para cancelar suscripción, y la de eliminar cuenta que funciona unicamente si la contraseña que se da es correcta. Además, llevo partes del backend al cliente, y acabo la parte del perfil de usuario, trayendo toda la información como la suscripción, nombre, correo electrónico... Y en caso de que no exista, especificando los prompts gratuitos y añadiendo un botón de comprar
 <br>
 
 
