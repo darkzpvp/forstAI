@@ -46,9 +46,6 @@ class CambiarPerfilController extends Controller
         
         // Devolver la URL de la imagen de perfil
         return response()->json(['url_imagen' => $urlImagen], 200);
-    } else {
-        // Si el usuario no tiene una imagen de perfil, devolver un mensaje de error
-        return response()->json(['mensaje' => 'El usuario no tiene una imagen de perfil'], 404);
-    }
+    } 
 }
 }

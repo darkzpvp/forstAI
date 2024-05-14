@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Carbon;
 
 return new class extends Migration
 {
@@ -19,9 +20,30 @@ return new class extends Migration
             $table->string('password');
             $table->integer('free_prompts')->default(10)->nullable();
             $table->string('imagen')->nullable();
+            $table->string('ip_address')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
+        
+        Schema::create('suscripciones', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->enum('tipo', ['basico', 'estandar', 'premium']);
+            $table->integer('prompts_disponibles')->default(0);
+            $table->integer('precio')->default(0);
+            $table->timestamps();
+            $table->timestamp('fecha_expiracion')->nullable()->default(Carbon::now()->addMonth());
+
+        });
+     
+        
+        Schema::create('prompts', function (Blueprint $table) {
+            $table->id();
+            $table->text('texto');        
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->timestamps();
+        });
+
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
       
@@ -31,6 +53,20 @@ return new class extends Migration
             $table->timestamp('updated_at')->nullable();
 
         });
+
+        Schema::create('informacion_personal', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('nombre');
+            $table->string('apellidos');
+            $table->string('numero_telefono');
+            $table->string('pais');
+            $table->string('poblacion');
+            $table->string('provincia');
+            $table->string('nif_nie');
+            $table->timestamps();
+        });
+
 
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();

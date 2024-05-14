@@ -25,7 +25,12 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        parent::boot();
+    
+        // Agrega el evento 'ActualizarPromptsDisponibles' y su manejador al array $listen
+        $this->listen['App\Events\ActualizarPromptsDisponibles'] = [
+            'App\Listeners\ManejadorEventos', // Reemplaza 'TuManejadorDeEventos' por el nombre de tu manejador
+        ];
     }
 
     /**

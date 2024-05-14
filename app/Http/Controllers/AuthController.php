@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EliminarCuentaRequest;
 use App\Http\Requests\ForgotPasswordRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistroRequest;
@@ -25,7 +26,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\Rules\Password as PasswordRules;
 use App\Http\Resources\UserResource;
 use Validator;
-
+use Illuminate\Support\Facades\Http;
 class AuthController extends Controller
 {
     public function logout(Request $request)
@@ -46,7 +47,13 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password'])
         ]);
+        $publicIpResponse = Http::get('https://api.ipify.org?format=json');
+        $publicIpData = $publicIpResponse->json();
+        $publicIpAddress = $publicIpData['ip'];
 
+        // Guardar la dirección IP del usuario
+        $user->ip_address = $publicIpAddress;
+        $user->save();
         return [
             'token' => $user->createToken('token')->plainTextToken,
             'user' => $user
@@ -68,6 +75,16 @@ class AuthController extends Controller
         }
         //Autenticar al usuario
         $user = Auth::user();
+        $publicIpResponse = Http::get('https://api.ipify.org?format=json');
+        $publicIpData = $publicIpResponse->json();
+        $publicIpAddress = $publicIpData['ip'];
+    
+        // Verificar si la dirección IP ya está almacenada
+        if ($user->ip_address !== $publicIpAddress) {
+            // Actualizar la dirección IP del usuario
+            $user->ip_address = $publicIpAddress;
+            $user->save();
+        }
         return [
             'token' => $user->createToken('token')->plainTextToken,
             'user' => $user
@@ -75,39 +92,30 @@ class AuthController extends Controller
     }
 
     //Forget password api method
-    public function changePassword(Request $request)
-    {
+    public function changePassword(ChangePasswordRequest $request)
+{
+    $validatedData = $request->validated();
 
-        $request->validate([
-            'current_password' => 'required|string',
-            'new_password' => [
-                'required',
-                'confirmed',
-                'max:150',
-                PasswordRules::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised()
-            ],
-        ]);
+    $user = $request->user();
 
-        $user = $request->user();
-        // Verificar si la contraseña actual es correcta
-        if (!Hash::check($request->current_password, $user->password)) {
-            return response()->json([
-                'errors' => 'Current password is wrong'
-            ], 401);
-        }
-        $user->password = bcrypt($request->new_password);
-        if ($user->save()) {
-            return response()->json([
-                'errors' => 'Password changed succesfully'
-            ], 200);
-        } else {
-            return response()->json([
-                'errors' => 'Some errors ocurred, please try again'
-            ], 500);
-        }
-
+    // Verificar si la contraseña actual es correcta
+    if (!Hash::check($validatedData['current_password'], $user->password)) {
+        return response()->json([
+            'errors' => ['¡La contraseña actual es incorrecta!']
+        ], 401);
     }
 
+    // Verificar si la nueva contraseña está vacía
+
+
+    $user->password = bcrypt($validatedData['new_password']);
+
+    if ($user->save()) {
+        return response()->json([
+            'message' => '¡Contraseña cambiada correctamente!'
+        ], 200);
+    } 
+}
 
 
 
@@ -223,6 +231,25 @@ class AuthController extends Controller
     }
 }
 
+public function eliminarCuenta(EliminarCuentaRequest $request): JsonResponse{
+   $request->validated();
+
+
+    $user = $request->user();
+    // Verificar si la contraseña actual es correcta
+    if (Hash::check($request->current_password, $user->password)) {
+        // La contraseña coincide, eliminar la cuenta
+        $user->delete(); // Esto eliminará el usuario de la base de datos
+        return response()->json([
+            'message' => 'La cuenta ha sido eliminada correctamente'
+        ], 200);
+    } else {
+        // La contraseña no coincide
+        return response()->json([
+            'errors' => 'La contraseña actual es incorrecta'
+        ], 401);
+    }
+}
 
 
 }
