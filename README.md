@@ -1,4 +1,8 @@
 <h1>Anteproyecto</h1>
+<h1>Vídeo https://youtu.be/lLUtOqzvXV4</h1>
+<h1>Figma https://www.figma.com/file/6WtYirOMLAj0LMfy7B4ieR/Victor?type=design&node-id=0%3A1&mode=design&t=fNP7U6DKcMdvrzSe-1</h1>
+<h1>Documentación: PENDIENTE</h1>
+
 <h2>Notion</h2>
 https://faceted-binder-6cc.notion.site/Anteproyecto-1f21f41efbe444c48c01509a30aad739?pvs=25
 <h2>Bitácora de tareas</h2>
@@ -153,6 +157,28 @@ Día 7
 <br>
 Panel de admin rediseñado, añado mejoras estéticas importantes
 <br>
+Día 8
+Empiezo a hacer el carrito de compras funcionar. Veo un problema potencial y lo arreglo. El problema en cuestión era que el input para enviar formulario estaba en otro componente, y para enviar datos es obligatorio que el input esté dentro del propio formulario. Tuve que cambiar toda la lógica y practicamente rehacer el carrito de compras desde cero, ya que era completamente incompatible.
+<br>
+Día 9
+Investigo sobre las mejores formas para validar un formulario y me decanto por React Hook Form para los datos y ZOD para la validación de los datos. Termino la página de la información personal, además de crear su correspondiente API para almacenar los datos personales del usuario.
+<br>
+Día 10
+Finalizo la otra parte, la página de datos de facturación. En este caso no mando ninguna API, ya que es **ILEGAL**. Únicamente almaceno de forma temporal en un hook esos datos, para luego mostrarlos encriptados en la página de confirmación. Además, implemento la lógica para la redirección, es decir, middleware, por ejemplo, que no puedas acceder a confirmación a través de la URL si no completaste un paso. Para eso me ayudo con un useState.
+<br>
+Día 11
+Creo la API para comprar suscripción. La lógica finalmente es la siguiente: Tengo una tabla suscripciones, y este a su vez tiene 6 columnas: id, id_user (foreign key), tipo, prompts_disponibles, precio, created_at. En la API le envío un único dato, que es un número del 1 al 3. Por ejemplo, si escoge el plan básico, le correspondería el 1, y lo que hago ahora es una condición. Si la id que le llega es 1, que asigne las siguientes columnas a la tabla de suscripciones: tipo: básico, prompts_disponibles: 10, precio: 9. Y la misma lógica para el resto. Ahora, creo un comando para que me establezca las columnas al valor inicial, y configuro un schedule para que ese comando lo ejecute diariamente. Entonces, cada usuario a comienzo del día tendría los prompts reseteados a su valor inicial, como se prometió en la página de compras.
+<br>
+Además, implemento la lógica para el total de prompts disponibles que se muestra en el placeholder. Lo que hago es sumar free_prompts de la tabla user + prompts_disponibles de la tabla suscripciones.
+<br>
+Día 12
+Creo un command como el del día anterior que se ejecuta a diario en el Kernel gracias al cronjob. Este lo que hará será buscar suscripciones expiradas, y si la suscripción expirada es menor o igual que la fecha actual, entonces lo borrará. Además, creo la lógica para obtener la IP del usuario, que es con el propio request de Laravel, además de usar una API externa, ya que Laravel lo que me da es la IP privadad, y yo necesito la pública del Router. Y por último, implemento la lógica para obtener la actividad del usuario, es decir, si está conectado o desconectado o la última actividad. Esto lo he logrado gracias a una biblioteca que funciona en el cliente, llamada "idletimer", éste capta eventos como scroll, clicks, navegación del usuario, etcétera. Si se captura un evento, quiere seteamos el estado del usuario a conectado, en caso contrario, como desconectado
+<br>
+Día 13
+Creo la API para cancelar suscripción, y la de eliminar cuenta que funciona unicamente si la contraseña que se da es correcta. Además, llevo partes del backend al cliente, y acabo la parte del perfil de usuario, trayendo toda la información como la suscripción, nombre, correo electrónico... Y en caso de que no exista, especificando los prompts gratuitos y añadiendo un botón de comprar
+<br>
+
+
 Recursos que utilicé:<br>
 Dudas y relleno de texto<br>
 ChatGPT y Bard<br>
