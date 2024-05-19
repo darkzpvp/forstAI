@@ -28,8 +28,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::delete('/cancelar-suscripcion', [SuscripcionesController::class, 'eliminar']);
     Route::delete('/eliminar-cuenta', [AuthController::class, 'eliminarCuenta']);
     Route::get('/ver-suscripcion', [SuscripcionesController::class, 'getAll']);
+    Route::get('/ver-prompts', [PromptController::class, 'getAllPrompts']);
+    Route::get('/ver-informacion-usuario', [AuthController::class, 'informacionUsuarioPanel']);
+    Route::get('/informacion-usuario-panel/{id}', [AuthController::class, 'informacionUserId']);
+   Route::put('/informacion-usuario-panel/{id}', [AuthController::class, 'informacionUserIdActualizar']);
+   Route::delete('/eliminar-cuenta-usuario', [AuthController::class, 'eliminarCuentasUsuarios']);
 });
-
 
 Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail'])->middleware(['auth:sanctum']);
 Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify')->middleware(['auth:sanctum']);

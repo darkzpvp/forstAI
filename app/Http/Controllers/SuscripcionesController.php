@@ -9,41 +9,50 @@ use App\Models\User;
 class SuscripcionesController extends Controller
 {
     public function comprar(Request $request)
-    {
-        // Obtener la suscripción del usuario autenticado
-        $suscripcion = Suscripciones::where('user_id', Auth::id())->first();
+{
+    // Obtener la suscripción del usuario autenticado
+    $suscripcion = Suscripciones::where('user_id', Auth::id())->first();
 
-        // Validar la solicitud
-  
-        // Obtener la ID de la suscripción del request
-        $id_suscripcion = $request->input('id_suscripcion');
+    // Validar la solicitud
 
-        // Obtener el tipo de suscripción y definir prompts y precio según el tipo
-        list($tipo_suscripcion, $prompts_disponibles, $precio) = $this->obtenerTipoSuscripcion($id_suscripcion);
+    // Obtener la ID de la suscripción del request
+    $id_suscripcion = $request->input('id_suscripcion');
 
-        // Actualizar la tabla de suscripciones del usuario si existe
+    // Si la ID de suscripción es 0, eliminar la suscripción existente (si la hay)
+    if ($id_suscripcion === "0") {
+        // Eliminar la suscripción existente (si la hay)
         if ($suscripcion) {
-            $suscripcion->update([
-                'tipo' => $tipo_suscripcion,
-                'prompts_disponibles' => $prompts_disponibles,
-                'precio' => $precio
-            ]);
-        } else {
-            // Si no existe una suscripción para este usuario, crear una nueva
-            Suscripciones::create([
-                'user_id' => Auth::id(),
-                'tipo' => $tipo_suscripcion,
-                'prompts_disponibles' => $prompts_disponibles,
-                'precio' => $precio
-            ]);
+            $suscripcion->delete();
         }
-
-        // Respuesta de éxito
-        return response()->json(['message' => 'Suscripción comprada con éxito'], 200);
     }
 
+    // Obtener el tipo de suscripción y definir prompts y precio según el tipo
+    list($tipo_suscripcion, $prompts_disponibles, $precio) = $this->obtenerTipoSuscripcion($id_suscripcion);
+
+    // Crear o actualizar la suscripción del usuario
+    if ($suscripcion) {
+        // Si existe una suscripción, actualizarla
+        $suscripcion->update([
+            'tipo' => $tipo_suscripcion,
+            'prompts_disponibles' => $prompts_disponibles,
+            'precio' => $precio
+        ]);
+    } else {
+        // Si no existe una suscripción para este usuario, crear una nueva
+        Suscripciones::create([
+            'user_id' => Auth::id(),
+            'tipo' => $tipo_suscripcion,
+            'prompts_disponibles' => $prompts_disponibles,
+            'precio' => $precio
+        ]);
+    }
+
+    // Respuesta de éxito
+    return response()->json(['message' => 'Suscripción comprada con éxito'], 200);
+}
+
     // Función para obtener el tipo de suscripción y sus detalles según la ID recibida
-    private function obtenerTipoSuscripcion($id)
+    public function obtenerTipoSuscripcion($id)
     {
         switch ($id) {
             case "1":
@@ -76,26 +85,26 @@ class SuscripcionesController extends Controller
     }
     public function getAll()
     {
-        $suscripciones = Suscripciones::with('user')->get(); // Cargar la relación User
+        // Obtener la suscripción del usuario autenticado
+        $suscripcion = Suscripciones::where('user_id', Auth::id())->first();
         
-        if ($suscripciones->isEmpty()) {
-            // No hay suscripciones, devuelve el valor de free_prompts del usuario
-            $freePrompts = User::first()->free_prompts;
-            return response()->json(['free_prompts' => $freePrompts], 200);
+        if (is_null($suscripcion)) {
+            // No hay suscripción, devuelve el valor de free_prompts del usuario autenticado
+            $user = Auth::user();
+            return response()->json(['free_prompts' => $user->free_prompts], 200);
         }
     
-        $datos = $suscripciones->map(function ($suscripcion) {
-            $totalPrompts = $suscripcion->user->free_prompts + $suscripcion->prompts_disponibles;
-            return [
-                'prompts' => $totalPrompts,
-                'tipo' => $suscripcion->tipo,
-                'precio' => $suscripcion->precio,
-                'fecha_expiracion' => $suscripcion->fecha_expiracion,
-                'comprado' => $suscripcion->created_at
-                // Agrega aquí cualquier otro campo que desees incluir de la tabla suscripciones
-            ];
-        });
-    
+        // Construir los datos de la suscripción
+        $totalPrompts = $suscripcion->user->free_prompts + $suscripcion->prompts_disponibles;
+        $datos = [
+            'prompts' => $totalPrompts,
+            'tipo' => $suscripcion->tipo,
+            'precio' => $suscripcion->precio,
+            'fecha_expiracion' => $suscripcion->fecha_expiracion,
+            'comprado' => $suscripcion->created_at
+            // Agrega aquí cualquier otro campo que desees incluir de la tabla suscripciones
+        ];
+        
         return response()->json($datos);
     }
 }

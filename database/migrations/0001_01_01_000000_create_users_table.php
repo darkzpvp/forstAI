@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Carbon;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -21,10 +20,12 @@ return new class extends Migration
             $table->integer('free_prompts')->default(10)->nullable();
             $table->string('imagen')->nullable();
             $table->string('ip_address')->nullable();
+            $table->string('estado')->default('Desconectado');
+            $table->boolean('rol')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
-        
+
         Schema::create('suscripciones', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
@@ -35,18 +36,18 @@ return new class extends Migration
             $table->timestamp('fecha_expiracion')->nullable()->default(Carbon::now()->addMonth());
 
         });
-     
-        
+
+
         Schema::create('prompts', function (Blueprint $table) {
             $table->id();
-            $table->text('texto');        
+            $table->text('texto');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
 
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
-      
+
             $table->string('email')->primary();
             $table->string('token');
             $table->timestamp('created_at')->nullable();

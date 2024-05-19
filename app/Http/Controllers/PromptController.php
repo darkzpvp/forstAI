@@ -85,4 +85,24 @@ class PromptController extends Controller
     
         // Devolver la respuesta JSON con la cantidad total de prompts
         return response()->json(['prompts' => $totalPrompts,  'errors' => ['¡No tienes prompts disponibles!']]);    }
-}
+
+
+        public function getAllPrompts(Request $request)
+        {
+            // Obtener el usuario autenticado usando Laravel Sanctum
+            $user = auth()->user();
+            
+            // Verificar si el usuario existe
+            if (!$user) {
+                return response([
+                    'errors' => ['Usuario no autenticado']
+                ], 401);
+            }
+    
+            // Obtener todos los prompts del usuario autenticado
+            $prompts = Prompt::where('user_id', $user->id)->get();
+    
+            // Devolver la lista de prompts
+            return response()->json($prompts);
+        }
+    }
