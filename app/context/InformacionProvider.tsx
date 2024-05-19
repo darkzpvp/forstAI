@@ -13,10 +13,14 @@ import {
   InformacionPersonal,
   informacionPersonalSchema,
 } from "../validations/informacionPersonalSchema";
+import { headers } from "next/headers";
+import useUsuarioContext from "../hooks/useUsuarioContext";
 
 const InformacionContext = createContext({});
 
 const InformacionProvider = ({ children }) => {
+  const [selectedUsers, setSelectedUsers] = useState([]);
+
   const [errores, setErrores] = useState([]);
 const [datosPersonales, setDatosPersonales] = useState([])
   const Router = useRouter();
@@ -47,7 +51,7 @@ const [datosPersonales, setDatosPersonales] = useState([])
     }
   };
 
-useEffect(() => {
+
   const getInformacion = async () => {
         try {
             const authToken = localStorage.getItem("AUTH_TOKEN");
@@ -68,11 +72,41 @@ useEffect(() => {
             console.log(error);
         }
     }
-    getInformacion()
-}, [])
-  
 
+    const datosUser = async (idUser) => {
+      try {
+        const authToken = localStorage.getItem("AUTH_TOKEN")
+        if(!authToken){
+          console.log('Usuario no autenticado'); return
+        }
+        const config = {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        }
+        const {data} = await clienteAxios(`api/informacion-usuario-panel/${idUser}`, config)
+        return data[0]
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
+const actualizarDatosUserId = async(idUser, usuario) => {
+  try {
+    const authToken = localStorage.getItem("AUTH_TOKEN")
+    if(!authToken){
+      console.log('Usuario no autenticado'); return
+    }
+    const config = {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    }
+    const {data} = await clienteAxios.put(`api/informacion-usuario-panel/${idUser}`, usuario, config)
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 
   const {
@@ -94,6 +128,27 @@ useEffect(() => {
 const [continuarCarrito, setContinuarCarrito] = useState<number>(1)
 
 
+const eliminarUsuario = async(datos) => {
+  try {
+    const authToken = localStorage.getItem("AUTH_TOKEN");
+    if (!authToken) {
+      console.log('No autenticado');
+      return;
+    }
+    const config = {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+      data: datos
+    };
+    const { data } = await clienteAxios.delete('api/eliminar-cuenta-usuario', config);
+    console.log(data); 
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
   return (
     <InformacionContext.Provider
       value={{
@@ -107,7 +162,13 @@ const [continuarCarrito, setContinuarCarrito] = useState<number>(1)
         errors,
         continuarCarrito,
         setContinuarCarrito,
-        datosPersonales
+        datosPersonales,
+        getInformacion,
+        datosUser,
+        actualizarDatosUserId,
+        selectedUsers,
+        setSelectedUsers,
+        eliminarUsuario
       }}
     >
       {children}

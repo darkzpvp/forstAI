@@ -4,11 +4,13 @@ import Modal from "./Modal";
 import useCambiarFotoPerfil from "@/app/hooks/useCambiarFotoPerfil";
 import UsuarioContext from "@/app/context/UsuarioProvider";
 import useUsuarioContext from "@/app/hooks/useUsuarioContext";
+import { useAuth } from "@/app/hooks/useAuth";
 
 const Profile = ({modalOpen, setModalOpen}) => {
 const { avatarUrl, setAvatarUrl } = useUsuarioContext();
 
- 
+const { user } = useAuth({});
+
 
   return (
  
@@ -27,8 +29,8 @@ const { avatarUrl, setAvatarUrl } = useUsuarioContext();
           <PencilIcon />
         </button>
       </div>
-      <h2 className="text-white font-bold mt-6 text-lg">Víctor Valverde Olmedo</h2>
-      <p className="text-gray-500  mt-2 text-md">victor1val@hotmail.es</p>
+      <h2 className="text-white font-bold mt-6 text-lg">{user?.name}</h2>
+      <p className="text-gray-500  mt-2 text-md">{user?.email}</p>
    
     </div>
    

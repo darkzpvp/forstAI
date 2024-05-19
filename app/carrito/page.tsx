@@ -34,9 +34,6 @@ const Page = () => {
     }
   };
 
-
-
-
   const initialCart = () => {
     try {
           const localStorageCart = localStorage.getItem('carrito')
@@ -48,16 +45,17 @@ const Page = () => {
 }
   const [suscripcionObjeto, setSuscripcionObjeto] = useState(initialCart);
 
-
-
 useEffect(() => {
+  const suscripcionElegidaLS = Number(localStorage.getItem('suscripcionElegida'));
 
-  const suscripcionSeleccionada = suscripciones.suscripciones.find(suscripcion => suscripcion.id === suscripcionElegida)
-  setSuscripcionObjeto(suscripcionSeleccionada)
-  localStorage.setItem('carrito', JSON.stringify(suscripcionObjeto))
-
-}, [suscripcionObjeto]);
-
+  if (suscripcionElegidaLS > 0) {
+    const suscripcionSeleccionada = suscripciones.suscripciones.find(suscripcion => suscripcion.id === suscripcionElegidaLS)
+    if (suscripcionSeleccionada) {
+      setSuscripcionObjeto(suscripcionSeleccionada);
+      localStorage.setItem('carrito', JSON.stringify(suscripcionSeleccionada));
+    }
+  }
+}, [suscripciones, suscripcionElegida]);
 useEffect(() => {
   if(localStorage.getItem('suscripcionElegida') === null || 
     localStorage.getItem('suscripcionElegida') === undefined ||

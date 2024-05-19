@@ -6,6 +6,11 @@ import { UsuarioProvider } from "./context/UsuarioProvider";
 import { InformacionProvider } from "./context/InformacionProvider";
 import { DatosProvider } from "./context/DatosBancariosProvider";
 import { usePathname } from "next/navigation";
+import { useIdleTimer } from 'react-idle-timer/legacy'
+import { useEffect, useState } from "react";
+import { EstadoProvider } from "./context/EstadoUsuario";
+import useEstadoUsuario from "./hooks/useEstadoUsuario";
+
 const kumbh = Kumbh_Sans({
   subsets: ['latin'],
   variable: '--font-kumbh',
@@ -19,6 +24,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
+const {state, setState, count, setCount, remaining, setRemaining, ultimaActividad} = useEstadoUsuario()
+
+
+
   const Path = usePathname()
   if(Path !== '/carrito' && Path !== '/carrito/datosbancarios' && Path !== '/carrito/confirmacion'){
     localStorage.removeItem('suscripcionElegida');
@@ -34,7 +45,10 @@ export default function RootLayout({
 <UsuarioProvider>
   <InformacionProvider>
     <DatosProvider>
-              {children}
+      <EstadoProvider>
+                      {children}
+
+      </EstadoProvider>
 
     </DatosProvider>
 

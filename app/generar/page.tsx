@@ -65,7 +65,7 @@ const Generar = () => {
     setLoading(true);
     notify();
     const datos: FormData = {
-      user_id: user.id,
+      texto: promptText,
     };
    
     enviarFormulario(datos, setErrores);
@@ -329,7 +329,7 @@ const Generar = () => {
         </div>
       </section>
     </header>
-   
+
    
     </>
   );

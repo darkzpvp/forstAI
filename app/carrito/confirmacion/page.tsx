@@ -1,6 +1,6 @@
 "use client";
 import Header_Dos from "@/app/components/Header_Dos";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ModalCarrito from "./ModalCarrito";
 import Link from "next/link";
 import useDatosBancarios from "@/app/hooks/useDatosBancarios";
@@ -27,9 +27,19 @@ const Page = () => {
     e.preventDefault();
     setModal(true);
   };
-  const { continuarCarrito, setContinuarCarrito, datosPersonales } =
+  const { continuarCarrito, setContinuarCarrito, getInformacion, datosPersonales } =
     useInformacionPersonal();
   const { datosBancarios } = useDatosBancarios();
+
+useEffect(() => {
+  const  getInformacionUser = async() => {
+await getInformacion()
+  }
+  getInformacionUser()
+getInformacion()
+}, [datosPersonales])
+
+
   return (
     <>
       {continuarCarrito < 2 && redirect("/carrito")}

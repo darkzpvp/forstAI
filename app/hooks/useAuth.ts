@@ -1,9 +1,12 @@
 import clienteAxios from "../config/axios";
 import useSWR from "swr";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+
 
 export const useAuth = ({ middleware, url }) => {
+  const Router = useRouter()
   const {
     data: user,
     error,
@@ -52,6 +55,18 @@ export const useAuth = ({ middleware, url }) => {
     }
   };
 
+
+  const crearUsuario = async (datos) => {
+    try {
+      await clienteAxios("/sanctum/csrf-cookie");
+      const { data } = await clienteAxios.post("/api/registro", datos);
+      console.log(data);
+      await mutate();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const mandarEmailVerificacion = async (email, setErrores, setMensajeOk) => {
     try {
       setMensajeOk("");
@@ -96,6 +111,42 @@ export const useAuth = ({ middleware, url }) => {
     }
   };
 
+
+  const eliminarCuentaPerfil = async (contraseña, setErroresEliminarCuenta, erroresEliminarCuenta) => {
+    console.log(contraseña);
+    try {
+      const authToken = localStorage.getItem("AUTH_TOKEN");
+      if (!authToken) {
+        console.log("Usuario no autenticado. Redirigiendo a la página de inicio de sesión...");
+        return;
+      }
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      };
+
+      const { data } = await clienteAxios.delete("/api/eliminar-cuenta", {
+        headers: config.headers,
+        data: contraseña,
+      });
+console.log(data);
+      localStorage.removeItem("AUTH_TOKEN");
+   
+      Router.push('/')
+      window.location.reload()
+
+    } catch (error) {
+      setErroresEliminarCuenta(Object?.values(error?.response?.data.errors));
+setTimeout(() => {
+setErroresEliminarCuenta([])
+}, 5000)
+  
+    }
+  };
+
+
   useEffect(() => {
     if (middleware === "guest" && url && user) {
       redirect(url);
@@ -111,5 +162,7 @@ export const useAuth = ({ middleware, url }) => {
     logout,
     user,
     error,
+    eliminarCuentaPerfil,
+    crearUsuario
   };
 };

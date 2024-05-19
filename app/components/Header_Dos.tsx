@@ -11,7 +11,6 @@ interface InterfazProps {
   menu: boolean;
   suscripcion: boolean;
   setMenu: (value: boolean) => void;
-  setSuscripcion: (value: boolean) => void;
   menuHamburguesa: boolean;
   setMenuHamburguesa: (value: boolean) => void;
 }

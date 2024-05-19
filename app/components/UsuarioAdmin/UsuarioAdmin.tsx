@@ -1,8 +1,9 @@
 "use client";
 import Header_Dos from "@/app/components/Header_Dos";
+import useEstadoUsuario from "@/app/hooks/useEstadoUsuario";
 import useUsuarioContext from "@/app/hooks/useUsuarioContext";
 import Link from "next/link";
-
+import { formatFecha } from "@/app/utils/formatearFecha";
 import React, { useEffect } from "react";
 import { useState } from "react";
 const page = () => {
@@ -25,7 +26,7 @@ const page = () => {
       setMenuHamburguesa(false);
     }
   };
-
+  const {state, setState, count, setCount, remaining, setRemaining, ultimaActividad} = useEstadoUsuario()
 
   return (
     <>
@@ -64,10 +65,16 @@ const page = () => {
           <div className=" relative">
             <img
               className=" w-20 h-20 mx-auto rounded-full"
-              src={avatarUrl}
+              src={avatarUrl || "../img/usuario.svg"}
               alt="User"
             />
-            <span className="bottom-0 left-32 absolute  w-4 h-4 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+            {state === "Conectado" ? (
+                          <span className="bottom-0 left-32 absolute  w-5 h-5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+
+            ) : (
+              <span className="bottom-0 left-32 absolute  w-5 h-5 bg-red-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+
+            )}
           </div>
 
           <h2 className="text-xl text-white font-semibold mt-4">
@@ -202,7 +209,7 @@ const page = () => {
                     <div className="  text-sm">
                       <h2 className="text-gray-400">Estado del usuario</h2>
                       <p className="text-sm font-semibold text-gray-200">
-                        Conectado
+                        {state}
                       </p>
                     </div>
                   </div>
@@ -227,7 +234,7 @@ const page = () => {
                     <div className="  text-sm">
                       <h2 className="text-gray-400">Última actividad</h2>
                       <p className="text-sm font-semibold text-gray-200">
-                        13/05/2024
+                        {formatFecha(ultimaActividad)}
                       </p>
                     </div>
                   </div>
