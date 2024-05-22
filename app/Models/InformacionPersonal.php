@@ -21,6 +21,8 @@ class InformacionPersonal extends Model
         'poblacion',
         'provincia',
         'nif_nie',
+        'direccion',
+        'cp'
     ];
 
     // Define la relación con el modelo User

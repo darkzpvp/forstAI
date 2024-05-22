@@ -36,15 +36,14 @@ class ChangePasswordRequest extends FormRequest
      *
      * @return array
      */
-   public function messages()
-{
-    return [
-        'current_password.required' => 'El campo de la contraseña actual es obligatorio.',
-        'new_password.required' => 'El campo de la nueva contraseña es obligatorio.',
-        'new_password.min' => 'La nueva contraseña debe tener al menos 8 caracteres.',
-        'new_password.letters' => 'La nueva contraseña debe contener al menos una letra.',
-        'new_password.symbols' => 'La nueva contraseña debe contener al menos un símbolo.',
-        'new_password.numbers' => 'La nueva contraseña debe contener al menos un número.',
-    ];
-}
+    public function messages()
+    {
+        return [
+            'current_password.required' => 'El campo de la contraseña actual es obligatorio.',
+            'new_password.required' => 'El campo de la nueva contraseña es obligatorio.',
+            'new_password.min' => 'La nueva contraseña debe tener al menos 8 caracteres.',
+            'new_password.*' => 'La contraseña debe tener un símbolo, un número y una letra mayúscula.',
+        ];
+    }
+    
 }

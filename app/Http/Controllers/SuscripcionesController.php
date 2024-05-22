@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Suscripciones;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Carbon\Carbon;
+
 class SuscripcionesController extends Controller
 {
     public function comprar(Request $request)
@@ -107,4 +109,38 @@ class SuscripcionesController extends Controller
         
         return response()->json($datos);
     }
+    public function getCosteTotalUltimaSemana()
+    {
+        $startOfLastWeek = Carbon::now()->subWeek()->startOfWeek();
+        $endOfLastWeek = Carbon::now()->subWeek()->endOfWeek();
+    
+        // Fecha y hora de inicio de la semana actual
+        $startOfCurrentWeek = Carbon::now()->startOfWeek();
+    
+        // Obtener el coste total de suscripciones de la semana pasada
+        $totalCosteLastWeek = Suscripciones::whereBetween('created_at', [$startOfLastWeek, $endOfLastWeek])->sum('precio');
+    
+        // Obtener el coste total de suscripciones de la semana actual
+        $totalCosteCurrentWeek = Suscripciones::where('created_at', '>=', $startOfCurrentWeek)->sum('precio');
+    
+        // Calcular el porcentaje de diferencia
+        if ($totalCosteLastWeek == 0) {
+            $percentageDifference = $totalCosteCurrentWeek > 0 ? 100 : 0;
+        } else {
+            $percentageDifference = (($totalCosteCurrentWeek - $totalCosteLastWeek) / $totalCosteLastWeek) * 100;
+        }
+    
+        return response()->json([
+            'total_coste_semana_pasada' => $totalCosteLastWeek,
+            'total_coste_semana_actual' => $totalCosteCurrentWeek,
+            'percentage_difference' => $percentageDifference,
+        ], 200);
+    }
+    public function getCosteTotal()
+{
+    // Sumar los precios de todas las suscripciones
+    $totalCoste = Suscripciones::sum('precio');
+
+    return response()->json(['total_coste' => $totalCoste], 200);
+}
 }

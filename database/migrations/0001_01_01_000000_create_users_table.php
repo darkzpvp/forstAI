@@ -12,6 +12,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
+
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
@@ -21,12 +22,14 @@ return new class extends Migration {
             $table->string('imagen')->nullable();
             $table->string('ip_address')->nullable();
             $table->string('estado')->default('Desconectado');
+            $table->string('ultima_sesion')->nullable();
             $table->boolean('rol')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
 
         Schema::create('suscripciones', function (Blueprint $table) {
+
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->enum('tipo', ['basico', 'estandar', 'premium']);
@@ -39,6 +42,7 @@ return new class extends Migration {
 
 
         Schema::create('prompts', function (Blueprint $table) {
+
             $table->id();
             $table->text('texto');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
@@ -56,6 +60,7 @@ return new class extends Migration {
         });
 
         Schema::create('informacion_personal', function (Blueprint $table) {
+
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('nombre');
@@ -64,6 +69,8 @@ return new class extends Migration {
             $table->string('pais');
             $table->string('poblacion');
             $table->string('provincia');
+            $table->string('direccion');
+            $table->string('cp');
             $table->string('nif_nie');
             $table->timestamps();
         });

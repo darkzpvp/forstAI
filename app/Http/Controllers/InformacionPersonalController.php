@@ -19,13 +19,15 @@ class InformacionPersonalController extends Controller
     {
         // Validar los datos enviados por el cliente
         $validator = Validator::make($request->all(), [
-            'nombre' => 'required|string|max:255',
-            'apellidos' => 'required|string|max:255',
+            'nombre' => 'required|string|max:50',
+            'apellidos' => 'required|string|max:50',
             'numero_telefono' => 'required|string|max:20',
-            'pais' => 'required|string|max:255',
-            'poblacion' => 'required|string|max:255',
-            'provincia' => 'required|string|max:255',
-            'nif_nie' => 'required|string|max:20',
+            'pais' => 'required|string|max:50',
+            'poblacion' => 'required|string|max:50',
+            'provincia' => 'required|string|max:50',
+            'nif_nie' => 'required|string|max:50',
+            'direccion' => 'required|string|max:50',
+            'cp' => 'required|string|max:50'
         ], [
             'required' => 'Todos los campos son obligatorios',
             '*.string' => 'El campo :attribute debe ser una cadena de texto.',
@@ -49,6 +51,8 @@ class InformacionPersonalController extends Controller
                 'poblacion' => $request->input('poblacion'),
                 'provincia' => $request->input('provincia'),
                 'nif_nie' => $request->input('nif_nie'),
+                'direccion' => $request->input('direccion'),
+                'cp' => $request->input('cp')
             ]);
         } else {
             // Si la información personal no existe, crear un nuevo registro
@@ -61,6 +65,8 @@ class InformacionPersonalController extends Controller
                 'poblacion' => $request->input('poblacion'),
                 'provincia' => $request->input('provincia'),
                 'nif_nie' => $request->input('nif_nie'),
+                'direccion' => $request->input('direccion'),
+                'cp' => $request->input('cp')
             ]);
             $informacionPersonal->save();
         }

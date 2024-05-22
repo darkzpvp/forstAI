@@ -84,7 +84,8 @@ class PromptController extends Controller
         }
     
         // Devolver la respuesta JSON con la cantidad total de prompts
-        return response()->json(['prompts' => $totalPrompts,  'errors' => ['¡No tienes prompts disponibles!']]);    }
+        return response()->json(['prompts' => $totalPrompts,  'errors' => ['¡No tienes prompts disponibles!']]); 
+       }
 
 
         public function getAllPrompts(Request $request)

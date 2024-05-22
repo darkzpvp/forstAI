@@ -26,8 +26,8 @@ class AuthServiceProvider extends ServiceProvider
 
 
         VerifyEmail::toMailUsing(function ($notifiable, $url) {
-            $spaUrl = $url;
-
+            $spaUrl = str_replace(['8000/api', '8000'], ['3000', '3000'], $url);
+        
             return (new MailMessage)
                 ->subject('Verify Email Address')
                 ->line('Click the button below to verify your email address.')

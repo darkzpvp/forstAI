@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\SuscripcionesController;
+use App\Models\InformacionPersonal;
+use App\Models\Prompt;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -67,7 +70,7 @@ class AuthController extends Controller
 
         if (!Auth::attempt($data)) {
             return response([
-                'errors' => ['El email o el password son incorrectos']
+                'incorrecto' => 'El email o el password son incorrectos'
             ], 422);
         }
         //Autenticar al usuario
@@ -98,12 +101,11 @@ class AuthController extends Controller
         // Verificar si la contraseña actual es correcta
         if (!Hash::check($validatedData['current_password'], $user->password)) {
             return response()->json([
-                'errors' => ['¡La contraseña actual es incorrecta!']
+                'incorrecto' => ['La contraseña actual es incorrecta']
             ], 401);
         }
 
         // Verificar si la nueva contraseña está vacía
-
 
         $user->password = bcrypt($validatedData['new_password']);
 
@@ -301,41 +303,54 @@ public function informacionUserId($id): JsonResponse
     // Obtener el usuario por su ID
     $usuario = User::findOrFail($id);
 
-    // Obtener las suscripciones del usuario
-    $suscripciones = Suscripciones::where('user_id', $usuario->id)->get();
+    // Obtener la suscripción del usuario
+    $suscripcion = Suscripciones::where('user_id', $usuario->id)->first();
 
-    // Si no hay suscripciones, incluir un array con los datos del usuario y tipo null
-    if ($suscripciones->isEmpty()) {
-        $datos = [
-            [
-                'id' => $usuario->id,
-                'suscripcion' => null,
-                'imagen' => $usuario->imagen,
-                'estado' => $usuario->estado,
-                'nombre' => $usuario->name,
-                'email' => $usuario->email,
-                'rol' => $usuario->rol,
-                'free_prompts' => $usuario->free_prompts
-            ]
-        ];
-    } else {
-        // Si hay suscripciones, mapear cada una
-        $datos = $suscripciones->map(function ($suscripcion) use ($usuario) {
+    // Calcular totalPrompts
+    $totalPrompts = $suscripcion ? ($usuario->free_prompts + ($suscripcion->prompts_disponibles ?? 0)) : $usuario->free_prompts;
+
+    // Obtener los detalles de facturación del usuario
+    $detalles_facturacion = InformacionPersonal::where('user_id', $usuario->id)->first();
+
+    // Obtener los prompts del usuario
+    $prompts = Prompt::where('user_id', $usuario->id)->get();
+
+    return response()->json([
+        'informacion_personal' => [
+            'id' => $usuario->id,
+            'nombre' => $usuario->name,
+            'imagen' => $usuario->imagen,
+            'estado' => $usuario->estado,
+            'email' => $usuario->email,
+            'rol' => $usuario->rol,
+            'ip_address' => $usuario->ip_address,
+            'ultima_sesion' => $usuario->ultima_sesion,
+            'total_prompts' => $totalPrompts,
+        ],
+        'suscripcion' => $suscripcion ? [
+            'tipo' => $suscripcion->tipo,
+            'fecha_expiracion' => $suscripcion->fecha_expiracion,
+        ] : null,
+        'detalles_facturacion' => $detalles_facturacion ? [
+            'nombre' => $detalles_facturacion->nombre,
+            'apellidos' => $detalles_facturacion->apellidos,
+            'direccion' => $detalles_facturacion->direccion,
+            'cp' => $detalles_facturacion->cp,
+            'poblacion' => $detalles_facturacion->poblacion,
+            'provincia' => $detalles_facturacion->provincia,
+            'numero_telefono' => $detalles_facturacion->numero_telefono,
+            'pais' => $detalles_facturacion->pais,
+            'nif_nie' => $detalles_facturacion->nif_nie,
+        ] : null,
+        'prompts' => $prompts->isEmpty() ? null : $prompts->map(function($prompt) {
             return [
-                'id' => $usuario->id,
-                'suscripcion' => $suscripcion->tipo,
-                'imagen' => $usuario->imagen,
-                'estado' => $usuario->estado,
-                'nombre' => $usuario->name,
-                'email' => $usuario->email,
-                'rol' => $usuario->rol,
-                'free_prompts' => $usuario->free_prompts
+                'texto' => $prompt->texto,
+                'created_at' => $prompt->created_at
             ];
-        });
-    }
-
-    return response()->json($datos);
+        })
+    ]);
 }
+
 public function informacionUserIdActualizar($id, Request $request): JsonResponse {
     $usuario = User::findOrFail($id);
 
@@ -435,6 +450,94 @@ public function eliminarCuentasUsuarios(Request $request): JsonResponse
     }
 
     return response()->json(['success' => false, 'message' => 'No se proporcionaron IDs de usuarios'], 400);
+}
+public function getUsersLastWeek()
+{
+    // Fecha y hora de hace 7 días (semana actual)
+    $startOfWeek = Carbon::now()->startOfWeek();
+    $endOfWeek = Carbon::now()->endOfWeek();
+
+    // Fecha y hora de hace 14 días a 7 días atrás (semana pasada)
+    $startOfLastWeek = Carbon::now()->subWeek()->startOfWeek();
+    $endOfLastWeek = Carbon::now()->subWeek()->endOfWeek();
+
+    // Obtener el número de usuarios registrados en la semana actual
+    $currentWeekUserCount = User::whereBetween('created_at', [$startOfWeek, $endOfWeek])->count();
+
+    // Obtener el número de usuarios registrados en la semana pasada
+    $lastWeekUserCount = User::whereBetween('created_at', [$startOfLastWeek, $endOfLastWeek])->count();
+
+    // Calcular el porcentaje de diferencia
+    if ($lastWeekUserCount == 0) {
+        $percentageDifference = $currentWeekUserCount > 0 ? 100 : 0;
+    } else {
+        $percentageDifference = (($currentWeekUserCount - $lastWeekUserCount) / $lastWeekUserCount) * 100;
+    }
+
+    return response()->json([
+        'current_week_count' => $currentWeekUserCount,
+        'last_week_count' => $lastWeekUserCount,
+        'percentage_difference' => $percentageDifference,
+    ]);
+}
+
+
+public function cambiarEstadoUsuario(Request $request)
+{
+    // Verificar que la solicitud sea de tipo POST
+    if ($request->isMethod('post')) {
+        // Obtener el usuario autenticado
+        $user = auth()->user();
+        
+        // Validar el valor del estado recibido
+        $request->validate([
+            'estado' => 'required|in:Conectado,Desconectado',
+        ]);
+        
+        // Actualizar el estado del usuario autenticado
+        $user->estado = $request->input('estado');
+        
+        // Guardar los cambios en la base de datos
+        if ($user->save()) {
+            // Retornar una respuesta de éxito
+            return response()->json(['message' => 'Estado actualizado correctamente.'], 200);
+        } else {
+            // Retornar una respuesta de error
+            return response()->json(['message' => 'Error al actualizar el estado.'], 500);
+        }
+    } else {
+        // Retornar una respuesta de método no permitido
+        return response()->json(['message' => 'Método no permitido.'], 405);
+    }
+}
+
+public function ultimaSesionUsuario(Request $request)
+{
+    // Verificar que la solicitud sea de tipo POST
+    if ($request->isMethod('post')) {
+        // Obtener el usuario autenticado
+        $user = auth()->user();
+        
+        // Validar el valor del estado recibido
+        $request->validate([
+            'ultima_sesion' => 'required',
+        ]);
+        
+        // Actualizar el estado del usuario autenticado
+        $user->ultima_sesion = $request->input('ultima_sesion');
+        
+        // Guardar los cambios en la base de datos
+        if ($user->save()) {
+            // Retornar una respuesta de éxito
+            return response()->json(['message' => 'Sesión actualizado correctamente.'], 200);
+        } else {
+            // Retornar una respuesta de error
+            return response()->json(['message' => 'Error al actualizar la sesión.'], 500);
+        }
+    } else {
+        // Retornar una respuesta de método no permitido
+        return response()->json(['message' => 'Método no permitido.'], 405);
+    }
 }
 
 

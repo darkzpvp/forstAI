@@ -33,6 +33,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/informacion-usuario-panel/{id}', [AuthController::class, 'informacionUserId']);
    Route::put('/informacion-usuario-panel/{id}', [AuthController::class, 'informacionUserIdActualizar']);
    Route::delete('/eliminar-cuenta-usuario', [AuthController::class, 'eliminarCuentasUsuarios']);
+   Route::get('/users/last-week', [AuthController::class, 'getUsersLastWeek'])->middleware('auth:sanctum');
+   Route::get('/suscripcion/beneficio', [SuscripcionesController::class, 'getCosteTotalUltimaSemana'])->middleware('auth:sanctum');
+   Route::get('/suscripcion/total', [SuscripcionesController::class, 'getCosteTotal'])->middleware('auth:sanctum');
+   Route::post('/cambiar-estado-usuario', [AuthController::class, 'cambiarEstadoUsuario']);
+   Route::post('/ultima-sesion-usuario', [AuthController::class, 'ultimaSesionUsuario']);
+
 });
 
 Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail'])->middleware(['auth:sanctum']);
