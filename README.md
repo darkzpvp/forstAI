@@ -177,7 +177,32 @@ Creo un command como el del día anterior que se ejecuta a diario en el Kernel g
 Día 13
 Creo la API para cancelar suscripción, y la de eliminar cuenta que funciona unicamente si la contraseña que se da es correcta. Además, llevo partes del backend al cliente, y acabo la parte del perfil de usuario, trayendo toda la información como la suscripción, nombre, correo electrónico... Y en caso de que no exista, especificando los prompts gratuitos y añadiendo un botón de comprar
 <br>
-
+Día 14
+Creo la API para actualizar usuarios y además lo implemento en el cliente para ello añado muchísimas cosas, como una tabla de de administrador para garantizar permisos, poder cambiar contraseña, el usuario, el correo electrónico, además de modificar la lógica de las suscripciones para eliminarlas dentro del panel, cambiar al usuario las suscripciones y por último añadirle prompts gratuitos personalizado
+<br>
+Día 15
+Creo la API para agregar usuarios y lo implemento en el cliente, además de actualizarse a tiempo real.
+<br>
+Día 16
+Creo la paginación y trabajo en el checkbox, tanto individual como el checkbox de todos los usuarios, e implemento la eliminación una acabada la API
+<br>
+Día 17
+Creo búsqueda por searchbar y modifico otras páginas para refactorizar y añadir mejoras
+<br>
+Día 18
+Refactorizo y arreglo numerosos bugs
+<br>
+Día 19
+Finalizo la página de buscar usuarios por id, además de tener completamente funcional la tabla de registro de prompts del usuario, y recoger numerosos datos como su vivienda (si compró una suscripción), la IP (gracias a registrarse / loguearse), nombre, correo, etc.
+<br>
+Día 20
+Implemento en el panel de admin cards con información como beneficio de suscripciones, usuarios semanales, etc. Tanto en el frontend como en el backend
+<br>
+Día 21
+Migro toda la lógica de alertas a React Hook Form para seguir uniformidad y hacerlo más estético además de implementar el estado de usuarios y la última sesión de usuarios
+<br>
+Día 22
+Sigo migrando la lógica de alertas y añado middleware para administradores, arreglo errores, refactorizo, arreglo paginación de historial-prompts y cambio toda la lógica que tenía respecto a la comprobación de TOKEN por Local Storage, ya que fue inutil porque es más apropiado controlarlo con la propiedad "email_verified_at". Ajusto además las cards con unos problemas que tenía respecto al color y al SVG; si los números son negativos en rojo, si son positivos en verde 
 
 Recursos que utilicé:<br>
 Dudas y relleno de texto<br>
