@@ -17,19 +17,16 @@ const useOlvidePassword = () => {
     }
   };
 
-  const resetPassword = async (datos, token, setErrores, setMensajeOk) => {
+  const resetPassword = async (datos, token, setMensajeOk) => {
     const url = `/api/reset?token=${token}`;
     try {
       const { data } = await clienteAxios.post(url, datos);
-      console.log({ data });
-      setErrores([]);
       setMensajeOk(data.status);
       setTimeout(() => {
         router.push("/login");
       }, 5000);
     } catch (error) {
       console.log(error);
-      setErrores(Object.values(error?.response?.data.errors));
     }
   };
 

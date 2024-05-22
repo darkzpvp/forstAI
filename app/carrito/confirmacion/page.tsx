@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import ModalCarrito from "./ModalCarrito";
 import Link from "next/link";
 import useDatosBancarios from "@/app/hooks/useDatosBancarios";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import useInformacionPersonal from "@/app/hooks/useInformacionPersonal";
 
 const Page = () => {
@@ -13,7 +13,6 @@ const Page = () => {
 
   const [comprado, setComprado] = useState(false);
   const [menu, setMenu] = useState(false);
-  const Router = useRouter();
   const handleCloseMenu = () => {
     if (menu) {
       setMenu(false);
@@ -27,18 +26,17 @@ const Page = () => {
     e.preventDefault();
     setModal(true);
   };
-  const { continuarCarrito, setContinuarCarrito, getInformacion, datosPersonales } =
-    useInformacionPersonal();
+  const {
+    continuarCarrito,
+    getInformacion,
+    datosPersonales,
+    suscripcionObjeto
+  } = useInformacionPersonal();
   const { datosBancarios } = useDatosBancarios();
 
-useEffect(() => {
-  const  getInformacionUser = async() => {
-await getInformacion()
-  }
-  getInformacionUser()
-getInformacion()
-}, [datosPersonales])
-
+  useEffect(() => {
+    getInformacion();
+  }, []);
 
   return (
     <>
@@ -74,7 +72,6 @@ getInformacion()
                 </div>
               </div>
             </div>
-            
           )}
 
           <div className="flex justify-center mx-auto w-[100%] max-w-3xl mb-10">
@@ -163,6 +160,7 @@ getInformacion()
                             {datosPersonales?.nif_nie}
                           </td>
                           <td className="text-gray-400 pb-5 px-5">
+                            {datosPersonales?.direccion}, {datosPersonales?.cp},{" "}
                             {datosPersonales?.poblacion},{" "}
                             {datosPersonales?.provincia},{" "}
                             {datosPersonales?.pais}
@@ -218,13 +216,15 @@ getInformacion()
                   </div>
                 </div>
                 <div className=" md:col-span-2  shadow-lg bg-gray-800 px-5 py-5 rounded-lg h-72 flex flex-col justify-center">
-                  <h1 className="text-gray-300 text-xl font-bold mb-5">
-                    Resumen
-                  </h1>
+                <h1 className="text-gray-300 text-xl font-bold mb-5">
+                  Resumen
+                </h1>
+
+                <div>
                   <div className="flex">
                     <p className="text-gray-300 mb-5 w-[100%]">Suscripción</p>
                     <p className="flex text-gray-300 font-bold whitespace-nowrap">
-                      Plan Premium
+                      {suscripcionObjeto?.plan}
                     </p>
                   </div>
 
@@ -232,22 +232,25 @@ getInformacion()
                     <p className="text-gray-300 mb-5 w-full">
                       Subtotal artículos
                     </p>
-                    <p className="text-gray-300 mb-5">15€</p>
+                    <p className="text-gray-300 mb-5">
+                      {suscripcionObjeto?.precio}€
+                    </p>
                   </div>
                   <div className="flex items-center">
                     <p className="text-gray-300 mb-5 w-full">Total</p>
                     <p className="text-gray-300 mb-5 text-3xl font-bold ">
-                      15€
+                      {suscripcionObjeto?.precio}€
                     </p>
                   </div>
-
-                  <button
-                    type="submit"
-                    className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] rounded-lg text-sm py-2.5 flex justify-center px-3 transition ease-in duration-100 w-full"
-                  >
-                    Pagar ahora
-                  </button>
                 </div>
+
+                <button
+                  type="submit"
+                  className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] rounded-lg text-sm py-2.5 flex justify-center px-3 transition ease-in duration-100 w-full"
+                >
+                  Guardar y continuar
+                </button>
+              </div>
               </div>
             </div>
           </form>

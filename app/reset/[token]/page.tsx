@@ -5,25 +5,15 @@ import { LegacyRef, MutableRefObject, useEffect, useRef, useState } from "react"
 import Image from "next/image";
 import Alerta from "@/app/components/Alerta";
 import AlertaOk from "@/app/components/AlertaOk";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { password, passwordSchema } from "@/app/validations/PasswordSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 export default function page({ params }: { params: { token: string } }) {
-  const [errores, setErrores] = useState([]);
   const [mensajeOk, setMensajeOk] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [tokenUrl, setTokenUrl] = useState(params.token);
   const [tokenValido, setTokenValido] = useState([]);
-
   const { resetPassword, comprobarToken } = useOlvidePassword();
-  const passwordRef = useRef();
-  const passwordRepeatRef = useRef();
-  
-
-  useEffect(() => {
-    if (errores.length > 0) {
-      setTimeout(() => {
-        setErrores([]);
-      }, 10000);
-    }
-  }, [errores]);
 
   useEffect(() => {
     if (mensajeOk) {
@@ -37,18 +27,30 @@ export default function page({ params }: { params: { token: string } }) {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const datos = {
-      password: passwordRef.current.value,
-      password_confirmation: passwordRepeatRef.current.value,
-    };
-    await resetPassword(datos, tokenUrl, setErrores, setMensajeOk);
-  };
+
+ 
   useEffect(() => {
     comprobarToken(tokenUrl, setTokenValido);
   }, [tokenUrl])
 
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+
+    formState: { errors },
+  } = useForm<password>({
+    resolver: zodResolver(passwordSchema),
+  });
+  const onSubmit: SubmitHandler<password> = async (data) => {
+    const datos = {
+      ...data
+    };
+  
+    await resetPassword(datos, tokenUrl, setMensajeOk);
+
+  };
 
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 h-screen ">
@@ -97,13 +99,11 @@ export default function page({ params }: { params: { token: string } }) {
          </div>
 
          <form
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           noValidate
           className="flex justify-center items-center flex-col  xl:px-28 lg:px-20 md:px-20 px-8"
          >
-          {errores
-            ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>)
-            : null}
+       
             {mensajeOk ? <AlertaOk>{mensajeOk}</AlertaOk> : null}
           <div className="w-full max-w-72 lg:max-w-80 relative">
             <label
@@ -112,14 +112,14 @@ export default function page({ params }: { params: { token: string } }) {
             >
               Contraseña
             </label>
-            <div className="flex items-center border rounded-lg bg-gray-200 mb-4 text-black w-full">
+            <div className="flex items-center border rounded-lg bg-gray-200 mb-2 text-black w-full">
               <input
                 type={showPassword ? "text" : "password"}
                 id="contraseña"
                 className="w-full text-sm p-2.5 bg-transparent placeholder-gray-400 focus:outline-none"
                 placeholder="Escribe tu contraseña"
-                ref={passwordRef as unknown as LegacyRef<HTMLInputElement> | undefined}
-                required
+                {...register("password")}
+
               />
               <button
                 type="button"
@@ -163,23 +163,35 @@ export default function page({ params }: { params: { token: string } }) {
                   </svg>
                 )}
               </button>
+          
             </div>
+            <div className=" text-sm text-red-600 mb-4">
+                        {errors?.password?.message && (
+                          <p>{errors?.password?.message}</p>
+                        )}
+                      </div>
             <label
               htmlFor="contraseña2"
               className="block mb-2 text-sm font-medium text-gray-300"
             >
               Repite contraseña
             </label>
-            <div className="flex items-center border rounded-lg bg-gray-200 mb-4 text-black w-full">
+            <div className="flex items-center border rounded-lg bg-gray-200 mb-2 text-black w-full">
               <input
                 type="password"
                 id="contraseña2"
                 className="w-full text-sm p-2.5 bg-transparent placeholder-gray-400 focus:outline-none"
                 placeholder="Escribe tu contraseña"
-                ref={passwordRepeatRef as LegacyRef<HTMLInputElement> | undefined}
-                required
+                {...register("password_confirmation")}
+
               />
+              
             </div>
+            <div className=" text-sm text-red-600 mb-4">
+                        {errors?.password_confirmation?.message && (
+                          <p>{errors?.password_confirmation?.message}</p>
+                        )}
+                      </div>
           </div>
           <button
             type="submit"

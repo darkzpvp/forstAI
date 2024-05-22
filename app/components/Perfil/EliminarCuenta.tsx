@@ -1,30 +1,29 @@
-import { useAuth } from '@/app/hooks/useAuth';
-import React, { useRef, useState } from 'react'
+import { useAuth } from "@/app/hooks/useAuth";
+import React, { useRef, useState } from "react";
 
-const EliminarCuenta = ({eliminarCuenta, setEliminarCuenta}) => {
-    const { eliminarCuentaPerfil } = useAuth({});
+const EliminarCuenta = ({ eliminarCuenta, setEliminarCuenta }) => {
+  const { eliminarCuentaPerfil } = useAuth({});
 
-    const handleEliminarCuenta = async (e) => {
-        e.preventDefault();
-        const contraseña = {
-          current_password: passwordEliminarCuenta.current.value,
-        };
-        await eliminarCuentaPerfil(
-          contraseña,
-          setErroresEliminarCuenta,
-          erroresEliminarCuenta
-        );
-        console.log("errores", erroresEliminarCuenta);
-      };
-      const passwordEliminarCuenta = useRef();
-      const [showPassword, setShowPassword] = useState(false);
-const [erroresEliminarCuenta, setErroresEliminarCuenta] = useState(false)
-      const handlePassword = () => {
-        setShowPassword(!showPassword);
-      };
+  const handleEliminarCuenta = async (e) => {
+    e.preventDefault();
+    const contraseña = {
+      current_password: passwordEliminarCuenta.current.value,
+    };
+    await eliminarCuentaPerfil(
+      contraseña,
+      setErroresEliminarCuenta,
+      erroresEliminarCuenta
+    );
+  };
+  const passwordEliminarCuenta = useRef();
+  const [showPassword, setShowPassword] = useState(false);
+  const [erroresEliminarCuenta, setErroresEliminarCuenta] = useState(false);
+  const handlePassword = () => {
+    setShowPassword(!showPassword);
+  };
   return (
     <div>
-         {eliminarCuenta && (
+      {eliminarCuenta && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-900 bg-opacity-70"
           onClick={() => setEliminarCuenta(false)}
@@ -122,7 +121,7 @@ const [erroresEliminarCuenta, setErroresEliminarCuenta] = useState(false)
                     </div>
                   ))
                 : null}
-               <div className=" mt-4 flex justify-center mx-auto gap-2">
+              <div className=" mt-4 flex justify-center mx-auto gap-2">
                 <button
                   onClick={() => setEliminarCuenta(false)}
                   className="py-2.5 px-5 text-sm font-medium   rounded-lg  bg-gray-600 hover:bg-gray-700  border-gray-600 text-gray-300  "
@@ -139,9 +138,9 @@ const [erroresEliminarCuenta, setErroresEliminarCuenta] = useState(false)
             </form>
           </div>
         </div>
-              )}
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default EliminarCuenta
+export default EliminarCuenta;

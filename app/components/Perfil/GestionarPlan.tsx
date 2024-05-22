@@ -1,11 +1,10 @@
 import useUsuarioContext from '@/app/hooks/useUsuarioContext';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react'
 
 const GestionarPlan = ({gestionarPlan, setGestionarPlan, selectedPlan, setSelectedPlan}) => {
 
     const RouterRedirect = useRouter();
-    const { setSuscripcionElegida, suscripcionElegida } = useUsuarioContext();
+    const { setSuscripcionElegida } = useUsuarioContext();
 
     const handlePlanChange = async (e) => {
         e.preventDefault();

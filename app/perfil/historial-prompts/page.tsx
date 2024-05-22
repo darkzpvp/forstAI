@@ -27,7 +27,7 @@ const Router = useRouter()
   const [textPrompt, setTextPrompt] = useState([]);
   const [loading, setLoading] = useState(true);
   const page = searchParams["page"] ?? "1";
-  const per_page = searchParams["per_page"] ?? "13";
+  const per_page = searchParams["per_page"] ?? "10";
   const [totalElements, setTotalElements] = useState(0);
   const start = (Number(page) - 1) * Number(per_page);
   const end = start + Number(per_page);
@@ -79,9 +79,11 @@ const Router = useRouter()
 </table>
           <div className=" flex justify-between ">
             <PaginationControls
-              hasNextPage={end < frames.length}
+              hasNextPage={end < textPrompt.length}
               hasPrevPage={start > 0}
               totalElements={totalElements}
+              basePath='/perfil/historial-prompts'
+              perpage={10}
             />
           </div>
         </div>

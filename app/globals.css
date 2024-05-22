@@ -96,10 +96,7 @@ button[aria-label="close"] {
 color: white;
 }
 .gradient{
-/*
-* Created with https://www.css-gradient.com
-* Gradient link: https://www.css-gradient.com/?c1=7b8da7&c2=4e6389&gt=r&gd=dtl
-*/
+
 background: linear-gradient(to right, #8a9fe4, #5c66ab);
 }
 

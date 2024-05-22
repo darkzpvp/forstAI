@@ -4,70 +4,67 @@ import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
 
-
 export const useAuth = ({ middleware, url }) => {
-  const Router = useRouter()
-  const {
-    data: user,
-    error,
-    mutate,
-  } = useSWR("/api/user", () =>
-    clienteAxios("/api/user", {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("AUTH_TOKEN")}`,
-      },
-    })
-      .then((res) => res.data)
-      .catch((error) => {
-        throw Error(error?.response?.data?.message);
+  const Router = useRouter();
+  const { data: user, error, mutate } = useSWR(
+    "/api/user",
+    () =>
+      clienteAxios("/api/user", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("AUTH_TOKEN")}`,
+        },
       })
+        .then((res) => res.data)
+        .catch((error) => {
+          throw new Error(error?.response?.data?.message || error.message);
+        }),
+    {
+      revalidateOnFocus: false,
+      shouldRetryOnError: false,
+    }
   );
   const login = async (datos, setErrores, email, setMensajeOk) => {
     try {
       const { data } = await clienteAxios.post("/api/login", datos);
       localStorage.setItem("AUTH_TOKEN", data.token);
-      console.log(data);
       if (data.user.email_verified_at === null) {
-        await mandarEmailVerificacion(email, setErrores, setMensajeOk);
+        await mandarEmailVerificacion(email, setMensajeOk);
+      }
+      if (data.user.email_verified_at !== null) {
+        Router.push("/generar");
       }
       setErrores([]);
       await mutate();
     } catch (error) {
       console.log(error);
-    
-        setErrores(Object.values(error.response.data.errors));
-      }
-    }
-  
-
-  const registro = async (datos, setErrores, email, setMensajeOk) => {
-    try {
-      await clienteAxios("/sanctum/csrf-cookie");
-      const { data } = await clienteAxios.post("/api/registro", datos);
-      console.log(data);
-      localStorage.setItem("AUTH_TOKEN", data.token);
-      setErrores([]);
-      await mutate();
-      mandarEmailVerificacion(email, setErrores, setMensajeOk);
-    } catch (error) {
-      console.log(error);
-      setErrores(Object.values(error?.response?.data.errors));
+      console.log(error.response.data.incorrecto);
+      setErrores(error.response.data.incorrecto);
     }
   };
 
+  const registro = async (datos, email, setMensajeOk) => {
+    try {
+      await clienteAxios("/sanctum/csrf-cookie");
+      const { data } = await clienteAxios.post("/api/registro", datos);
+      localStorage.setItem("AUTH_TOKEN", data.token);
+      await mutate();
+      await mandarEmailVerificacion(email, setMensajeOk);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const crearUsuario = async (datos) => {
     try {
       await clienteAxios("/sanctum/csrf-cookie");
       const { data } = await clienteAxios.post("/api/registro", datos);
-      console.log(data);
       await mutate();
     } catch (error) {
       console.log(error);
     }
   };
 
-  const mandarEmailVerificacion = async (email, setErrores, setMensajeOk) => {
+  const mandarEmailVerificacion = async (email, setMensajeOk) => {
     try {
       setMensajeOk("");
       const authToken = localStorage.getItem("AUTH_TOKEN");
@@ -89,11 +86,9 @@ export const useAuth = ({ middleware, url }) => {
         email,
         config
       );
-      setErrores([]);
       setMensajeOk(data.status);
     } catch (error) {
       console.log(error);
-      setErrores(Object.values(error?.response?.data.errors));
     }
   };
 
@@ -106,18 +101,24 @@ export const useAuth = ({ middleware, url }) => {
       });
       localStorage.removeItem("AUTH_TOKEN");
       await mutate(undefined);
+      Router.push("/");
     } catch (error) {
       throw Error(error?.response?.data?.message);
     }
   };
 
-
-  const eliminarCuentaPerfil = async (contraseña, setErroresEliminarCuenta, erroresEliminarCuenta) => {
+  const eliminarCuentaPerfil = async (
+    contraseña,
+    setErroresEliminarCuenta,
+    erroresEliminarCuenta
+  ) => {
     console.log(contraseña);
     try {
       const authToken = localStorage.getItem("AUTH_TOKEN");
       if (!authToken) {
-        console.log("Usuario no autenticado. Redirigiendo a la página de inicio de sesión...");
+        console.log(
+          "Usuario no autenticado. Redirigiendo a la página de inicio de sesión..."
+        );
         return;
       }
 
@@ -131,25 +132,29 @@ export const useAuth = ({ middleware, url }) => {
         headers: config.headers,
         data: contraseña,
       });
-console.log(data);
       localStorage.removeItem("AUTH_TOKEN");
-   
-      Router.push('/')
-      window.location.reload()
 
+      Router.push("/");
+      window.location.reload();
     } catch (error) {
       setErroresEliminarCuenta(Object?.values(error?.response?.data.errors));
-setTimeout(() => {
-setErroresEliminarCuenta([])
-}, 5000)
-  
+      setTimeout(() => {
+        setErroresEliminarCuenta([]);
+      }, 5000);
     }
   };
-
 
   useEffect(() => {
     if (middleware === "guest" && url && user) {
       redirect(url);
+    }
+
+    if (middleware === "guest" && user && user.rol === 1) {
+      redirect("/admin");
+    }
+
+    if (middleware === "admin" && user && user.rol !== 1) {
+      redirect("/");
     }
 
     if (middleware === "auth" && error) {
@@ -163,6 +168,6 @@ setErroresEliminarCuenta([])
     user,
     error,
     eliminarCuentaPerfil,
-    crearUsuario
+    crearUsuario,
   };
 };

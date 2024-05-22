@@ -1,18 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import useUsuarioContext from '@/app/hooks/useUsuarioContext';
+import { useAuth } from '@/app/hooks/useAuth';
 
 const Cards = () => {
 const Router = useRouter()
-const {suscripcionElegida, setSuscripcionElegida} = useUsuarioContext()
-  const authToken = localStorage.getItem("AUTH_TOKEN") || null;
-  console.log(authToken);
+const {user} = useAuth({})
+const {setSuscripcionElegida} = useUsuarioContext()
+
+
 
 
 const handleSubmit = (e, id) => {
   e.preventDefault();
-  Router.push('/carrito')
+  if (user?.email_verified_at) {
+    Router.push('/carrito');
+  } else {
+    Router.push('/login');
+  }
   setSuscripcionElegida(id)
   
 }
@@ -118,7 +124,6 @@ const handleSubmit = (e, id) => {
           </span>
         </li>
       </ul>
-      {authToken ? (
   
     <button
     onClick={(e) => handleSubmit(e, 1)}
@@ -128,16 +133,7 @@ const handleSubmit = (e, id) => {
       Elegir plan
     </button>
 
-) : (
-  <Link href="/login">
-    <button
-      type="submit"
-      className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 flex justify-center w-full text-center active:bg-[#464f9d] transition ease-in duration-100"
-    >
-      Elegir plan
-    </button>
-  </Link>
-)}
+
 
     </div>
 
@@ -240,7 +236,6 @@ const handleSubmit = (e, id) => {
         </li>
       </ul>
     
-      {authToken ? (
  
     <button
         onClick={(e) => handleSubmit(e, 2)}
@@ -249,17 +244,7 @@ const handleSubmit = (e, id) => {
     >
       Elegir plan
     </button>
- 
-) : (
-  <Link href="/login">
-    <button
-      type="submit"
-      className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 flex justify-center w-full text-center active:bg-[#464f9d] transition ease-in duration-100"
-    >
-      Elegir plan
-    </button>
-  </Link>
-)}
+
   
     </div>
 
@@ -362,7 +347,6 @@ const handleSubmit = (e, id) => {
         </li>
       </ul>
     
-      {authToken ? (
  
     <button
         onClick={(e) => handleSubmit(e, 3)}
@@ -372,16 +356,7 @@ const handleSubmit = (e, id) => {
       Elegir plan
     </button>
 
-) : (
-  <Link href="/login">
-    <button
-      type="submit"
-      className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 flex justify-center w-full text-center active:bg-[#464f9d] transition ease-in duration-100"
-    >
-      Elegir plan
-    </button>
-  </Link>
-)}
+
     
     </div>
   </section>

@@ -1,42 +1,14 @@
 import useRecibirMail from "@/app/hooks/useRecibirmail";
 import React, { useEffect, useState } from "react";
-import { useRef, createRef } from "react";
-import Alerta from "../Home/Alerta";
 import AlertaOk from "./AlertaOk";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { enviarEmail, enviarEmailSchema } from "@/app/validations/enviarEmailSchema";
 
 const Contacto = () => {
-  const emailRef = useRef();
-  const nameRef = useRef();
-  const mensajeRef = useRef();
-  const [errores, setErrores] = useState([]);
   const [mensajeOk, setMensajeOk] = useState("");
   const [loading, setLoading] = useState(false);
   const { recibirMail } = useRecibirMail();
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    setLoading(true);
-    const datos = {
-      email: emailRef.current.value,
-      name: nameRef.current.value,
-      message: mensajeRef.current.value,
-    };
-    await recibirMail(datos, setErrores, setMensajeOk);
-    setLoading(false);
-
-    emailRef.current.value = "";
-    nameRef.current.value = "";
-    mensajeRef.current.value = "";
-  };
-
-  useEffect(() => {
-    if (errores.length > 0) {
-      setTimeout(() => {
-        setErrores([]);
-      }, 5000);
-    }
-  }, [errores]);
 
   useEffect(() => {
     if (mensajeOk.length > 0) {
@@ -45,6 +17,27 @@ const Contacto = () => {
       }, 5000);
     }
   }, [mensajeOk]);
+
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+reset,
+    formState: { errors },
+  } = useForm<enviarEmail>({
+    resolver: zodResolver(enviarEmailSchema),
+  });
+
+  const onSubmit: SubmitHandler<enviarEmail> = async (data) => {
+    setLoading(true);
+    const datos = {
+      ...data,
+    };
+    await recibirMail(datos, setMensajeOk);
+    setLoading(false);
+    reset()
+  };
 
   return (
     <div className="h-full min-h-[80vh] grid md:grid-cols-2 grid-cols-1 bg-contactobackground">
@@ -63,15 +56,12 @@ const Contacto = () => {
         className="px-8 md:px-0 md:mr-5 block my-auto justify-center items-center"
       >
         <div className="mt-5 block w-full max-w-lg mx-auto text-center md:text-left">
-          {errores
-            ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>)
-            : null}
           {mensajeOk ? <AlertaOk>{mensajeOk}</AlertaOk> : null}
         </div>
 
         <form
           noValidate
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           className="mb-5 w-full max-w-lg p-6 mx-auto   rounded-lg shadow sm:p-8 bg-gray-800 text-gray-300 "
         >
           <label
@@ -85,8 +75,11 @@ const Contacto = () => {
             id="nombre"
             className="focus:outline-none  mb-2     text-sm rounded-lg   block w-full p-2.5 bg-gray-700 placeholder-gray-400    "
             placeholder="Víctor Valverde"
-            ref={nameRef}
+            {...register("name")}
           />
+          <div className=" text-sm text-red-600 mb-4">
+            {errors?.name?.message && <p>{errors?.name?.message}</p>}
+          </div>
           <label
             htmlFor="email"
             className="block mb-2 text-sm font-medium  text-gray-300"
@@ -98,9 +91,11 @@ const Contacto = () => {
             id="email"
             className="focus:outline-none mb-2   text-sm rounded-lg   block w-full p-2.5 bg-gray-700 placeholder-gray-400   "
             placeholder="hola@correo.com"
-            ref={emailRef}
+            {...register("email")}
           />
-
+          <div className=" text-sm text-red-600 mb-4">
+            {errors?.email?.message && <p>{errors?.email?.message}</p>}
+          </div>
           <label
             htmlFor="message"
             className="block mb-2 text-sm font-medium  text-gray-300"
@@ -110,16 +105,18 @@ const Contacto = () => {
           <textarea
             id="message"
             rows={4}
-            className="focus:outline-none mb-8 block p-2.5 w-full text-sm   rounded-lg     bg-gray-700 placeholder-gray-400  "
+            className="focus:outline-none mb-2 block p-2.5 w-full text-sm   rounded-lg     bg-gray-700 placeholder-gray-400  "
             placeholder="Escribe los detalles de tu mensaje"
-            ref={mensajeRef}
+            {...register("message")}
           ></textarea>
-
+          <div className=" text-sm text-red-600 mb-4">
+            {errors?.message?.message && <p>{errors?.message?.message}</p>}
+          </div>
           {loading ? (
             <button
               type="button"
-              className={`bg-gray-600 cursor-not-allowed hover:bg-gray-600 active:bg-gray-600  text-white font-medium rounded-lg text-sm px-4 py-2 w-full`}
-              disabled // Deshabilita el botón mientras se está cargando
+              className={` cursor-not-allowed bg-[#727ee4] text-white  rounded-lg text-sm px-4 py-2 w-full`}
+              disabled
             >
               <svg
                 role="status"
@@ -141,7 +138,7 @@ const Contacto = () => {
           ) : (
             <button
               type="submit"
-              className={`text-white bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] font-medium rounded-lg text-sm px-4 py-2 w-full`}
+              className={`text-white bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d]  rounded-lg text-sm px-4 py-2 w-full`}
             >
               Enviar
             </button>

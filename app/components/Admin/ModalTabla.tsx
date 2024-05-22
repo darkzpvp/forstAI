@@ -1,3 +1,4 @@
+import useUsuarioContext from '@/app/hooks/useUsuarioContext';
 import React, { useEffect, useState } from 'react';
 
 const ModalTabla = ({ setClickModificar, setActualizarTabla, setClickEliminar }) => {
@@ -10,7 +11,7 @@ const ModalTabla = ({ setClickModificar, setActualizarTabla, setClickEliminar })
     setClickEliminar(true);
   };
 
-
+const {usuario} = useUsuarioContext()
   return (
     <div className='absolute z-50'>
       <div className="relative">
@@ -28,7 +29,7 @@ const ModalTabla = ({ setClickModificar, setActualizarTabla, setClickEliminar })
             </li>
       
             <li>
-              <a href="/admin/user" className="block px-4 py-2 hover:bg-gray-800 transition duration-100 ease-in">
+              <a href={`/admin/user/${usuario.id}`} className="block px-4 py-2 hover:bg-gray-800 transition duration-100 ease-in">
                 Ver detalles del usuario
               </a>
             </li>

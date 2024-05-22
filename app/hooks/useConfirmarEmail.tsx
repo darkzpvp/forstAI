@@ -23,7 +23,6 @@ const useConfirmarEmail = () => {
         };
     
         const { data } = await clienteAxios.get(url, config);
-        console.log(data);
         setErrores([]);
         router.push("/generar");
       } catch (error) {

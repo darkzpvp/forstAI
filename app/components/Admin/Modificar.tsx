@@ -25,7 +25,7 @@ const Modificar = ({
 
   const { nombre, email, free_prompts, suscripcion, rol } = usuario || {};
   
-
+const {setSelectedUsers} = useInformacionPersonal()
 
   const valoresSuscripcion = {
     'basico': 1,
@@ -56,12 +56,15 @@ const Modificar = ({
     setUsuario(data);
     await actualizarDatosUserId(selectedUserId, data);
     setClickModificar(false);
+    setSelectedUsers([])
+
     notifyModificar();
     
   };
   const handleCerrarModal = (e) => {
     e.preventDefault();
     setClickModificar(false);
+    setSelectedUsers([])
     reset()
   };
   const { datosUser, actualizarDatosUserId } = useInformacionPersonal();

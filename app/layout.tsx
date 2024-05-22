@@ -30,11 +30,13 @@ const {state, setState, count, setCount, remaining, setRemaining, ultimaActivida
 
 
 
+if (typeof localStorage !== 'undefined') {
   const Path = usePathname()
-  if(Path !== '/carrito' && Path !== '/carrito/datosbancarios' && Path !== '/carrito/confirmacion'){
+  if (Path !== '/carrito' && Path !== '/carrito/datosbancarios' && Path !== '/carrito/confirmacion') {
     localStorage.removeItem('suscripcionElegida');
     localStorage.removeItem('carrito');
   }
+}
   return (
     <html lang="en" className="  ">
 <head>

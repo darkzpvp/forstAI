@@ -19,7 +19,6 @@ const useSuscripciones = () => {
     const url = `/api/ver-suscripcion`;
     try {
       const { data } = await clienteAxios(url, config);
-      console.log(data);
       return data;
     } catch (error) {
       console.log(error);
@@ -45,7 +44,6 @@ const eliminarSuscripciones = async () => {
   const url = `/api/cancelar-suscripcion`;
   try {
     const { data } = await clienteAxios.delete(url, config);
-    console.log(data);
     return data;
 
   } catch (error) {

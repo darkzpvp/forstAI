@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
-import { useState } from "react";
 import Image from "next/image";
 import { useAuth } from "../hooks/useAuth";
 import { usePathname } from "next/navigation";
@@ -9,7 +8,6 @@ import useUsuarioContext from "../hooks/useUsuarioContext";
 
 interface InterfazProps {
   menu: boolean;
-  suscripcion: boolean;
   setMenu: (value: boolean) => void;
   menuHamburguesa: boolean;
   setMenuHamburguesa: (value: boolean) => void;
@@ -21,11 +19,10 @@ const Header_Dos = ({
   menuHamburguesa,
   setMenuHamburguesa
 }: InterfazProps) => {
-  const { logout, user } = useAuth({ middleware: "auth", url: "/" });
-
+  const { logout, user } = useAuth({});
 const pathname = usePathname()
 
-const { avatarUrl, setAvatarUrl } = useUsuarioContext();
+const { avatarUrl } = useUsuarioContext();
 
  
 
@@ -135,6 +132,16 @@ useEffect(() => {
                 </a>
               </Link>
             </div>
+
+            {user?.rol === 1 && (
+                 <div>
+                 <Link href={"/admin"} legacyBehavior>
+                   <a  className=" text-gray-300 cursor-pointer">
+                     Admin
+                   </a>
+                 </Link>
+               </div>
+             )}
           </div>
           <div className="flex  items-center w-[25%]  justify-end">
             <button
@@ -264,7 +271,19 @@ useEffect(() => {
                   </a>
                 </Link>
               </li>
-             
+              {user.rol === 1 && (
+                 <li>
+                 <Link href={"/admin"} legacyBehavior>
+                   <a
+                     className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
+                     aria-current="page"
+                    
+                   >
+                     Admin
+                   </a>
+                 </Link>
+               </li>
+             )}
             </ul>
           </div>
         )}

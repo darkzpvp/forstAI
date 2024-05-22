@@ -1,50 +1,67 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState, createRef } from "react";
 import Link from "next/link";
 import Alerta from "../components/Alerta";
 import Image from "next/image";
 import { useAuth } from "../hooks/useAuth";
 import AlertaOk from "../components/AlertaOk";
+import { SubmitHandler, useForm } from "react-hook-form";
+import {
+  registroUsuario,
+  registroUsuarioSchema,
+} from "../validations/registroSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { redirect, useRouter } from "next/navigation";
 const Registrar = () => {
-
-
-  const nameRef = createRef();
-  const emailRef = createRef();
-  const passwordRef = createRef();
-  const passwordConfirmationRef = createRef();
-
-  const [errores, setErrores] = useState([])
-  const [mensajeOk, setMensajeOk] = useState('')
-
-  const {registro, mandarEmailVerificacion} = useAuth({middleware: 'guest', url: '/generar'})
-  const handleSubmit = async(e) => {
-    e.preventDefault();
-    setMensajeOk('');
-    const datos = {
-      name: nameRef.current.value,
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-      password_confirmation: passwordConfirmationRef.current.value,
-    }
-    const email = {
-      email: emailRef.current.value
-    
-    }
- await registro(datos, setErrores, email, setMensajeOk)
-
-  };
-
-setTimeout(() => {
-setErrores([])
-}, 10000)
-  
+  const [errores, setErrores] = useState([]);
+  const [mensajeOk, setMensajeOk] = useState("");
+const [loading, setLoading] = useState(false)
+  const { registro, user } = useAuth({});
+const Router = useRouter()
   const [showPassword, setShowPassword] = useState(false);
 
   const handlePassword = () => {
     setShowPassword(!showPassword);
   };
 
+  const {
+    register,
+    handleSubmit,
+    watch,
+
+    formState: { errors },
+  } = useForm<registroUsuario>({
+    resolver: zodResolver(registroUsuarioSchema),
+  });
+
+  const onSubmit: SubmitHandler<registroUsuario> = async (data) => {
+    setLoading(true)
+    const datos = {
+      ...data,
+    };
+    const email = {
+      email: data.email,
+    };
+    await registro(datos, email, setMensajeOk);
+    setLoading(false)
+  };
+
+  useEffect(() => {
+    if(user?.email_verified_at){
+      redirect('/generar')
+    }
+    }, [])
+
+    const handleGoLogin = () => {
+    
+        Router.push('/login')
+
+      }
+      
+    
+    
+    
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 h-screen">
       <div className=" bg-registro-gradient bg-cover bg-center block justify-center md:col-span-1 lg:col-span-2 md:flex">
@@ -87,68 +104,78 @@ setErrores([])
           />
         </div>
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           className="flex justify-center items-center flex-col  xl:px-28 lg:px-20 md:px-20 px-8"
-          
-         >
-          
-          {errores ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>): null}
+        >
+          {errores
+            ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>)
+            : null}
           {mensajeOk ? <AlertaOk>{mensajeOk}</AlertaOk> : null}
           <div className="w-full max-w-72 lg:max-w-80">
             <label
               htmlFor="nombre"
-              className="block mb-2 text-sm font-medium text-gray-300"
+              className="block text-sm font-medium text-gray-300 mb-2"
             >
               Nombre
             </label>
             <input
               type="text"
               id="nombre"
-              className={`${mensajeOk && ' cursor-not-allowed disabled'} focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4`}
-              disabled={mensajeOk && true}
-              name="name"
+              className={`${
+                mensajeOk && " cursor-not-allowed disabled"
+              } focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full`}
               placeholder="Víctor"
-              ref={nameRef}
-              
+              {...register("name")}
+              disabled={mensajeOk && true}
+
             />
+            <div className=" text-sm text-red-600 mb-4">
+              {errors?.name?.message && <p>{errors?.name?.message}</p>}
+            </div>
           </div>
           <div className="w-full max-w-72 lg:max-w-80">
             <label
               htmlFor="email"
-              className="block mb-2 text-sm font-medium text-gray-300"
+              className="block text-sm font-medium text-gray-300 mb-2"
             >
               Email
             </label>
             <input
               type="text"
               id="email"
-              name="email"
-              disabled={mensajeOk && true}
-              className={`${mensajeOk && ' cursor-not-allowed disabled'}focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4`}
+              className={`${
+                mensajeOk && " cursor-not-allowed disabled"
+              }focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full`}
               placeholder="hola@correo.com"
-              ref={emailRef}
-              
+              {...register("email")}
+              disabled={mensajeOk && true}
+
             />
+            <div className=" text-sm text-red-600 mb-4">
+              {errors?.email?.message && <p>{errors?.email?.message}</p>}
+            </div>
           </div>
 
           <div className="w-full max-w-72 lg:max-w-80 relative">
             <label
               htmlFor="password"
-              className="block mb-2 text-sm font-medium text-gray-300"
+              className="block text-sm font-medium text-gray-300 mb-2"
             >
               Contraseña
             </label>
-            <div className="focus:outline-none flex items-center border rounded-lg bg-gray-200 mb-4 text-black w-full">
+            <div className="focus:outline-none flex items-center border rounded-lg bg-gray-200 text-black w-full">
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
-                className={`${mensajeOk && ' cursor-not-allowed disabled'} w-full text-sm p-2.5 bg-transparent placeholder-gray-400 focus:outline-none`}
-                name="password"
-                disabled={mensajeOk && true}
+                className={`${
+                  mensajeOk && " cursor-not-allowed disabled"
+                } w-full text-sm p-2.5 bg-transparent placeholder-gray-400 focus:outline-none`}
                 placeholder="Escribe tu contraseña"
-                ref={passwordRef}
-                
+                {...register("password")}
+                disabled={mensajeOk && true}
+
               />
+
               <button
                 type="button"
                 className="absolute right-4 focus:outline-none"
@@ -192,41 +219,75 @@ setErrores([])
                 )}
               </button>
             </div>
+            <div className=" text-sm text-red-600 mb-4">
+              {errors?.password?.message && <p>{errors?.password?.message}</p>}
+            </div>
           </div>
 
           <div className="w-full  max-w-72 lg:max-w-80">
             <label
               htmlFor="password_confirmation"
-              className="block mb-2 text-sm font-medium text-gray-300"
+              className="block text-sm font-medium text-gray-300 mb-2"
             >
               Repite contraseña
             </label>
             <input
               type="password"
-              name="password_confirmation"
               id="password_confirmation"
-              disabled={mensajeOk && true}
-              className={` ${mensajeOk && ' cursor-not-allowed disabled'} focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 mb-8 text-black w-full`}
+              className={` ${
+                mensajeOk && " cursor-not-allowed disabled"
+              } focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200  text-black w-full`}
               placeholder="Escribe tu contraseña"
-              ref={passwordConfirmationRef}
-              
+              {...register("password_confirmation")}
+              disabled={mensajeOk && true}
+
             />
+            <div className=" text-sm text-red-600 mb-4">
+              {errors?.password_confirmation?.message && (
+                <p>{errors?.password_confirmation?.message}</p>
+              )}
+            </div>
           </div>
 
-          <button
-            type="submit"
-            className="transition ease-in duration-100 text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 block text-center active:bg-[#464f9d] w-full max-w-72 lg:max-w-80"
-          >
-            Regístrate
-          </button>
+          {loading ? (
+            <button
+              type="button"
+              className={` cursor-not-allowed bg-[#727ee4] text-white  max-w-72  rounded-lg text-sm px-4 py-2 w-full`}
+              disabled
+            >
+              <svg
+                role="status"
+                className="inline w-4 h-4 me-3 text-gray-200 animate-spin dark:text-gray-600"
+                viewBox="0 0 100 101"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                  fill="#5D68CC"
+                />
+              </svg>
+              Loading...
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className={`${mensajeOk && " cursor-not-allowed disabled"}   max-w-72 lg:max-w-80 text-white bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] rounded-lg text-sm px-4 py-2 w-full`}
+     
+              disabled={mensajeOk && true}
+            >
+              Registrarse
+            </button>
+          )}
 
           <div className="text-center text-sm mt-5">
-            <Link href="/login">
-              <div className=" pb-5">
+              <div onClick={handleGoLogin} className=" cursor-pointer pb-5">
                 ¿Tienes ya una cuenta?{" "}
                 <span className="text-[#8f95d3]">Logueate</span>
               </div>
-            </Link>
           </div>
         </form>
       </div>
@@ -235,7 +296,3 @@ setErrores([])
 };
 
 export default Registrar;
-
-
-
-

@@ -15,7 +15,8 @@ const page = () => {
       } = useDatosBancarios();
       const {
      continuarCarrito,
-     setContinuarCarrito
+     setContinuarCarrito,
+     suscripcionObjeto
       } = useInformacionPersonal();
   const [menuHamburguesa, setMenuHamburguesa] = useState(false);
 
@@ -218,27 +219,33 @@ const page = () => {
                 <h1 className="text-gray-300 text-xl font-bold mb-5">
                   Resumen
                 </h1>
-                <div className="flex">
-                  <p className="text-gray-300 mb-5 w-[100%]">Suscripción</p>
-                  <p className="flex text-gray-300 font-bold whitespace-nowrap">
-                    Plan Premium
-                  </p>
-                </div>
 
-                <div className="flex">
-                  <p className="text-gray-300 mb-5 w-full">
-                    Subtotal artículos
-                  </p>
-                  <p className="text-gray-300 mb-5">15€</p>
-                </div>
-                <div className="flex items-center">
-                  <p className="text-gray-300 mb-5 w-full">Total</p>
-                  <p className="text-gray-300 mb-5 text-3xl font-bold ">15€</p>
+                <div>
+                  <div className="flex">
+                    <p className="text-gray-300 mb-5 w-[100%]">Suscripción</p>
+                    <p className="flex text-gray-300 font-bold whitespace-nowrap">
+                      {suscripcionObjeto?.plan}
+                    </p>
+                  </div>
+
+                  <div className="flex">
+                    <p className="text-gray-300 mb-5 w-full">
+                      Subtotal artículos
+                    </p>
+                    <p className="text-gray-300 mb-5">
+                      {suscripcionObjeto?.precio}€
+                    </p>
+                  </div>
+                  <div className="flex items-center">
+                    <p className="text-gray-300 mb-5 w-full">Total</p>
+                    <p className="text-gray-300 mb-5 text-3xl font-bold ">
+                      {suscripcionObjeto?.precio}€
+                    </p>
+                  </div>
                 </div>
 
                 <button
                   type="submit"
-                  id="submitButton"
                   className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] rounded-lg text-sm py-2.5 flex justify-center px-3 transition ease-in duration-100 w-full"
                 >
                   Guardar y continuar

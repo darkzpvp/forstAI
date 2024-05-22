@@ -23,7 +23,6 @@ const useCambiarFotoPerfil = () => {
           };
       
           const response = await clienteAxios.post("/api/cambiar-perfil", formData, config);
-          console.log(response.data); // Maneja la respuesta del servidor según tus necesidades
         } catch (error) {
           console.log(error);
         }

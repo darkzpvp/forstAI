@@ -21,7 +21,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { user } = useAuth({ middleware: "auth", url: "/perfil" });
+
+  useAuth({ middleware: "admin"});
 
 
   return (
@@ -32,7 +33,6 @@ export default function RootLayout({
 </head>
       <body className={`${kumbh.className}`}>
 <UsuarioProvider>
-    <Sidebar/>
     {children}
 
 </UsuarioProvider>

@@ -18,7 +18,6 @@ export const usePrompt = () => {
 
       try {
       const { data } = await clienteAxios.post("/api/enviar_formulario", datos, config) 
-      console.log(data);
         return data.message;
       } catch (error) {
 console.log(error);
@@ -55,7 +54,6 @@ setErrores(error?.response?.data?.errors)
         }
       });      
       setTextPrompt(response.data);
-      console.log(response.data);
       setLoading(false);
       setTotalElements(response.data.length);
     } catch (error) {

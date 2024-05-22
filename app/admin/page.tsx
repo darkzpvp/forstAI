@@ -1,17 +1,18 @@
 "use client";
-import React, { MouseEventHandler, useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo,  useState } from "react";
 import Header_Dos from "../components/Header_Dos";
 import ModalAdmin from "../components/Admin/ModalAdmin";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cards from "../components/Admin/Cards";
-import ModalTabla from "../components/Admin/ModalTabla";
 import Modificar from "../components/Admin/Modificar";
 import Eliminar from "../components/Admin/Eliminar";
 import useUsuarioContext from "../hooks/useUsuarioContext";
 import PaginationControlsAdmin from "../components/Admin/PaginationControlsAdmin";
 import CrearUsuario from "../components/Admin/CrearUsuario";
 import Table from "../components/Admin/Table";
+import useInformacionPersonal from "../hooks/useInformacionPersonal";
+import BuscarUsuarios from "../components/Admin/BuscarUsuarios";
 const page = ({
   searchParams,
 }: {
@@ -27,7 +28,6 @@ const page = ({
   const [clickUsuario, setClickUsuario] = useState(false);
   const [actualizarTabla, setActualizarTabla] = useState<boolean>(false);
   const [query, setQuery] = useState("")
-  const [items, setItems] = useState([])
 
   const {
     informacionUsuarioPanel,
@@ -36,10 +36,8 @@ const page = ({
     usuario,
     setUsuario,
     totalElements,
-    loading
   } = useUsuarioContext();
-
-
+  const {setSelectedUsers} = useInformacionPersonal()
   const handleAction = (e: React.MouseEvent) => {
     e.stopPropagation();
     setAction(!action);
@@ -92,10 +90,10 @@ const page = ({
   const [selectedUserId, setSelectedUserId] = useState(null);
   const { showModal, setShowModal } = useUsuarioContext();
 
-  const handleUserMenuClick = (userId) => {
+  const handleUserMenuClick = async(userId) => {
     const userData = userPanel.find((user) => user.id === userId);
+    await setSelectedUsers([])
     setUsuario(userData);
-
     setSelectedUserId(userId);
   };
 
@@ -111,6 +109,7 @@ const page = ({
       return false;
     });
   }, [entries, query]);
+
   return (
     <div
       className=" bg-gray-700 z-20 overlaymodal h-screen  "
@@ -247,32 +246,7 @@ const page = ({
                     )}
                   </div>
 
-                  <div className="relative   w-[25%] justify-end mx-24 sm:mx-16">
-                    <div className="absolute inset-y-0  start-0 flex items-center ps-3 pointer-events-none">
-                      <svg
-                        className="w-4 h-4  text-gray-400"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                        />
-                      </svg>
-                    </div>
-                    <input
-                      type="search"
-                      className="block p-2 ps-10 text-sm   rounded-lg   bg-gray-700  placeholder-gray-400 text-gray-300"
-                      placeholder="Buscar usuarios"
-                      value={query}
-                      onChange={e => setQuery(e.target.value)}
-                    />
-                  </div>
+                  <BuscarUsuarios query={query} setQuery={setQuery}/>
                 </div>
               </div>
             </>

@@ -1,41 +1,53 @@
-'use client'
-import React, { useState, useRef, createRef } from "react";
+"use client";
+import React, { useState, useRef, createRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Alerta from "../components/Alerta";
 import { useAuth } from "../hooks/useAuth";
 import AlertaOk from "../components/AlertaOk";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { loginUsuario, loginUsuarioSchema } from "../validations/loginSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { redirect, useRouter } from "next/navigation";
 const Login = () => {
- 
-  const emailRef = createRef();
-  const passwordRef = createRef();
-
-
-  const [errores, setErrores] = useState([])
-  const [mensajeOk, setMensajeOk] = useState('')	
-  const {login} = useAuth({
-    middleware: 'guest',
-    url: '/generar'
-  })
-  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const datos = {
-      email: (emailRef.current as HTMLInputElement).value || '',
-      password: (passwordRef.current as HTMLInputElement).value || '',
-    }
-    const email = {
-      email: (emailRef.current as HTMLInputElement).value
-    }
-    login(datos, setErrores, email, setMensajeOk)
-  };
+  const Router = useRouter();
+  const [errores, setErrores] = useState("");
+  const [mensajeOk, setMensajeOk] = useState("");
+  const { login, user } = useAuth({});
+  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const handlePassword = () => {
     setShowPassword(!showPassword);
   };
-  setTimeout(() => {
-    setErrores([])
-    }, 10000)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<loginUsuario>({
+    resolver: zodResolver(loginUsuarioSchema),
+  });
+
+  const onSubmit: SubmitHandler<loginUsuario> = async (data) => {
+    setLoading(true);
+    const datos = {
+      ...data,
+    };
+    const email = {
+      email: data.email,
+    };
+    await login(datos, setErrores, email, setMensajeOk);
+    setLoading(false);
+  };
+  useEffect(() => {
+    if (user?.email_verified_at) {
+      redirect("/generar");
+    }
+  }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      setErrores("");
+    }, 4000)
+  }, [errores]);
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 h-screen ">
       <div className=" flex justify-center bg-login-gradient bg-center bg-cover bg-no-repeat md:col-span-1 lg:col-span-2 md:items-start items-center ">
@@ -48,14 +60,14 @@ const Login = () => {
       </div>
 
       <div className="bg-[#272B30] text-gray-300 shadow-lg md:col-span-1 flex flex-col justify-center gap-0 md:gap-8">
-      <div className="absolute top-5 mx-5 cursor-pointer">
+        <div className="absolute top-5 mx-5 cursor-pointer">
           <Link href={"/"} className="flex gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
-              stroke="" 
+              stroke=""
               className="w-6 h-6 md:stroke-white stroke-black"
             >
               <path
@@ -69,20 +81,21 @@ const Login = () => {
         </div>
         <div className="flex justify-center max-w-20 sm:max-w-24 mx-auto pt-5">
           <Image
-          width={50}
-          height={50}
-          layout="responsive"
-        
+            width={50}
+            height={50}
+            layout="responsive"
             className=""
             src="/img/logo/prueba.png"
             alt="Prueba"
           />
         </div>
 
-        <form onSubmit={handleSubmit} noValidate className="flex justify-center items-center flex-col  xl:px-28 lg:px-20 md:px-20 px-8">
-          
-         {errores ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>): null}
-         {mensajeOk ? <AlertaOk>{mensajeOk}</AlertaOk> : null}
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+          className="flex justify-center items-center flex-col  xl:px-28 lg:px-20 md:px-20 px-8"
+        >
+          {mensajeOk ? <AlertaOk>{mensajeOk}</AlertaOk> : null}
 
           <div className="w-full max-w-72 lg:max-w-80">
             <label
@@ -94,34 +107,38 @@ const Login = () => {
             <input
               type="email"
               id="email"
-              
-              className="focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full mb-4"
+              {...register("email")}
+              className={`${mensajeOk && " cursor-not-allowed disabled"} focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full`}
               placeholder="hola@correo.com"
-              ref={emailRef as React.LegacyRef<HTMLInputElement> | undefined}
-              required
+              disabled={mensajeOk && true}
+
             />
           </div>
-
+          <div className=" text-sm text-red-600 mb-2">
+            {errors?.email?.message && <p>{errors?.email?.message}</p>}
+          </div>
           <div className="w-full max-w-72 lg:max-w-80 relative">
-           <label
+            <label
               htmlFor="contraseña"
               className="block mb-2 text-sm font-medium text-gray-300"
             >
               Contraseña
             </label>
-            <div className="flex items-center border rounded-lg bg-gray-200 mb-8 text-black w-full">
+            <div className="flex items-center border rounded-lg bg-gray-200 text-black w-full">
               <input
                 type={showPassword ? "text" : "password"}
                 id="contraseña"
-                className="w-full text-sm p-2.5 bg-transparent placeholder-gray-400 focus:outline-none"
+                className={`${mensajeOk && " cursor-not-allowed disabled"} w-full text-sm p-2.5 bg-transparent placeholder-gray-400 focus:outline-none`}
                 placeholder="Escribe tu contraseña"
-                ref={passwordRef as React.LegacyRef<HTMLInputElement> | undefined}
-                required
+                {...register("password")}
+                disabled={mensajeOk && true}
+
               />
               <button
                 type="button"
                 className="absolute right-4 focus:outline-none"
                 onClick={handlePassword}
+                
               >
                 {showPassword ? (
                   <svg
@@ -161,26 +178,61 @@ const Login = () => {
                 )}
               </button>
             </div>
+            <div className=" text-sm text-red-600 mb-2">
+              {errors?.password?.message && <p>{errors?.password?.message}</p>}
+            </div>
+
+            <div className=" text-sm text-red-600">
+              {errores && <p>{errores}</p>}
+            </div>
           </div>
 
-          <button
-            type="submit"
-            className="transition ease-in duration-100 text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 block text-center active:bg-[#464f9d] w-full max-w-72 lg:max-w-80"
-          >
-            Login
-          </button>
+          {loading ? (
+            <button
+              type="button"
+              className={` cursor-not-allowed bg-[#727ee4]  max-w-72 text-white  rounded-lg text-sm px-4 py-2 w-full mt-4`}
+              disabled
+            >
+              <svg
+                role="status"
+                className="inline w-4 h-4 me-3 text-gray-200 animate-spin dark:text-gray-600"
+                viewBox="0 0 100 101"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                  fill="#5D68CC"
+                />
+              </svg>
+              Loading...
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className={` ${mensajeOk && " cursor-not-allowed disabled"} max-w-72 lg:max-w-80 text-white  bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] rounded-lg text-sm px-4 py-2 w-full mt-4`}
+              disabled={mensajeOk && true}
+
+            >
+              Login
+            </button>
+          )}
 
           <div className="text-center text-sm mt-5">
-            <Link href="/olvide" legacyBehavior>¿Has olvidado la contraseña?</Link>
+            <Link href="/olvide" legacyBehavior>
+              ¿Has olvidado la contraseña?
+            </Link>
           </div>
 
           <div className="text-center text-sm my-5">
             <Link href="/registrar" legacyBehavior>
               <div className=" cursor-pointer">
-              ¿No tienes una cuenta?{' '}
-              <span className="text-[#8f95d3]">Regístrate</span>
+                ¿No tienes una cuenta?{" "}
+                <span className="text-[#8f95d3]">Regístrate</span>
               </div>
-            
             </Link>
           </div>
         </form>

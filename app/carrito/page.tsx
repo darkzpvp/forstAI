@@ -2,17 +2,12 @@
 import Header_Dos from "@/app/components/Header_Dos";
 import React, { useEffect, useState } from "react";
 import useInformacionPersonal from "@/app/hooks/useInformacionPersonal";
-
 import paises from "@/app/data/paises.json";
 import { redirect, usePathname, useRouter } from "next/navigation";
 import useUsuarioContext from "../hooks/useUsuarioContext";
-import suscripciones from "@/app/data/suscripciones.json";
 
 const Page = () => {
-  const Router = useRouter();
-  const Path = usePathname()
   const [menuHamburguesa, setMenuHamburguesa] = useState(false);
-  const {suscripcionElegida} = useUsuarioContext()
 
   const {
     register,
@@ -21,8 +16,9 @@ const Page = () => {
     errors,
     informacionPersonal,
     onSubmit,
+    suscripcionObjeto,
+    setSuscripcionObjeto
   } = useInformacionPersonal();
-
   const [menu, setMenu] = useState(false);
 
   const handleCloseMenu = () => {
@@ -33,38 +29,6 @@ const Page = () => {
       setMenuHamburguesa(false);
     }
   };
-
-  const initialCart = () => {
-    try {
-          const localStorageCart = localStorage.getItem('carrito')
-    return localStorageCart ? JSON.parse(localStorageCart) : {}
-    } catch (error) {
-      console.log(error);
-    }
-
-}
-  const [suscripcionObjeto, setSuscripcionObjeto] = useState(initialCart);
-
-useEffect(() => {
-  const suscripcionElegidaLS = Number(localStorage.getItem('suscripcionElegida'));
-
-  if (suscripcionElegidaLS > 0) {
-    const suscripcionSeleccionada = suscripciones.suscripciones.find(suscripcion => suscripcion.id === suscripcionElegidaLS)
-    if (suscripcionSeleccionada) {
-      setSuscripcionObjeto(suscripcionSeleccionada);
-      localStorage.setItem('carrito', JSON.stringify(suscripcionSeleccionada));
-    }
-  }
-}, [suscripciones, suscripcionElegida]);
-useEffect(() => {
-  if(localStorage.getItem('suscripcionElegida') === null || 
-    localStorage.getItem('suscripcionElegida') === undefined ||
-    localStorage.getItem('suscripcionElegida') === '' ||
-    localStorage.getItem('suscripcionElegida') === '0'){
-      redirect('/')
-  }
- 
-}, [])
 
 
   return (
@@ -257,6 +221,46 @@ useEffect(() => {
                         )}
                       </div>
                     </div>
+
+                    <div>
+                      <label
+                        htmlFor="direccion"
+                        className="block mb-2 text-sm font-medium text-gray-300"
+                      >
+                        Dirección
+                      </label>
+                      <input
+                        type="text"
+                        id="direccion"
+                        className="bg-gray-700 text-gray-300 text-sm rounded-lg  block w-full p-2.5  placeholder-gray-500   "
+                        placeholder="Avenida Bulevar Louis Pasteur"
+                        {...register("direccion")}
+                      />
+                      <div className=" text-sm text-red-600">
+                        {errors?.direccion?.message && (
+                          <p>{errors?.direccion?.message}</p>
+                        )}
+                      </div>
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="cp"
+                        className="block mb-2 text-sm font-medium text-gray-300"
+                      >
+                        CP
+                      </label>
+                      <input
+                        type="number"
+                        id="cp"
+                        className="bg-gray-700 text-gray-300 text-sm rounded-lg  block w-full p-2.5  placeholder-gray-500   "
+                        placeholder="29010"
+                        {...register("cp")}
+                      />
+                      <div className=" text-sm text-red-600">
+                        {errors?.cp?.message && <p>{errors?.cp?.message}</p>}
+                      </div>
+                    </div>
+
                     <div className="md:col-span-2">
                       <label
                         htmlFor="NIFNIE"
@@ -278,59 +282,43 @@ useEffect(() => {
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center mt-5 text-gray-400 text-sm gap-2 fill-gray-400">
-                    <p>
-                      Tus datos se encuentran protegidos según la Ley de
-                      protección de datos
-                    </p>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="w-6 h-6"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm11.378-3.917c-.89-.777-2.366-.777-3.255 0a.75.75 0 0 1-.988-1.129c1.454-1.272 3.776-1.272 5.23 0 1.513 1.324 1.513 3.518 0 4.842a3.75 3.75 0 0 1-.837.552c-.676.328-1.028.774-1.028 1.152v.75a.75.75 0 0 1-1.5 0v-.75c0-1.279 1.06-2.107 1.875-2.502.182-.088.351-.199.503-.331.83-.727.83-1.857 0-2.584ZM12 18a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
                 </div>
               </div>
               <div className=" md:col-span-2  shadow-lg bg-gray-800 px-5 py-5 rounded-lg h-72 flex flex-col justify-center">
                 <h1 className="text-gray-300 text-xl font-bold mb-5">
                   Resumen
                 </h1>
-              
-   <div>
-                <div className="flex">
-                  <p className="text-gray-300 mb-5 w-[100%]">Suscripción</p>
-                  <p className="flex text-gray-300 font-bold whitespace-nowrap">
-                 {suscripcionObjeto?.plan}
-                  </p>
+
+                <div>
+                  <div className="flex">
+                    <p className="text-gray-300 mb-5 w-[100%]">Suscripción</p>
+                    <p className="flex text-gray-300 font-bold whitespace-nowrap">
+                      {suscripcionObjeto?.plan}
+                    </p>
+                  </div>
+
+                  <div className="flex">
+                    <p className="text-gray-300 mb-5 w-full">
+                      Subtotal artículos
+                    </p>
+                    <p className="text-gray-300 mb-5">
+                      {suscripcionObjeto?.precio}€
+                    </p>
+                  </div>
+                  <div className="flex items-center">
+                    <p className="text-gray-300 mb-5 w-full">Total</p>
+                    <p className="text-gray-300 mb-5 text-3xl font-bold ">
+                      {suscripcionObjeto?.precio}€
+                    </p>
+                  </div>
                 </div>
 
-                <div className="flex">
-                  <p className="text-gray-300 mb-5 w-full">
-                    Subtotal artículos
-                  </p>
-                  <p className="text-gray-300 mb-5">{suscripcionObjeto?.precio}€</p>
-                </div>
-                <div className="flex items-center">
-                  <p className="text-gray-300 mb-5 w-full">Total</p>
-                  <p className="text-gray-300 mb-5 text-3xl font-bold ">{suscripcionObjeto?.precio}€</p>
-                </div>
-                </div>
-            
                 <button
                   type="submit"
                   className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] rounded-lg text-sm py-2.5 flex justify-center px-3 transition ease-in duration-100 w-full"
                 >
                   Guardar y continuar
                 </button>
-             
-             
               </div>
             </div>
           </div>
