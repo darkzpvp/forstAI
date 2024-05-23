@@ -35,17 +35,25 @@ class CambiarPerfilController extends Controller
         }
     }
     public function obtenerImagenPerfil(Request $request)
-{
-    // Obtener el usuario autenticado (si estás utilizando autenticación)
-    $usuario = $request->user();
-    
-    // Verificar si el usuario tiene una imagen de perfil
-    if ($usuario->imagen) {
-        // Construir la URL completa de la imagen de perfil
-        $urlImagen = Storage::disk('public')->url($usuario->imagen);
+    {
+        // Obtener el usuario autenticado (si estás utilizando autenticación)
+        $usuario = $request->user();
         
-        // Devolver la URL de la imagen de perfil
-        return response()->json(['url_imagen' => $urlImagen], 200);
-    } 
-}
+        // Verificar si el usuario tiene una imagen de perfil
+        if ($usuario->imagen) {
+            // Construir la URL completa de la imagen de perfil
+            $urlImagen = Storage::disk('public')->url($usuario->imagen);
+            
+            // Verificar si la imagen existe en el almacenamiento
+            if (Storage::disk('public')->exists($usuario->imagen)) {
+                // Devolver la URL de la imagen de perfil
+                return response()->json(['url_imagen' => $urlImagen], 200);
+            } else {
+                // Si la imagen no existe, establecer el valor de 'imagen' como null y guardar
+                $usuario->imagen = null;
+                $usuario->save();
+                
+            }
+        } 
+    }
 }
