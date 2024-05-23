@@ -6,12 +6,14 @@ import ReactCrop, {
 } from "react-image-crop";
 import setCanvasPreview from "@/app/setCanvasPreview";
 import useCambiarFotoPerfil from "@/app/hooks/useCambiarFotoPerfil";
+import useUsuarioContext from "@/app/hooks/useUsuarioContext";
 
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
 const { cambiarFoto } = useCambiarFotoPerfil();
 
 const ImageCropper = ({ closeModal, updateAvatar }) => {
+  const {avatarUrl, setAvatarUrl} = useUsuarioContext()
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);
   const [imgSrc, setImgSrc] = useState("");
@@ -127,7 +129,7 @@ const ImageCropper = ({ closeModal, updateAvatar }) => {
               );
 
               updateAvatar(file.url_imagen);
-              cambiarFoto(file);
+              cambiarFoto(file, avatarUrl, setAvatarUrl);
               closeModal();
             }}
           >

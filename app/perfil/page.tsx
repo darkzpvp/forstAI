@@ -20,14 +20,14 @@ const page = () => {
   const [eliminarCuenta, setEliminarCuenta] = useState(false);
   const [infoSuscripciones, setInfoSuscripciones] = useState([]);
   const [freePrompts, setFreePrompts] = useState([]);
-  const { mensaje, modalOpen, setModalOpen } =
+  const { mensaje, modalOpen, setModalOpen, obtenerAvatar } =
     useUsuarioContext();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const datos = await getSuscripciones();
-        setInfoSuscripciones(datos?.[0]);
+        setInfoSuscripciones(datos);
         setFreePrompts(datos.free_prompts);
       } catch (error) {
         console.error(
@@ -36,7 +36,7 @@ const page = () => {
         );
       }
     };
-
+    obtenerAvatar()
     fetchData();
   }, []);
 
@@ -56,7 +56,7 @@ const page = () => {
           style={myStyles}
           className="relative h-[21rem] overflow-hidden bg-cover bg-center flex items-center justify-center sm:hidden "
          >
-          <Profile modalOpen={modalOpen} setModalOpen={setModalOpen} />
+          <Profile setModalOpen={setModalOpen} />
         </div>
         <div className="p-0 sm:px-4  sm:ml-64">
           <NavegacionMobile />

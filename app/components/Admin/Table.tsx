@@ -98,7 +98,7 @@ const Table = ({
                   checked={selectedUsers.includes(user)}
                   onChange={() => handleCheckboxChange(user)}
                   onClick={(e) => e.stopPropagation()}
-                />
+                />{}
               </div>
             </td>
             <th

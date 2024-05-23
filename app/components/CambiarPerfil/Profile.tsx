@@ -4,9 +4,7 @@ import { useAuth } from "@/app/hooks/useAuth";
 
 const Profile = ({setModalOpen}) => {
 const { avatarUrl } = useUsuarioContext();
-
 const { user } = useAuth({});
-
   return (
     <div className="flex flex-col items-center pt-12">
       <div className="relative">

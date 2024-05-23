@@ -22,8 +22,7 @@ const Header_Dos = ({
   const { logout, user } = useAuth({});
 const pathname = usePathname()
 
-const { avatarUrl } = useUsuarioContext();
-
+const { avatarUrl, obtenerAvatar } = useUsuarioContext();
  
 
   const handleMenu = () => {
@@ -60,10 +59,16 @@ useEffect(() => {
   } 
 }, [menuHamburguesa, menu])
 
+
+
+useEffect(() => {
+obtenerAvatar()
+}, [])
+
   return (
     <>
       <div
-        className={`${pathname == '/perfil' ? 'fixed' : ''} z-50 w-full bg-gray-900`}
+        className={`${pathname == '/perfil' ? 'fixed' : ''} z-40 w-full bg-gray-900`}
       >
         <div
           className="py-2 mx-auto flex items-center justify-between w-full max-w-4xl px-5"

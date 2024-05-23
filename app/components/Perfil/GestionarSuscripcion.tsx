@@ -3,7 +3,6 @@ const GestionarSuscripcion = ({infoSuscripciones, freePrompts, gestionarPlan, se
     const handleCancelarPlan = () => {
         setCancelarPlan(!cancelarPlan)
       }
-  
   return (
     <div className=" bg-gray-800 w-full max-w-4xl rounded-lg mt-5 ">
               <div className=" bg-gray-900 p-5 rounded-t-lg">

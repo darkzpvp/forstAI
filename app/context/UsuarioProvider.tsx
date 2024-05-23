@@ -28,7 +28,7 @@ const [totalElements, setTotalElements] = useState(0)
 
   const {recibirFoto  } = useCambiarFotoPerfil();
 
-  useEffect(() => {
+ 
     const obtenerAvatar = async () => {
       try {
         const urlImagen = await recibirFoto(avatarUrl, setAvatarUrl);
@@ -41,9 +41,9 @@ const [totalElements, setTotalElements] = useState(0)
       }
     };
 
-    obtenerAvatar();
+  
     
-  }, [avatarUrl]);
+
 
   const [modalOpen, setModalOpen] = useState(false);
   const [userPanel, setUserPanel] = useState([]);
@@ -178,7 +178,7 @@ try {
     <UsuarioContext.Provider value={{ avatarUrl, setAvatarUrl, suscripcionElegida,
        setSuscripcionElegida, modalOpen, setModalOpen, userPanel, showModal, setShowModal, usuario, setUsuario, informacionUsuarioPanel, loading,
        setLoading, totalElements, setTotalElements, informacionUsuarioId, setUsuarioId, usuarioId, usuarioSemanaPanel, beneficioSemanaPanel, ingresosTotalesPanel, ingresosTotales, setIngresosTotales, 
-      usuarioSemana, setUsuarioSemana, beneficioSemana, setBeneficioSemana, errores, setErrores, mensaje, setMensaje
+      usuarioSemana, setUsuarioSemana, beneficioSemana, setBeneficioSemana, errores, setErrores, mensaje, setMensaje, obtenerAvatar
 
 
 

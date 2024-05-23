@@ -3,7 +3,7 @@ import clienteAxios from "../config/axios";
 
 const useCambiarFotoPerfil = () => {
 
-    const cambiarFoto = async (file) => {
+    const cambiarFoto = async (file, avatarUrl, setAvatarUrl) => {
         try {
           const authToken = localStorage.getItem("AUTH_TOKEN");
           if (!authToken) {
@@ -22,6 +22,7 @@ const useCambiarFotoPerfil = () => {
           };
       
           const response = await clienteAxios.post("/api/cambiar-perfil", formData, config);
+          recibirFoto(avatarUrl, setAvatarUrl)
         } catch (error) {
           console.log(error);
         }

@@ -6,25 +6,22 @@ import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/app/hooks/useAuth";
 
 const Sidebar = () => {
-    const Router = useRouter()
-    const RouterPath = usePathname()
-    const { logout } = useAuth({});
-    const { modalOpen, setModalOpen, setAvatarUrl } = useUsuarioContext();
-const handlePerfil = () => {
-Router.push('/perfil')
-}
-const handlePrompts = () => {
-    Router.push('/perfil/historial-prompts')
+  const Router = useRouter();
+  const RouterPath = usePathname();
+  const { logout } = useAuth({});
+  const { modalOpen, setModalOpen, setAvatarUrl } = useUsuarioContext();
+  const handlePerfil = () => {
+    Router.push("/perfil");
+  };
+  const handlePrompts = () => {
+    Router.push("/perfil/historial-prompts");
+  };
 
-}
-
-const updateAvatar = (imgSrc) => {
-setAvatarUrl(imgSrc);
-};
+  const updateAvatar = (imgSrc) => {
+    setAvatarUrl(imgSrc);
+  };
   return (
     <>
-  
-
       <aside
         id="logo-sidebar"
         className=" fixed z-30 left-0 w-64 h-screen transition-transform -translate-x-full  border-r  sm:translate-x-0 bg-gray-800 border-gray-700"
@@ -50,11 +47,15 @@ setAvatarUrl(imgSrc);
                 </Link>
               </div>
 
-              <Profile modalOpen={modalOpen} setModalOpen={setModalOpen} />
+              <Profile setModalOpen={setModalOpen} />
             </div>
 
             <li onClick={handlePerfil}>
-              <a className={`${RouterPath === '/perfil' ? 'bg-gray-700' : ''} cursor-pointer flex items-center p-2  rounded-lg text-white  hover:bg-gray-700 group`}>
+              <a
+                className={`${
+                  RouterPath === "/perfil" ? "bg-gray-700" : ""
+                } cursor-pointer flex items-center p-2  rounded-lg text-white  hover:bg-gray-700 group`}
+              >
                 <svg
                   className="flex-shrink-0 w-5 h-5  transition duration-75 text-gray-400  group-hover:text-white"
                   aria-hidden="true"
@@ -70,7 +71,13 @@ setAvatarUrl(imgSrc);
               </a>
             </li>
             <li onClick={handlePrompts}>
-              <a className={`${RouterPath === '/perfil/historial-prompts' ? 'bg-gray-700' : ''} cursor-pointer flex items-center p-2 rounded-lg text-white  hover:bg-gray-700 group`}>
+              <a
+                className={`${
+                  RouterPath === "/perfil/historial-prompts"
+                    ? "bg-gray-700"
+                    : ""
+                } cursor-pointer flex items-center p-2 rounded-lg text-white  hover:bg-gray-700 group`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -131,7 +138,10 @@ setAvatarUrl(imgSrc);
                     d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"
                   />
                 </svg>
-                <span onClick={logout}  className="flex-1 ms-3 whitespace-nowrap text-gray-300">
+                <span
+                  onClick={logout}
+                  className="flex-1 ms-3 whitespace-nowrap text-gray-300"
+                >
                   Logout
                 </span>
               </a>
@@ -140,13 +150,19 @@ setAvatarUrl(imgSrc);
         </div>
       </aside>
       {modalOpen && (
-  <div className="fixed inset-0 z-30 flex items-center justify-center bg-zinc-900 bg-opacity-70">
-    <Modal
-      updateAvatar={updateAvatar}
-      closeModal={() => setModalOpen(false)}
-    />
-  </div>
-)}
+        <div
+          onClick={() => {
+            setModalOpen(false);
+          }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-900 bg-opacity-70"
+        >
+          <Modal
+            setModalOpen={setModalOpen}
+            updateAvatar={updateAvatar}
+            closeModal={() => setModalOpen(false)}
+          />
+        </div>
+      )}
     </>
   );
 };
