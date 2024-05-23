@@ -1,6 +1,4 @@
 import useUsuarioContext from '@/app/hooks/useUsuarioContext';
-import React, { useEffect, useState } from 'react';
-
 const ModalTabla = ({ setClickModificar, setActualizarTabla, setClickEliminar }) => {
   const modificarUsuario = () => {
     setClickModificar(true);

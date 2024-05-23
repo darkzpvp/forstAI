@@ -1,26 +1,19 @@
 "use client";
 import Header_Dos from "@/app/components/Header_Dos";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useInformacionPersonal from "@/app/hooks/useInformacionPersonal";
 import paises from "@/app/data/paises.json";
-import { redirect, usePathname, useRouter } from "next/navigation";
-import useUsuarioContext from "../hooks/useUsuarioContext";
 
 const Page = () => {
   const [menuHamburguesa, setMenuHamburguesa] = useState(false);
-
   const {
     register,
     handleSubmit,
-    watch,
     errors,
-    informacionPersonal,
     onSubmit,
     suscripcionObjeto,
-    setSuscripcionObjeto
   } = useInformacionPersonal();
   const [menu, setMenu] = useState(false);
-
   const handleCloseMenu = () => {
     if (menu) {
       setMenu(false);
@@ -29,7 +22,6 @@ const Page = () => {
       setMenuHamburguesa(false);
     }
   };
-
 
   return (
     <div className="bg-gray-700 h-full">

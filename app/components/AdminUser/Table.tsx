@@ -3,7 +3,7 @@ import { parseISO, format } from 'date-fns';
 
 const Table = ({loading, entries}) => {
   return (
-    <table className="  mt-5 w-full text-sm text-left rtl:text-right text-gray-400 bg-gray-600 rounded-lg overflow-hidden ">
+    <table className=" w-full text-sm text-left rtl:text-right text-gray-400 bg-gray-700 overflow-hidden ">
     <thead className="text-xs uppercase bg-gray-900 text-gray-400 ">
       <tr>
         <th className="px-6 py-3 rounded-tl-lg">Prompt</th>

@@ -224,7 +224,7 @@ const Generar = () => {
                         <button
                           disabled
                           type="button"
-                          className={` z-40 bg-gray-600 cursor-not-allowed hover:bg-gray-600 active:bg-gray-600 absolute right-0 bottom-0 mb-2 mr-2 text-white font-medium rounded-lg text-sm px-4 py-2`}
+                          className={` z-40 bg-[#727ee4] cursor-not-allowed  absolute right-0 bottom-0 mb-2 mr-2 text-white font-medium rounded-lg text-sm px-4 py-2`}
                         >
                           <svg
                             aria-hidden="true"

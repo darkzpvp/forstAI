@@ -1,5 +1,3 @@
-import React, { useEffect } from 'react'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import useUsuarioContext from '@/app/hooks/useUsuarioContext';
 import { useAuth } from '@/app/hooks/useAuth';
@@ -347,7 +345,6 @@ const handleSubmit = (e, id) => {
         </li>
       </ul>
     
- 
     <button
         onClick={(e) => handleSubmit(e, 3)}
       type="submit"

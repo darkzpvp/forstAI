@@ -123,7 +123,7 @@ try {
       Authorization: `Bearer ${authToken}`,
     },
   }
-  const {data} = await clienteAxios('api/users/last-week', config)
+  const {data} = await clienteAxios('api/usuarios-ultima-semana', config)
 
   setUsuarioSemana(data)
 } catch (error) {

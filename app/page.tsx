@@ -1,5 +1,5 @@
 "use client";
-import { MouseEventHandler, useState } from "react";
+import { useState } from "react";
 import FAQ from "./components/Home/FAQ";
 import Header from "./components/Home/Header";
 import Cards from "./components/Home/Cards";

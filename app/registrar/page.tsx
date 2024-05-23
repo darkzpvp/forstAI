@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { useState, createRef } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Alerta from "../components/Alerta";
 import Image from "next/image";
@@ -16,9 +16,9 @@ import { redirect, useRouter } from "next/navigation";
 const Registrar = () => {
   const [errores, setErrores] = useState([]);
   const [mensajeOk, setMensajeOk] = useState("");
-const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const { registro, user } = useAuth({});
-const Router = useRouter()
+  const Router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
 
   const handlePassword = () => {
@@ -28,7 +28,6 @@ const Router = useRouter()
   const {
     register,
     handleSubmit,
-    watch,
 
     formState: { errors },
   } = useForm<registroUsuario>({
@@ -36,7 +35,7 @@ const Router = useRouter()
   });
 
   const onSubmit: SubmitHandler<registroUsuario> = async (data) => {
-    setLoading(true)
+    setLoading(true);
     const datos = {
       ...data,
     };
@@ -44,24 +43,19 @@ const Router = useRouter()
       email: data.email,
     };
     await registro(datos, email, setMensajeOk);
-    setLoading(false)
+    setLoading(false);
   };
 
   useEffect(() => {
-    if(user?.email_verified_at){
-      redirect('/generar')
+    if (user?.email_verified_at) {
+      redirect("/generar");
     }
-    }, [])
+  }, []);
 
-    const handleGoLogin = () => {
-    
-        Router.push('/login')
+  const handleGoLogin = () => {
+    Router.push("/login");
+  };
 
-      }
-      
-    
-    
-    
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 h-screen">
       <div className=" bg-registro-gradient bg-cover bg-center block justify-center md:col-span-1 lg:col-span-2 md:flex">
@@ -127,7 +121,6 @@ const Router = useRouter()
               placeholder="Víctor"
               {...register("name")}
               disabled={mensajeOk && true}
-
             />
             <div className=" text-sm text-red-600 mb-4">
               {errors?.name?.message && <p>{errors?.name?.message}</p>}
@@ -149,7 +142,6 @@ const Router = useRouter()
               placeholder="hola@correo.com"
               {...register("email")}
               disabled={mensajeOk && true}
-
             />
             <div className=" text-sm text-red-600 mb-4">
               {errors?.email?.message && <p>{errors?.email?.message}</p>}
@@ -173,7 +165,6 @@ const Router = useRouter()
                 placeholder="Escribe tu contraseña"
                 {...register("password")}
                 disabled={mensajeOk && true}
-
               />
 
               <button
@@ -240,7 +231,6 @@ const Router = useRouter()
               placeholder="Escribe tu contraseña"
               {...register("password_confirmation")}
               disabled={mensajeOk && true}
-
             />
             <div className=" text-sm text-red-600 mb-4">
               {errors?.password_confirmation?.message && (
@@ -275,8 +265,9 @@ const Router = useRouter()
           ) : (
             <button
               type="submit"
-              className={`${mensajeOk && " cursor-not-allowed disabled"}   max-w-72 lg:max-w-80 text-white bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] rounded-lg text-sm px-4 py-2 w-full`}
-     
+              className={`${
+                mensajeOk && " cursor-not-allowed disabled"
+              }   max-w-72 lg:max-w-80 text-white bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] rounded-lg text-sm px-4 py-2 w-full`}
               disabled={mensajeOk && true}
             >
               Registrarse
@@ -284,10 +275,10 @@ const Router = useRouter()
           )}
 
           <div className="text-center text-sm mt-5">
-              <div onClick={handleGoLogin} className=" cursor-pointer pb-5">
-                ¿Tienes ya una cuenta?{" "}
-                <span className="text-[#8f95d3]">Logueate</span>
-              </div>
+            <div onClick={handleGoLogin} className=" cursor-pointer pb-5">
+              ¿Tienes ya una cuenta?{" "}
+              <span className="text-[#8f95d3]">Logueate</span>
+            </div>
           </div>
         </form>
       </div>

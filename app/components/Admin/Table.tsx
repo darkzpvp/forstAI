@@ -7,11 +7,9 @@ const Table = ({
   setShowModal,
   selectedUserId,
   showModal,
-
   setClickModificar,
   setActualizarTabla,
   setClickEliminar,
-  entries,
   userPanel,
   filteredItems,
 }) => {

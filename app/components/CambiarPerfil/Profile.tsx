@@ -1,19 +1,13 @@
-import { useContext, useEffect, useRef, useState } from "react";
 import PencilIcon from "./PencilIcon";
-import Modal from "./Modal";
-import useCambiarFotoPerfil from "@/app/hooks/useCambiarFotoPerfil";
-import UsuarioContext from "@/app/context/UsuarioProvider";
 import useUsuarioContext from "@/app/hooks/useUsuarioContext";
 import { useAuth } from "@/app/hooks/useAuth";
 
-const Profile = ({modalOpen, setModalOpen}) => {
-const { avatarUrl, setAvatarUrl } = useUsuarioContext();
+const Profile = ({setModalOpen}) => {
+const { avatarUrl } = useUsuarioContext();
 
 const { user } = useAuth({});
 
-
   return (
- 
     <div className="flex flex-col items-center pt-12">
       <div className="relative">
         <img

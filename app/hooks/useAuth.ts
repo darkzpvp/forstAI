@@ -1,6 +1,6 @@
 import clienteAxios from "../config/axios";
 import useSWR from "swr";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
 
@@ -82,7 +82,7 @@ export const useAuth = ({ middleware, url }) => {
       };
 
       const { data } = await clienteAxios.post(
-        "/api/email/verification-notification",
+        "/api/email-notificacion",
         email,
         config
       );

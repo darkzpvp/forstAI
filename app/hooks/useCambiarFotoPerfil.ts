@@ -1,4 +1,3 @@
-import { useState } from "react";
 import clienteAxios from "../config/axios";
 
 
@@ -13,12 +12,12 @@ const useCambiarFotoPerfil = () => {
           }
           
           const formData = new FormData();
-          formData.append("imagen", file); // Aquí asumo que el nombre del campo en el servidor es "imagen"
+          formData.append("imagen", file); 
       
           const config = {
             headers: {
               Authorization: `Bearer ${authToken}`,
-              "Content-Type": "multipart/form-data", // Asegúrate de establecer el tipo de contenido correctamente
+              "Content-Type": "multipart/form-data", 
             },
           };
       

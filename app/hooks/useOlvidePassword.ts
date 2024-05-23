@@ -1,12 +1,11 @@
 import clienteAxios from "../config/axios";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 const useOlvidePassword = () => {
   const router = useRouter();
   const olvidePassword = async (datos, setErrores, setMensajeOk) => {
     try {
-      const { data } = await clienteAxios.post("/api/forgot", datos);
+      const { data } = await clienteAxios.post("/api/olvide", datos);
 
       setErrores([]);
 
@@ -31,7 +30,7 @@ const useOlvidePassword = () => {
   };
 
   const comprobarToken = async (token, setTokenValido) => {
-    const url = `/api/check-token?token=${token}`;
+    const url = `/api/comprobar-token?token=${token}`;
     try {
       const { data } = await clienteAxios.get(url);
       setTokenValido("");

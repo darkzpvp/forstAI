@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React, { useState } from "react";
 import Profile from "../CambiarPerfil/Profile";
 import useUsuarioContext from "@/app/hooks/useUsuarioContext";
 import Modal from "../CambiarPerfil/Modal";
@@ -10,7 +9,7 @@ const Sidebar = () => {
     const Router = useRouter()
     const RouterPath = usePathname()
     const { logout } = useAuth({});
-    const { modalOpen, setModalOpen, avatarUrl, setAvatarUrl } = useUsuarioContext();
+    const { modalOpen, setModalOpen, setAvatarUrl } = useUsuarioContext();
 const handlePerfil = () => {
 Router.push('/perfil')
 }
@@ -24,29 +23,7 @@ setAvatarUrl(imgSrc);
 };
   return (
     <>
-      <div className="p-0 sm:px-4  sm:ml-64">
-        <div className=" sm:hidden flex text-sm font-medium text-center  border-b  text-gray-400 border-gray-700">
-          <ul className="flex flex-wrap -mb-px">
-            <li className="me-2">
-              <a
-                href="#"
-                className=" inline-block p-4 border-b-2 border-transparent rounded-t-lg  hover: hover:text-gray-300"
-              >
-                Perfil
-              </a>
-            </li>
-            <li className="me-2">
-              <a
-                href="#"
-                className="inline-block p-4  border-b-2  rounded-t-lg active text-blue-500 border-blue-500"
-                aria-current="page"
-              >
-                Historial de prompts
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+  
 
       <aside
         id="logo-sidebar"
@@ -101,9 +78,9 @@ setAvatarUrl(imgSrc);
                   className="flex-shrink-0 w-5 h-5  transition duration-75 text-gray-400  group-hover:text-white"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   />
                   <path d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
                 </svg>
@@ -148,9 +125,9 @@ setAvatarUrl(imgSrc);
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
                     d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"
                   />
                 </svg>

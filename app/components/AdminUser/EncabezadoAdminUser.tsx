@@ -1,8 +1,16 @@
 import Link from 'next/link'
 import React from 'react'
 
-const EncabezadoAdminUser = ({informacion_personal, state}) => {
+const EncabezadoAdminUser = ({informacion_personal, state, handleCloseMenu}) => {
+    const myStyles = {
+        backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.534), rgba(17, 24, 39, 0.5)), url('/img/admin/layeredUserr.jpg')`,
+      };
   return (
+    <div
+    style={myStyles}
+    className="relative h-44  overflow-hidden bg-cover bg-center flex items-center justify-center "
+    onClick={handleCloseMenu}
+    >
     <div className="  text-center px-10 max-w-xl mx-auto">
     <div className=" absolute top-5 left-5 cursor-pointer">
       <Link href={`/admin`}>
@@ -42,6 +50,7 @@ const EncabezadoAdminUser = ({informacion_personal, state}) => {
       {informacion_personal?.nombre}
     </h2>
     <p className="mt-1 text-gray-400">{informacion_personal?.email}</p>
+  </div>
   </div>
   )
 }

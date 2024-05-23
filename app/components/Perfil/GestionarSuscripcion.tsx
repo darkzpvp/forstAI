@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 
 const GestionarSuscripcion = ({infoSuscripciones, freePrompts, gestionarPlan, setGestionarPlan, handleGestionarPlan, cancelarPlan, setCancelarPlan, selectedPlan, setSelectedPlan}) => {
     const handleCancelarPlan = () => {

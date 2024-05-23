@@ -1,7 +1,7 @@
 "use client";
 import useOlvidePassword from "@/app/hooks/useOlvidePassword";
 import Link from "next/link";
-import { LegacyRef, MutableRefObject, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Alerta from "@/app/components/Alerta";
 import AlertaOk from "@/app/components/AlertaOk";
@@ -37,8 +37,6 @@ export default function page({ params }: { params: { token: string } }) {
   const {
     register,
     handleSubmit,
-    watch,
-
     formState: { errors },
   } = useForm<password>({
     resolver: zodResolver(passwordSchema),
@@ -47,9 +45,7 @@ export default function page({ params }: { params: { token: string } }) {
     const datos = {
       ...data
     };
-  
     await resetPassword(datos, tokenUrl, setMensajeOk);
-
   };
 
   return (

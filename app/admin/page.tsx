@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useMemo,  useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Header_Dos from "../components/Header_Dos";
 import ModalAdmin from "../components/Admin/ModalAdmin";
 import { ToastContainer } from "react-toastify";
@@ -27,7 +27,7 @@ const page = ({
   const [menuHamburguesa, setMenuHamburguesa] = useState<boolean>(false);
   const [clickUsuario, setClickUsuario] = useState(false);
   const [actualizarTabla, setActualizarTabla] = useState<boolean>(false);
-  const [query, setQuery] = useState("")
+  const [query, setQuery] = useState("");
 
   const {
     informacionUsuarioPanel,
@@ -37,7 +37,7 @@ const page = ({
     setUsuario,
     totalElements,
   } = useUsuarioContext();
-  const {setSelectedUsers} = useInformacionPersonal()
+  const { setSelectedUsers } = useInformacionPersonal();
   const handleAction = (e: React.MouseEvent) => {
     e.stopPropagation();
     setAction(!action);
@@ -90,9 +90,9 @@ const page = ({
   const [selectedUserId, setSelectedUserId] = useState(null);
   const { showModal, setShowModal } = useUsuarioContext();
 
-  const handleUserMenuClick = async(userId) => {
+  const handleUserMenuClick = async (userId) => {
     const userData = userPanel.find((user) => user.id === userId);
-    await setSelectedUsers([])
+    await setSelectedUsers([]);
     setUsuario(userData);
     setSelectedUserId(userId);
   };
@@ -102,8 +102,8 @@ const page = ({
     setUsuario({});
   };
   const filteredItems = useMemo(() => {
-    return entries.filter(item => {
-      if (item && typeof item.nombre === 'string') {
+    return entries.filter((item) => {
+      if (item && typeof item.nombre === "string") {
         return item.nombre.toLowerCase().includes(query.toLowerCase());
       }
       return false;
@@ -129,7 +129,7 @@ const page = ({
 
       <div className=" flex justify-center mx-8">
         <div
-          className={` z-40 bg-gray-800 mb-6 sm:rounded-lg  mt-4 w-full max-w-7xl lg:overflow-visible overflow-x-auto`}
+          className={` z-40 bg-gray-800 mb-6 rounded-lg  mt-4 w-full max-w-7xl lg:overflow-visible overflow-x-auto`}
         >
           {responsive ? (
             <div className="flex items-center justify-between py-3 px-4 bg-gray-900 p-5 rounded-t-lg ">
@@ -166,7 +166,6 @@ const page = ({
                     clickUsuario={clickUsuario}
                     setClickUsuario={setClickUsuario}
                     setClickEliminar={setClickEliminar}
-
                   />
                 )}
               </div>
@@ -198,7 +197,7 @@ const page = ({
                   className="block p-2 ps-10 text-sm   rounded-lg   bg-gray-700  placeholder-gray-400 text-gray-300 "
                   placeholder="Buscar usuarios"
                   value={query}
-                  onChange={e => setQuery(e.target.value)}
+                  onChange={(e) => setQuery(e.target.value)}
                 />
               </div>
             </div>
@@ -246,7 +245,7 @@ const page = ({
                     )}
                   </div>
 
-                  <BuscarUsuarios query={query} setQuery={setQuery}/>
+                  <BuscarUsuarios query={query} setQuery={setQuery} />
                 </div>
               </div>
             </>
@@ -271,9 +270,13 @@ const page = ({
             filteredItems={filteredItems}
           />
 
-          <PaginationControlsAdmin hasNextPage={end < userPanel.length}
-              hasPrevPage={start > 0}
-              totalElements={totalElements} />
+          <PaginationControlsAdmin
+            hasNextPage={end < userPanel.length}
+            hasPrevPage={start > 0}
+            totalElements={totalElements}
+            basePath="/admin"
+            perpage={9}
+          />
         </div>
       </div>
 

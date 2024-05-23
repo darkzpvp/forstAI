@@ -1,11 +1,9 @@
-import { useState } from "react";
 import clienteAxios from "../config/axios";
 
 
 const useComprar = () => {
 
     const comprar = async (datos) => {
-        console.log(datos);
        try {
         const authToken = localStorage.getItem("AUTH_TOKEN");
         if (!authToken) {
@@ -16,7 +14,7 @@ const useComprar = () => {
         const config = {
           headers: {
             Authorization: `Bearer ${authToken}`,
-            "Content-Type": "multipart/form-data", // Asegúrate de establecer el tipo de contenido correctamente
+            "Content-Type": "multipart/form-data", 
           },
         };
         const {data} = await clienteAxios.post("/api/comprar-suscripcion", datos, config);

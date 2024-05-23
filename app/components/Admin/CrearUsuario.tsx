@@ -1,4 +1,3 @@
-import { UsuarioProvider } from "@/app/context/UsuarioProvider";
 import { useAuth } from "@/app/hooks/useAuth";
 import useUsuarioContext from "@/app/hooks/useUsuarioContext";
 import {
@@ -14,7 +13,6 @@ import { toast } from "react-toastify";
 const CrearUsuario = ({
   clickUsuario,
   setClickUsuario,
-  usuario,
   setUsuario,
 }) => {
   const notifyModificar = () => {

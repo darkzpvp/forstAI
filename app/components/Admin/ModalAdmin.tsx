@@ -1,7 +1,6 @@
 import React from 'react'
 
-
-const ModalAdmin = ({clickUsuario, setClickUsuario, setClickEliminar}) => {
+const ModalAdmin = ({setClickUsuario, setClickEliminar}) => {
 
   const handleAgregarUsuario = () => {
     setClickUsuario(true)
@@ -17,7 +16,6 @@ const ModalAdmin = ({clickUsuario, setClickUsuario, setClickEliminar}) => {
                       Agregar usuario
                     </li>
                   </li>
-                 
                   <li>
                     <li onClick={handleEliminarUsuario} className=" cursor-pointer block px-4 py-2  hover:bg-gray-800 transition duration-100 ease-in">
                       Eliminar usuario

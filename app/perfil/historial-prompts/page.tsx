@@ -1,10 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import clienteAxios from "@/app/config/axios";
-import PaginationControls from "@/app/components/Paginations/PaginationControls";
-import { useRouter } from "next/navigation";
+import PaginationControls from "@/app/components/Admin/PaginationControlsAdmin";
 import { usePrompt } from "@/app/hooks/usePrompt";
-import { parseISO, format } from 'date-fns';
+import { parseISO, format } from "date-fns";
+import NavegacionMobile from "@/app/components/Perfil/NavegacionMobile";
 interface Entry {
   frames: Entry[];
   _id: string;
@@ -22,7 +21,6 @@ const Page = ({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) => {
-const Router = useRouter()
   let entries: Entry[] = [];
   const [textPrompt, setTextPrompt] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -31,11 +29,15 @@ const Router = useRouter()
   const [totalElements, setTotalElements] = useState(0);
   const start = (Number(page) - 1) * Number(per_page);
   const end = start + Number(per_page);
-  const {getTextPrompts} = usePrompt()
+  const { getTextPrompts } = usePrompt();
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await getTextPrompts(setTextPrompt, setLoading, setTotalElements)
+        const response = await getTextPrompts(
+          setTextPrompt,
+          setLoading,
+          setTotalElements
+        );
       } catch (error) {
         console.error("Error al hacer la petición:", error);
       }
@@ -46,45 +48,53 @@ const Router = useRouter()
 
   return (
     <>
-     <div className="p-0 sm:px-4 sm:ml-64 text-sm ">
-        <div className="p-4 border-2  border-dashed  border-gray-700 ">
-       
-<table className="  mt-5 w-full text-sm text-left rtl:text-right text-gray-400 bg-gray-600 rounded-lg overflow-hidden ">
-  <thead className="text-xs uppercase bg-gray-900 text-gray-400 ">
-    <tr>
-      <th className="px-6 py-3 rounded-tl-lg">Prompt</th>
-      <th className="px-6 py-3 text-nowrap whitespace-nowrap rounded-tr-lg">Fecha de generación</th>
-    </tr>
-  </thead>
-  <tbody>
-    {loading ? (
-      <tr className="">
-        <td className=" w-[90%] px-6">Loading...</td>
-      </tr>
-    ) : (
-      entries.map((text, index) => (
-        <tr key={index} className="border-b bg-gray-800 border-gray-700 ">
-          <td className=" w-[90%]  px-6  py-4 font-medium whitespace-nowrap text-gray-300 ">
-            {text?.texto}
-          </td>
-          <td className="px-6 py-4 text-right font-medium whitespace-nowrap text-gray-300 ">
-          {format(parseISO(text?.created_at), 'dd/MM/yyyy HH:mm:ss')}
-          </td>
-    
-        
-        </tr>
-      ))
-    )}
-  </tbody>
-</table>
-          <div className=" flex justify-between ">
-            <PaginationControls
-              hasNextPage={end < textPrompt.length}
-              hasPrevPage={start > 0}
-              totalElements={totalElements}
-              basePath='/perfil/historial-prompts'
-              perpage={10}
-            />
+      <div className="p-0 sm:px-4 sm:ml-64 text-sm ">
+        <NavegacionMobile />
+        <div className=" flex mx-5">
+          <div className="z-40 bg-gray-800 mb-6 sm:rounded-lg  mt-8 w-full max-w-5xl lg:overflow-visible overflow-x-auto">
+            <table className="  w-full text-sm text-left rtl:text-right text-gray-400 bg-gray-700 overflow-hidden ">
+              <thead className="text-xs uppercase bg-gray-900 text-gray-400 ">
+                <tr>
+                  <th className="px-6 py-3 rounded-tl-lg">Prompt</th>
+                  <th className="px-6 py-3 text-nowrap whitespace-nowrap rounded-tr-lg">
+                    Fecha de generación
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {loading ? (
+                  <tr className="">
+                    <td className=" w-[90%] px-6 ">Loading...</td>
+                  </tr>
+                ) : (
+                  entries.map((text, index) => (
+                    <tr
+                      key={index}
+                      className="border-b bg-gray-800 border-gray-700 "
+                    >
+                      <td className=" w-[90%]  px-6  py-4 font-medium whitespace-nowrap text-gray-300 ">
+                        {text?.texto}
+                      </td>
+                      <td className="px-6 py-4 text-right font-medium whitespace-nowrap text-gray-300 ">
+                        {format(
+                          parseISO(text?.created_at),
+                          "dd/MM/yyyy HH:mm:ss"
+                        )}
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+            <div className=" flex justify-between ">
+              <PaginationControls
+                hasNextPage={end < textPrompt.length}
+                hasPrevPage={start > 0}
+                totalElements={totalElements}
+                basePath="/perfil/historial-prompts"
+                perpage={10}
+              />
+            </div>
           </div>
         </div>
       </div>

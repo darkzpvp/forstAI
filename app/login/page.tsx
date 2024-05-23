@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef, createRef, useEffect } from "react";
+import React, { useState,  useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "../hooks/useAuth";
@@ -7,9 +7,8 @@ import AlertaOk from "../components/AlertaOk";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { loginUsuario, loginUsuarioSchema } from "../validations/loginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 const Login = () => {
-  const Router = useRouter();
   const [errores, setErrores] = useState("");
   const [mensajeOk, setMensajeOk] = useState("");
   const { login, user } = useAuth({});

@@ -6,11 +6,9 @@ const Cards = () => {
     beneficioSemanaPanel,
     ingresosTotalesPanel,
     ingresosTotales,
-    setIngresosTotales,
     usuarioSemana,
-    setUsuarioSemana,
     beneficioSemana,
-    setBeneficioSemana,
+
   } = useUsuarioContext();
   const [loadingPage, setLoadingPage] = useState(true);
   useEffect(() => {
@@ -121,8 +119,8 @@ const Cards = () => {
               </div>
             </div>
 
-            <div className="max-w-md  mx-auto  w-full  rounded-lg shadow bg-gray-800 mt-4">
-              <div className="flex justify-between p-4 md:p-6 pb-0 md:pb-0">
+            <div className="max-w-md  mx-auto  w-full  rounded-lg shadow bg-gray-800 mt-4 p-4 md:p-6">
+              <div className="flex justify-between pb-3">
                 <div>
                   <h5 className="leading-none text-3xl font-bold  text-white pb-2">
                     {total_coste_semana_actual}€

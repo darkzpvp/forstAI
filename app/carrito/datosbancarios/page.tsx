@@ -1,7 +1,7 @@
 "use client";
 import Header_Dos from "@/app/components/Header_Dos";
 import React, { useState } from "react";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 import useDatosBancarios from "@/app/hooks/useDatosBancarios";
 import useInformacionPersonal from "@/app/hooks/useInformacionPersonal";
@@ -11,16 +11,12 @@ const page = () => {
         handleSubmit,
         errors,
      onSubmit,
-  
       } = useDatosBancarios();
       const {
      continuarCarrito,
-     setContinuarCarrito,
      suscripcionObjeto
       } = useInformacionPersonal();
   const [menuHamburguesa, setMenuHamburguesa] = useState(false);
-
-  const Router = useRouter();
 
   const [menu, setMenu] = useState(false);
 

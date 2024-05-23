@@ -4,7 +4,7 @@ import useEstadoUsuario from "@/app/hooks/useEstadoUsuario";
 import useUsuarioContext from "@/app/hooks/useUsuarioContext";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import PaginationControls from "@/app/components/Paginations/PaginationControls";
+import PaginationControls from "@/app/components/Admin/PaginationControlsAdmin";
 import Table from "@/app/components/AdminUser/Table";
 import Facturacion from "@/app/components/AdminUser/Facturacion";
 import DetallesCuenta from "@/app/components/AdminUser/DetallesCuenta";
@@ -21,9 +21,6 @@ const page = ({ params, searchParams }) => {
   const end = start + Number(per_page);
   entries = textPrompt?.slice(start, end);
 
-  const myStyles = {
-    backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.534), rgba(17, 24, 39, 0.5)), url('/img/admin/layeredUserr.jpg')`,
-  };
   const [menu, setMenu] = useState(false);
   const [menuHamburguesa, setMenuHamburguesa] = useState(false);
   const idUser = params.id;
@@ -61,19 +58,23 @@ const page = ({ params, searchParams }) => {
         setMenuHamburguesa={setMenuHamburguesa}
       />
 
-      <div
-        style={myStyles}
-        className="relative h-44  overflow-hidden bg-cover bg-center flex items-center justify-center "
-        onClick={handleCloseMenu}
-      >
-      <EncabezadoAdminUser informacion_personal={informacion_personal} state={state}/>
-      </div>
-      <div className=" mx-auto px-5 md:px-18 sm:px-8 mt-5 xl:px-40  ">
+      <EncabezadoAdminUser
+        informacion_personal={informacion_personal}
+        state={state}
+        handleCloseMenu={handleCloseMenu}
+      />
+
+      <div className=" mx-auto px-5 md:px-18 sm:px-8 xl:px-40  ">
         <div className=" block sm:grid sm:grid-cols-4 gap-5 ">
-         
-            <DetallesCuenta informacion_personal={informacion_personal} suscripcion={suscripcion}/>
-         <Facturacion detalles_facturacion={detalles_facturacion} informacion_personal={informacion_personal}/>
-          <div className=" col-span-4 border-2  border-dashed  border-gray-700 ">
+          <DetallesCuenta
+            informacion_personal={informacion_personal}
+            suscripcion={suscripcion}
+          />
+          <Facturacion
+            detalles_facturacion={detalles_facturacion}
+            informacion_personal={informacion_personal}
+          />
+          <div className=" col-span-4 bg-gray-800 my-5 rounded-lg ">
             <Table loading={loading} entries={entries} />
             <div className=" flex justify-between ">
               <PaginationControls

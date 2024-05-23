@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState, useEffect, MouseEventHandler } from "react";
+import { useEffect, MouseEventHandler } from "react";
 
 
 const Modal = ({ modal, setModal, imageBase64 }) => {

@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
 import { toast } from "react-toastify";
-import { SubmitHandler, useForm, useWatch } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import useInformacionPersonal from "@/app/hooks/useInformacionPersonal";
 import { actualizarUsuario, actualizarUsuarioSchema } from "@/app/validations/actualizarUsuarioSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -67,7 +66,7 @@ const {setSelectedUsers} = useInformacionPersonal()
     setSelectedUsers([])
     reset()
   };
-  const { datosUser, actualizarDatosUserId } = useInformacionPersonal();
+  const { actualizarDatosUserId } = useInformacionPersonal();
 
 
 

@@ -10,7 +10,6 @@ import useInformacionPersonal from "@/app/hooks/useInformacionPersonal";
 const Page = () => {
   const [menuHamburguesa, setMenuHamburguesa] = useState(false);
   const [modal, setModal] = useState(false);
-
   const [comprado, setComprado] = useState(false);
   const [menu, setMenu] = useState(false);
   const handleCloseMenu = () => {
@@ -53,7 +52,7 @@ const Page = () => {
           {comprado && (
             <div className="flex justify-center ">
               <div
-                className="flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                className="flex items-center p-4 mb-4 text-sm  rounded-lg  bg-gray-800 text-green-400"
                 role="alert"
               >
                 <svg

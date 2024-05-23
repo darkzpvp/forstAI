@@ -2,7 +2,7 @@ import clienteAxios from "../config/axios";
 import useUsuarioContext from "./useUsuarioContext";
 
 const useCambiarContraseña = () => {
-  const {mensaje, setMensaje} = useUsuarioContext()
+  const {setMensaje} = useUsuarioContext()
   const cambiarContraseña = async (datos, setErrores) => {
     const authToken = localStorage.getItem("AUTH_TOKEN");
     if (!authToken) {
@@ -14,13 +14,13 @@ const useCambiarContraseña = () => {
     const config = {
       headers: {
         Authorization: `Bearer ${authToken}`,
-        "Content-Type": "application/json", // Cambiado a application/json si estás enviando datos JSON
+        "Content-Type": "application/json", 
       },
     };
 
-    const url = `/api/change-password`;
+    const url = `/api/cambiar-contraseña`;
     try {
-      const { data } = await clienteAxios.post(url, datos, config); // Cambiado el orden de los argumentos
+      const { data } = await clienteAxios.post(url, datos, config); 
       setMensaje(data.message)
       setTimeout(() => {
 setMensaje("")

@@ -1,19 +1,11 @@
-'use client'
-import type { Metadata } from "next";
+"use client";
 import "tailwindcss/tailwind.css";
 import "../globals.css";
-import { Kumbh_Sans} from 'next/font/google'
 import { UsuarioProvider } from "../context/UsuarioProvider";
 import Sidebar from "../components/Perfil/Sidebar";
 import { useState } from "react";
-import useUsuarioContext from "../hooks/useUsuarioContext";
-import Modal from "../components/CambiarPerfil/Modal";
 import { useAuth } from "../hooks/useAuth";
-const kumbh = Kumbh_Sans({
-  subsets: ['latin'],
-  variable: '--font-kumbh',
-  display: 'swap',
-})
+import Header_Dos from "../components/Header_Dos";
 
 
 export default function RootLayout({
@@ -23,23 +15,21 @@ export default function RootLayout({
 }>) {
   const { user } = useAuth({ middleware: "auth", url: "/perfil" });
 
-
+  const [menuHamburguesa, setMenuHamburguesa] = useState(false);
+  const [menu, setMenu] = useState(false);
   return (
-    <html lang="en" className=" overflow-x-hidden  ">
-<head>
-  <title>Generador de imagenes</title>
-  <meta name="description" content="Generador de imagenes" />
-</head>
-      <body className={`${kumbh.className}`}>
-<UsuarioProvider>
-    <Sidebar/>
-    {children}
 
-</UsuarioProvider>
-
-     
-
-        </body>
-    </html>
+        <UsuarioProvider>
+          <div className=" sm:hidden flex">
+            <Header_Dos
+              menu={menu}
+              setMenu={setMenu}
+              menuHamburguesa={menuHamburguesa}
+              setMenuHamburguesa={setMenuHamburguesa}
+            />
+          </div>
+          <Sidebar />
+          {children}
+        </UsuarioProvider>
   );
 }

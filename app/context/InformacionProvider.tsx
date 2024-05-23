@@ -2,13 +2,12 @@ import React, { createContext, useEffect, useState } from "react";
 import clienteAxios from "../config/axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { redirect, useRouter } from "next/navigation";
+import {  useRouter } from "next/navigation";
 import {
   InformacionPersonal,
   informacionPersonalSchema,
 } from "../validations/informacionPersonalSchema";
 import suscripciones from "@/app/data/suscripciones.json";
-import useUsuarioContext from "../hooks/useUsuarioContext";
 
 const InformacionContext = createContext({});
 

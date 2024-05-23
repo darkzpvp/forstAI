@@ -1,5 +1,4 @@
 import useSuscripciones from '@/app/hooks/useSuscripciones';
-import React from 'react'
 
 const CancelarPlan = ({cancelarPlan, setCancelarPlan}) => {
     const {eliminarSuscripciones} = useSuscripciones()
