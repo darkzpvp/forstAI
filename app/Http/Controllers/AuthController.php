@@ -37,131 +37,148 @@ class AuthController extends Controller
             'user' => null
         ];
     }
-    public function register(RegistroRequest $request)
+    public function registro(RegistroRequest $request)
     {
-        //Validar el registro
-        $data = $request->validated();
-
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password'])
-        ]);
-        $publicIpResponse = Http::get('https://api.ipify.org?format=json');
-        $publicIpData = $publicIpResponse->json();
-        $publicIpAddress = $publicIpData['ip'];
-
-        // Guardar la dirección IP del usuario
-        $user->ip_address = $publicIpAddress;
-        $user->save();
-        return [
-            'token' => $user->createToken('token')->plainTextToken,
-            'user' => $user
-        ];
-        // $response = [
-        //     'message' => 'Se ha enviado un mensaje de confirmación a tu correo electrónico'
-        // ];
-
-        // return $response;
-    }
-    public function login(LoginRequest $request)
-    {
-        $data = $request->validated();
-
-        if (!Auth::attempt($data)) {
-            return response([
-                'incorrecto' => 'El email o el password son incorrectos'
-            ], 422);
-        }
-        //Autenticar al usuario
-        $user = Auth::user();
-        $publicIpResponse = Http::get('https://api.ipify.org?format=json');
-        $publicIpData = $publicIpResponse->json();
-        $publicIpAddress = $publicIpData['ip'];
-
-        // Verificar si la dirección IP ya está almacenada
-        if ($user->ip_address !== $publicIpAddress) {
-            // Actualizar la dirección IP del usuario
+        try {
+            // Crear un nuevo usuario
+            $user = User::create([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => bcrypt($request->input('password'))
+            ]);
+            
+            // Obtener la dirección IP pública del usuario
+            $publicIpResponse = Http::get('https://api.ipify.org?format=json');
+            $publicIpData = $publicIpResponse->json();
+            $publicIpAddress = $publicIpData['ip'];
+            
+            // Guardar la dirección IP del usuario
             $user->ip_address = $publicIpAddress;
             $user->save();
+            
+            // Retornar el token de autenticación y la información del usuario
+            return [
+                'token' => $user->createToken('token')->plainTextToken,
+                'user' => $user
+            ];
+        } catch (\Exception $e) {
+            // Manejar cualquier error que ocurra durante el proceso de registro
+            // Por ejemplo, registro fallido, error al obtener la dirección IP, etc.
+            return response()->json(['error' => 'Error al registrar el usuario'], 500);
         }
-        return [
-            'token' => $user->createToken('token')->plainTextToken,
-            'user' => $user
-        ];
+    }
+    
+    public function login(LoginRequest $request)
+    {
+        try {
+            // Validar la solicitud (la validación debería ocurrir dentro del objeto LoginRequest)
+    
+            // Intentar autenticar al usuario
+            if (!Auth::attempt($request->only('email', 'password'))) {
+                return response()->json(['incorrecto' => 'El email o la contraseña son incorrectos'], 422);
+            }
+    
+            // Obtener al usuario autenticado
+            $user = Auth::user();
+    
+            // Obtener la dirección IP pública del usuario
+            $publicIpResponse = Http::get('https://api.ipify.org?format=json');
+            $publicIpData = $publicIpResponse->json();
+            $publicIpAddress = $publicIpData['ip'];
+    
+            // Verificar si la dirección IP ha cambiado y actualizarla si es necesario
+            if ($user->ip_address !== $publicIpAddress) {
+                $user->ip_address = $publicIpAddress;
+                $user->save();
+            }
+    
+            // Retornar el token de autenticación y la información del usuario
+            return [
+                'token' => $user->createToken('token')->plainTextToken,
+                'user' => $user
+            ];
+        } catch (\Exception $e) {
+            // Manejar cualquier error que ocurra durante el proceso de autenticación
+            return response()->json(['error' => 'Error al iniciar sesión'], 500);
+        }
     }
 
     //Forget password api method
-    public function changePassword(ChangePasswordRequest $request)
-    {
-        $validatedData = $request->validated();
+    public function cambiarContraseña(ChangePasswordRequest $request)
+{
+    $user = $request->user();
 
-        $user = $request->user();
-
-        // Verificar si la contraseña actual es correcta
-        if (!Hash::check($validatedData['current_password'], $user->password)) {
-            return response()->json([
-                'incorrecto' => ['La contraseña actual es incorrecta']
-            ], 401);
-        }
-
-        // Verificar si la nueva contraseña está vacía
-
-        $user->password = bcrypt($validatedData['new_password']);
-
-        if ($user->save()) {
-            return response()->json([
-                'message' => '¡Contraseña cambiada correctamente!'
-            ], 200);
-        }
+    // Verificar si la contraseña actual es correcta
+    if (!Hash::check($request->current_password, $user->password)) {
+        return response()->json([
+            'incorrecto' => ['La contraseña actual es incorrecta']
+        ], 401);
     }
 
-
-
-
-
-    public function forgot(Hasher $hasher, Request $request): JsonResponse
-    {
-        // Definir mensajes personalizados
-        $messages = [
-            'email.required' => 'El email es obligatorio',
-            'email.email' => 'Por favor, proporciona un email válido',
-        ];
-
-        // Validar el request
-        $request->validate([
-            'email' => 'required|email',
-        ], $messages);
-
-        // Buscar al usuario por su correo electrónico
-        $user = User::where('email', $request->input('email'))->first();
-
-        // Verificar si el usuario no existe
-        if (!$user) {
-            return response()->json(['errors' => 'Usuario no encontrado'], 404);
-        }
-
-        // Generar un token de restablecimiento de contraseña
-        $resetPasswordToken = bin2hex(random_bytes(16));
-
-        // Codificar el token como una cadena base64 segura para URL
-        $resetPasswordToken = rtrim(strtr(base64_encode($resetPasswordToken), '+/', '-_'), '=');
-
-        // Establecer la fecha de vencimiento del token (1 día)
-        $expiresAt = now()->addDay();
-
-        // Crear o actualizar la entrada de restablecimiento de contraseña para el usuario
-        PasswordReset::updateOrCreate(
-            ['email' => $user->email],
-            ['token' => $resetPasswordToken, 'expires_at' => $expiresAt]
-        );
-
-        // Notificar al usuario sobre el restablecimiento de contraseña
-        $user->notify(new PasswordResetNotification($user, $resetPasswordToken));
-
-        // Retornar una respuesta JSON
-        return response()->json(['status' => 'Un código se ha enviado a tu correo electrónico']);
+    // Verificar si la nueva contraseña está vacía
+    if (empty($request->new_password)) {
+        return response()->json([
+            'error' => 'La nueva contraseña no puede estar vacía'
+        ], 422);
     }
+
+    // Cambiar la contraseña del usuario
+    $user->password = bcrypt($request->new_password);
+
+    if ($user->save()) {
+        return response()->json([
+            'message' => '¡Contraseña cambiada correctamente!'
+        ], 200);
+    } else {
+        return response()->json([
+            'error' => 'Error al cambiar la contraseña'
+        ], 500);
+    }
+}
+
+
+
+
+
+public function olvide(Hasher $hasher, Request $request): JsonResponse
+{
+    // Validar el request
+    $request->validate([
+        'email' => 'required|email',
+    ], [
+        'email.required' => 'El email es obligatorio',
+        'email.email' => 'Por favor, proporciona un email válido',
+    ]);
+
+    // Buscar al usuario por su correo electrónico
+    $user = User::where('email', $request->input('email'))->first();
+
+    // Verificar si el usuario no existe
+    if (!$user) {
+        return response()->json(['errors' => 'Usuario no encontrado'], 404);
+    }
+
+    // Generar un token de restablecimiento de contraseña
+    $resetPasswordToken = bin2hex(random_bytes(16));
+
+    // Codificar el token como una cadena base64 segura para URL
+    $resetPasswordToken = rtrim(strtr(base64_encode($resetPasswordToken), '+/', '-_'), '=');
+
+    // Establecer la fecha de vencimiento del token (1 día)
+    $expiresAt = now()->addDay();
+
+    // Crear o actualizar la entrada de restablecimiento de contraseña para el usuario
+    PasswordReset::updateOrCreate(
+        ['email' => $user->email],
+        ['token' => $resetPasswordToken, 'expires_at' => $expiresAt]
+    );
+
+    // Notificar al usuario sobre el restablecimiento de contraseña
+    $user->notify(new PasswordResetNotification($user, $resetPasswordToken));
+
+    // Retornar una respuesta JSON
+    return response()->json(['status' => 'Un código se ha enviado a tu correo electrónico']);
+}
 
     public function reset(ResetPasswordRequest $request): JsonResponse
     {
@@ -212,7 +229,7 @@ class AuthController extends Controller
 
 
 
-    public function checkToken(Request $request): JsonResponse
+    public function comprobarToken(Request $request): JsonResponse
     {
         // Obtener el token enviado por el cliente
         $token = $request->query('token');
@@ -451,7 +468,7 @@ public function eliminarCuentasUsuarios(Request $request): JsonResponse
 
     return response()->json(['success' => false, 'message' => 'No se proporcionaron IDs de usuarios'], 400);
 }
-public function getUsersLastWeek()
+public function usuariosUltimaSemana()
 {
     // Fecha y hora de hace 7 días (semana actual)
     $startOfWeek = Carbon::now()->startOfWeek();

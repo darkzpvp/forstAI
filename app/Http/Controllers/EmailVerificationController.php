@@ -14,7 +14,7 @@ class EmailVerificationController extends Controller
     {
         if ($request->user()->hasVerifiedEmail()) {
             return [
-                'message' => 'Already Verified'
+                'message' => 'Ya verificado'
             ];
         }
 
@@ -27,7 +27,7 @@ class EmailVerificationController extends Controller
     {
         if ($request->user()->hasVerifiedEmail()) {
             return [
-                'message' => 'Email already verified'
+                'message' => 'Correo ya verificado'
             ];
         }
 
@@ -36,7 +36,7 @@ class EmailVerificationController extends Controller
         }
 
         return [
-            'message'=>'Email has been verified'
+            'message'=>'El correo electrónico ha sido verificado'
         ];
     }
 }

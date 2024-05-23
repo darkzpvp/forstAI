@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\InformacionPersonal;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\InformacionPersonalRequest;
 
 class InformacionPersonalController extends Controller
 {
@@ -15,59 +15,20 @@ class InformacionPersonalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(InformacionPersonalRequest $request)
     {
-        // Validar los datos enviados por el cliente
-        $validator = Validator::make($request->all(), [
-            'nombre' => 'required|string|max:50',
-            'apellidos' => 'required|string|max:50',
-            'numero_telefono' => 'required|string|max:20',
-            'pais' => 'required|string|max:50',
-            'poblacion' => 'required|string|max:50',
-            'provincia' => 'required|string|max:50',
-            'nif_nie' => 'required|string|max:50',
-            'direccion' => 'required|string|max:50',
-            'cp' => 'required|string|max:50'
-        ], [
-            'required' => 'Todos los campos son obligatorios',
-            '*.string' => 'El campo :attribute debe ser una cadena de texto.',
-            '*.max' => 'El campo :attribute no debe superar los :max caracteres.',
-        ]);
-        
-        $validator->stopOnFirstFailure();
-        
-        $validator->validate();
+        // El código de validación y almacenamiento se mueve automáticamente a la clase de solicitud
+        // Accede a los datos validados usando el método validated()
     
         // Buscar si ya existe información personal para el usuario actual
         $informacionPersonal = InformacionPersonal::where('user_id', Auth::id())->first();
     
         if ($informacionPersonal) {
             // Si la información personal ya existe, actualizar los datos
-            $informacionPersonal->update([
-                'nombre' => $request->input('nombre'),
-                'apellidos' => $request->input('apellidos'),
-                'numero_telefono' => $request->input('numero_telefono'),
-                'pais' => $request->input('pais'),
-                'poblacion' => $request->input('poblacion'),
-                'provincia' => $request->input('provincia'),
-                'nif_nie' => $request->input('nif_nie'),
-                'direccion' => $request->input('direccion'),
-                'cp' => $request->input('cp')
-            ]);
+            $informacionPersonal->update($request->validated());
         } else {
             // Si la información personal no existe, crear un nuevo registro
-            $informacionPersonal = new InformacionPersonal([
-                'user_id' => Auth::id(),
-                'nombre' => $request->input('nombre'),
-                'apellidos' => $request->input('apellidos'),
-                'numero_telefono' => $request->input('numero_telefono'),
-                'pais' => $request->input('pais'),
-                'poblacion' => $request->input('poblacion'),
-                'provincia' => $request->input('provincia'),
-                'nif_nie' => $request->input('nif_nie'),
-                'direccion' => $request->input('direccion'),
-                'cp' => $request->input('cp')
-            ]);
+            $informacionPersonal = new InformacionPersonal($request->validated() + ['user_id' => Auth::id()]);
             $informacionPersonal->save();
         }
     

@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Notifications\RecibirEmailNotificacion;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Validation\ValidationException;
 use App\Http\Requests\EmailRequest;
 class EmailController extends Controller
 {
-    public function receiveEmail(EmailRequest $request)
+    public function recibirEmail(EmailRequest $request)
     {
         $data = $request->validated();
      

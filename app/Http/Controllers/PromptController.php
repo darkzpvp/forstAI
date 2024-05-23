@@ -60,7 +60,7 @@ class PromptController extends Controller
     }
     
 
-    public function getPrompts(Request $request)
+    public function conseguirPrompts(Request $request)
     {
         // Obtener el usuario autenticado usando Laravel Sanctum
         $user = auth()->user();
@@ -88,7 +88,7 @@ class PromptController extends Controller
        }
 
 
-        public function getAllPrompts(Request $request)
+        public function todosLosPrompts(Request $request)
         {
             // Obtener el usuario autenticado usando Laravel Sanctum
             $user = auth()->user();

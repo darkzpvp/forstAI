@@ -4,10 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PromptController;
-use BeyondCode\LaravelWebSockets\Http\Controllers\WebSocketController;
 use App\Http\Controllers\EmailVerificationController;
-use App\Http\Controllers\ForgotPasswordController;
-use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\CambiarPerfilController;
 use App\Http\Controllers\InformacionPersonalController;
@@ -16,37 +13,53 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+
+    // AuthController
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::post('/enviar_formulario', [PromptController::class, 'enviarFormulario']);
-    Route::get('/prompts', [PromptController::class, 'getPrompts']);
-    Route::post('/change-password', [AuthController::class, 'changePassword']);
-    Route::post('/cambiar-perfil', [CambiarPerfilController::class, 'subirImagen']);
-    Route::get('/imagen-perfil', [CambiarPerfilController::class, 'obtenerImagenPerfil']);
-    Route::post('/informacion-personal', [InformacionPersonalController::class, 'store']);
-    Route::get('/informacion-personal', [InformacionPersonalController::class, 'show']);
-    Route::post('/comprar-suscripcion', [SuscripcionesController::class, 'comprar']);
-    Route::delete('/cancelar-suscripcion', [SuscripcionesController::class, 'eliminar']);
+    Route::post('/cambiar-contraseña', [AuthController::class, 'cambiarContraseña']);
     Route::delete('/eliminar-cuenta', [AuthController::class, 'eliminarCuenta']);
-    Route::get('/ver-suscripcion', [SuscripcionesController::class, 'getAll']);
-    Route::get('/ver-prompts', [PromptController::class, 'getAllPrompts']);
     Route::get('/ver-informacion-usuario', [AuthController::class, 'informacionUsuarioPanel']);
     Route::get('/informacion-usuario-panel/{id}', [AuthController::class, 'informacionUserId']);
-   Route::put('/informacion-usuario-panel/{id}', [AuthController::class, 'informacionUserIdActualizar']);
-   Route::delete('/eliminar-cuenta-usuario', [AuthController::class, 'eliminarCuentasUsuarios']);
-   Route::get('/users/last-week', [AuthController::class, 'getUsersLastWeek'])->middleware('auth:sanctum');
-   Route::get('/suscripcion/beneficio', [SuscripcionesController::class, 'getCosteTotalUltimaSemana'])->middleware('auth:sanctum');
-   Route::get('/suscripcion/total', [SuscripcionesController::class, 'getCosteTotal'])->middleware('auth:sanctum');
-   Route::post('/cambiar-estado-usuario', [AuthController::class, 'cambiarEstadoUsuario']);
-   Route::post('/ultima-sesion-usuario', [AuthController::class, 'ultimaSesionUsuario']);
+    Route::put('/informacion-usuario-panel/{id}', [AuthController::class, 'informacionUserIdActualizar']);
+    Route::delete('/eliminar-cuenta-usuario', [AuthController::class, 'eliminarCuentasUsuarios']);
+    Route::get('/usuarios-ultima-semana', [AuthController::class, 'usuariosUltimaSemana']);
+    Route::post('/cambiar-estado-usuario', [AuthController::class, 'cambiarEstadoUsuario']);
+    Route::post('/ultima-sesion-usuario', [AuthController::class, 'ultimaSesionUsuario']);
 
+    // PromptController
+    Route::post('/enviar_formulario', [PromptController::class, 'enviarFormulario']);
+    Route::get('/prompts', [PromptController::class, 'conseguirPrompts']);
+    Route::get('/ver-prompts', [PromptController::class, 'todosLosPrompts']);
+
+    // CambiarPerfilController
+    Route::post('/cambiar-perfil', [CambiarPerfilController::class, 'subirImagen']);
+    Route::get('/imagen-perfil', [CambiarPerfilController::class, 'obtenerImagenPerfil']);
+
+    // InformacionPersonalController
+    Route::post('/informacion-personal', [InformacionPersonalController::class, 'store']);
+    Route::get('/informacion-personal', [InformacionPersonalController::class, 'show']);
+
+    // SuscripcionesController
+    Route::post('/comprar-suscripcion', [SuscripcionesController::class, 'comprar']);
+    Route::delete('/cancelar-suscripcion', [SuscripcionesController::class, 'eliminar']);
+    Route::get('/ver-suscripcion', [SuscripcionesController::class, 'getAll']);
+    Route::get('/suscripcion/beneficio', [SuscripcionesController::class, 'getCosteTotalUltimaSemana']);
+    Route::get('/suscripcion/total', [SuscripcionesController::class, 'getCosteTotal']);
 });
 
-Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail'])->middleware(['auth:sanctum']);
-Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify')->middleware(['auth:sanctum']);
+
+//Email Verification
+Route::post('email-notificacion', [EmailVerificationController::class, 'sendVerificationEmail'])->middleware(['auth:sanctum']);
+Route::get('verificar/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify')->middleware(['auth:sanctum']);
+
+
+//AuthController
 Route::post('/reset', [AuthController::class, 'reset']);
 Route::get('/reset', [AuthController::class, 'reset']);
-Route::post('/registro', [AuthController::class, 'register']);
+Route::post('/registro', [AuthController::class, 'registro']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/forgot', [AuthController::class, 'forgot']);
-Route::get('/check-token', [AuthController::class, 'checkToken']);
-Route::post('/receive-email', [EmailController::class, 'receiveEmail']);
+Route::post('/olvide', [AuthController::class, 'olvide']);
+Route::get('/comprobar-token', [AuthController::class, 'comprobarToken']);
+
+//Email Controller
+Route::post('/recibir-email', [EmailController::class, 'recibirEmail']);
