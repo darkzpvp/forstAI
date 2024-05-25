@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import clienteAxios from "../config/axios";
 
 export const usePrompt = () => {

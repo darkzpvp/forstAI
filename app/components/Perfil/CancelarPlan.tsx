@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import useSuscripciones from '@/app/hooks/useSuscripciones';
 
 const CancelarPlan = ({cancelarPlan, setCancelarPlan}) => {

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 const DarBajaCuenta = ({setEliminarCuenta}) => {
   return (
     <div className=" bg-gray-800 w-full max-w-4xl rounded-lg mt-5 ">

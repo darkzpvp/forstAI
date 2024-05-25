@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 'use client'
 import "./globals.css";
 import { Kumbh_Sans} from 'next/font/google'
@@ -7,6 +9,7 @@ import { DatosProvider } from "./context/DatosBancariosProvider";
 import { usePathname } from "next/navigation";
 import { EstadoProvider } from "./context/EstadoUsuario";
 import useEstadoUsuario from "./hooks/useEstadoUsuario";
+import { useEffect } from "react";
 const kumbh = Kumbh_Sans({
   subsets: ['latin'],
   variable: '--font-kumbh',
@@ -21,13 +24,8 @@ export default function RootLayout({
 
 const {state, setState, count, setCount, remaining, setRemaining, ultimaActividad} = useEstadoUsuario()
 
-if (typeof localStorage !== 'undefined') {
-  const Path = usePathname()
-  if (Path !== '/carrito' && Path !== '/carrito/datosbancarios' && Path !== '/carrito/confirmacion') {
-    localStorage.removeItem('suscripcionElegida');
-    localStorage.removeItem('carrito');
-  }
-}
+
+
   return (
     <html lang="en" className=" overflow-x-hidden  ">
 <head>

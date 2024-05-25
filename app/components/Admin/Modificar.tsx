@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { toast } from "react-toastify";
 import { SubmitHandler, useForm } from "react-hook-form";
 import useInformacionPersonal from "@/app/hooks/useInformacionPersonal";

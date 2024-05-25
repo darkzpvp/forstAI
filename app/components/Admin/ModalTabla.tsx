@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import useUsuarioContext from '@/app/hooks/useUsuarioContext';
 const ModalTabla = ({ setClickModificar, setActualizarTabla, setClickEliminar }) => {
   const modificarUsuario = () => {

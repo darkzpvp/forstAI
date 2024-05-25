@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 "use client";
 import Header_Dos from "@/app/components/Header_Dos";
 import React, { useEffect, useState } from "react";

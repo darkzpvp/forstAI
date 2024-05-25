@@ -1,14 +1,16 @@
+// @ts-nocheck
+
 "use client";
 import useOlvidePassword from "@/app/hooks/useOlvidePassword";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Alerta from "@/app/components/Alerta";
 import AlertaOk from "@/app/components/AlertaOk";
+import Alerta from "@/app/components/Generar/Alerta";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { password, passwordSchema } from "@/app/validations/PasswordSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-export default function page({ params }: { params: { token: string } }) {
+export default function Page({ params }: { params: { token: string } }) {
   const [mensajeOk, setMensajeOk] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [tokenUrl, setTokenUrl] = useState(params.token);

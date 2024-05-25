@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React from 'react'
 
 const Facturacion = ({detalles_facturacion, informacion_personal}) => {

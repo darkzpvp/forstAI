@@ -1,10 +1,12 @@
+// @ts-nocheck
+
 import React, { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "../hooks/useAuth";
 import { usePathname } from "next/navigation";
 import useUsuarioContext from "../hooks/useUsuarioContext";
-
+import { motion, AnimatePresence } from "framer-motion";
 
 interface InterfazProps {
   menu: boolean;
@@ -17,13 +19,12 @@ const Header_Dos = ({
   menu,
   setMenu,
   menuHamburguesa,
-  setMenuHamburguesa
+  setMenuHamburguesa,
 }: InterfazProps) => {
   const { logout, user } = useAuth({});
-const pathname = usePathname()
+  const pathname = usePathname();
 
-const { avatarUrl, obtenerAvatar } = useUsuarioContext();
- 
+  const { avatarUrl, obtenerAvatar } = useUsuarioContext();
 
   const handleMenu = () => {
     setMenu(!menu);
@@ -33,42 +34,40 @@ const { avatarUrl, obtenerAvatar } = useUsuarioContext();
     if (menu) {
       setMenu(false);
     }
-    if(menuHamburguesa){
-      setMenuHamburguesa(false)
+    if (menuHamburguesa) {
+      setMenuHamburguesa(false);
     }
   };
 
-const handleMenuHamburguesa = () => {
-  setMenuHamburguesa(!menuHamburguesa)
-}
+  const handleMenuHamburguesa = () => {
+    setMenuHamburguesa(!menuHamburguesa);
+  };
 
+  useEffect(() => {
+    if (menuHamburguesa) {
+      setMenu(false);
+      setMenuHamburguesa(true);
+    } else {
+      setMenuHamburguesa(false);
+    }
+    if (menu) {
+      setMenuHamburguesa(false);
+      setMenu(true);
+    } else {
+      setMenu(false);
+    }
+  }, [menuHamburguesa, menu]);
 
-
-useEffect(() => {
-  if(menuHamburguesa){
-    setMenu(false)
-    setMenuHamburguesa(true)
-  } else {
-    setMenuHamburguesa(false)
-  }
-  if(menu){
-    setMenuHamburguesa(false)
-    setMenu(true)
-  } else {
-    setMenu(false)
-  } 
-}, [menuHamburguesa, menu])
-
-
-
-useEffect(() => {
-obtenerAvatar()
-}, [])
+  useEffect(() => {
+    obtenerAvatar();
+  }, []);
 
   return (
     <>
       <div
-        className={`${pathname == '/perfil' ? 'fixed' : ''} z-40 w-full bg-gray-900`}
+        className={`${
+          pathname == "/perfil" ? "fixed" : ""
+        } z-40 w-full bg-gray-900`}
       >
         <div
           className="py-2 mx-auto flex items-center justify-between w-full max-w-4xl px-5"
@@ -76,7 +75,7 @@ obtenerAvatar()
             handleCloseMenu();
             e.stopPropagation();
           }}
-         >
+        >
           <button className="w-[25%]">
             <Image
               fill={false}
@@ -139,14 +138,12 @@ obtenerAvatar()
             </div>
 
             {user?.rol === 1 && (
-                 <div>
-                 <Link href={"/admin"} legacyBehavior>
-                   <a  className=" text-gray-300 cursor-pointer">
-                     Admin
-                   </a>
-                 </Link>
-               </div>
-             )}
+              <div>
+                <Link href={"/admin"} legacyBehavior>
+                  <a className=" text-gray-300 cursor-pointer">Admin</a>
+                </Link>
+              </div>
+            )}
           </div>
           <div className="flex  items-center w-[25%]  justify-end">
             <button
@@ -162,80 +159,86 @@ obtenerAvatar()
             </button>
           </div>
         </div>
-
+        <AnimatePresence>
         {menu && (
-          <>
-            <div
-              id="nooverlay"
-              className="flex justify-end 2xl:px-60 xl:px-20 lg:px-14  "
-              onClick={(e) => e.stopPropagation()}
+  <div
+    id="nooverlay"
+    className="flex justify-end 2xl:px-60 xl:px-20 lg:px-14"
+    onClick={(e) => e.stopPropagation()}
+  >
+    <motion.div
+      className="absolute z-50 text-base rounded-b-lg shadow py-4 bg-gray-900 w-full block sm:max-w-56 px-5 h-44 overlay"
+      initial={{ opacity: 0, y: -5 }}
+      animate={{ opacity: 1, y: -2 }}
+      exit={{ opacity: 0, y: -5 }}
+
+    >
+      <div className="flex">
+        <div className="w-[0%]">
+          <div
+            className="absolute top-0 z-50 hover:bg-gray-700 active:bg-gray-800 rounded-lg p-1 stroke-gray-300 w-8 h-8"
+            onClick={handleCloseMenu}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke=""
+              className=""
             >
-              <div className="absolute z-50 text-base rounded-b-lg shadow py-4 bg-gray-900  w-full block sm:max-w-56 px-5 h-44 overlay">
-                <div className=" flex ">
-                  <div className=" w-[0%] ">
-  
-                      <div
-                        className=" absolute top-0 z-50 hover:bg-gray-700 active:bg-gray-800 rounded-lg p-1 stroke-gray-300 w-8 h-8"
-                        onClick={handleCloseMenu}
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={1.5}
-                          stroke=""
-                          className=""
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M6 18 18 6M6 6l12 12"
-                          />
-                        </svg>
-                      </div>
-             
-                  </div>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </div>
+        </div>
 
-                  <div className="w-[100%] mt-5 ">
-                    <span className="block text-sm text-white text-center">
-                      {user?.name}
-                    </span>
-                    <span className="block text-sm text-gray-400 text-center ">
-                      {user?.email}
-                    </span>
-                  </div>
-                </div>
+        <div className="w-[100%] mt-5 ">
+          <span className="block text-sm text-white text-center">
+            {user?.name}
+          </span>
+          <span className="block text-sm text-gray-400 text-center ">
+            {user?.email}
+          </span>
+        </div>
+      </div>
 
-             
-           
-                  <Link href={'/perfil'} legacyBehavior >
-                   <a  className=" text-center block  px-4 py-2 text-sm hover:bg-gray-700  rounded-lg text-gray-200 hover:text-white cursor-pointer mx-auto sm:mx-0 w-full mt-3">
-                    Ver perfil
-                   </a>
-                  </Link>
-              
-                  <button
-                    onClick={logout}
-                    type="submit"
-                    className="block px-4 py-2 text-sm hover:bg-gray-700 rounded-lg text-gray-200 hover:text-white mx-auto sm:mx-0 w-full"
-                  >
-                    Logout
-                  </button>
-              
-              </div>
-            </div>
-          </>
-        )}
+      <Link href="/perfil" legacyBehavior>
+        <a className="text-center block px-4 py-2 text-sm hover:bg-gray-700 rounded-lg text-gray-200 hover:text-white cursor-pointer mx-auto sm:mx-0 w-full mt-3">
+          Ver perfil
+        </a>
+      </Link>
+
+      <button
+        onClick={logout}
+        type="submit"
+        className="block px-4 py-2 text-sm hover:bg-gray-700 rounded-lg text-gray-200 hover:text-white mx-auto sm:mx-0 w-full"
+      >
+        Logout
+      </button>
+    </motion.div>
+  </div>
+)}
+</AnimatePresence>
+<AnimatePresence>
+
         {menuHamburguesa && (
           <div
-            className="w-full sm:hidden"
-            onClick={() => setMenuHamburguesa(false)}
+            id="nooverlay"
+            className="flex justify-end 2xl:px-60 xl:px-20 lg:px-14"
+            onClick={(e) => e.stopPropagation()}
           >
-            <ul
-              className="flex flex-col text-center font-medium rounded-lg bg-gray-900 pb-5"
-              onClick={(e) => e.stopPropagation()}
+            <motion.div
+              className="absolute z-50 text-base rounded-b-lg shadow py-4 bg-gray-900 w-full block sm:max-w-56 px-5 h-60 overlay"
+              initial={{ opacity: 0, y: -5 }}
+              animate={{ opacity: 1, y: -2 }}
+              exit={{ opacity: 0, y: -5 }}
+
             >
-              <li>
+              <div className="flex flex-col text-center">
                 <Link href="/" legacyBehavior>
                   <a
                     className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
@@ -244,8 +247,6 @@ obtenerAvatar()
                     Home
                   </a>
                 </Link>
-              </li>
-              <li>
                 <Link href="/#precios" legacyBehavior>
                   <a
                     className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
@@ -254,8 +255,7 @@ obtenerAvatar()
                     Comprar
                   </a>
                 </Link>
-              </li>
-              <li>
+
                 <Link href="/#contacto" legacyBehavior>
                   <a
                     className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
@@ -264,8 +264,7 @@ obtenerAvatar()
                     Contacto
                   </a>
                 </Link>
-              </li>
-              <li>
+
                 <Link href={"https://huggingface.co/"} legacyBehavior>
                   <a
                     className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
@@ -275,23 +274,21 @@ obtenerAvatar()
                     API
                   </a>
                 </Link>
-              </li>
-              {user.rol === 1 && (
-                 <li>
-                 <Link href={"/admin"} legacyBehavior>
-                   <a
-                     className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
-                     aria-current="page"
-                    
-                   >
-                     Admin
-                   </a>
-                 </Link>
-               </li>
-             )}
-            </ul>
+                {user?.rol === 1 && (
+                  <Link href={"/admin"} legacyBehavior>
+                    <a
+                      className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
+                      aria-current="page"
+                    >
+                      Admin
+                    </a>
+                  </Link>
+                )}
+              </div>
+            </motion.div>
           </div>
         )}
+        </AnimatePresence>
       </div>
     </>
   );

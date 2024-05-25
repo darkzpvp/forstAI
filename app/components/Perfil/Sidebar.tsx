@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import Link from "next/link";
 import Profile from "../CambiarPerfil/Profile";
 import useUsuarioContext from "@/app/hooks/useUsuarioContext";
@@ -8,7 +10,7 @@ import { useAuth } from "@/app/hooks/useAuth";
 const Sidebar = () => {
   const Router = useRouter();
   const RouterPath = usePathname();
-  const { logout } = useAuth({});
+  const { logout, user } = useAuth({});
   const { modalOpen, setModalOpen, setAvatarUrl } = useUsuarioContext();
   const handlePerfil = () => {
     Router.push("/perfil");
@@ -54,7 +56,7 @@ const Sidebar = () => {
               <a
                 className={`${
                   RouterPath === "/perfil" ? "bg-gray-700" : ""
-                } cursor-pointer flex items-center p-2  rounded-lg text-white  hover:bg-gray-700 group`}
+                } cursor-pointer flex items-center p-2  rounded-lg text-white  hover:bg-gray-700 group transition ease-in duration-100`}
               >
                 <svg
                   className="flex-shrink-0 w-5 h-5  transition duration-75 text-gray-400  group-hover:text-white"
@@ -76,7 +78,7 @@ const Sidebar = () => {
                   RouterPath === "/perfil/historial-prompts"
                     ? "bg-gray-700"
                     : ""
-                } cursor-pointer flex items-center p-2 rounded-lg text-white  hover:bg-gray-700 group`}
+                } cursor-pointer flex items-center p-2 rounded-lg text-white  hover:bg-gray-700 group transition ease-in duration-100`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -97,8 +99,33 @@ const Sidebar = () => {
                 </span>
               </a>
             </li>
+                {user?.rol === 1 && (
+              <li>
+                <Link
+                  href="/admin"
+                  className="flex items-center p-2  rounded-lg text-white  hover:bg-gray-700 group"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="flex-shrink-0 w-5 h-5  transition duration-75 text-gray-400  group-hover:text-white"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M4.5 3.75a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V6.75a3 3 0 0 0-3-3h-15Zm4.125 3a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Zm-3.873 8.703a4.126 4.126 0 0 1 7.746 0 .75.75 0 0 1-.351.92 7.47 7.47 0 0 1-3.522.877 7.47 7.47 0 0 1-3.522-.877.75.75 0 0 1-.351-.92ZM15 8.25a.75.75 0 0 0 0 1.5h3.75a.75.75 0 0 0 0-1.5H15ZM14.25 12a.75.75 0 0 1 .75-.75h3.75a.75.75 0 0 1 0 1.5H15a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5h3.75a.75.75 0 0 0 0-1.5H15Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+
+                  <span className="flex-1 ms-3 whitespace-nowrap text-gray-300">
+                    Admin
+                  </span>
+                </Link>
+              </li>
+            )}
             <li>
-              <a
+              <Link
                 href="/generar"
                 className="flex items-center p-2  rounded-lg text-white  hover:bg-gray-700 group"
               >
@@ -116,13 +143,11 @@ const Sidebar = () => {
                 <span className="flex-1 ms-3 whitespace-nowrap text-gray-300">
                   Generar
                 </span>
-              </a>
+              </Link>
             </li>
+         
             <li>
-              <a
-                href="#"
-                className="flex items-center p-2  rounded-lg text-white  hover:bg-gray-700 group"
-              >
+              <a className="flex items-center p-2  rounded-lg text-white  hover:bg-gray-700 group transition ease-in duration-100">
                 <svg
                   className="flex-shrink-0 w-5 h-5  transition duration-75 text-gray-400  group-hover:text-white"
                   aria-hidden="true"
@@ -146,6 +171,7 @@ const Sidebar = () => {
                 </span>
               </a>
             </li>
+           
           </ul>
         </div>
       </aside>

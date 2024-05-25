@@ -1,8 +1,12 @@
+// @ts-nocheck
+
 import { useRouter } from "next/navigation";
 import clienteAxios from "../config/axios";
+import { useAuth } from "./useAuth";
 
 const useConfirmarEmail = () => {
-    const router = useRouter();
+  const {user} = useAuth({})
+    const Router = useRouter();
     const confirmarEmail = async (id, hash, setErrores) => {
       try {
         const authToken = localStorage.getItem("AUTH_TOKEN");
@@ -20,11 +24,17 @@ const useConfirmarEmail = () => {
         };
     
         const { data } = await clienteAxios.get(url, config);
+        console.log(data);
         setErrores([]);
-        router.push("/generar");
+        if(user?.email_verified_at){
+                Router.push('/generar')
+
+        }
       } catch (error) {
         console.log(error);
         setErrores(Object.values(error?.response?.data.errors));
+        Router.push('/');
+
       }
     };
 

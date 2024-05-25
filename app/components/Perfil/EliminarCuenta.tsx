@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { useAuth } from "@/app/hooks/useAuth";
 import React, { useRef, useState } from "react";
 

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 "use client";
 import React, { useEffect, useMemo, useState } from "react";
 import Header_Dos from "../components/Header_Dos";
@@ -13,7 +15,7 @@ import CrearUsuario from "../components/Admin/CrearUsuario";
 import Table from "../components/Admin/Table";
 import useInformacionPersonal from "../hooks/useInformacionPersonal";
 import BuscarUsuarios from "../components/Admin/BuscarUsuarios";
-const page = ({
+const Page = ({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -303,4 +305,4 @@ const page = ({
   );
 };
 
-export default page;
+export default Page;

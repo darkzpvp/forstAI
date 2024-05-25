@@ -1,5 +1,4 @@
   'use client'
-import "tailwindcss/tailwind.css";
 import "../globals.css";
 import { UsuarioProvider } from "../context/UsuarioProvider";
 import { useEffect } from "react";

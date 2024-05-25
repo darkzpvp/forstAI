@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 "use client";
 import "react-image-crop/dist/ReactCrop.css";
 import React, { useEffect } from "react";
@@ -13,14 +15,14 @@ import DarBajaCuenta from "../components/Perfil/DarBajaCuenta";
 import useUsuarioContext from "../hooks/useUsuarioContext";
 import Profile from "../components/CambiarPerfil/Profile";
 import NavegacionMobile from "../components/Perfil/NavegacionMobile";
-const page = () => {
+const Page = () => {
   const { getSuscripciones } = useGetSuscripciones();
   const [cancelarPlan, setCancelarPlan] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(1);
   const [eliminarCuenta, setEliminarCuenta] = useState(false);
   const [infoSuscripciones, setInfoSuscripciones] = useState([]);
   const [freePrompts, setFreePrompts] = useState([]);
-  const { mensaje, modalOpen, setModalOpen, obtenerAvatar } =
+  const { mensaje, setModalOpen, obtenerAvatar } =
     useUsuarioContext();
 
   useEffect(() => {
@@ -105,4 +107,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

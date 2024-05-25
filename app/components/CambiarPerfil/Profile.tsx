@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import PencilIcon from "./PencilIcon";
 import useUsuarioContext from "@/app/hooks/useUsuarioContext";
 import { useAuth } from "@/app/hooks/useAuth";

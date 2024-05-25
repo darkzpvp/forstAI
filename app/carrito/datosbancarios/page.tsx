@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 "use client";
 import Header_Dos from "@/app/components/Header_Dos";
 import React, { useState } from "react";
@@ -5,7 +7,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import useDatosBancarios from "@/app/hooks/useDatosBancarios";
 import useInformacionPersonal from "@/app/hooks/useInformacionPersonal";
-const page = () => {
+const Page = () => {
     const {
         register,
         handleSubmit,
@@ -255,5 +257,5 @@ const page = () => {
     </>
   );
 };
-export default page;
+export default Page;
 

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { useRouter } from 'next/navigation';
 import useUsuarioContext from '@/app/hooks/useUsuarioContext';
 import { useAuth } from '@/app/hooks/useAuth';

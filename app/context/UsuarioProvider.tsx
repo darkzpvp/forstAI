@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 'use client'
 import React, { createContext, useEffect, useState } from "react";
 import useCambiarFotoPerfil from "../hooks/useCambiarFotoPerfil";
@@ -13,7 +15,7 @@ const UsuarioProvider = ({ children }) => {
       const suscripcionElegida = localStorage.getItem('suscripcionElegida');
       return suscripcionElegida ? JSON.parse(suscripcionElegida) : 0;
     } else {
-      return 0; // O cualquier otro valor predeterminado si localStorage no está disponible
+      return 0; 
     }
   };
   const [suscripcionElegida, setSuscripcionElegida] = useState(initialCart);

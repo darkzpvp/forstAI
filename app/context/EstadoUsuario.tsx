@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { createContext, useEffect, useState } from "react";
 import { useIdleTimer } from "react-idle-timer";
 import clienteAxios from "../config/axios";

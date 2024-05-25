@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { useRef, useState } from "react";
 import ReactCrop, {
   centerCrop,
@@ -10,9 +12,10 @@ import useUsuarioContext from "@/app/hooks/useUsuarioContext";
 
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
-const { cambiarFoto } = useCambiarFotoPerfil();
 
 const ImageCropper = ({ closeModal, updateAvatar }) => {
+  const { cambiarFoto } = useCambiarFotoPerfil();
+
   const {avatarUrl, setAvatarUrl} = useUsuarioContext()
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);

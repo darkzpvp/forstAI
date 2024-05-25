@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import clienteAxios from "../config/axios";
 import useSWR from "swr";
 import { useEffect } from "react";

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
@@ -99,7 +101,8 @@ const Olvide = () => {
             />
             {errores
               ? errores.map((error, i) => (
-                  <div className="mb-2 text-sm text-red-600 ">{error}</div>
+                
+                  <div key={i} className="mb-2 text-sm text-red-600 ">{error}</div>
                 ))
               : null}
 

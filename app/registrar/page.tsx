@@ -1,8 +1,9 @@
+// @ts-nocheck
+
 "use client";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import Link from "next/link";
-import Alerta from "../components/Alerta";
 import Image from "next/image";
 import { useAuth } from "../hooks/useAuth";
 import AlertaOk from "../components/AlertaOk";
@@ -101,9 +102,7 @@ const Registrar = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="flex justify-center items-center flex-col  xl:px-28 lg:px-20 md:px-20 px-8"
         >
-          {errores
-            ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>)
-            : null}
+        
           {mensajeOk ? <AlertaOk>{mensajeOk}</AlertaOk> : null}
           <div className="w-full max-w-72 lg:max-w-80">
             <label

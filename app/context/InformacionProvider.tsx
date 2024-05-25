@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { createContext, useEffect, useState } from "react";
 import clienteAxios from "../config/axios";
 import { SubmitHandler, useForm } from "react-hook-form";

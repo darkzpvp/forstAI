@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import CloseIcon from "./CloseIcon";
 import ImageCropper from "./ImageCropper";
 

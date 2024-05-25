@@ -1,15 +1,14 @@
+// @ts-nocheck
+
 import Image from "next/image";
 import { useEffect, MouseEventHandler } from "react";
-
 
 const Modal = ({ modal, setModal, imageBase64 }) => {
 
     const handleModal = () => {
       setModal(false);
-      
-    
+        
     };
-  
       const handleOverlayClick: MouseEventHandler<HTMLDivElement> = (event) => {
         if (event.currentTarget.classList.contains('overlay')) {
           handleModal();

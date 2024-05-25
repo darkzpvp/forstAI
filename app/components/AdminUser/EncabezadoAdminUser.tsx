@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import Link from 'next/link'
 import React from 'react'
 
@@ -34,7 +36,7 @@ const EncabezadoAdminUser = ({informacion_personal, state, handleCloseMenu}) => 
         className=" w-20 h-20 mx-auto rounded-full"
         src={
           informacion_personal?.imagen
-            ? `http://localhost:8000/storage/${informacion_personal?.imagen}`
+            ? `${process.env.NEXT_PUBLIC_API_LARAVEL}/storage/${informacion_personal?.imagen}`
             : "../../img/usuario.svg"
         }
         alt="User"

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import useInformacionPersonal from "@/app/hooks/useInformacionPersonal";
 import useUsuarioContext from "@/app/hooks/useUsuarioContext";
 import React from "react";

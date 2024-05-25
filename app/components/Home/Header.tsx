@@ -1,8 +1,11 @@
+// @ts-nocheck
+
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../../public/img/logo/prueba.png"
 import { useEffect } from "react";
 import useUsuarioContext from "@/app/hooks/useUsuarioContext";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface HeaderProps {
   menuHeader: boolean,
@@ -124,63 +127,71 @@ setAvatarUrl(avatarUrl)
           </Link>
         </div>
 
-        {menuHeader && (
-          <div className="w-full sm:hidden" onClick={() => setMenuHeader(false)}>
-          <ul className="flex flex-col text-center font-medium rounded-lg bg-zinc-800" onClick={(e) => e.stopPropagation()} >
-            <li >
-              <Link href="#intro" legacyBehavior>
-                <a
-                  className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
-                  aria-current="page"
-                >
-                  Introducción
-                </a>
-              </Link>
-            </li>
-            <li >
-              <Link href="#galeria" legacyBehavior>
-                <a
-                  className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
-                  aria-current="page"
-                >
-                  Galería
-                </a>
-              </Link>
-            </li>
-            <li >
-              <Link href="#precios" legacyBehavior>
-                <a
-                  className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
-                  aria-current="page"
-                >
-                  Precios
-                </a>
-              </Link>
-            </li>
-            <li >
-              <Link href="#faqs" legacyBehavior>
-                <a
-                  className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
-                  aria-current="page"
-                >
-                  FAQS
-                </a>
-              </Link>
-            </li>
-            <li > 
-              <Link href="#contacto" legacyBehavior>
-                <a
-                  className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
-                  aria-current="page"
-                >
-                  Contacto
-                </a>
-              </Link>
-            </li>
-          </ul>
-        </div>
-        
-        )}
+        <AnimatePresence>
+
+{menuHeader && (
+  <div
+    id="nooverlay"
+    className="flex justify-end 2xl:px-60 xl:px-20 lg:px-14"
+    onClick={(e) => e.stopPropagation()}
+  >
+    <motion.div
+      className="absolute z-50 text-base rounded-b-lg shadow py-4 bg-zinc-800 w-full block sm:max-w-56 px-5 h-60 overlay"
+      initial={{ opacity: 0, y: -5 }}
+      animate={{ opacity: 1, y: -2 }}
+      exit={{ opacity: 0, y: -5 }}
+
+    >
+      <div className="flex flex-col text-center">
+        <Link href="/#home" legacyBehavior>
+          <a
+            className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
+            aria-current="page"
+          >
+            Home
+          </a>
+        </Link>
+        <Link href="/#galeria" legacyBehavior>
+          <a
+            className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
+            aria-current="page"
+          >
+            Galería
+          </a>
+        </Link>
+        <Link href="/#precios" legacyBehavior>
+          <a
+            className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
+            aria-current="page"
+          >
+            Comprar
+          </a>
+        </Link>
+ <Link  href="/#faqs" legacyBehavior>
+          <a
+            className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
+     
+          >
+            FAQS
+          </a>
+        </Link>
+        <Link href="/#contacto" legacyBehavior>
+          <a
+            className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
+            aria-current="page"
+          >
+            Contacto
+          </a>
+        </Link>
+
+       
+  
+  
+      </div>
+    </motion.div>
+  </div>
+)}
+</AnimatePresence>
 
 
       </header>

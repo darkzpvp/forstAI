@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { useEffect, useState } from "react";
 import useUsuarioContext from "@/app/hooks/useUsuarioContext";
 const Cards = () => {

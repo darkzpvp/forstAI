@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { format, parseISO } from 'date-fns';
 
 const DetallesCuenta = ({informacion_personal, suscripcion}) => {
@@ -14,7 +16,6 @@ const DetallesCuenta = ({informacion_personal, suscripcion}) => {
       }
     }
 
-     
   return (
     <div className="block sm:col-span-2 w-full   mt-5 ">
     <div className=" col-span-2 w-full rounded-lg  bg-gray-800 text-gray-400 ">

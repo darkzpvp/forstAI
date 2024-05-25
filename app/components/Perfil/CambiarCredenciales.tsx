@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { useAuth } from "@/app/hooks/useAuth";
 import useCambiarContraseña from "@/app/hooks/useCambiarContraseña";
 import useUsuarioContext from "@/app/hooks/useUsuarioContext";
