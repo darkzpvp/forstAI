@@ -38,5 +38,6 @@ class EmailVerificationController extends Controller
         return [
             'message'=>'El correo electrónico ha sido verificado'
         ];
+        
     }
 }
