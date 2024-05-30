@@ -6,10 +6,11 @@ import React, { useEffect, useState } from "react";
 import ModalCarrito from "./ModalCarrito";
 import Link from "next/link";
 import useDatosBancarios from "@/app/hooks/useDatosBancarios";
-import { redirect } from "next/navigation";
+import {  useRouter } from "next/navigation";
 import useInformacionPersonal from "@/app/hooks/useInformacionPersonal";
 
 const Page = () => {
+  const Router = useRouter()
   const [menuHamburguesa, setMenuHamburguesa] = useState(false);
   const [modal, setModal] = useState(false);
   const [comprado, setComprado] = useState(false);
@@ -26,6 +27,7 @@ const Page = () => {
   const handleComprar = (e) => {
     e.preventDefault();
     setModal(true);
+    
   };
   const {
     continuarCarrito,
@@ -38,10 +40,13 @@ const Page = () => {
   useEffect(() => {
     getInformacion();
   }, []);
-
+  useEffect(() => {
+    if (continuarCarrito < 2) {
+      Router.push("/carrito");
+    }
+  }, [continuarCarrito]);
   return (
     <>
-      {continuarCarrito < 2 && redirect("/carrito")}
       <div className="bg-gray-700 h-full">
         <Header_Dos
           menu={menu}

@@ -24,8 +24,14 @@ export default function RootLayout({
 
 const {state, setState, count, setCount, remaining, setRemaining, ultimaActividad} = useEstadoUsuario()
 
+const Path = usePathname();
 
-
+useEffect(() => {
+  if (Path !== '/carrito' && Path !== '/carrito/datosbancarios' && Path !== '/carrito/confirmacion' && Path !== '/perfil') {
+    localStorage.removeItem('suscripcionElegida');
+    localStorage.removeItem('carrito');
+  }
+}, [Path]);
   return (
     <html lang="en" className=" overflow-x-hidden  ">
 <head>

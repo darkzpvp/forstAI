@@ -25,6 +25,7 @@ export const useAuth = ({ middleware, url }) => {
       shouldRetryOnError: false,
     }
   );
+
   const login = async (datos, setErrores, email, setMensajeOk) => {
     try {
       const { data } = await clienteAxios.post("/api/login", datos);
@@ -55,7 +56,30 @@ export const useAuth = ({ middleware, url }) => {
       console.log(error);
     }
   };
+  const confirmarEmail = async (id, hash) => {
+    try {
+      const authToken = localStorage.getItem("AUTH_TOKEN");
+      if (!authToken) {
+        console.log("Usuario no autenticado. Redirigiendo a la página de inicio de sesión...");
+        router.push('/login');
+        return Promise.reject("Usuario no autenticado");
+      }
 
+      const url = `/api/verificar/${id}/${hash}`;
+      const config = {
+        headers: {
+          Authorization: `Bearer ${authToken}`
+        }
+      };
+
+      const { data } = await clienteAxios.get(url, config);
+      await mutate();
+
+    } catch (error) {
+      console.log(error);
+      return Promise.reject(error?.response?.data.errors || "Error al verificar el correo electrónico");
+    }
+  };
   const crearUsuario = async (datos) => {
     try {
       await clienteAxios("/sanctum/csrf-cookie");
@@ -171,5 +195,6 @@ export const useAuth = ({ middleware, url }) => {
     error,
     eliminarCuentaPerfil,
     crearUsuario,
+    confirmarEmail
   };
 };

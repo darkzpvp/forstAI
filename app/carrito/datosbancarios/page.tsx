@@ -2,8 +2,8 @@
 
 "use client";
 import Header_Dos from "@/app/components/Header_Dos";
-import React, { useState } from "react";
-import { redirect } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { redirect, useRouter } from "next/navigation";
 import Link from "next/link";
 import useDatosBancarios from "@/app/hooks/useDatosBancarios";
 import useInformacionPersonal from "@/app/hooks/useInformacionPersonal";
@@ -14,14 +14,16 @@ const Page = () => {
         errors,
      onSubmit,
       } = useDatosBancarios();
-      const {
-     continuarCarrito,
-     suscripcionObjeto
-      } = useInformacionPersonal();
+ 
+      
   const [menuHamburguesa, setMenuHamburguesa] = useState(false);
 
   const [menu, setMenu] = useState(false);
-
+  const {
+    continuarCarrito,
+    setContinuarCarrito,
+    suscripcionObjeto
+     } = useInformacionPersonal();
   const handleCloseMenu = () => {
     if (menu) {
       setMenu(false);
@@ -30,10 +32,15 @@ const Page = () => {
       setMenuHamburguesa(false);
     }
   };
+  const Router = useRouter()
 
+  useEffect(() => {
+    if (continuarCarrito < 2) {
+      Router.push("/carrito");
+    }
+  }, [continuarCarrito]);
   return (
     <>
-{continuarCarrito < 2 && redirect("/carrito")} 
     <div className="bg-gray-700 h-full">
       <Header_Dos
         menu={menu}
@@ -43,10 +50,7 @@ const Page = () => {
       />
 
       <section className="py-7" onClick={handleCloseMenu}>
-      <form onSubmit={(e) => {
-    e.preventDefault(); 
-    handleSubmit(onSubmit)(e); 
-}} className="">
+      <form onSubmit={handleSubmit(onSubmit)} className="">
           <div className="flex justify-center mx-auto w-[100%] max-w-3xl mb-10">
             <ol className="flex items-center w-full text-sm font-medium text-center text-gray-300 sm:text-base">
               <li className="flex md:w-full items-center sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 after:border-gray-500">

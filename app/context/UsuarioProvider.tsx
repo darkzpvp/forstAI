@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 'use client'
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 import useCambiarFotoPerfil from "../hooks/useCambiarFotoPerfil";
 import clienteAxios from "../config/axios";
 
@@ -10,22 +10,10 @@ const UsuarioProvider = ({ children }) => {
   const [errores, setErrores] = useState([]);
   const [mensaje, setMensaje] = useState("");
   const [avatarUrl, setAvatarUrl] = useState("");
-  const initialCart = () => {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      const suscripcionElegida = localStorage.getItem('suscripcionElegida');
-      return suscripcionElegida ? JSON.parse(suscripcionElegida) : 0;
-    } else {
-      return 0; 
-    }
-  };
-  const [suscripcionElegida, setSuscripcionElegida] = useState(initialCart);
+
   const [showModal, setShowModal] = useState(false);
 const [loading, setLoading] = useState(true)
 const [totalElements, setTotalElements] = useState(0)
-  useEffect(() => {
-    localStorage.setItem('suscripcionElegida', JSON.stringify(suscripcionElegida))
-}, [suscripcionElegida])
-
 
 
   const {recibirFoto  } = useCambiarFotoPerfil();
@@ -177,8 +165,8 @@ try {
 }
 
   return (
-    <UsuarioContext.Provider value={{ avatarUrl, setAvatarUrl, suscripcionElegida,
-       setSuscripcionElegida, modalOpen, setModalOpen, userPanel, showModal, setShowModal, usuario, setUsuario, informacionUsuarioPanel, loading,
+    <UsuarioContext.Provider value={{ avatarUrl, setAvatarUrl,
+        modalOpen, setModalOpen, userPanel, showModal, setShowModal, usuario, setUsuario, informacionUsuarioPanel, loading,
        setLoading, totalElements, setTotalElements, informacionUsuarioId, setUsuarioId, usuarioId, usuarioSemanaPanel, beneficioSemanaPanel, ingresosTotalesPanel, ingresosTotales, setIngresosTotales, 
       usuarioSemana, setUsuarioSemana, beneficioSemana, setBeneficioSemana, errores, setErrores, mensaje, setMensaje, obtenerAvatar
 

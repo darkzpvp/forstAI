@@ -2,7 +2,7 @@
 
 "use client";
 import Header_Dos from "@/app/components/Header_Dos";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useInformacionPersonal from "@/app/hooks/useInformacionPersonal";
 import paises from "@/app/data/paises.json";
 
@@ -286,7 +286,7 @@ const Page = () => {
                 <div>
                   <div className="flex">
                     <p className="text-gray-300 mb-5 w-[100%]">Suscripción</p>
-                    <p className="flex text-gray-300 font-bold whitespace-nowrap">
+                    <p  className="flex text-gray-300 font-bold whitespace-nowrap">
                       {suscripcionObjeto?.plan}
                     </p>
                   </div>

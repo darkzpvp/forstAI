@@ -1,16 +1,15 @@
 // @ts-nocheck
-
+"use client"
 import React, { createContext, useEffect, useState } from "react";
 import clienteAxios from "../config/axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {  useRouter } from "next/navigation";
+import {  usePathname, useRouter } from "next/navigation";
 import {
   InformacionPersonal,
   informacionPersonalSchema,
 } from "../validations/informacionPersonalSchema";
-import suscripciones from "@/app/data/suscripciones.json";
-
+import { useLocalStorage } from "@uidotdev/usehooks";
 const InformacionContext = createContext({});
 
 const InformacionProvider = ({ children }) => {
@@ -19,6 +18,8 @@ const InformacionProvider = ({ children }) => {
   const [errores, setErrores] = useState([]);
   const [datosPersonales, setDatosPersonales] = useState([]);
   const Router = useRouter();
+  const router = usePathname();
+
   const informacionPersonal = async (datos) => {
     const authToken = localStorage.getItem("AUTH_TOKEN");
     if (!authToken) {
@@ -117,7 +118,7 @@ const InformacionProvider = ({ children }) => {
     register,
     handleSubmit,
     watch,
-
+reset,
     formState: { errors },
   } = useForm<InformacionPersonal>({
     resolver: zodResolver(informacionPersonalSchema),
@@ -128,7 +129,15 @@ const InformacionProvider = ({ children }) => {
     setContinuarCarrito(2);
     Router.push("/carrito/datosbancarios");
   };
+  useEffect(() => {
+    // Verifica si router.pathname tiene un valor antes de acceder a sus propiedades
+    if (router !== '/carrito' && router !== '/carrito/datosbancarios' && router !== '/carrito/confirmacion') {
+      reset();
+    }
+  }, [router]);
 
+ 
+  
   const [continuarCarrito, setContinuarCarrito] = useState<number>(1);
 
   const eliminarUsuario = async (datos) => {
@@ -156,53 +165,8 @@ const InformacionProvider = ({ children }) => {
       console.log(error);
     }
   };
-
-
-  const initialCart = () => {
-    if (typeof window !== 'undefined' && window.localStorage) {
-
-    try {
-      const localStorageCart = localStorage.getItem("carrito");
-      return localStorageCart ? JSON.parse(localStorageCart) : {};
-    } catch (error) {
-      console.log(error);
-    }
-  } else {
-    return 0
-  }
-  };
-  const [suscripcionObjeto, setSuscripcionObjeto] = useState(initialCart);
-  const [suscripcionElegidaLS, setSuscripcionElegidaLS] = useState(0);
-
-  useEffect(() => {
-    const obtenerSuscripcionElegida = () => {
-      const valor = Number(localStorage.getItem("suscripcionElegida"));
-      setSuscripcionElegidaLS(valor);
-    };
-
-    obtenerSuscripcionElegida();
-
-    window.addEventListener("storage", obtenerSuscripcionElegida);
-
-    return () => {
-      window.removeEventListener("storage", obtenerSuscripcionElegida);
-    };
-  }, []);
-  useEffect(() => {
-    if (suscripcionElegidaLS > 0) {
-      const suscripcionSeleccionada = suscripciones.suscripciones.find(
-        (suscripcion) => suscripcion.id === suscripcionElegidaLS
-      );
-      if (suscripcionSeleccionada) {
-        setSuscripcionObjeto(suscripcionSeleccionada);
-        localStorage.setItem(
-          "carrito",
-          JSON.stringify(suscripcionSeleccionada)
-        );
-      }
-    }
-  }, [suscripcionElegidaLS, suscripciones]);
-
+  // eslint-disable-next-line
+  const [suscripcionObjeto, setSuscripcionObjeto] = typeof window !== 'undefined' ? useLocalStorage('suscripcionObjeto', {}) : [null, null];
 
 
   return (

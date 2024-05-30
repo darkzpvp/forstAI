@@ -29,6 +29,8 @@ const Cards = () => {
   const percentageDifference =
     beneficioSemana?.percentage_difference?.toFixed(2);
 
+    const percentageDifferenceUser =
+    percentage_difference?.toFixed(2);
   return (
     <>
       <div className=" sm:flex block px-8 xl:px-0  gap-4 justify-center w-full max-w-7xl mx-auto   ">
@@ -48,13 +50,13 @@ const Cards = () => {
                 </div>
                 <div
                   className={`flex items-center px-2.5 py-0.5 text-base font-semibold ${
-                    percentage_difference > 0
+                    percentageDifferenceUser > 0
                       ? "text-green-500"
                       : "text-red-500"
                   } text-center`}
                 >
-                  {percentage_difference}%
-                  {percentage_difference > 0 ? (
+                  {percentageDifferenceUser}%
+                  {percentageDifferenceUser > 0 ? (
                     <svg
                       className="w-3 h-3 ms-1"
                       aria-hidden="true"
