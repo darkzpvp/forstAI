@@ -83,6 +83,7 @@ class PromptController extends Controller
             $totalPrompts += $suscripciones->prompts_disponibles;
         }
     
+        //TODO considera usar un Resource
         // Devolver la respuesta JSON con la cantidad total de prompts
         return response()->json(['prompts' => $totalPrompts,  'errors' => ['¡No tienes prompts disponibles!']]); 
        }

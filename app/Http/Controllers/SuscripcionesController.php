@@ -104,6 +104,7 @@ class SuscripcionesController extends Controller
             'precio' => $suscripcion->precio,
             'fecha_expiracion' => $suscripcion->fecha_expiracion,
             'comprado' => $suscripcion->created_at
+            //TODO este comentario sobra.
             // Agrega aquí cualquier otro campo que desees incluir de la tabla suscripciones
         ];
         
