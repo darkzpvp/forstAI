@@ -48,57 +48,72 @@ const Page = ({
 
   return (
     <>
-      <div className="p-0 sm:px-4 sm:ml-64 text-sm ">
-        <NavegacionMobile />
-        <div className=" flex mx-5">
-          <div className="z-40 bg-gray-800 mb-6 sm:rounded-lg  mt-8 w-full max-w-5xl lg:overflow-visible overflow-x-auto">
-            <table className="  w-full text-sm text-left rtl:text-right text-gray-400 bg-gray-700 overflow-hidden ">
-              <thead className="text-xs uppercase bg-gray-900 text-gray-400 ">
-                <tr>
-                  <th className="px-6 py-3 rounded-tl-lg">Prompt</th>
-                  <th className="px-6 py-3 text-nowrap whitespace-nowrap rounded-tr-lg">
-                    Fecha de generación
-                  </th>
+    <div className="p-0 sm:px-4 sm:ml-64 text-sm ">
+      <NavegacionMobile />
+      <div className="flex mx-5">
+        <div className="z-40 bg-gray-800 mb-6 sm:rounded-lg mt-8 w-full max-w-5xl lg:overflow-visible overflow-x-auto">
+          <table className="w-full text-sm text-left rtl:text-right text-gray-400 bg-gray-700 overflow-hidden">
+            <thead className="text-xs uppercase bg-gray-900 text-gray-400">
+              <tr>
+                <th className="px-6 py-3 rounded-tl-lg">Prompt</th>
+                <th className="px-6 py-3 text-nowrap whitespace-nowrap rounded-tr-lg">
+                  Fecha de generación
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {loading ? (
+                <tr className="border-b bg-gray-800 border-gray-700">
+                  <td  colSpan={2} className="px-6 py-4 font-medium whitespace-nowrap text-gray-300 rounded-b-lg">Loading...</td>
                 </tr>
-              </thead>
-              <tbody>
-                {loading ? (
-                  <tr className="">
-                    <td className=" w-[90%] px-6 ">Loading...</td>
-                  </tr>
-                ) : (
-                  entries.map((text, index) => (
-                    <tr
-                      key={index}
-                      className="border-b bg-gray-800 border-gray-700 "
-                    >
-                      <td className=" w-[90%]  px-6  py-4 font-medium whitespace-nowrap text-gray-300 ">
-                        {text?.texto}
-                      </td>
-                      <td className="px-6 py-4 text-right font-medium whitespace-nowrap text-gray-300 ">
-                        {format(
-                          parseISO(text?.created_at),
-                          "dd/MM/yyyy HH:mm:ss"
-                        )}
+              ) : (
+                <>
+                  {entries.length > 0 ? (
+                    entries.map((text, index) => (
+                      <tr
+                        key={index}
+                        className="border-b bg-gray-800 border-gray-700"
+                      >
+                        <td className="w-[90%] px-6 py-4 font-medium whitespace-nowrap text-gray-300">
+                          {text?.texto}
+                        </td>
+                        <td className="px-6 py-4 text-right font-medium whitespace-nowrap text-gray-300">
+                          {format(
+                            parseISO(text?.created_at),
+                            "dd/MM/yyyy HH:mm:ss"
+                          )}
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr className="border-b bg-gray-800 border-gray-700">
+                      <td
+                        colSpan={2}
+                        className="px-6 py-3 font-medium whitespace-nowrap text-gray-300 rounded-b-lg"
+                      >
+                        No hay ningún prompt que mostrar
                       </td>
                     </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-            <div className=" flex justify-between ">
-              <PaginationControls
-                hasNextPage={end < textPrompt.length}
-                hasPrevPage={start > 0}
-                totalElements={totalElements}
-                basePath="/perfil/historial-prompts"
-                perpage={10}
-              />
-            </div>
+                  )}
+                </>
+              )}
+            </tbody>
+          </table>
+          {entries?.length > 0 && (
+          <div className="flex justify-between">
+            <PaginationControls
+              hasNextPage={end < textPrompt.length}
+              hasPrevPage={start > 0}
+              totalElements={totalElements}
+              basePath="/perfil/historial-prompts"
+              perpage={10}
+            />
           </div>
+          )}
         </div>
       </div>
-    </>
-  );
+    </div>
+  </>
+);
 };
 export default Page;

@@ -31,7 +31,7 @@ const EncabezadoAdminUser = ({informacion_personal, state, handleCloseMenu}) => 
       </Link>
     </div>
 
-    <div className=" relative">
+    <div className=" relative mx-auto w-20" >
       <img
         className=" w-20 h-20 mx-auto rounded-full"
         src={
@@ -42,9 +42,9 @@ const EncabezadoAdminUser = ({informacion_personal, state, handleCloseMenu}) => 
         alt="User"
       />
       {informacion_personal?.estado === "Conectado" ? (
-        <span className="bottom-0 left-24 absolute  w-5 h-5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+        <span className="bottom-0 right-0 absolute  w-5 h-5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
       ) : (
-        <span className="bottom-0 left-24 absolute  w-5 h-5 bg-red-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+        <span className="bottom-0 right-0 absolute  w-5 h-5 bg-red-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
       )}
     </div>
 

@@ -78,7 +78,8 @@ const Page = ({ params, searchParams }) => {
           />
           <div className=" col-span-4 bg-gray-800 my-5 rounded-lg ">
             <Table loading={loading} entries={entries} />
-            <div className=" flex justify-between ">
+            {entries?.length > 0 && (
+               <div className=" flex justify-between ">
               <PaginationControls
                 hasNextPage={end < prompts?.length}
                 hasPrevPage={start > 0}
@@ -87,6 +88,10 @@ const Page = ({ params, searchParams }) => {
                 perpage={8}
               />
             </div>
+            
+
+            )}
+           
           </div>
         </div>
       </div>
