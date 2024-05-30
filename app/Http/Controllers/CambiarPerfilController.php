@@ -12,6 +12,7 @@ class CambiarPerfilController extends Controller
         // Obtener el usuario autenticado (si estás utilizando autenticación)
         $usuario = $request->user();
     
+        //TODO si usas una REquest no tienes que comprobar esto aqui.
         // Verificar si se ha enviado un archivo de imagen
         if ($file = $request->file('imagen')) {
             // Eliminar la imagen de perfil anterior si existe
