@@ -26,18 +26,25 @@ const ImageCropper = ({ closeModal, updateAvatar }) => {
   const onSelectFile = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-
+  
+    // Verificar el tamaño del archivo
+    const maxSizeInBytes = 1048576; // 1MB
+    if (file.size > maxSizeInBytes) {
+      setError("El archivo no debe ser mayor a 1MB");
+      return;
+    }
+  
     const reader = new FileReader();
     reader.addEventListener("load", () => {
       const imageElement = new Image();
       const imageUrl = reader.result?.toString() || "";
       imageElement.src = imageUrl;
-
+  
       imageElement.addEventListener("load", (e) => {
         if (error) setError("");
         const { naturalWidth, naturalHeight } = e.currentTarget;
         if (naturalWidth < MIN_DIMENSION || naturalHeight < MIN_DIMENSION) {
-          setError("Imagen debe de ser mínimo 150 x 150");
+          setError("La imagen debe ser mínimo 150 x 150");
           return setImgSrc("");
         }
       });

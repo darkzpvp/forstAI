@@ -24,7 +24,6 @@ const useCambiarFotoPerfil = () => {
           };
       
           const response = await clienteAxios.post("/api/cambiar-perfil", formData, config);
-          console.log(response);
           recibirFoto(avatarUrl, setAvatarUrl)
         } catch (error) {
           console.log(error);
