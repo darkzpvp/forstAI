@@ -95,15 +95,16 @@ const Olvide = () => {
             <input
               type="email"
               id="email"
-              className="focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full"
+              className={`${mensajeOk && " cursor-not-allowed disabled"} focus:outline-none border text-sm rounded-lg block p-2.5 bg-gray-200 placeholder-gray-400 text-black w-full`}
               placeholder="hola@correo.com"
+              disabled={mensajeOk && true}
               ref={emailRef}
             />
             {errores
-              ? errores.map((error, i) => (
+              ? 
                 
-                  <div key={i} className="mb-2 text-sm text-red-600 ">{error}</div>
-                ))
+                  <div className="mb-2 text-sm text-red-600 ">{errores}</div>
+                
               : null}
 
             {loading ? (
@@ -135,6 +136,8 @@ const Olvide = () => {
                 className={`${
                   mensajeOk && " cursor-not-allowed disabled"
                 }   max-w-72 lg:max-w-80 text-white bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] rounded-lg text-sm px-4 py-2 w-full mt-4`}
+                disabled={mensajeOk && true}
+
               >
                 Reestablecer contraseña
               </button>

@@ -28,9 +28,9 @@ const ImageCropper = ({ closeModal, updateAvatar }) => {
     if (!file) return;
   
     // Verificar el tamaño del archivo
-    const maxSizeInBytes = 1048576; // 1MB
+    const maxSizeInBytes = 700000; // 1MB
     if (file.size > maxSizeInBytes) {
-      setError("El archivo no debe ser mayor a 1MB");
+      setError("El archivo no debe ser mayor a 700KB");
       return;
     }
   

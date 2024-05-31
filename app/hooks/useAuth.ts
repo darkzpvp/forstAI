@@ -36,12 +36,20 @@ export const useAuth = ({ middleware, url }) => {
       if (data.user.email_verified_at !== null) {
         Router.push("/generar");
       }
-      setErrores([]);
       await mutate();
     } catch (error) {
       console.log(error);
-      console.log(error.response.data.incorrecto);
-      setErrores(error.response.data.incorrecto);
+      if (error.response) {
+        if (error.response.data.incorrecto) {
+          setErrores(error.response.data.incorrecto);
+        } else if (error.response.data.message) {
+          setErrores(error.response.data.message);
+        } else {
+          setErrores("Error desconocido");
+        }
+      } else {
+        setErrores("Error de conexión");
+      }
     }
   };
 
