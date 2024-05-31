@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Http\Requests\EliminarCuentaRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistroRequest;

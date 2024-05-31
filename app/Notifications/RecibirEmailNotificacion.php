@@ -37,10 +37,13 @@ class RecibirEmailNotificacion extends Notification
     {
         return (new MailMessage)
             ->subject('Nuevo correo electrónico recibido')
+            ->greeting('Hola, ')
             ->line('Has recibido un nuevo correo electrónico.')
             ->line('Nombre: ' . $this->emailData['name'])
             ->line('Email: ' . $this->emailData['email'])
-            ->line('Mensaje: ' . $this->emailData['message']);
+            ->line('Mensaje: ' . $this->emailData['message'])
+            ->salutation('ForstAI');
+
     }
 
     /**

@@ -55,8 +55,8 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost:3000'),
-    'signed_url' => env('SIGNED_URL_BASE', 'http://localhost:3000'),
+    'url' => env('APP_URL', 'https://forstai.ddns.net'),
+    'signed_url' => env('SIGNED_URL_BASE', 'https://forstai.ddns.net'),
     'asset_url' => env('ASSET_URL:3000'),
 
     /*
@@ -191,3 +191,8 @@ return [
     ])->toArray(),
 
 ];
+$app->configure('mail');
+$app->configure('services');
+$app->register(Sichikawa\LaravelSendgridDriver\MailServiceProvider::class);
+
+unset($app->availableBindings['mailer']);

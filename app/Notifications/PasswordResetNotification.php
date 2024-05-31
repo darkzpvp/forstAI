@@ -28,9 +28,11 @@ class PasswordResetNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line('You are receiving this email because we received a password reset request for your account.')
-            ->action('Reset Password', url('http://localhost:3000/reset/'.$this->token))
-            ->line('If you did not request a password reset, no further action is required.');
+            ->subject('Restablecer Contraseña')
+            ->greeting('Hola ' . $this->user->name . ',')
+            ->line('Recibes este correo electrónico porque solicitaste un cambio de contraseña para tu cuenta.')
+            ->action('Cambiar Contraseña', url('https://forstai.ddns.net/reset/'.$this->token))
+            ->line('Si no solicitaste este cambio de contraseña, no es necesario realizar ninguna acción.')
+            ->salutation('Gracias, ' . config('app.name'));
     }
-    
 }
