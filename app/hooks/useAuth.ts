@@ -30,13 +30,15 @@ export const useAuth = ({ middleware, url }) => {
     try {
       const { data } = await clienteAxios.post("/api/login", datos);
       localStorage.setItem("AUTH_TOKEN", data.token);
+      await mutate();
+
       if (data.user.email_verified_at === null) {
         await mandarEmailVerificacion(email, setMensajeOk);
+      } else {
+        await mutate();
+        Router.push('/generar')
       }
-      if (data.user.email_verified_at !== null) {
-        Router.push("/generar");
-      }
-      await mutate();
+    
     } catch (error) {
       console.log(error);
       if (error.response) {
@@ -53,14 +55,15 @@ export const useAuth = ({ middleware, url }) => {
     }
   };
 
-  const registro = async (datos, email, setMensajeOk) => {
+  const registro = async (datos, email, setMensajeOk, setErrores) => {
     try {
-      await clienteAxios("/sanctum/csrf-cookie");
       const { data } = await clienteAxios.post("/api/registro", datos);
       localStorage.setItem("AUTH_TOKEN", data.token);
       await mutate();
       await mandarEmailVerificacion(email, setMensajeOk);
     } catch (error) {
+      setErrores(error.response.data.message);
+
       console.log(error);
     }
   };
@@ -90,7 +93,6 @@ export const useAuth = ({ middleware, url }) => {
   };
   const crearUsuario = async (datos) => {
     try {
-      await clienteAxios("/sanctum/csrf-cookie");
       const { data } = await clienteAxios.post("/api/registro", datos);
       await mutate();
     } catch (error) {
@@ -144,7 +146,7 @@ export const useAuth = ({ middleware, url }) => {
   const eliminarCuentaPerfil = async (
     contraseña,
     setErroresEliminarCuenta,
-    erroresEliminarCuenta
+    
   ) => {
     console.log(contraseña);
     try {

@@ -110,7 +110,7 @@ const Olvide = () => {
             {loading ? (
               <button
                 type="button"
-                className={` cursor-not-allowed bg-[#727ee4]  max-w-72 text-white  rounded-lg text-sm px-4 py-2 w-full mt-6`}
+                className={` cursor-not-allowed bg-[#727ee4]  max-w-72 text-white  rounded-lg text-sm px-4 py-2 w-full mt-6 lg:max-w-80`}
                 disabled
               >
                 <svg

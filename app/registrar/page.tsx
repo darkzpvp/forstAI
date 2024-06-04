@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "../hooks/useAuth";
 import AlertaOk from "../components/AlertaOk";
+import Alerta from "../components/Alerta";
 import { SubmitHandler, useForm } from "react-hook-form";
 import {
   registroUsuario,
@@ -43,7 +44,7 @@ const Registrar = () => {
     const email = {
       email: data.email,
     };
-    await registro(datos, email, setMensajeOk);
+    await registro(datos, email, setMensajeOk, setErrores);
     setLoading(false);
   };
 
@@ -56,7 +57,9 @@ const Registrar = () => {
   const handleGoLogin = () => {
     Router.push("/login");
   };
-
+setTimeout(() => {
+setErrores([])
+}, 4000)
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 h-screen">
       <div className=" bg-registro-gradient bg-cover bg-center block justify-center md:col-span-1 lg:col-span-2 md:flex">
@@ -105,6 +108,9 @@ const Registrar = () => {
         
           {mensajeOk ? <AlertaOk>{mensajeOk}</AlertaOk> : null}
           <div className="w-full max-w-72 lg:max-w-80">
+          {errores.length > 0 ? 
+                 <Alerta>{errores}</Alerta> : null}
+              
             <label
               htmlFor="nombre"
               className="block text-sm font-medium text-gray-300 mb-2"
@@ -236,12 +242,13 @@ const Registrar = () => {
                 <p>{errors?.password_confirmation?.message}</p>
               )}
             </div>
+
           </div>
 
           {loading ? (
             <button
               type="button"
-              className={` cursor-not-allowed bg-[#727ee4] text-white  max-w-72  rounded-lg text-sm px-4 py-2 w-full`}
+              className={` cursor-not-allowed bg-[#727ee4] text-white  max-w-72 lg:max-w-80  rounded-lg text-sm px-4 py-2 w-full`}
               disabled
             >
               <svg

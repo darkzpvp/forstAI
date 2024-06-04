@@ -165,7 +165,7 @@ const Sidebar = () => {
                 </svg>
                 <span
                   onClick={logout}
-                  className="flex-1 ms-3 whitespace-nowrap text-gray-300"
+                  className="flex-1 ms-3 whitespace-nowrap text-gray-300 cursor-pointer"
                 >
                   Logout
                 </span>

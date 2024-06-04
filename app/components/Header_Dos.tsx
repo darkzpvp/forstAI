@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "../hooks/useAuth";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import useUsuarioContext from "../hooks/useUsuarioContext";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -23,7 +23,6 @@ const Header_Dos = ({
 }: InterfazProps) => {
   const { logout, user } = useAuth({});
   const pathname = usePathname();
-
   const { avatarUrl, obtenerAvatar } = useUsuarioContext();
 
   const handleMenu = () => {
@@ -70,7 +69,7 @@ const Header_Dos = ({
         } z-40 w-full bg-gray-900`}
       >
         <div
-          className="py-2 mx-auto flex items-center justify-between w-full max-w-4xl px-5"
+          className="py-2 mx-auto flex items-center justify-between w-full max-w-4xl px-5 relative"
           onClick={(e) => {
             handleCloseMenu();
             e.stopPropagation();
@@ -130,9 +129,9 @@ const Header_Dos = ({
               </Link>
             </div>
             <div>
-              <Link href={"https://huggingface.co/"} legacyBehavior>
-                <a target="_blank" className=" text-gray-300 cursor-pointer">
-                  API
+              <Link href="/generar" legacyBehavior>
+                <a  className={`cursor-pointer ${pathname === '/generar' ? 'text-[#727ee4] ' : 'text-gray-300'}`}>
+                  Generar
                 </a>
               </Link>
             </div>
@@ -140,7 +139,7 @@ const Header_Dos = ({
             {user?.rol === 1 && (
               <div>
                 <Link href={"/admin"} legacyBehavior>
-                  <a className=" text-gray-300 cursor-pointer">Admin</a>
+                  <a className={`cursor-pointer ${pathname === '/admin' ? 'text-[#727ee4] ' : 'text-gray-300'}`}>Admin</a>
                 </Link>
               </div>
             )}
@@ -149,8 +148,8 @@ const Header_Dos = ({
             <button
               type="button"
               onClick={handleMenu}
-              className="flex text-sm bg-gray-800 rounded-full nooverlay"
-            >
+              className="flex text-sm  rounded-full nooverlay hover:bg-[#2d3748] p-1  "
+            > 
               <img
                 className="w-8 h-8 rounded-full"
                 src={avatarUrl || "/img/usuario.svg"}
@@ -158,16 +157,15 @@ const Header_Dos = ({
               />
             </button>
           </div>
-        </div>
-        <AnimatePresence>
+          <AnimatePresence>
         {menu && (
   <div
     id="nooverlay"
-    className="flex justify-end 2xl:px-60 xl:px-20 lg:px-14"
+    className="flex justify-end  absolute top-12 -right-14 z-50"
     onClick={(e) => e.stopPropagation()}
   >
     <motion.div
-      className="absolute z-50 text-base rounded-b-lg shadow py-4 bg-gray-900 w-full block sm:max-w-56 px-5 h-44 overlay"
+      className=" text-base rounded-b-lg shadow py-4 bg-gray-900 w-full block sm:max-w-56 px-5 h-44 overlay"
       initial={{ opacity: 0, y: -5 }}
       animate={{ opacity: 1, y: -2 }}
       exit={{ opacity: 0, y: -5 }}
@@ -223,6 +221,8 @@ const Header_Dos = ({
   </div>
 )}
 </AnimatePresence>
+        </div>
+    
 <AnimatePresence>
 
         {menuHamburguesa && (
@@ -265,13 +265,12 @@ const Header_Dos = ({
                   </a>
                 </Link>
 
-                <Link href={"https://huggingface.co/"} legacyBehavior>
+                <Link href="/generar" legacyBehavior>
                   <a
                     className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
-                    aria-current="page"
-                    target="_blank"
+         
                   >
-                    API
+                    Generar
                   </a>
                 </Link>
                 {user?.rol === 1 && (
