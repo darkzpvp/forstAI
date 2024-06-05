@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./login.css">
+    <link rel="stylesheet" href="../styles.css">
+
+    <link rel="stylesheet" href="../normalize.css">
+    <link
+    href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
+    rel="stylesheet">
+    <style>
+        html{
+          background: linear-gradient(to bottom, #40444b 0%, #25292d 30%, #282d32 40%, #21252a 60%, #282c31 80%, #343a41 100%);
+      
+        }
+      </style>
+</head>
+<body>
+    <div class="container-login">
+        <div class="left-section">
+            <div class="back-link-responsive">
+                <a href="/" class="link">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="0 0 24 24" stroke-width="1.5" stroke="" class="icon">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                    </svg>
+                    <p class="back-text">Atrás</p>
+                </a>
+                <div class="svg-back">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                      </svg>
+                      
+                      
+                </div>
+            </div>
+            <div class="left-content">
+                <h1 class="heading">¡Logueate en ForstAI!</h1>
+                <p class="subheading">Comienza a generar imágenes ya.</p>
+            </div>
+        </div>
+        <div class="right-section">
+            <div class="back-link">
+                <a href="/" class="link">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="" class="icon">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                    </svg>
+                    <p class="back-text">Atrás</p>
+                </a>
+                <div class="svg-back">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                      </svg>
+                      
+                </div>
+            </div>
+            <div class="logo">
+                <img src="/img/logo/prueba.png" alt="Prueba" class="logo-img" />
+            </div>
+            <form  novalidate class="form">
+                <div id="alert-ok"></div>
+                <div class="input-group">
+                    <label for="email" class="label">Email</label>
+                    <div class="input-group-width">
+
+                    <input type="email" id="email" class="input" placeholder="hola@correo.com" />
+                    </div>
+                </div>
+                <div id="email-error" class="error"></div>
+                <div class="input-group">
+                    <label for="password" class="label">Contraseña</label>
+                    <div class="input-group-width">
+                        <input type="password" id="password" class="password-input" placeholder="Escribe tu contraseña" />
+                     
+                         
+                    </div>
+                </div>
+                <div id="password-error" class="error"></div>
+                <div id="generic-error" class="error"></div>
+                <button type="submit" class="submit-button" id="submit-button">
+                    Login
+                </button>
+                <div class="forgot-password">
+                    <a href="/olvide" class="forgot-link">¿Has olvidado la contraseña?</a>
+                </div>
+                <div class="register">
+                    <a href="/registrar" class="register-link">
+                        <div class="register-text">¿No tienes una cuenta? <span class="highlight">Regístrate</span></div>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div> 
+    <script src="scripts.js"></script> <!-- Link to your JS file -->
+</body>
+</html>

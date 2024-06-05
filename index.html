@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta ="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla JavaScript Header</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./normalize.css">
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
+      rel="stylesheet">
+<style>
+  html{
+    background: linear-gradient(to bottom, #40444b 0%, #25292d 30%, #282d32 40%, #21252a 60%, #282c31 80%, #343a41 100%);
+
+  }
+</style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-container">
+        <div class="header-logo">
+          <a href="#home">
+            <img id="logo" src="/img/logo/prueba.png" alt="...">
+          </a>
+        </div>
+        <div class="header-menu">
+          <ul class="header-general">
+            <li data-section="intro">Introducción</li>
+            <li data-section="galeria">Galería</li>
+            <li data-section="precios">Precios</li>
+            <li data-section="faqs">FAQS</li>
+            <li data-section="contacto">Contacto</li>
+          </ul>
+        </div>
+        <div class="hamburger-menu">
+          <div id="hamburger-button" class="hamburger-button">
+            <svg
+              class="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14">
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M1 1h15M1 7h15M1 13h15" />
+            </svg>
+          </div>
+        </div>
+        <div class="get-started">
+          <button id="get-started-button">Get started</button>
+        </div>
+      </div>
+      <div class="menu-header" id="menu-header">
+        <div class="menu-header-content">
+          <a href="#home">Home</a>
+          <a href="#galeria">Galería</a>
+          <a href="#precios">Comprar</a>
+          <a href="#faqs">FAQS</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="gradient-background">
+      <div id="home" class="portada-container introhome">
+        <div class="max-width-container ">
+          <h1 class="title">ForstAI</h1>
+          <p class="paragraph">Comienza a generar imágenes de forma
+            gratuita.</p>
+        </div>
+        <div>
+          <a href="#intro" id="scroll-down" class="scroll-down-button">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+              viewBox="0 0 24 24" stroke-width="1.5" stroke="white"
+              class="arrow-icon">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </main>
+    <section id="intro" class="intro-section">
+      <div class="intro-text-container">
+        <div class="intro-heading-container">
+          <h1 class="intro-heading">
+            Genera más y mejor
+            <span class="intro-subheading">
+              gracias a nuestra excelente calidad
+            </span>
+          </h1>
+        </div>
+
+        <p class="intro-description">
+          Nuestro generador de imágenes usa la última tecnología, gracias a
+          nuestros poderosos metadatos que entrenamos a diario desde el
+          laboratorio de Huggingface.
+        </p>
+
+        <div class="intro-tags-container">
+          <span class="intro-tag intro-tag-calidad">Calidad</span>
+          <span class="intro-tag intro-tag-hd">HD</span>
+          <span class="intro-tag intro-tag-soporte">Soporte</span>
+          <span class="intro-tag intro-tag-comunidad">Comunidad</span>
+          <span class="intro-tag intro-tag-crecimiento">Crecimiento</span>
+          <span class="intro-tag intro-tag-velocidad">Velocidad</span>
+        </div>
+      </div>
+
+      <div class="intro-image-container">
+        <img
+          class="intro-image"
+          src="img/home/about4.jpg"
+          alt="About" />
+      </div>
+    </section>
+    <section id="galeria">
+      <h1 class="title">Galería</h1>
+      <p class="subtitle">Algunos de nuestros prompts...</p>
+      <div class="gallery">
+        <!-- Las imágenes se insertarán aquí dinámicamente -->
+      </div>
+    </section>
+    <h1
+      id="precios"
+      class="title">
+      Precios
+    </h1>
+    <section class="precios-section">
+      <div class="precios-container">
+        <div class="precios-item">
+          <div class="precios-icon">
+            <svg
+              fill="#1F2937"
+              id="Layer_1"
+              height="512"
+              viewBox="0 0 24 24"
+              width="512"
+              xmlns="http://www.w3.org/2000/svg"
+              data-name="Layer 1">
+              <path
+                d="m14.09 16h.91c6.643 0 9-3.5 9-6.5a3.5 3.5 0 0 0 -2.84-3.433 7.564 7.564 0 0 0 .409-1 3.887 3.887 0 0 0 -.626-3.458 3.979 3.979 0 0 0 -3.214-1.609h-11.458a3.979 3.979 0 0 0 -3.214 1.612 3.887 3.887 0 0 0 -.626 3.458 7.564 7.564 0 0 0 .409 1 3.5 3.5 0 0 0 -2.84 3.43c0 3 2.357 6.5 9 6.5h.91a5.027 5.027 0 0 1 .09.921v3.079a1.883 1.883 0 0 1 -2 2h-2a1 1 0 0 0 0 2h12a1 1 0 0 0 0-2h-1.994a1.885 1.885 0 0 1 -2.006-2v-3.08a5.025 5.025 0 0 1 .09-.92zm1.636-2.851a23.486 23.486 0 0 0 4.4-5.225 1 1 0 0 0 .374.076 1.5 1.5 0 0 1 1.5 1.5c0 2.176-1.839 4.5-7 4.5h-.056a4.805 4.805 0 0 1 .782-.851zm-6.726.851c-5.161 0-7-2.324-7-4.5a1.5 1.5 0 0 1 1.5-1.5 1 1 0 0 0 .375-.076 23.486 23.486 0 0 0 4.4 5.225 4.805 4.805 0 0 1 .781.851z" />
+            </svg>
+          </div>
+          <div class="precios-content">
+            <h1 class="precios-title">Precio competitivo</h1>
+            <p class="precios-description">
+              Disponemos de precios muy asequibles para todo el mundo
+            </p>
+          </div>
+        </div>
+        <div class="precios-item">
+          <div class="precios-icon">
+            <svg
+              fill="#1F2937"
+              id="Layer_1"
+              height="512"
+              viewBox="0 0 24 24"
+              width="512"
+              xmlns="http://www.w3.org/2000/svg"
+              data-name="Layer 1">
+              <path
+                d="m14.09 16h.91c6.643 0 9-3.5 9-6.5a3.5 3.5 0 0 0 -2.84-3.433 7.564 7.564 0 0 0 .409-1 3.887 3.887 0 0 0 -.626-3.458 3.979 3.979 0 0 0 -3.214-1.609h-11.458a3.979 3.979 0 0 0 -3.214 1.612 3.887 3.887 0 0 0 -.626 3.458 7.564 7.564 0 0 0 .409 1 3.5 3.5 0 0 0 -2.84 3.43c0 3 2.357 6.5 9 6.5h.91a5.027 5.027 0 0 1 .09.921v3.079a1.883 1.883 0 0 1 -2 2h-2a1 1 0 0 0 0 2h12a1 1 0 0 0 0-2h-1.994a1.885 1.885 0 0 1 -2.006-2v-3.08a5.025 5.025 0 0 1 .09-.92zm1.636-2.851a23.486 23.486 0 0 0 4.4-5.225 1 1 0 0 0 .374.076 1.5 1.5 0 0 1 1.5 1.5c0 2.176-1.839 4.5-7 4.5h-.056a4.805 4.805 0 0 1 .782-.851zm-6.726.851c-5.161 0-7-2.324-7-4.5a1.5 1.5 0 0 1 1.5-1.5 1 1 0 0 0 .375-.076 23.486 23.486 0 0 0 4.4 5.225 4.805 4.805 0 0 1 .781.851z" />
+            </svg>
+          </div>
+          <div class="precios-content">
+            <h1 class="precios-title">Precio competitivo</h1>
+            <p class="precios-description">
+              Disponemos de precios muy asequibles para todo el mundo
+            </p>
+          </div>
+        </div>
+        <div class="precios-item">
+          <div class="precios-icon">
+            <svg
+              fill="#1F2937"
+              id="Layer_1"
+              height="512"
+              viewBox="0 0 24 24"
+              width="512"
+              xmlns="http://www.w3.org/2000/svg"
+              data-name="Layer 1">
+              <path
+                d="m14.09 16h.91c6.643 0 9-3.5 9-6.5a3.5 3.5 0 0 0 -2.84-3.433 7.564 7.564 0 0 0 .409-1 3.887 3.887 0 0 0 -.626-3.458 3.979 3.979 0 0 0 -3.214-1.609h-11.458a3.979 3.979 0 0 0 -3.214 1.612 3.887 3.887 0 0 0 -.626 3.458 7.564 7.564 0 0 0 .409 1 3.5 3.5 0 0 0 -2.84 3.43c0 3 2.357 6.5 9 6.5h.91a5.027 5.027 0 0 1 .09.921v3.079a1.883 1.883 0 0 1 -2 2h-2a1 1 0 0 0 0 2h12a1 1 0 0 0 0-2h-1.994a1.885 1.885 0 0 1 -2.006-2v-3.08a5.025 5.025 0 0 1 .09-.92zm1.636-2.851a23.486 23.486 0 0 0 4.4-5.225 1 1 0 0 0 .374.076 1.5 1.5 0 0 1 1.5 1.5c0 2.176-1.839 4.5-7 4.5h-.056a4.805 4.805 0 0 1 .782-.851zm-6.726.851c-5.161 0-7-2.324-7-4.5a1.5 1.5 0 0 1 1.5-1.5 1 1 0 0 0 .375-.076 23.486 23.486 0 0 0 4.4 5.225 4.805 4.805 0 0 1 .781.851z" />
+            </svg>
+          </div>
+          <div class="precios-content">
+            <h1 class="precios-title">Precio competitivo</h1>
+            <p class="precios-description">
+              Disponemos de precios muy asequibles para todo el mundo
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <form onSubmit={handleFormSubmit} class="card-container">
+        <h5 class="card-title">Plan básico</h5>
+        <div class="card-price-container">
+          <span class="card-price">9</span>
+          <span class="card-currency">€</span>
+          <span class="card-period">/mes</span>
+        </div>
+        <ul role="list" class="card-features">
+          <li class="card-feature">
+            <svg class="card-icon" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+            <span class="card-feature-text">1 equipo</span>
+          </li>
+          <li class="card-feature">
+            <svg class="card-icon" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+            <span class="card-feature-text">10 prompts / día</span>
+          </li>
+          <li class="card-feature">
+            <svg class="card-icon" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+            <span class="card-feature-text">Velocidad media</span>
+          </li>
+          <li class="card-feature">
+            <svg class="card-icon" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+            <span class="card-feature-text">Documentación completa</span>
+          </li>
+          <li class="card-feature card-feature-disabled">
+            <svg class="card-icon-disabled" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+            <span class="card-feature-text-disabled">Acceso a API</span>
+          </li>
+          <li class="card-feature card-feature-disabled">
+            <svg class="card-icon-disabled" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+            <span class="card-feature-text-disabled">Soporte 24/7 teléfono &
+              email</span>
+          </li>
+        </ul>
+        <button type="submit" class="card-button">Elegir plan</button>
+      </form>
+
+      <form onSubmit={handleFormSubmit} class="card-container">
+        <h5 class="card-title">Plan básico</h5>
+        <div class="card-price-container">
+          <span class="card-price">9</span>
+          <span class="card-currency">€</span>
+          <span class="card-period">/mes</span>
+        </div>
+        <ul role="list" class="card-features">
+          <li class="card-feature">
+            <svg class="card-icon" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+            <span class="card-feature-text">1 equipo</span>
+          </li>
+          <li class="card-feature">
+            <svg class="card-icon" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+            <span class="card-feature-text">10 prompts / día</span>
+          </li>
+          <li class="card-feature">
+            <svg class="card-icon" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+            <span class="card-feature-text">Velocidad media</span>
+          </li>
+          <li class="card-feature">
+            <svg class="card-icon" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+            <span class="card-feature-text">Documentación completa</span>
+          </li>
+          <li class="card-feature card-feature-disabled">
+            <svg class="card-icon-disabled" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+            <span class="card-feature-text-disabled">Acceso a API</span>
+          </li>
+          <li class="card-feature card-feature-disabled">
+            <svg class="card-icon-disabled" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+            <span class="card-feature-text-disabled">Soporte 24/7 teléfono &
+              email</span>
+          </li>
+        </ul>
+        <button type="submit" class="card-button">Elegir plan</button>
+      </form>
+
+      <form onSubmit={handleFormSubmit} class="card-container">
+        <h5 class="card-title">Plan básico</h5>
+        <div class="card-price-container">
+          <span class="card-price">9</span>
+          <span class="card-currency">€</span>
+          <span class="card-period">/mes</span>
+        </div>
+        <ul role="list" class="card-features">
+          <li class="card-feature">
+            <svg class="card-icon" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+            <span class="card-feature-text">1 equipo</span>
+          </li>
+          <li class="card-feature">
+            <svg class="card-icon" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+            <span class="card-feature-text">10 prompts / día</span>
+          </li>
+          <li class="card-feature">
+            <svg class="card-icon" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+            <span class="card-feature-text">Velocidad media</span>
+          </li>
+          <li class="card-feature">
+            <svg class="card-icon" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+            <span class="card-feature-text">Documentación completa</span>
+          </li>
+          <li class="card-feature card-feature-disabled">
+            <svg class="card-icon-disabled" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+            <span class="card-feature-text-disabled">Acceso a API</span>
+          </li>
+          <li class="card-feature card-feature-disabled">
+            <svg class="card-icon-disabled" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+            <span class="card-feature-text-disabled">Soporte 24/7 teléfono &
+              email</span>
+          </li>
+        </ul>
+        <button type="submit" class="card-button">Elegir plan</button>
+      </form>
+    </section>
+    <h1
+      id="faqs"
+      class="title">
+      FAQS
+    </h1>
+    <!-- Acordeon -->
+    <div class="wrapper">
+      <div class="half">
+
+      </div>
+
+      <div id="contacto" class="contacto-container">
+        <div class="contacto-info">
+          <h5 class="contacto-titulo">¡Contacta con nosotros!</h5>
+          <p class="contacto-texto">Estamos disponibles para ayudarte con
+            cualquier pregunta, sugerencia o comentario que tengas</p>
+        </div>
+
+        <div class="contacto-formulario">
+          <div class="contacto-alerta">
+
+          </div>
+
+          <form novalidate class="contacto-form">
+            <label for="nombre" class="contacto-label">Tu nombre</label>
+            <input type="text" id="nombre" class="contacto-input"
+              placeholder="Víctor Valverde" />
+
+            <label for="email" class="contacto-label">Tu email</label>
+            <input type="email" id="email" class="contacto-input"
+              placeholder="hola@correo.com" />
+
+            <label for="message" class="contacto-label">Tu mensaje</label>
+            <textarea id="message" rows="4" class="contacto-input"
+              placeholder="Escribe los detalles de tu mensaje"></textarea>
+            <input type="button" class="contacto-botom" value="Enviar">
+
+          </form>
+        </div>
+      </div>
+
+      <footer class="footer-container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <a href="#home">
+              <img src="/img/logo/prueba.png" alt="ForstAI Logo"
+                class="footer-logo-img">
+            </a>
+          </div>
+
+          <ul class="footer-links">
+            <li>
+              <a href="#intro" class="footer-link">Introducción</a>
+            </li>
+            <li>
+              <a href="#galeria" class="footer-link">Galería</a>
+            </li>
+            <li>
+              <a href="#precios" class="footer-link">Precios</a>
+            </li>
+            <li>
+              <a href="#faqs" class="footer-link">FAQS</a>
+            </li>
+            <li>
+              <a href="#contacto" class="footer-link">Contacto</a>
+            </li>
+          </ul>
+        </div>
+        <hr class="footer-divider">
+        <span class="footer-copyright">© <a href="#intro"
+            class="footer-link">ForstAI</a>. Todos los derechos
+          reservados.</span>
+      </footer>
+
+      <!-- Modal -->
+      <div id="modal" class="modal">
+        <span class="close">&times;</span>
+        <span class="prev">&#10094;</span>
+        <img class="modal-content" id="modal-img">
+        <span class="next">&#10095;</span>
+    </div>
+      <script src="script.js"></script>
+    </body>
+  </html>
