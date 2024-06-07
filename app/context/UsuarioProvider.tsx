@@ -41,7 +41,6 @@ const [totalElements, setTotalElements] = useState(0)
   const informacionUsuarioPanel = async() => {
    
     try {
-      setLoading(true)
       const authToken = localStorage.getItem("AUTH_TOKEN");
       if (!authToken) {
         console.log("Usuario no autenticado. Redirigiendo a la página de inicio de sesión...");
