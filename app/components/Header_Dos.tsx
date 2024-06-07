@@ -41,7 +41,7 @@ const Header_Dos = ({
   const handleMenuHamburguesa = () => {
     setMenuHamburguesa(!menuHamburguesa);
   };
-
+  
   useEffect(() => {
     if (menuHamburguesa) {
       setMenu(false);
@@ -161,7 +161,7 @@ const Header_Dos = ({
         {menu && (
   <div
     id="nooverlay"
-    className="flex justify-end  absolute top-12 -right-14 z-50"
+    className="flex justify-end  absolute top-12 xl:-right-14 right-0  z-50"
     onClick={(e) => e.stopPropagation()}
   >
     <motion.div

@@ -103,6 +103,8 @@ const Page = ({
     setSelectedUserId(null);
     setUsuario({});
   };
+
+  //Filtrar la query
   const filteredItems = useMemo(() => {
     return entries.filter((item) => {
       if (item && typeof item.nombre === "string") {
@@ -111,6 +113,23 @@ const Page = ({
       return false;
     });
   }, [entries, query]);
+
+
+
+//Filtrar el numero de elemtos de la query
+  const filteredItemsTotal = useMemo(() => {
+    if (!query) {
+      return userPanel.length;
+    }
+    const filtered = userPanel.filter((item) => {
+      const matchesQuery =
+        !query ||
+        (item.nombre && item.nombre.toLowerCase().includes(query.toLowerCase()));
+      return matchesQuery;
+    });
+    return filtered.length;
+  }, [userPanel, query]);
+console.log(filteredItemsTotal);
 
   return (
     <div
@@ -271,14 +290,18 @@ const Page = ({
             entries={entries}
             filteredItems={filteredItems}
           />
-
-          <PaginationControlsAdmin
-            hasNextPage={end < userPanel.length}
+   {filteredItems?.length > 0 && (
+          <div className="flex justify-between">
+              <PaginationControlsAdmin
+            hasNextPage={end < filteredItemsTotal}
             hasPrevPage={start > 0}
-            totalElements={totalElements}
+            totalElements={filteredItemsTotal}
             basePath="/admin"
             perpage={9}
           />
+          </div>
+          )}
+        
         </div>
       </div>
 

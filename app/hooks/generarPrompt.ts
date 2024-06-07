@@ -11,7 +11,7 @@ const useImageGeneration = () => {
         model: "Yntec/HyperRealism",
         inputs: promptText,
         parameters: {
-          negative_prompt: "blurry",
+        negative_prompt: "blurry",
 
         },
       });
