@@ -16,8 +16,12 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         VerifyEmail::toMailUsing(function ($notifiable, $url) {
-            $spaUrl = str_replace(['8000/api', '8000'], ['', ''], $url);
-
+            // Eliminar la parte /api de la URL
+            $spaUrl = str_replace('/api', '', $url);
+            
+            // Eliminar el puerto si está presente
+            $spaUrl = preg_replace('/:[0-9]+/', '', $spaUrl);
+        
             return (new \Illuminate\Notifications\Messages\MailMessage)
                 ->subject('Verifica la dirección de correo electrónico')
                 ->greeting('Hola ' . $notifiable->name . ',')

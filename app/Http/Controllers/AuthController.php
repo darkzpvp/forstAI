@@ -19,6 +19,8 @@ use App\Http\Controllers\SuscripcionesController;
 use App\Models\InformacionPersonal;
 use App\Models\Prompt;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cookie; // Importa la clase Cookie
 
 class AuthController extends Controller
 {
@@ -29,11 +31,15 @@ class AuthController extends Controller
     }
     public function logout(Request $request)
     {
-        $user = $request->user();
-        $user->currentAccessToken()->delete();
-        return [
-            'user' => null
-        ];
+        $user = auth()->user(); // Accede al usuario autenticado actualmente
+    
+        // Elimina todos los tokens asociados con el usuario
+        $user->tokens()->delete();
+        Cookie::queue(Cookie::forget('forstai_session'));
+
+        return response()->json([
+            'message' => 'Cierre de sesión exitoso'
+        ]);
     }
     public function registro(RegistroRequest $request)
     {
