@@ -34,7 +34,7 @@ Día 23
 Cards con precios
 <br>
 Día 24
-Acordeón. Me ayudé gracias a este vídeo https://www.youtube.com/watch?v=oOXExNA8A48&list=LL&index=2
+Acordeón
 <br>
 Día 25 Footer
 <br>
@@ -203,7 +203,64 @@ Migro toda la lógica de alertas a React Hook Form para seguir uniformidad y hac
 <br>
 Día 22
 Sigo migrando la lógica de alertas y añado middleware para administradores, arreglo errores, refactorizo, arreglo paginación de historial-prompts y cambio toda la lógica que tenía respecto a la comprobación de TOKEN por Local Storage, ya que fue inutil porque es más apropiado controlarlo con la propiedad "email_verified_at". Ajusto además las cards con unos problemas que tenía respecto al color y al SVG; si los números son negativos en rojo, si son positivos en verde 
+<br>
+Día 23
+Añadido responsive en el perfil, mejorado paginación, refactorización y mejora de performance en general
+Arreglado error de cambiar perfil, que obligaba a actualizar la pagina
+Paginación arreglada, cambio de lógica de alertas, arreglos en la autenticación en general, administración, añadido middleware para administradores, mejora de performance, refactorización, etc
+<br>
+Día 24
+Preparando para el deployment, buscando diferentes formas de hacerlo. Al final usé PM2, un gestor de procesos especializado en node
+<br>
+Día 25
+Cree las instancias: EC2, RDS y descargué todo lo necesario: PHP, MYSQL, NGINX para el servidor web, PM2 para el gestor de procesos y lo desplegué
+<br>
+Día 26
+Estuve corrigiendo errores de esLint y de paquetes, ya que al buildear la imagen en Next me daba muchos problemas
+<br>
+Día 27
+Continúo con el despliegue y finalizo
+<br>
+Día 28
+Continúo desarrollando y quitando errores, tanto del frontend como del backend
+<br>
+Día 29
+Continúo desarrollando y quitando errores, tanto del frontend como del backend
 
+<br>
+Día 30
+Continúo desarrollando y quitando errores, tanto del frontend como del backend
+
+<br>
+Día 31
+Cambios en la validación y control de errores en el cambio de fotos para permitir 1MB máximo
+<br>
+<h2>Junio</h2>
+<br>
+Día 1
+Corrección de errores importantes, ya que no mutaba los datos y por tanto al redirigir al usuario autenticado al login, el middleware actuaba y redirigía a la ruta principal. Con useSWR conseguí solventarlo. Además de que la página de olvidar password no mostraba el error correctamente
+<br>
+Día 2
+Corrección de errores en el login, antes no mostraba nada cuando era la contraseña incorrecta, además me doy cuenta de que los botones que tienen loading tienen tamaño diferente.
+<br>
+Día 3
+Desarrollo la versión de Javascript Vanilla, y acabo el header y las primeras secciones
+<br>
+Día 4
+Continúo con la version Vanilla y acabo las otras secciones de la parte principal, además de añadir javascript a la galería, a la modal, slides, etc
+<br>
+Día 5
+Acabo la página principal y me pongo a maquetar el login, que únicamente tendrá HTML y CSS y creo también el header para admin, con la modal del menú usuario, además de las cards
+<br>
+Día 6
+Continúo con la version vanilla y acabo la tabla de usuarios de la página de administradores, y tras intensas horas consigo finalizar definitivamente la versión vanilla
+Continúo con el Figma y añado un par de cosas para dejarlo lo más similar posible
+<br>
+Día 7
+Acabo el diseño Figma, tanto la version mobile como la desktop
+<br>
+Día 8
+Creo un cronjob en el servidor de producción para que ejecute los comandos y añado middleware en las APIS de admin, ya que solo estaba en el cliente, pero me faltaba el servidor, además empiezo con los tests unitarios de Laravel
 Recursos que utilicé:<br>
 Dudas y relleno de texto<br>
 ChatGPT y Bard<br>
