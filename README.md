@@ -34,7 +34,7 @@ Día 23
 Cards con precios
 <br>
 Día 24
-Acordeón. Me ayudé gracias a este vídeo https://www.youtube.com/watch?v=oOXExNA8A48&list=LL&index=2
+Acordeón
 <br>
 Día 25 Footer
 <br>
