@@ -260,7 +260,7 @@ Día 7
 Acabo el diseño Figma, tanto la version mobile como la desktop
 <br>
 Día 8
-Creo un cronjob en el servidor de producción para que ejecute los comandos y añado middleware en las APIS de admin, ya que solo estaba en el cliente, pero me faltaba el servidor
+Creo un cronjob en el servidor de producción para que ejecute los comandos y añado middleware en las APIS de admin, ya que solo estaba en el cliente, pero me faltaba el servidor, además empiezo con los tests unitarios de Laravel
 Recursos que utilicé:<br>
 Dudas y relleno de texto<br>
 ChatGPT y Bard<br>
