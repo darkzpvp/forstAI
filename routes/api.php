@@ -22,24 +22,20 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::delete('/eliminar-cuenta', [AuthController::class, 'eliminarCuenta']);
 
     // PromptController
-    //TODO este endpoint está mal nombrado, qué es enviar formulario??? desde el front enviarás muchos formularios, 
     //este endpoint está relacionado con prompts, será como crear o modificar un prompt. Revisa esto https://arbems.com/convenciones-nomenclatura-de-url-en-web-apis/
     Route::post('/enviar_formulario', [PromptController::class, 'enviarFormulario']);
     Route::get('/prompts', [PromptController::class, 'conseguirPrompts']);
     Route::get('/ver-prompts', [PromptController::class, 'todosLosPrompts']);
 
     // CambiarPerfilController
-    //TODO el controller lo llamaría PerfilController y el endpoint sería /perfil, con un get obtendría la imagen y con un post la cambiaría. Por cierto no tienes PUT para la modificación del perfil
     Route::post('/cambiar-perfil', [CambiarPerfilController::class, 'subirImagen']);
     Route::get('/imagen-perfil', [CambiarPerfilController::class, 'obtenerImagenPerfil']);
 
     // InformacionPersonalController
-    //TODO esto no forma parte del perfil?? Perfil controller sólo cambia la imagen? y resto de info del usuario lo tienes en otro endpoint distinto???
     Route::post('/informacion-personal', [InformacionPersonalController::class, 'store']);
     Route::get('/informacion-personal', [InformacionPersonalController::class, 'show']);
 
     // SuscripcionesController
-    //TODO aquí lo mismo que te he comentado anteriormente. el endpoint sería /suscripciones, con el POST compro, con el delete elimino... pero siempre el mismo endpoint
     Route::post('/comprar-suscripcion', [SuscripcionesController::class, 'comprar']);
     Route::delete('/cancelar-suscripcion', [SuscripcionesController::class, 'eliminar']);
     Route::get('/ver-suscripcion', [SuscripcionesController::class, 'getAll']);
@@ -69,7 +65,6 @@ Route::get('verificar/{id}/{hash}', [EmailVerificationController::class, 'verify
 
 
 //AuthController
-//TODO vuelve a revisar la consistencia del nombrado de endpoints , unos los tienes en español otros en inglés. Es un cacao.
 Route::post('/reset', [AuthController::class, 'reset']);
 Route::get('/reset', [AuthController::class, 'reset']);
 Route::post('/registro', [AuthController::class, 'registro']);

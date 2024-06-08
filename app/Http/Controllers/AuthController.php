@@ -50,7 +50,6 @@ class AuthController extends Controller
                 'email' => $request->input('email'),
                 'password' => bcrypt($request->input('password'))
             ]);
-            //TODO considera meter esto en una función aparte para que quede más limpio el código
             //haz algo como: $user->ip_address = obtenerIpPublica();
             // Obtener la dirección IP pública del usuario
             $publicIpResponse = Http::get('https://api.ipify.org?format=json');
@@ -66,7 +65,6 @@ class AuthController extends Controller
                 'token' => $user->createToken('token')->plainTextToken,
                 'user' => $user
             ];
-            //TODO evita usar \Exception, haz uso de use ....\Exception y en esta línea deja solo Exception.
         } catch (\Exception $e) {
             // Manejar cualquier error que ocurra durante el proceso de registro
             // Por ejemplo, registro fallido, error al obtener la dirección IP, etc.
@@ -77,7 +75,6 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         try {
-            //TODO elimina este comentario
             // Validar la solicitud (la validación debería ocurrir dentro del objeto LoginRequest)
     
             // Intentar autenticar al usuario
@@ -88,7 +85,6 @@ class AuthController extends Controller
             // Obtener al usuario autenticado
             $user = Auth::user();
     
-            //TODO si has creado la función obtenerIpPublica() no tendrías que repetir este código, simplemente llamarías a la misma función
             // Obtener la dirección IP pública del usuario
             $publicIpResponse = Http::get('https://api.ipify.org?format=json');
             $publicIpData = $publicIpResponse->json();
@@ -143,7 +139,6 @@ class AuthController extends Controller
 
 
 
-//TODO cambiar Request por EmailRequest
     public function forgot(Hasher $hasher, Request $request): JsonResponse
     {
         // Definir mensajes personalizados
@@ -152,7 +147,6 @@ class AuthController extends Controller
             'email.email' => 'Por favor, proporciona un email válido',
         ];
 
-        //TODO estudia eliminarlo es redundante ya que debería ejecutarse este código únicamente si la Request es válida.
         // Validar el request
         $request->validate([
             'email' => 'required|email',
@@ -192,7 +186,6 @@ class AuthController extends Controller
     {
         $token = $request->query('token'); // Obtener el token desde la URL
 
-        //TODO esto debería estar ya controlado en el ResetPasswordRequest
         if (!$token) {
             return response()->json(['errors' => ['Token not provided']], 400);
         }
@@ -211,7 +204,6 @@ class AuthController extends Controller
             return response()->json(['errors' => ['User not found']], 404);
         }
 
-        //TODO comprueba si es necesario, creo que ya vienen validados los datos porque están usando la Request específica.
         // Obtener los datos validados
         $data = $request->validated();
 
@@ -241,7 +233,6 @@ class AuthController extends Controller
 
     public function checkToken(Request $request): JsonResponse
     {
-        //TODO no deberías usar una Rquest específica que valide que el token no es nulo o vacío?
         // Obtener el token enviado por el cliente
         $token = $request->query('token');
 
@@ -260,7 +251,6 @@ class AuthController extends Controller
 
     public function eliminarCuenta(EliminarCuentaRequest $request): JsonResponse
     {
-        //TODO sobraría esta parte si EliminarCuentaRequest está funcionando adecuadamente.
         $request->validated();
 
 
@@ -331,13 +321,10 @@ public function informacionUserId($id): JsonResponse
 {
     // Obtener el usuario por su ID
     $usuario = User::findOrFail($id);
-//TODO considera meter esto en una función aparte
     // Obtener la suscripción del usuario
     $suscripcion = Suscripciones::where('user_id', $usuario->id)->first();
-//TODO considera meter esto en una función aparte
     // Calcular totalPrompts
     $totalPrompts = $suscripcion ? ($usuario->free_prompts + ($suscripcion->prompts_disponibles ?? 0)) : $usuario->free_prompts;
-//TODO considera meter esto en una función aparte
     // Obtener los detalles de facturación del usuario
     $detalles_facturacion = InformacionPersonal::where('user_id', $usuario->id)->first();
 
@@ -360,7 +347,6 @@ public function informacionUserId($id): JsonResponse
             'tipo' => $suscripcion->tipo,
             'fecha_expiracion' => $suscripcion->fecha_expiracion,
         ] : null,
-        //TODO si has considerado hacer una función aparte como te indico en la línea 332, aquí directamente llamarías a la función y quedaría el código más claro y menos farragoso
         'detalles_facturacion' => $detalles_facturacion ? [
             'nombre' => $detalles_facturacion->nombre,
             'apellidos' => $detalles_facturacion->apellidos,
@@ -384,7 +370,6 @@ public function informacionUserId($id): JsonResponse
 public function informacionUserIdActualizar($id, Request $request): JsonResponse {
     $usuario = User::findOrFail($id);
 
-    //TODO si utilizas una Request específica le pones que nombre es required y no tienes que hacer ese tipo de validaciones aqui. 
     // Verificar si hay datos en el request para actualizar el usuario
     if ($request->has('nombre')) {
         $usuario->name = $request->nombre;
@@ -409,7 +394,6 @@ public function informacionUserIdActualizar($id, Request $request): JsonResponse
     if ($request->has('free_prompts')) {
         $usuario->free_prompts = $request->free_prompts;
     }
-//TODO hasta aqui deberías hacerlo en la Request
     // Verificar y actualizar la contraseña
     if ($request->has('password') && $request->has('password_repeat')) {
         $password = $request->input('password');
@@ -422,7 +406,6 @@ public function informacionUserIdActualizar($id, Request $request): JsonResponse
         }
     }
 
-    //TODO la comprobación del tipo también debería estar en la Request
     // Verificar y actualizar la suscripción
     if ($request->has('tipo')) {
         $suscripcion = $request->input('tipo');
@@ -436,7 +419,6 @@ public function informacionUserIdActualizar($id, Request $request): JsonResponse
                 $suscripcionUsuario->delete();
             }
         } else {
-            //TODO considera encapsular este código en una función aparte para que el código quede más legible.
             // Si no existe una suscripción para este usuario, crear una nueva
             if (!$suscripcionUsuario) {
                 // Obtener el tipo de suscripción y sus detalles según la ID recibida
@@ -459,7 +441,6 @@ public function informacionUserIdActualizar($id, Request $request): JsonResponse
     // Guardar los cambios en el usuario
     $usuario->save();
 
-    //TODO porqué no usas un Resource?
     // Construir la respuesta
     $datos = [
         'id' => $usuario->id,
@@ -508,7 +489,6 @@ public function usuariosUltimaSemana()
         $percentageDifference = (($currentWeekUserCount - $lastWeekUserCount) / $lastWeekUserCount) * 100;
     }
 
-    //TODO considera usar Resource
     return response()->json([
         'current_week_count' => $currentWeekUserCount,
         'last_week_count' => $lastWeekUserCount,
