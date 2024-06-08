@@ -35,6 +35,7 @@ if(user?.email_verified_at){
 
   return (
     <form
+    id="precios"
       onSubmit={handleFormSubmit}
       className="w-full max-w-sm p-4 border  rounded-lg shadow sm:p-8 bg-gray-800 border-gray-700"
     >

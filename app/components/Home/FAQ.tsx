@@ -4,11 +4,11 @@ import Acordeon from "./Acordeon";
 const FAQ = () => {
   return (
 <>
-    <h1 className=" font-bold text-3xl text-gray-300 text-center mb-10 mt-10">
+    <h1  id="faqs" className=" font-bold text-3xl text-gray-300 text-center mb-10 mt-10">
     FAQS
   </h1>
   <section
-    id="faqs"
+   
     className="flex justify-center mb-10 px-5 sm:px-12 md:px-20 lg:px-44"
    >
     <div className="p-4 bg-gray-800 border-gray-700 rounded-lg w-full border ">

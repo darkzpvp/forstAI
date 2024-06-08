@@ -4,7 +4,7 @@ const Ventajas = () => {
   return (
     <>
     <h1
-    id="precios"
+   
     className="flex justify-center items-center mt-10 text-gray-300  font-bold text-3xl"
   >
     Precios
