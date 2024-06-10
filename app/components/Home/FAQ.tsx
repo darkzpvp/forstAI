@@ -9,7 +9,7 @@ const FAQ = () => {
   </h1>
   <section
    
-    className="flex justify-center mb-10 px-5 sm:px-12 md:px-20 lg:px-44"
+    className="flex justify-center mx-auto mb-10 px-5 max-w-5xl"
    >
     <div className="p-4 bg-gray-800 border-gray-700 rounded-lg w-full border ">
       <Acordeon

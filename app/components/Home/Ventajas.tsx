@@ -10,7 +10,7 @@ const Ventajas = () => {
   </h1>
     <section  id="precios" className="bg-gray-800 shadow border-gray-700 py-16 flex place-items-center justify-center w-full max-w-full mt-10">
     <div className="flex flex-col md:flex-row justify-center items-center">
-      <div className="flex flex-wrap md:flex-nowrap px-10 ">
+      <div className="flex flex-wrap md:flex-nowrap px-10 max-w-5xl ">
         <div className="flex justify-center md:mb-0 mb-5">
           <div className="bg-gray-400 lg:w-20 lg:h-20 w-16 h-16 flex justify-center items-center rounded-md px-5">
             <svg

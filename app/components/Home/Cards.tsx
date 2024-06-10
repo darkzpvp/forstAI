@@ -7,7 +7,7 @@ const Cards = () => {
 
 
   return (
-    <section className="justify-center grid grid-cols-1 md:grid-cols-3 md:gap-4 gap-5 xl:mx-56 lg:mx-40 md:mx-20 my-10 place-items-center ">
+    <section className="justify-center flex items-center md:flex-row flex-col px-5 gap-5 my-10 max-w-5xl mx-auto  ">
       <Basico />
       <Estandar />
       <Premium />

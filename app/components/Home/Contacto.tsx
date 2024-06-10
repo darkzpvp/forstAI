@@ -40,8 +40,11 @@ reset,
   };
 
   return (
-    <div className="h-full min-h-[80vh] grid md:grid-cols-2 grid-cols-1 bg-contactobackground">
-      <div className="flex flex-col justify-center items-center md:px-28 lg:px-36 sm:px-20 px-10 mt-12 md:mt-0">
+    <div className="h-full min-h-[80vh] flex flex-row justify-center items-center bg-contactobackground ">
+
+      <div className="flex p-10 md:flex-row flex-col w-full max-w-5xl mx-auto gap-5">
+
+           <div className="flex flex-col justify-center items-center mx-auto max-w-md px-5">
         <h5 className="text-3xl font-bold text-gray-200 text-center mb-5">
           ¡Contacta con nosotros!
         </h5>
@@ -53,7 +56,7 @@ reset,
 
       <div
         id="contacto"
-        className="px-8 md:px-0 md:mr-5 block my-auto justify-center items-center"
+        className="w-full max-w-md  mx-auto"
       >
         <div className="mt-5 block w-full max-w-lg mx-auto text-center md:text-left">
           {mensajeOk ? <AlertaOk>{mensajeOk}</AlertaOk> : null}
@@ -62,7 +65,7 @@ reset,
         <form
           noValidate
           onSubmit={handleSubmit(onSubmit)}
-          className="mb-5 w-full max-w-lg p-6 mx-auto   rounded-lg shadow sm:p-8 bg-gray-800 text-gray-300 "
+          className=" p-6 mx-auto rounded-lg shadow bg-gray-800 text-gray-300 "
         >
           <label
             htmlFor="nombre"
@@ -144,7 +147,9 @@ reset,
             </button>
           )}
         </form>
+      </div> 
       </div>
+  
     </div>
   );
 };
