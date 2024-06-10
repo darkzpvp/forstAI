@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className=" shadow bg-zinc-800">
     <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
       <div className="sm:flex sm:items-center sm:justify-between">
-        <div className="flex items-center mb-4 sm:mb-0 space-x-3 cursor-pointer">
+        <div className="flex  items-center mb-4 sm:mb-0 space-x-3 cursor-pointer">
           <Link href={"#home"} legacyBehavior>
             <Image
               src="/img/logo/prueba.png"
@@ -14,7 +14,7 @@ const Footer = () => {
               height={70}
               sizes='100vw'
               alt="ForstAI Logo"
-              className="cursor-pointer"
+              className="cursor-pointer hover:brightness-75 ease-in duration-100"
             />
           </Link>
         </div>

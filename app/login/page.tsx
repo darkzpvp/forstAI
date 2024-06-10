@@ -80,7 +80,7 @@ const Login = () => {
             <p className=" md:text-white text-black">Atrás</p>
           </Link>
         </div>
-        <div className="flex justify-center max-w-20 sm:max-w-24 mx-auto pt-5">
+        <Link href={'/'} className="flex justify-center max-w-20 sm:max-w-24 mx-auto pt-5 hover:brightness-75 ease-in duration-100 cursor-pointer">
           <Image
             width={50}
             height={50}
@@ -89,7 +89,7 @@ const Login = () => {
             src="/img/logo/prueba.png"
             alt="Prueba"
           />
-        </div>
+        </Link>
 
         <form
           onSubmit={handleSubmit(onSubmit)}

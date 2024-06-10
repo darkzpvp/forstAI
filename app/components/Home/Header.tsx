@@ -43,9 +43,9 @@ setAvatarUrl(avatarUrl)
    
       <header className="fixed z-50 w-full bg-zinc-800" >
         <div className="py-2 mx-auto flex items-center justify-between w-full max-w-4xl px-5" onClick={(e) => handleClose()}>
-          <button className="w-[25%] " >
+          <button className="w-[25%] cursor-default" >
             <Link href="#home" legacyBehavior>
-              <div className="w-[100%] min-w-12 max-w-12 cursor-pointer">
+              <div className="w-[100%] hover:brightness-75 ease-in duration-100 min-w-12 max-w-12 cursor-pointer">
 
               <Image
            

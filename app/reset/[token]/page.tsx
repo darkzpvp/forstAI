@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import AlertaOk from "@/app/components/AlertaOk";
-import Alerta from "@/app/components/Generar/Alerta";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { password, passwordSchema } from "@/app/validations/PasswordSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -84,7 +83,7 @@ export default function Page({ params }: { params: { token: string } }) {
                 <p className=" md:text-white text-black">Atrás</p>
               </Link>
             </div>
-            <div className="flex justify-center max-w-20 sm:max-w-24 mx-auto pt-5">
+            <Link href={'/'} className="flex justify-center max-w-20 sm:max-w-24 mx-auto pt-5 hover:brightness-75 ease-in duration-100 cursor-pointer">
               <Image
                 width={50}
                 height={50}
@@ -93,7 +92,7 @@ export default function Page({ params }: { params: { token: string } }) {
                 src="/img/logo/prueba.png"
                 alt="Prueba"
               />
-            </div>
+            </Link>
 
             <form
               onSubmit={handleSubmit(onSubmit)}

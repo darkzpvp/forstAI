@@ -67,7 +67,7 @@ const Olvide = () => {
             <p className=" md:text-white text-black">Atrás</p>
           </Link>
         </div>
-        <div className="flex justify-center max-w-20 sm:max-w-24 mx-auto pt-5">
+        <Link href={'/'} className="flex justify-center max-w-20 sm:max-w-24 mx-auto pt-5 hover:brightness-75 ease-in duration-100 cursor-pointer">
           <Image
             width={50}
             height={50}
@@ -76,7 +76,7 @@ const Olvide = () => {
             src="/img/logo/prueba.png"
             alt="Prueba"
           />
-        </div>
+        </Link>
 
         <div className="flex justify-center items-center flex-col xl:px-28 lg:px-20 md:px-20 px-8">
           <form

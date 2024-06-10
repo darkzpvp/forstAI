@@ -80,7 +80,7 @@ const Header_Dos = ({
               fill={false}
               width={70}
               height={70}
-              className="w-[100%] min-w-12 max-w-12 cursor-pointer"
+              className="w-[100%] min-w-12 max-w-12 cursor-pointer hover:brightness-75 ease-in duration-100"
               src="/img/logo/prueba.png"
               alt="..."
             />
