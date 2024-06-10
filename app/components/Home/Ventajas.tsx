@@ -4,12 +4,11 @@ const Ventajas = () => {
   return (
     <>
     <h1
-   
     className="flex justify-center items-center mt-10 text-gray-300  font-bold text-3xl"
   >
     Precios
   </h1>
-    <section className="bg-gray-800 shadow border-gray-700 py-16 flex place-items-center justify-center w-full max-w-full mt-10">
+    <section  id="precios" className="bg-gray-800 shadow border-gray-700 py-16 flex place-items-center justify-center w-full max-w-full mt-10">
     <div className="flex flex-col md:flex-row justify-center items-center">
       <div className="flex flex-wrap md:flex-nowrap px-10 ">
         <div className="flex justify-center md:mb-0 mb-5">

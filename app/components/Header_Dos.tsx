@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "../hooks/useAuth";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import useUsuarioContext from "../hooks/useUsuarioContext";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -41,7 +41,7 @@ const Header_Dos = ({
   const handleMenuHamburguesa = () => {
     setMenuHamburguesa(!menuHamburguesa);
   };
-
+  
   useEffect(() => {
     if (menuHamburguesa) {
       setMenu(false);
@@ -75,7 +75,7 @@ const Header_Dos = ({
             e.stopPropagation();
           }}
         >
-          <Link href={'/'} className="w-[25%]">
+          <button className="w-[25%]">
             <Image
               fill={false}
               width={70}
@@ -84,13 +84,13 @@ const Header_Dos = ({
               src="/img/logo/prueba.png"
               alt="..."
             />
-          </Link>
+          </button>
           <div className="sm:hidden flex flex-col items-center">
             <button
               type="button"
               onClick={handleMenuHamburguesa}
-              className="flex items-center justify-center p-2 w-10 h-10 text-sm  rounded-lg ease-in duration-100   text-gray-400 hover:bg-gray-600 active:bg-gray-700 "
-    
+              className="flex items-center justify-center p-2 w-10 h-10 text-sm  rounded-lg    text-gray-400 hover:bg-gray-600 active:bg-gray-700 ease-in duration-100 "
+          
             >
               <svg
                 className="w-5 h-5"
@@ -113,28 +113,22 @@ const Header_Dos = ({
           <div className=" hidden sm:flex gap-0 sm:gap-6 md:gap-8">
             <div>
               <Link href={"/"} legacyBehavior>
-                <a className=" text-gray-300 cursor-pointer">Home</a>
+                <a className=" text-gray-300 hover:text-gray-500 cursor-pointer ease-in duration-100">Home</a>
               </Link>
             </div>
             <div>
               <Link href={"/#precios"} legacyBehavior>
-                <a className=" text-gray-300 cursor-pointer">Comprar</a>
+                <a className=" text-gray-300 hover:text-gray-500 cursor-pointer ease-in duration-100">Comprar</a>
               </Link>
             </div>
             <div>
               <Link href={"/#contacto"} legacyBehavior>
-                <a className=" text-gray-300 cursor-pointer">Contacto</a>
+                <a className=" text-gray-300 hover:text-gray-500 cursor-pointer ease-in duration-100">Contacto</a>
               </Link>
             </div>
             <div>
               <Link href="/generar" legacyBehavior>
-                <a
-                  className={`cursor-pointer ${
-                    pathname === "/generar"
-                      ? "text-[#727ee4] "
-                      : "text-gray-300"
-                  }`}
-                >
+                <a  className={`cursor-pointer ${pathname === '/generar' ? 'text-[#727ee4] hover:text-[#525cb7] ' : 'text-gray-300 hover:text-gray-400'} ease-in duration-100`}>
                   Generar
                 </a>
               </Link>
@@ -143,15 +137,7 @@ const Header_Dos = ({
             {user?.rol === 1 && (
               <div>
                 <Link href={"/admin"} legacyBehavior>
-                  <a
-                    className={`cursor-pointer ${
-                      pathname === "/admin"
-                        ? "text-[#727ee4] "
-                        : "text-gray-300"
-                    }`}
-                  >
-                    Admin
-                  </a>
+                  <a className={`cursor-pointer ${pathname === '/admin' ? 'text-[#727ee4] hover:text-[#525cb7] ' : 'text-gray-300 hover:text-gray-400'} ease-in duration-100`}>Admin</a>
                 </Link>
               </div>
             )}
@@ -160,139 +146,145 @@ const Header_Dos = ({
             <button
               type="button"
               onClick={handleMenu}
-              className="flex text-sm ease-in duration-100 rounded-full nooverlay hover:bg-[#2d3748] p-1  "
-            >
+              className="flex text-sm  rounded-full nooverlay hover:bg-[#2d3748] p-1  ease-in duration-100 "
+            > 
               <img
-                className="w-8 h-8 rounded-full"
+                className="w-8 h-8 rounded-full "
                 src={avatarUrl || "/img/usuario.svg"}
                 alt="user photo"
               />
             </button>
           </div>
           <AnimatePresence>
-            {menu && (
-              <div
-                id="nooverlay"
-                className="flex justify-end  absolute top-12 xl:-right-14 right-0  z-50"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <motion.div
-                  className=" text-base rounded-b-lg shadow py-4 bg-gray-900 w-full block sm:max-w-56 px-5 h-44 overlay"
-                  initial={{ opacity: 0, y: -5 }}
-                  animate={{ opacity: 1, y: -2 }}
-                  exit={{ opacity: 0, y: -5 }}
-                >
-                  <div className="flex">
-                    <div className="w-[0%]">
-                      <div
-                        className="absolute top-0 z-50 ease-in duration-100 hover:bg-gray-700 active:bg-gray-800 rounded-lg p-1 stroke-gray-300 w-8 h-8"
-                        onClick={handleCloseMenu}
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={1.5}
-                          stroke=""
-                          className=""
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M6 18 18 6M6 6l12 12"
-                          />
-                        </svg>
-                      </div>
-                    </div>
+        {menu && (
+  <div
+    id="nooverlay"
+    className="flex justify-end  absolute top-12 xl:-right-14 right-0  z-50"
+    onClick={(e) => e.stopPropagation()}
+  >
+    <motion.div
+      className=" text-base rounded-b-lg shadow py-4 bg-gray-900 w-full block sm:max-w-56 px-5 h-44 overlay"
+      initial={{ opacity: 0, y: -5 }}
+      animate={{ opacity: 1, y: -2 }}
+      exit={{ opacity: 0, y: -5 }}
 
-                    <div className="w-[100%] mt-5 ">
-                      <span className="block text-sm text-white text-center">
-                        {user?.name}
-                      </span>
-                      <span className="block text-sm text-gray-400 text-center ">
-                        {user?.email}
-                      </span>
-                    </div>
-                  </div>
-
-                  <Link href="/perfil" legacyBehavior>
-                    <a className="text-center block px-4 py-2 ease-in duration-100 text-sm hover:bg-gray-700 rounded-lg text-gray-200 hover:text-white cursor-pointer mx-auto sm:mx-0 w-full mt-3">
-                      Ver perfil
-                    </a>
-                  </Link>
-
-                  <button
-                    onClick={logout}
-                    type="submit"
-                    className="block px-4 py-2 text-sm ease-in duration-100 hover:bg-gray-700 rounded-lg text-gray-200 hover:text-white mx-auto sm:mx-0 w-full"
-                  >
-                    Logout
-                  </button>
-                </motion.div>
-              </div>
-            )}
-          </AnimatePresence>
+    >
+      <div className="flex">
+        <div className="w-[0%]">
+          <div
+            className="absolute top-0 z-50 hover:bg-gray-700 active:bg-gray-800 rounded-lg p-1 stroke-gray-300 w-8 h-8  ease-in duration-100"
+            onClick={handleCloseMenu}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke=""
+              className=""
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </div>
         </div>
 
-        <AnimatePresence>
-          {menuHamburguesa && (
-            <div
-              id="nooverlay"
-              className="flex justify-end 2xl:px-60 xl:px-20 lg:px-14"
-              onClick={(e) => e.stopPropagation()}
+        <div className="w-[100%] mt-5 ">
+          <span className="block text-sm text-white text-center">
+            {user?.name}
+          </span>
+          <span className="block text-sm text-gray-400 text-center ">
+            {user?.email}
+          </span>
+        </div>
+      </div>
+
+      <Link href="/perfil" legacyBehavior>
+        <a className="text-center block px-4 py-2 text-sm hover:bg-gray-700 rounded-lg text-gray-200 hover:text-white cursor-pointer mx-auto sm:mx-0 w-full mt-3 ease-in duration-100">
+          Ver perfil
+        </a>
+      </Link>
+
+      <button
+        onClick={logout}
+        type="submit"
+        className="block px-4 py-2 text-sm hover:bg-gray-700 rounded-lg text-gray-200 hover:text-white mx-auto sm:mx-0 w-full ease-in duration-100"
+      >
+        Logout
+      </button>
+    </motion.div>
+  </div>
+)}
+</AnimatePresence>
+        </div>
+    
+<AnimatePresence>
+
+        {menuHamburguesa && (
+          <div
+            id="nooverlay"
+            className="flex justify-end 2xl:px-60 xl:px-20 lg:px-14"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <motion.div
+              className="absolute z-50 text-base rounded-b-lg shadow py-4 bg-gray-900 w-full block sm:max-w-56 px-5 h-60 overlay"
+              initial={{ opacity: 0, y: -5 }}
+              animate={{ opacity: 1, y: -2 }}
+              exit={{ opacity: 0, y: -5 }}
+
             >
-              <motion.div
-                className="absolute z-50 text-base rounded-b-lg shadow py-4 bg-gray-900 w-full block sm:max-w-56 px-5 overlay"
-                initial={{ opacity: 0, y: -5 }}
-                animate={{ opacity: 1, y: -2 }}
-                exit={{ opacity: 0, y: -5 }}
-              >
-                <div className="flex flex-col text-center">
-                  <Link href="/" legacyBehavior>
-                    <a
-                      className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
-                      aria-current="page"
-                    >
-                      Home
-                    </a>
-                  </Link>
-                  <Link href="/#precios" legacyBehavior>
-                    <a
-                      className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
-                      aria-current="page"
-                    >
-                      Comprar
-                    </a>
-                  </Link>
+              <div className="flex flex-col text-center">
+                <Link href="/" legacyBehavior>
+                  <a
+                    className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
+                    aria-current="page"
+                  >
+                    Home
+                  </a>
+                </Link>
+                <Link href="/#precios" legacyBehavior>
+                  <a
+                    className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
+                    aria-current="page"
+                  >
+                    Comprar
+                  </a>
+                </Link>
 
-                  <Link href="/#contacto" legacyBehavior>
+                <Link href="/#contacto" legacyBehavior>
+                  <a
+                    className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
+                    aria-current="page"
+                  >
+                    Contacto
+                  </a>
+                </Link>
+
+                <Link href="/generar" legacyBehavior>
+                  <a
+                    className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
+         
+                  >
+                    Generar
+                  </a>
+                </Link>
+                {user?.rol === 1 && (
+                  <Link href={"/admin"} legacyBehavior>
                     <a
                       className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
                       aria-current="page"
                     >
-                      Contacto
+                      Admin
                     </a>
                   </Link>
-
-                  <Link href="/generar" legacyBehavior>
-                    <a className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100">
-                      Generar
-                    </a>
-                  </Link>
-                  {user?.rol === 1 && (
-                    <Link href={"/admin"} legacyBehavior>
-                      <a
-                        className="block py-2 rounded text-gray-300 hover:bg-gray-600 hover:text-gray-400 active:bg-gray-700 cursor-pointer active:text-gray-500 transition ease-in duration-100"
-                        aria-current="page"
-                      >
-                        Admin
-                      </a>
-                    </Link>
-                  )}
-                </div>
-              </motion.div>
-            </div>
-          )}
+                )}
+              </div>
+            </motion.div>
+          </div>
+        )}
         </AnimatePresence>
       </div>
     </>

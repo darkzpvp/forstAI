@@ -59,28 +59,28 @@ setAvatarUrl(avatarUrl)
 
           <div className="text-gray-300 items-center hidden sm:flex " >
             <ul className="flex items-center gap-0 sm:gap-4 md:gap-6">
-              <li className="cursor-pointer hover:text-gray-400 ">
+              <li className="cursor-pointer hover:text-gray-500 ease-in duration-100 ">
                 <Link href="#intro" legacyBehavior>
                   Introducción
                 </Link>
               </li>
-              <li className="cursor-pointer hover:text-gray-400 ">
+              <li className="cursor-pointer hover:text-gray-500 ease-in duration-100 ">
                 <Link href="#galeria" legacyBehavior>
                   Galería
                 </Link>
               </li>
-              <li className="cursor-pointer hover:text-gray-400 ">
+              <li className="cursor-pointer hover:text-gray-500 ease-in duration-100">
                 <Link href="#precios" legacyBehavior>
                   Precios
                 </Link>
               </li>
-              <li className="cursor-pointer hover:text-gray-400 ">
+              <li className="cursor-pointer hover:text-gray-500 ease-in duration-100">
                 <Link href="#faqs" legacyBehavior>
                   FAQS
                 </Link>
               </li>
  
-              <li className="cursor-pointer hover:text-gray-400 ">
+              <li className="cursor-pointer hover:text-gray-500 ease-in duration-100">
                 <Link href="#contacto" legacyBehavior>
                   Contacto
                 </Link>

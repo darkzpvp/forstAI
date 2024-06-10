@@ -107,7 +107,7 @@ const Table = ({
                     className="w-10 h-10 rounded-full"
                     src={
                       user?.imagen
-                        ? `${process.env.NEXT_PUBLIC_API_LARAVEL}/storage/${user?.imagen}`
+                        ? `${process.env.NEXT_PUBLIC_API_LARAVEL}storage/${user?.imagen}`
                         : "img/usuario.svg"
                     }
                     alt="Imagen usuario"
@@ -145,7 +145,7 @@ const Table = ({
                       viewBox="0 0 24 24"
                       strokeWidth="1.5"
                       stroke="currentColor"
-                      className="cursor-pointer hover:bg-gray-700/50 rounded-full w-6 h-6"
+                      className="cursor-pointer hover:bg-gray-700/50 rounded-full w-6 h-6 ease-in duration-100"
                     >
                       <path
                         strokeLinecap="round"

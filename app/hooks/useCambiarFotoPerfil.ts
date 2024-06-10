@@ -48,6 +48,7 @@ const useCambiarFotoPerfil = () => {
          const {data} = await clienteAxios("/api/imagen-perfil", config);
          
             setAvatarUrl(data.url_imagen);
+         
         } catch (error) {
          console.log(error);
      }

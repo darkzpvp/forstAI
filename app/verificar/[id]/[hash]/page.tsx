@@ -21,7 +21,7 @@ function Page({ params }: { params: { id: number; hash: string } }) {
         console.error(error);
       });
   }, [idUrl, hashUrl]);
-  return <PagePrincipal />
+  return <PagePrincipal />;
 }
 
 export default Page;

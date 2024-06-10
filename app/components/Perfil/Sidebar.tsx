@@ -32,7 +32,7 @@ const Sidebar = () => {
         <div className="h-full px-3 pb-4 overflow-y-auto  bg-gray-900">
           <ul className="relative mt-12 space-y-2 text-sm ">
             <div className="  mb-10 text-center px-10 max-w-xl mx-auto">
-              <div className=" absolute top-5 left-5 cursor-pointer">
+              <div className=" absolute cursor-pointer left-5 top-5 p-1 text-sm  rounded-lg ease-in duration-100   text-gray-400 hover:bg-gray-600 active:bg-gray-700">
                 <Link href={`/generar`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

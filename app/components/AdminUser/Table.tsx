@@ -31,7 +31,7 @@ const Table = ({ loading, entries }) => {
             ))
           ) : (
             <tr className='border-b bg-gray-800 border-gray-700'>
-              <td colSpan="2" className="px-6 py-3 font-medium whitespace-nowrap text-gray-300 rounded-b-lg">No hay ningún prompt que mostrar</td>
+              <td colSpan={2} className="px-6 py-3 font-medium whitespace-nowrap text-gray-300 rounded-b-lg">No hay ningún prompt que mostrar</td>
             </tr>
           )
         )}

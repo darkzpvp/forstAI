@@ -35,7 +35,6 @@ if(user?.email_verified_at){
 
   return (
     <form
-    id="precios"
       onSubmit={handleFormSubmit}
       className="w-full max-w-sm p-4 border  rounded-lg shadow sm:p-8 bg-gray-800 border-gray-700"
     >
@@ -136,7 +135,7 @@ if(user?.email_verified_at){
       <button
         type="submit"
         
-        className="text-gray-200 bg-[#5D68CC]  hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 flex justify-center w-full text-center active:bg-[#464f9d] transition ease-in duration-100"
+        className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] rounded-lg text-sm px-5 py-2.5 flex justify-center w-full text-center active:bg-[#464f9d] transition ease-in duration-100"
       >
         Elegir plan
       </button>

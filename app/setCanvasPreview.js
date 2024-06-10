@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const setCanvasPreview = (
   image, // HTMLImageElement
   canvas, // HTMLCanvasElement

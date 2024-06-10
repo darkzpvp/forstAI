@@ -76,7 +76,7 @@ const Page = ({ params, searchParams }) => {
             detalles_facturacion={detalles_facturacion}
             informacion_personal={informacion_personal}
           />
-          <div className=" col-span-4 bg-gray-800 my-5 rounded-lg ">
+         <div className=" col-span-4 bg-gray-800 my-5 rounded-lg ">
             <Table loading={loading} entries={entries} />
             {entries?.length > 0 && (
                <div className=" flex justify-between ">
