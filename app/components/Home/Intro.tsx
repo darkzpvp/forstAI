@@ -5,8 +5,8 @@ import React from "react";
 const Intro = () => {
   return (
     <section id="intro" className=" flex flex-col md:flex-row max-w-5xl md:gap-10 gap-6 mx-auto px-10">
-      <div className="flex flex-col justify-center items-center w-[100%] max-w-md mx-auto ">
-        <div className="md:pt-5 pt-0 flex mt-10 md:mt-0 ">
+      <div className="flex flex-col justify-center items-center w-[100%] max-w-md mx-auto my-10 ">
+        <div className=" flex">
           <h6 className="text-4xl text-sky-600 font-black">
             Genera más y mejor
             <span className="text-gray-200 font-black text-4xl ">
