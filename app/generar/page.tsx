@@ -12,6 +12,7 @@ import useImageGeneration from "../hooks/generarPrompt";
 import Modal from "../components/Generar/Modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import './styles.css';
 
 const Generar = () => {
   const { enviarFormulario, getPrompts } = usePrompt();
@@ -105,7 +106,7 @@ const Generar = () => {
   };
   return (
     <>
-      <header className=" overflow-x-hidden overflow-y-auto z-50 w-full bg-zinc-800">
+      <header className="  overflow-y-auto z-50 w-full bg-zinc-800">
         <Header_Dos
           menu={menu}
           setMenu={setMenu}
@@ -114,10 +115,10 @@ const Generar = () => {
         />
         <ToastContainer />
         <section
-          className="bg-gray-700 flex overflow-x-hidden"
+          className="bg-gray-700 overflow-x-hidden "
           onClick={handleCloseMenu}
-        >
-          <div className="flex fixed">
+         >
+          <div className="flex">
             <div
               className="slider cursor-pointer"
               onClick={handleCarruselInfinito}
@@ -170,13 +171,13 @@ const Generar = () => {
               </div>
             </div>
           </div>
-          <div className="block md:flex items-center px-5 mx-auto mt-28 gap-24 mb-5">
+          <div className="block md:flex justify-center items-center px-5 mx-auto mb-5 max-w-5xl mt-7 md:mt-0">
             <div
-              className={` mx-auto text-center md:text-left w-full ${
+              className={` md:px-5 px-0 md:mt-16 mt-0 mx-auto text-center md:text-left w-full ${
                 imageBase64 ? "max-w-md" : "max-w-md"
               }`}
             >
-              <h1 className="md:text-5xl font-bold text-gray-300 mb-5 text-3xl md:mt-20 mt-14">
+              <h1 className="md:text-5xl font-bold text-gray-300 mb-5 text-3xl">
                 Genera imágenes con{" "}
                 <span className="bg-[#5D68CC] md:text-2xl text-sm p-2 rounded-lg whitespace-nowrap">
                   IA
@@ -188,7 +189,7 @@ const Generar = () => {
               {loadingPage ? (
                 <div
                   role="status"
-                  className="overflow-x-hidden max-w-md p-4 space-y-4 border border-gray-400  divide-y  rounded-lg shadow animate-pulse my-4  md:p-6 "
+                  className=" max-w-md p-4 space-y-4 border border-gray-400  divide-y  rounded-lg shadow animate-pulse my-4  md:p-6 "
                 >
                   <div className="flex items-center justify-between">
                     <div>
@@ -273,8 +274,7 @@ const Generar = () => {
               )}
             </div>
 
-            <div className=" w-[100%] max-w-[50vh] mx-auto  sm:px-0 md:mt-20 mt-0">
-              <div className={``}>
+            <div className=" w-[100%] max-w-[50vh] mx-auto  sm:px-0 md:mt-16 mt-0">
                 {imageBase64 ? (
                   <>
                     <Modal
@@ -283,7 +283,7 @@ const Generar = () => {
                       imageBase64={imageBase64}
                     />
                     <img
-                      className="w-full max-w-[90%] rounded-lg cursor-pointer"
+                      className="w-full max-w-[90%] rounded-lg cursor-pointer mx-auto"
                       onClick={() => setModal(true)}
                       src={`data:image/png;base64,${imageBase64}`}
                       alt="Imagen generada"
@@ -308,7 +308,6 @@ const Generar = () => {
                     </div>
                   </div>
                 )}
-              </div>
               <button
                 type="submit"
                 onClick={handleDownload}

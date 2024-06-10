@@ -65,39 +65,6 @@ html{
   left: 5.5rem;
 }
 
-  
-
-.slider{
-  margin: auto;
-  display: grid;
-  place-items: center;
-}
-
-.slide-track{
-  display: flex;
-  width: calc(250px * 18);
-  animation: scroll 40s linear infinite;
-  
-}
-
-@keyframes scroll {
-  0%{
-    transform: translateX(0);
-  }
-  100%{
-    transform: translateX(calc(-250px * 9));
-  
-  }
-}
-.slide{
-  display: flex;
-  align-items: center;
-}
-
-
-.animate-none {
-  animation-play-state: paused;
-}
 button[aria-label="close"] {
 color: white;
 }
