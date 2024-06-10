@@ -1,11 +1,12 @@
+import Image from "next/image";
 import React from "react";
 
 
 const Intro = () => {
   return (
-    <section id="intro" className="sm:grid sm:grid-cols-9 block mx-auto px-10">
-      <div className="flex flex-col justify-center items-center max-w-md col-span-5 mx-auto xl:col-start-3 xl:col-end-6 ">
-        <div className="sm:pt-5 pt-0 flex mt-10 sm:mt-0 ">
+    <section id="intro" className=" flex flex-col md:flex-row max-w-5xl md:gap-10 gap-6 mx-auto px-10">
+      <div className="flex flex-col justify-center items-center w-[100%] max-w-md mx-auto ">
+        <div className="md:pt-5 pt-0 flex mt-10 md:mt-0 ">
           <h6 className="text-4xl text-sky-600 font-black">
             Genera más y mejor
             <span className="text-gray-200 font-black text-4xl ">
@@ -30,9 +31,11 @@ const Intro = () => {
         </div>
       </div>
 
-      <div className="my-10 rounded-lg col-span-4 mx-auto  flex justify-center items-center ">
-        <img
-          className="w-[100%] lg:max-w-md max-w-sm rounded-lg"
+      <div className="md:my-10 my-5 rounded-lg mx-auto flex justify-center items-center ">
+        <Image
+        width={400}
+        height={400}
+          className="rounded-lg"
           src={"/img/home/about4.jpg"}
           alt="About"
         />
