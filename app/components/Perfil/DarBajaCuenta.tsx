@@ -20,7 +20,7 @@ const DarBajaCuenta = ({setEliminarCuenta}) => {
       <button
         onClick={() => setEliminarCuenta(true)}
         type="submit"
-        className=" px-3 text-gray-200 bg-red-700 hover:bg-red-800  active:bg-red-900 rounded-lg text-sm py-2 flex justify-center transition ease-in duration-100"
+        className=" px-3 text-gray-200 bg-red-700  hover:bg-red-800  active:bg-red-900 rounded-lg text-sm py-2 flex justify-center transition ease-in duration-100"
       >
         Dar de baja
       </button>{" "}

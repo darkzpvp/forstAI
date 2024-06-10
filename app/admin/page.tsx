@@ -161,7 +161,7 @@ console.log(filteredItemsTotal);
                   }}
                   className={`${
                     action ? "" : "overlaymodal"
-                  } inline-flex items-center font-medium rounded-lg text-sm p-2  bg-gray-700 text-gray-400  hover:bg-gray-800 `}
+                  } inline-flex items-center ease-in duration-100 font-medium rounded-lg text-sm p-2  bg-gray-700 text-gray-400  hover:bg-gray-800 `}
                   type="button"
                 >
                   Acciones
@@ -236,7 +236,7 @@ console.log(filteredItemsTotal);
                       onClick={handleAction}
                       className={`${
                         action ? "" : "overlaymodal"
-                      } inline-flex items-center font-medium rounded-lg text-sm p-2 bg-gray-700 text-gray-400  hover:bg-gray-800 `}
+                      } inline-flex items-center ease-in duration-100 font-medium rounded-lg text-sm p-2 bg-gray-700 text-gray-400  hover:bg-gray-800 `}
                       type="button"
                     >
                       Acciones

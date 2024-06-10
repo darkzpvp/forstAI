@@ -222,14 +222,14 @@ const {setSelectedUsers} = useInformacionPersonal()
               <div className="flex justify-center mx-auto gap-2">
                 <button
                   onClick={(e) => handleCerrarModal(e)}
-                  className="py-2.5 px-5 text-sm font-medium rounded-lg bg-gray-600 hover:bg-gray-700 border-gray-600 text-gray-300"
+                  className="py-2.5 px-5 text-sm ease-in duration-100 font-medium rounded-lg bg-gray-600 hover:bg-gray-700 border-gray-600 text-gray-300"
                 >
                   No, cancelar
                 </button>
                 <button
                   type="submit"
                  
-                  className="text-white bg-[#5D68CC] hover:bg-[#525cb7] font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
+                  className="text-white bg-[#5D68CC] ease-in duration-100 hover:bg-[#525cb7] font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
                 >
                   Sí, estoy seguro
                 </button>

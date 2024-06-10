@@ -82,14 +82,14 @@ useEffect(() => {
                   <button
                     type="submit"
                     onClick={(e) => handleCancelar(e)}
-                    className="py-2.5 px-5 text-sm font-medium rounded-lg bg-gray-600 hover:bg-gray-700 border-gray-600 text-gray-300"
+                    className="py-2.5 px-5 text-sm ease-in duration-100 font-medium rounded-lg bg-gray-600 hover:bg-gray-700 border-gray-600 text-gray-300"
                   >
                     Cancelar
                   </button>
                   <button
                     type="submit"
                     onClick={(e) => handleFormSubmit(e)}
-                    className="text-white bg-[#5D68CC] hover:bg-[#525cb7] font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
+                    className="text-white ease-in duration-100 bg-[#5D68CC] hover:bg-[#525cb7] font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
                   >
                     Continuar
                   </button>
