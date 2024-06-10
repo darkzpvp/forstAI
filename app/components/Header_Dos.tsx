@@ -75,7 +75,7 @@ const Header_Dos = ({
             e.stopPropagation();
           }}
         >
-          <button className="w-[25%]">
+          <Link href={'/'} className="w-[25%]">
             <Image
               fill={false}
               width={70}
@@ -84,7 +84,7 @@ const Header_Dos = ({
               src="/img/logo/prueba.png"
               alt="..."
             />
-          </button>
+          </Link>
           <div className="sm:hidden flex flex-col items-center">
             <button
               type="button"
