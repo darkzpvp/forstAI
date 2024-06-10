@@ -45,7 +45,7 @@ return (
                     <button
                       type="submit"
                       onClick={handleGestionarPlan}
-                      className=" px-3 text-gray-200   bg-[#5D68CC] hover:bg-[#525cb7]  active:bg-[#464f9d] rounded-lg text-sm py-2 custom:h-14  h-9 transition ease-in duration-100"
+                      className=" px-3 text-gray-200  bg-[#5D68CC] hover:bg-[#525cb7]  active:bg-[#464f9d] rounded-lg text-sm py-2 custom:h-14  h-9 transition ease-in duration-100"
                     >
                       Cambiar suscripción
                     </button>
@@ -55,7 +55,7 @@ return (
                   <button
                     type="submit"
                     onClick={handleGestionarPlan}
-                    className=" px-3 text-gray-200   bg-[#5D68CC] hover:bg-[#525cb7]  active:bg-[#464f9d] rounded-lg text-sm py-2 custom:h-14  h-9 transition ease-in duration-100"
+                    className=" px-3 text-gray-200  bg-[#5D68CC] hover:bg-[#525cb7]  active:bg-[#464f9d] rounded-lg text-sm py-2 custom:h-14  h-9 transition ease-in duration-100"
                   >
                     Comprar plan
                   </button>
@@ -111,14 +111,14 @@ return (
                   <button
                     type="submit"
                     onClick={handleCancelarPlan}
-                    className=" px-3 text-gray-200   bg-gray-600 hover:bg-gray-700  border-gray-600 rounded-lg text-sm py-2  h-9 items-center text-center transition ease-in duration-100"
+                    className=" px-3 text-gray-200  bg-gray-600 hover:bg-gray-700  border-gray-600 rounded-lg text-sm py-2  h-9 items-center text-center transition ease-in duration-100"
                   >
                     Cancelar
                   </button>
                   <button
                     type="submit"
                     onClick={handleGestionarPlan}
-                    className=" px-3 text-nowrap   text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7]  active:bg-[#464f9d] rounded-lg text-sm py-2  h-9 transition ease-in duration-100"
+                    className=" px-3 text-nowrap  text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7]  active:bg-[#464f9d] rounded-lg text-sm py-2  h-9 transition ease-in duration-100"
                   >
                     Cambiar suscripción
                   </button>
@@ -128,7 +128,7 @@ return (
                 <button
                   type="submit"
                   onClick={handleGestionarPlan}
-                  className=" px-3 text-nowrap   text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7]  active:bg-[#464f9d] rounded-lg text-sm py-2  h-9 transition ease-in duration-100"
+                  className=" px-3 text-nowrap  text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7]  active:bg-[#464f9d] rounded-lg text-sm py-2  h-9 transition ease-in duration-100"
                 >
                   Comprar plan
                 </button>
