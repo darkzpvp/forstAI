@@ -226,7 +226,7 @@ const Generar = () => {
                         <button
                           disabled
                           type="button"
-                          className={` z-40 bg-[#727ee4] cursor-not-allowed  absolute right-0 bottom-0 mb-2 mr-2 text-white font-medium rounded-lg text-sm px-4 py-2`}
+                          className={` z-40 bg-[#727ee4] ease-in duration-100 cursor-not-allowed  absolute right-0 bottom-0 mb-2 mr-2 text-white font-medium rounded-lg text-sm px-4 py-2`}
                         >
                           <svg
                             aria-hidden="true"
@@ -253,9 +253,9 @@ const Generar = () => {
                         type="submit"
                         className={` z-40 ${
                           promptsDisponibles === 0
-                            ? " bg-gray-600 cursor-not-allowed hover:bg-gray-600 active:bg-gray-600"
+                            ? " bg-gray-600 cursor-not-allowed ease-in duration-100 hover:bg-gray-600 active:bg-gray-600"
                             : ""
-                        } absolute right-0 bottom-0 mb-2 mr-2 text-white bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] font-medium rounded-lg text-sm px-4 py-2`}
+                        } absolute right-0 ease-in duration-100 bottom-0 mb-2 mr-2 text-white bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] font-medium rounded-lg text-sm px-4 py-2`}
                         disabled={promptsDisponibles === 0}
                       >
                         Enviar
@@ -314,7 +314,7 @@ const Generar = () => {
                 onClick={handleDownload}
                 className={` mb-5 ${
                   !imageBase64 || loading === true ? " hidden" : ""
-                } flex mt-2 justify-center mx-auto text-white bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] font-medium rounded-lg text-sm px-4 py-2`}
+                } flex mt-2 justify-center mx-auto ease-in duration-100 text-white bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] font-medium rounded-lg text-sm px-4 py-2`}
               >
                 Descargar
                 <svg

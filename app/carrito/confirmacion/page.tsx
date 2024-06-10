@@ -254,7 +254,7 @@ const Page = () => {
                   type="submit"
                   className="text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] rounded-lg text-sm py-2.5 flex justify-center px-3 transition ease-in duration-100 w-full"
                 >
-                  Guardar y continuar
+                  Pagar ahora
                 </button>
               </div>
               </div>

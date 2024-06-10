@@ -253,7 +253,7 @@ setErrores([])
             >
               <svg
                 role="status"
-                className="inline w-4 h-4 me-3 text-gray-200 animate-spin dark:text-gray-600"
+                className="inline w-4 h-4 me-3 ease-in duration-100 text-gray-200 animate-spin dark:text-gray-600"
                 viewBox="0 0 100 101"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -273,7 +273,7 @@ setErrores([])
               type="submit"
               className={`${
                 mensajeOk && " cursor-not-allowed disabled"
-              }   max-w-72 lg:max-w-80 text-white bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] rounded-lg text-sm px-4 py-2 w-full`}
+              }   max-w-72 lg:max-w-80 text-white ease-in duration-100 bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] rounded-lg text-sm px-4 py-2 w-full`}
               disabled={mensajeOk && true}
             >
               Registrarse

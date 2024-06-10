@@ -191,7 +191,7 @@ const Login = () => {
           {loading ? (
             <button
               type="button"
-              className={` cursor-not-allowed bg-[#727ee4]  max-w-72 text-white  rounded-lg text-sm px-4 py-2 w-full mt-4 lg:max-w-80`}
+              className={` cursor-not-allowed bg-[#727ee4] ease-in duration-100  max-w-72 text-white  rounded-lg text-sm px-4 py-2 w-full mt-4 lg:max-w-80`}
               disabled
             >
               <svg
@@ -214,7 +214,7 @@ const Login = () => {
           ) : (
             <button
               type="submit"
-              className={` ${mensajeOk && " cursor-not-allowed disabled"} max-w-72 lg:max-w-80 text-white  bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] rounded-lg text-sm px-4 py-2 w-full mt-4`}
+              className={` ${mensajeOk && " cursor-not-allowed disabled"} ease-in duration-100 max-w-72 lg:max-w-80 text-white  bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] rounded-lg text-sm px-4 py-2 w-full mt-4`}
               disabled={mensajeOk && true}
 
             >

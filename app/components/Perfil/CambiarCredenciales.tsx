@@ -95,7 +95,7 @@ const CambiarCredenciales = () => {
         <div className=" py-3 px-3">
           <button
             type="submit"
-            className=" px-3 text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7]  active:bg-[#464f9d] rounded-lg text-sm py-2 flex justify-center transition ease-in duration-100"
+            className=" px-3 text-gray-200 bg-[#5D68CC]  hover:bg-[#525cb7]  active:bg-[#464f9d] rounded-lg text-sm py-2 flex justify-center transition ease-in duration-100"
           >
             Cambiar contraseña
           </button>{" "}

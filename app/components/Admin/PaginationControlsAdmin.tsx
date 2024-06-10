@@ -45,7 +45,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({
   return (
     <div className="p-3 flex gap-2 text-sm">
       <button
-        className="cursor-pointer rounded-lg overflow-hidden text-sm flex items-center justify-center px-4 h-10 ms-0 leading-tight  bg-gray-900 text-gray-400 hover:bg-gray-900 hover:text-gray-200"
+        className="cursor-pointer rounded-lg ease-in duration-100 overflow-hidden text-sm flex items-center justify-center px-4 h-10 ms-0 leading-tight  bg-gray-900 text-gray-400 hover:bg-gray-900 hover:text-gray-200"
         disabled={!hasPrevPage}
         onClick={() => {
           router.push(
@@ -57,12 +57,12 @@ const PaginationControls: FC<PaginationControlsProps> = ({
         Página anterior
       </button>
 
-      <div className="flex rounded-lg overflow-hidden text-nowrap items-center justify-center px-4 h-10 leading-tight bg-gray-900 text-gray-400 hover:bg-gray-900 hover:text-gray-200">
+      <div className="flex rounded-lg overflow-hidden ease-in duration-100 text-nowrap items-center justify-center px-4 h-10 leading-tight bg-gray-900 text-gray-400 hover:bg-gray-900 hover:text-gray-200">
         {page} / {totalPages ? totalPages : 1}
       </div>
 
       <button
-        className="text-sm rounded-lg overflow-hidden cursor-pointer flex items-center justify-center px-4 h-10 leading-tight bg-gray-900 text-gray-400 hover:bg-gray-900 hover:text-gray-200"
+        className="text-sm rounded-lg ease-in duration-100 overflow-hidden cursor-pointer flex items-center justify-center px-4 h-10 leading-tight bg-gray-900 text-gray-400 hover:bg-gray-900 hover:text-gray-200"
         disabled={!hasNextPage}
         onClick={() => {
           router.push(
@@ -88,7 +88,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({
           max={totalPages}
           placeholder="..."
           onChange={(e) => setPageNumber(e.target.value)}
-          className="px-4 placeholder:text-lg h-10 rounded-lg overflow-hidden bg-gray-900 text-gray-400 placeholder:text-center placeholder:flex placeholder:justify-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          className="px-4 placeholder:text-lg h-10  rounded-lg overflow-hidden bg-gray-900 text-gray-400 placeholder:text-center placeholder:flex placeholder:justify-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         />
         <button type="submit" style={{ display: "none" }}>
           Submit
