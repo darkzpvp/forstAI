@@ -19,7 +19,7 @@ const Portada = () => {
       <Link href={"#intro"} legacyBehavior>
         <div>
           <a
-            className="absolute bottom-6 left-1/2 transform -translate-x-1/2 p-2 rounded-lg text-gray-400 hover:bg-gray-600 active:bg-gray-700 cursor-pointer"
+            className="absolute bottom-6 left-1/2 transform ease-in duration-100 -translate-x-1/2 p-2 rounded-lg text-gray-400 hover:bg-gray-600 active:bg-gray-700 cursor-pointer"
             aria-current="page"
           >
             <svg

@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 "use client"
 import React, { createContext, useEffect, useState } from "react";
 import clienteAxios from "../config/axios";
@@ -9,7 +10,8 @@ import {
   InformacionPersonal,
   informacionPersonalSchema,
 } from "../validations/informacionPersonalSchema";
-import { useLocalStorage } from "@uidotdev/usehooks";
+import { useLocalStorage } from 'usehooks-ts';
+
 const InformacionContext = createContext({});
 
 const InformacionProvider = ({ children }) => {
@@ -130,7 +132,6 @@ reset,
     Router.push("/carrito/datosbancarios");
   };
   useEffect(() => {
-    // Verifica si router.pathname tiene un valor antes de acceder a sus propiedades
     if (router !== '/carrito' && router !== '/carrito/datosbancarios' && router !== '/carrito/confirmacion') {
       reset();
     }
@@ -165,8 +166,8 @@ reset,
       console.log(error);
     }
   };
-  // eslint-disable-next-line
-  const [suscripcionObjeto, setSuscripcionObjeto] = typeof window !== 'undefined' ? useLocalStorage('suscripcionObjeto', {}) : [null, null];
+  const [suscripcionObjeto, setSuscripcionObjeto] = useLocalStorage('suscripcionObjeto', {});
+
 
 
   return (

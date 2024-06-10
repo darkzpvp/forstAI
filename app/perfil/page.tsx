@@ -15,6 +15,7 @@ import DarBajaCuenta from "../components/Perfil/DarBajaCuenta";
 import useUsuarioContext from "../hooks/useUsuarioContext";
 import Profile from "../components/CambiarPerfil/Profile";
 import NavegacionMobile from "../components/Perfil/NavegacionMobile";
+import Link from "next/link";
 const Page = () => {
   const { getSuscripciones } = useGetSuscripciones();
   const [cancelarPlan, setCancelarPlan] = useState(false);
@@ -58,6 +59,22 @@ const Page = () => {
           style={myStyles}
           className="relative h-[21rem] overflow-hidden bg-cover bg-center flex items-center justify-center sm:hidden "
          >
+            <div className=" absolute cursor-pointer sm:hidden left-5 top-20 p-1 text-sm  rounded-lg ease-in duration-100   text-gray-400 hover:bg-gray-600 active:bg-gray-700">
+                <Link href={`/generar`}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="white"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </Link>
+              </div>
           <Profile setModalOpen={setModalOpen} />
         </div>
         <div className="p-0 sm:px-4  sm:ml-64">

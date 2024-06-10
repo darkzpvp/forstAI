@@ -37,6 +37,8 @@ useEffect(() => {
 <head>
   <title>Generador de imagenes</title>
   <meta name="description" content="Generador de imagenes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
 </head>
       <body className={`${kumbh.className}`}>
 <UsuarioProvider>

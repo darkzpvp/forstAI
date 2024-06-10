@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import Link from 'next/link'
 import React from 'react'
 import { usePathname } from 'next/navigation'
@@ -22,6 +24,7 @@ const NavegacionMobile = () => {
           Historial de prompts
         </Link>
       </li>
+  
     </ul>
   </div>
   )

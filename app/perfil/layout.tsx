@@ -16,6 +16,14 @@ export default function RootLayout({
 
   const [menuHamburguesa, setMenuHamburguesa] = useState(false);
   const [menu, setMenu] = useState(false);
+  const handleCloseMenu = () => {
+    if (menu) {
+      setMenu(false);
+    }
+    if (menuHamburguesa) {
+      setMenuHamburguesa(false);
+    }
+  };
   return (
 
         <UsuarioProvider>
@@ -27,8 +35,11 @@ export default function RootLayout({
               setMenuHamburguesa={setMenuHamburguesa}
             />
           </div>
-          <Sidebar />
+          <div onClick={handleCloseMenu}>
+             <Sidebar />
           {children}
+          </div>
+         
         </UsuarioProvider>
   );
 }

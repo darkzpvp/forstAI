@@ -91,12 +91,10 @@ setAvatarUrl(avatarUrl)
           <div className="sm:hidden flex flex-col items-center">
         
             <button
-              data-collapse-toggle="navbar-hamburger"
               type="button"
               onClick={handleMenu}
-              className="flex items-center justify-center p-2 w-10 h-10 text-sm  rounded-lg    text-gray-400 hover:bg-gray-600 active:bg-gray-700 "
-              aria-controls="navbar-hamburger"
-              aria-expanded="false"
+              className="flex items-center justify-center p-2 w-10 h-10 text-sm  rounded-lg ease-in duration-100    text-gray-400 hover:bg-gray-600 active:bg-gray-700 "
+        
              >
               
               <svg
