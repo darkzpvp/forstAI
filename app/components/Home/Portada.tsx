@@ -5,7 +5,7 @@ const Portada = () => {
   return (
     <div
       id="home"
-      className="relative flex flex-col justify-center items-center h-screen gap-5 px-5 text-center bg-introhome"
+      className="relative flex flex-col justify-center items-center h-screen gap-5 px-5 text-center bg-introhome bg-center bg-cover bg-no-repeat"
     >
       <div className="max-w-xs">
         <h1 className="text-gray-200 text-4xl font-black sm:text-6xl mb-3">

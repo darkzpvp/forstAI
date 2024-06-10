@@ -40,7 +40,7 @@ reset,
   };
 
   return (
-    <div className="h-full min-h-[80vh] flex flex-row justify-center items-center bg-contactobackground ">
+    <div className=" h-[80vh] max-h-[1000px] flex flex-row justify-center items-center bg-contactobackground bg-center bg-cover bg-no-repeat ">
 
       <div className="flex p-10 md:flex-row flex-col w-full max-w-5xl mx-auto gap-5">
 
