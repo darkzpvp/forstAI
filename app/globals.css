@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 
-h1, p, a, button, h2, h3, h5 ::placeholder, tr, td, th, span, li, label{
+h1, p, a, button, h2, h3, h5 ::placeholder, tr, td, th, span, li, label, input, select, option, textarea, div{
   font-family: 'Kumbh Sans', sans-serif;
 }
 h6 {

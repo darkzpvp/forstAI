@@ -117,7 +117,7 @@ const Generar = () => {
           className="bg-gray-700 flex overflow-x-hidden"
           onClick={handleCloseMenu}
         >
-          <div className="flex absolute">
+          <div className="flex fixed">
             <div
               className="slider cursor-pointer"
               onClick={handleCarruselInfinito}
@@ -188,7 +188,7 @@ const Generar = () => {
               {loadingPage ? (
                 <div
                   role="status"
-                  className="overflow-x-hidden max-w-md p-4 space-y-4 border border-gray-400  divide-y  rounded-lg shadow animate-pulse  md:p-6 "
+                  className="overflow-x-hidden max-w-md p-4 space-y-4 border border-gray-400  divide-y  rounded-lg shadow animate-pulse my-4  md:p-6 "
                 >
                   <div className="flex items-center justify-between">
                     <div>

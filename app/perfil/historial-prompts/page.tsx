@@ -51,7 +51,7 @@ const Page = ({
     <div className="p-0 sm:px-4 sm:ml-64 text-sm ">
       <NavegacionMobile />
       <div className="flex mx-5">
-        <div className="z-40 bg-gray-800 mb-6 sm:rounded-lg mt-8 w-full max-w-5xl lg:overflow-visible overflow-x-auto">
+        <div className=" bg-gray-800 mb-6 sm:rounded-lg mt-8 w-full max-w-5xl lg:overflow-visible overflow-x-auto">
           <table className="w-full text-sm text-left rtl:text-right text-gray-400 bg-gray-700 overflow-hidden">
             <thead className="text-xs uppercase bg-gray-900 text-gray-400">
               <tr>
