@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 "use client";
 import useOlvidePassword from "@/app/hooks/useOlvidePassword";
 import Link from "next/link";
@@ -9,12 +7,15 @@ import AlertaOk from "@/app/components/AlertaOk";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { password, passwordSchema } from "@/app/validations/PasswordSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation"; // Importa useRouter
+
 export default function Page({ params }: { params: { token: string } }) {
   const [mensajeOk, setMensajeOk] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [tokenUrl, setTokenUrl] = useState(params.token);
-  const [tokenValido, setTokenValido] = useState([]);
+  const [tokenValido, setTokenValido] = useState(false);
   const { resetPassword, comprobarToken } = useOlvidePassword();
+  const router = useRouter(); // Usa useRouter
 
   useEffect(() => {
     if (mensajeOk) {
@@ -32,6 +33,12 @@ export default function Page({ params }: { params: { token: string } }) {
     comprobarToken(tokenUrl, setTokenValido);
   }, [tokenUrl]);
 
+  useEffect(() => {
+    if (tokenValido) {
+      router.push("/"); // Redirige a la página principal si el token no es válido
+    }
+  }, [tokenValido, router]);
+
   const {
     register,
     handleSubmit,
@@ -39,6 +46,7 @@ export default function Page({ params }: { params: { token: string } }) {
   } = useForm<password>({
     resolver: zodResolver(passwordSchema),
   });
+  
   const onSubmit: SubmitHandler<password> = async (data) => {
     const datos = {
       ...data,
@@ -192,36 +200,7 @@ export default function Page({ params }: { params: { token: string } }) {
               </button>
             </form>
           </>
-        ) : (
-          <div className="">
-            {tokenValido
-              ? tokenValido.map((error, i) => (
-                  <div
-                  key={i}
-                    class="flex bg-red-100 rounded-lg p-4 mb-4 text-sm text-red-700"
-                    role="alert"
-                  >
-                    <svg
-                      class="w-5 h-5 inline mr-3"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                    <div>
-                      <span class="font-medium">¡Error!</span>
-                      {error}
-                    </div>
-                  </div>
-                ))
-              : null}
-          </div>
-        )}
+        ) : null} 
       </div>
     </div>
   );
