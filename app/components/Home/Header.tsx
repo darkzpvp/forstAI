@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../../public/img/logo/prueba.png"
-import { useEffect } from "react";
 import useUsuarioContext from "@/app/hooks/useUsuarioContext";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -14,7 +13,6 @@ interface HeaderProps {
   }
   
 const Header = ({menuHeader, setMenuHeader, modal} : HeaderProps) => {
-const {avatarUrl, setAvatarUrl} = useUsuarioContext()
 
 
   const handleMenu = () => {
@@ -33,9 +31,7 @@ const handleClose = () => {
     setMenuHeader(false);
   }
 }
-useEffect(() => {
-setAvatarUrl(avatarUrl)
-}, [avatarUrl])
+
   return (
     <>
     {!modal && (

@@ -17,7 +17,7 @@ import Link from "next/link";
 import useSWR from "swr";
 import useCambiarFotoPerfil from "@/app/hooks/useCambiarFotoPerfil";
 
-const fetcher = async () => {
+const Fetcher = async () => {
   const { getSuscripciones } = useGetSuscripciones();
 
   try {
@@ -43,7 +43,7 @@ const Page = () => {
 
 
 
-  const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_API_LARAVEL}/api/suscripciones`, fetcher);
+  const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_API_LARAVEL}/api/suscripciones`, Fetcher);
 
   useEffect(() => {
     if (data) {

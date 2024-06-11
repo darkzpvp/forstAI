@@ -1,12 +1,10 @@
-// @ts-nocheck
 
 import { useEffect, useState } from "react";
 import clienteAxios from "../config/axios";
 import useSWR from "swr";
 
 export const usePrompt = () => {
-
-  const enviarFormulario = async (datos, setErrores) => {
+  const enviarFormulario = async (datos) => {
     const authToken = localStorage.getItem("AUTH_TOKEN");
     if (!authToken) {
       console.log(
@@ -30,23 +28,23 @@ export const usePrompt = () => {
       mutateData(); 
       return data.message;
     } catch (error) {
+
       console.log(error);
-      setErrores(error?.response?.data?.errors);
+      
     }
   };
   const getPrompts = async () => {
     try {
       const token = localStorage.getItem("AUTH_TOKEN");
-      const response = await clienteAxios(`/api/prompts`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await clienteAxios(`/api/prompts`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       return response?.data?.prompts;
     } catch (error) {
-
+      throw error?.response?.data?.errors;
     }
   };
   
@@ -81,6 +79,7 @@ export const usePrompt = () => {
     enviarFormulario,
     getPrompts,
     promptsData,
-    loadingPage: !promptsData
+    loadingPage: !promptsData && !errorData,
+    errorData
   };
 };

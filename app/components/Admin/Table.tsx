@@ -107,7 +107,7 @@ const Table = ({
                     className="w-10 h-10 rounded-full"
                     src={
                       user?.imagen
-                        ? `${process.env.NEXT_PUBLIC_API_LARAVEL}storage/${user?.imagen}`
+                        ? `${process.env.NEXT_PUBLIC_API_LARAVEL}/storage/${user?.imagen}`
                         : "img/usuario.svg"
                     }
                     alt="Imagen usuario"

@@ -6,7 +6,7 @@ import clienteAxios from "../config/axios";
 import useSWR from "swr";
 
 const UsuarioContext = createContext({});
-const UsuarioProvider = ({ children, id }) => {
+const UsuarioProvider = ({ children }) => {
   const [errores, setErrores] = useState([]);
   const [mensaje, setMensaje] = useState("");
   const [showModal, setShowModal] = useState(false);

@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 "use client";
 import React, { useEffect, useRef, useState } from "react";
@@ -15,11 +14,10 @@ import "react-toastify/dist/ReactToastify.css";
 import './styles.css';
 
 const Generar = () => {
-  const { enviarFormulario, promptsData, loadingPage } = usePrompt();
+  const { enviarFormulario, promptsData, loadingPage, errorData } = usePrompt();
   const { user } = useAuth({ middleware: "auth", url: "/generar" });
   const { imageBase64, generateImage } = useImageGeneration();
   const [menu, setMenu] = useState(false);
-  const [errores, setErrores] = useState([]);
   const [promptText, setPromptText] = useState("");
   const [loading, setLoading] = useState(false);
   const [menuHamburguesa, setMenuHamburguesa] = useState(false);
@@ -65,7 +63,7 @@ const Generar = () => {
       texto: promptText,
     };
 
-    enviarFormulario(datos, setErrores);
+    enviarFormulario(datos);
     await generateImage(promptText);
     setLoading(false);
   };
@@ -188,14 +186,14 @@ const Generar = () => {
                     <textarea
                       type="text"
                       className={` resize-none z-0 block w-full max-w-3xl p-4 text-sm rounded-lg bg-gray-200 active:outline-none focus:outline-none ${
-                        promptsData === 0 || loading === true
+                        errorData || loading === true
                           ? "cursor-not-allowed disabled"
                           : ""
                       }`}
-                      placeholder={`Escribe el prompt (${promptsData})`}
+                      placeholder={`Escribe el prompt (${promptsData !== null && promptsData !== undefined && !errorData ? promptsData : 0})`}
                       onChange={handleChangePrompt}
                       value={promptText}
-                      disabled={promptsData === 0 || loading === true}
+                      disabled={errorData || loading === true}
                       rows={1}
                       ref={textAreaRef}
                       onKeyDown={(e) => {
@@ -236,22 +234,22 @@ const Generar = () => {
                       <button
                         type="submit"
                         className={` z-40 ${
-                          promptsData === 0
+                          errorData 
                             ? " bg-gray-600 cursor-not-allowed ease-in duration-100 hover:bg-gray-600 active:bg-gray-600"
                             : ""
                         } absolute right-0 ease-in duration-100 bottom-0 mb-2 mr-2 text-white bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] font-medium rounded-lg text-sm px-4 py-2`}
-                        disabled={promptsData === 0}
+                        disabled={errorData}
                       >
                         Enviar
                       </button>
                     )}
                   </div>
                   <div className="flex md:justify-normal justify-center mt-5 w-full">
-                    {promptsData === 0 && !loading
-                      ? errores.map((error, i) => (
-                          <Alerta key={i}>{error}</Alerta>
-                        ))
-                      : null}
+                    {errorData
+                      ? 
+                      <Alerta>{errorData}</Alerta>
+                       
+                      : ''}
                   </div>
                 </form>
               )}
