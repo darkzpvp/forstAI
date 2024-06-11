@@ -15,6 +15,7 @@ const Table = ({
   setClickEliminar,
   userPanel,
   filteredItems,
+  entries
 }) => {
   const { selectedUsers, setSelectedUsers } = useInformacionPersonal();
   const { loading, setLoading } = useUsuarioContext();
@@ -82,8 +83,8 @@ const Table = ({
             </td>
           </tr>
         ) : (
-          filteredItems.length > 0 ? (
-            filteredItems.map((user) => (
+          entries?.length > 0 ? (
+            entries?.map((user) => (
               <tr
                 key={user.id}
                 className={`${

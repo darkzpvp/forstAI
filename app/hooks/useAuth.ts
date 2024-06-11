@@ -171,8 +171,8 @@ export const useAuth = ({ middleware, url }) => {
       });
       localStorage.removeItem("AUTH_TOKEN");
 
+      await mutate(undefined);
       Router.push("/");
-      window.location.reload();
     } catch (error) {
       setErroresEliminarCuenta(Object?.values(error?.response?.data.errors));
       setTimeout(() => {
@@ -186,14 +186,14 @@ export const useAuth = ({ middleware, url }) => {
       redirect(url);
     }
 
-    if (middleware === "guest" && user && user.rol === 1) {
+    if (middleware === "guest" && user && user?.rol === 1) {
       redirect("/admin");
     }
 
-    if (middleware === "admin" && user && user.rol !== 1) {
+    if (middleware === "admin" && user && user?.rol !== 1) {
       redirect("/");
     }
-
+  
     if (middleware === "auth" && error) {
       redirect("/");
     }

@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 "use client";
 import React, { useEffect, useMemo, useState } from "react";
 import Header_Dos from "../components/Header_Dos";
@@ -14,13 +15,13 @@ import CrearUsuario from "../components/Admin/CrearUsuario";
 import Table from "../components/Admin/Table";
 import useInformacionPersonal from "../hooks/useInformacionPersonal";
 import BuscarUsuarios from "../components/Admin/BuscarUsuarios";
+import { useRouter } from "next/navigation";
 const Page = ({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) => {
-  let entries = [];
-
+const Router = useRouter()
   const [action, setAction] = useState<boolean>(false);
   const [responsive, setResponsive] = useState<boolean>(true);
   const [clickModificar, setClickModificar] = useState<boolean>(false);
@@ -49,7 +50,6 @@ const Page = ({
   const per_page = searchParams["per_page"] ?? "9";
   const start = (Number(page) - 1) * Number(per_page);
   const end = start + Number(per_page);
-  entries = userPanel?.slice(start, end);
 
   const handleCloseMenu = () => {
     if (action) {
@@ -103,29 +103,24 @@ const Page = ({
 
   //Filtrar la query
   const filteredItems = useMemo(() => {
-    return entries?.filter((item) => {
+    return userPanel?.filter((item) => {
       if (item && typeof item.nombre === "string") {
         return item.nombre.toLowerCase().includes(query.toLowerCase());
       }
       return false;
     });
-  }, [entries, query]);
-
-
-
-//Filtrar el numero de elemtos de la query
-  const filteredItemsTotal = useMemo(() => {
-    if (!query) {
-      return userPanel?.length;
-    }
-    const filtered = userPanel?.filter((item) => {
-      const matchesQuery =
-        !query ||
-        (item.nombre && item.nombre.toLowerCase().includes(query.toLowerCase()));
-      return matchesQuery;
-    });
-    return filtered?.length;
   }, [userPanel, query]);
+
+  // Redireccionar cuando se filtra la lista
+  useMemo(() => {
+    Router.push(`/admin/?page=1&per_page=${per_page}`);
+  }, [filteredItems]);
+
+  const filteredItemsTotal = filteredItems?.length ?? 0;
+
+  const entries = useMemo(() => {
+    return filteredItems?.slice(start, end);
+  }, [filteredItems, start, end]);
 
   return (
     <div

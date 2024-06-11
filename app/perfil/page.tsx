@@ -14,7 +14,7 @@ import DarBajaCuenta from "../components/Perfil/DarBajaCuenta";
 import Profile from "../components/CambiarPerfil/Profile";
 import NavegacionMobile from "../components/Perfil/NavegacionMobile";
 import Link from "next/link";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import useCambiarFotoPerfil from "@/app/hooks/useCambiarFotoPerfil";
 
 const Fetcher = async () => {
@@ -22,6 +22,7 @@ const Fetcher = async () => {
 
   try {
     const datos = await getSuscripciones();
+    
     return datos;
   } catch (error) {
     console.error("Error al obtener la información de las suscripciones:", error);
@@ -40,9 +41,6 @@ const Page = () => {
   const [avatarUrl, setAvatarUrl] = useState("");
   const { cambiarFoto, recibirFoto } = useCambiarFotoPerfil();
 
-
-
-
   const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_API_LARAVEL}/api/suscripciones`, Fetcher);
 
   useEffect(() => {
@@ -51,8 +49,6 @@ const Page = () => {
       setFreePrompts(data.free_prompts);
     }
   }, [data]);
-
-
 
   const [gestionarPlan, setGestionarPlan] = useState(false);
 

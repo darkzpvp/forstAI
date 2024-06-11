@@ -9,7 +9,6 @@ const CancelarPlan = ({cancelarPlan, setCancelarPlan}) => {
     
         setCancelarPlan(!cancelarPlan);
         await eliminarSuscripciones();
-        window.location.reload();
       };
   return (
 <>
