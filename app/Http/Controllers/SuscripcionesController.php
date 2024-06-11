@@ -104,7 +104,6 @@ class SuscripcionesController extends Controller
             'precio' => $suscripcion->precio,
             'fecha_expiracion' => $suscripcion->fecha_expiracion,
             'comprado' => $suscripcion->created_at
-            //TODO este comentario sobra.
         ];
         
         return response()->json($datos);

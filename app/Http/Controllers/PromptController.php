@@ -50,7 +50,7 @@ class PromptController extends Controller
             } else {
                 // Devolver un error si no hay prompts disponibles en la suscripción
                 return response([
-                    'errors' => ['Suscríbete para seguir lanzando prompts.']
+                    'errors' => 'Suscríbete para seguir lanzando prompts.'
                 ], 422);
             }
         }
@@ -67,13 +67,11 @@ class PromptController extends Controller
     
         // Verificar si el usuario está autenticado
         if (!$user) {
-            return response([
-                'errors' => ['Usuario no autenticado']
-            ], 401);
+            return response()->json(['errors' => ['Usuario no autenticado']], 401);
         }
     
         // Buscar las suscripciones del usuario
-        $suscripciones = Suscripciones::where('user_id', $user->id)->first(); 
+        $suscripciones = Suscripciones::where('user_id', $user->id)->first();
     
         // Inicializar la variable para almacenar la cantidad total de prompts
         $totalPrompts = $user->free_prompts;
@@ -83,10 +81,14 @@ class PromptController extends Controller
             $totalPrompts += $suscripciones->prompts_disponibles;
         }
     
-        //TODO considera usar un Resource
+        // Verificar si hay prompts disponibles
+        if ($totalPrompts <= 0) {
+            return response()->json(['errors' => '¡No tienes prompts disponibles!'], 400);
+        }
+    
         // Devolver la respuesta JSON con la cantidad total de prompts
-        return response()->json(['prompts' => $totalPrompts,  'errors' => ['¡No tienes prompts disponibles!']]); 
-       }
+        return response()->json(['prompts' => $totalPrompts]);
+    }
 
 
         public function todosLosPrompts(Request $request)
