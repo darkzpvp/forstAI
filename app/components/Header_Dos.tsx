@@ -72,7 +72,7 @@ const Header_Dos = ({
             e.stopPropagation();
           }}
         >
-          <Link href={'/'} className="w-[25%]">
+          <Link href={'/'} className="w-[25%] cursor-default">
             <Image
               fill={false}
               width={70}

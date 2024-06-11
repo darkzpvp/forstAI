@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 "use client";
 import React, { useEffect, useRef, useState } from "react";
@@ -12,7 +13,7 @@ import Modal from "../components/Generar/Modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import './styles.css';
-
+import { useLocalStorage } from "usehooks-ts";
 const Generar = () => {
   const { enviarFormulario, promptsData, loadingPage, errorData } = usePrompt();
   const { user } = useAuth({ middleware: "auth", url: "/generar" });
@@ -21,9 +22,9 @@ const Generar = () => {
   const [promptText, setPromptText] = useState("");
   const [loading, setLoading] = useState(false);
   const [menuHamburguesa, setMenuHamburguesa] = useState(false);
+  const [pausarCarrusel, setPausarCarrusel] = useLocalStorage('pausarCarrusel', true);
 
   const [modal, setModal] = useState(false);
-  const [pausarCarrusel, setPausarCarrusel] = useState(false);
   const notify = () => {
     toast("¡Prompt generado con éxito! 🚀", {
       style: {

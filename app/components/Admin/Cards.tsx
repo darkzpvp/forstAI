@@ -109,9 +109,9 @@ const Cards = () => {
                     >
                       <path
                         stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M5 13V1m0 0L1 5m4-4 4 4"
                       />
                     </svg>
@@ -149,9 +149,9 @@ const Cards = () => {
                     >
                       <path
                         stroke=""
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M5 13V1m0 0L1 5m4-4 4 4"
                       />
                     </svg>
@@ -160,15 +160,15 @@ const Cards = () => {
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       stroke=""
                       className="w-3 h-3 ms-1"
                     >
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
                       />
                     </svg>
