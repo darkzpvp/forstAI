@@ -134,7 +134,7 @@ class AuthController extends Controller
 
 
 
-    public function forgot(Hasher $hasher, Request $request): JsonResponse
+    public function olvide(Hasher $hasher, Request $request): JsonResponse
     {
         // Definir mensajes personalizados
         $messages = [
@@ -226,7 +226,7 @@ class AuthController extends Controller
 
 
 
-    public function checkToken(Request $request): JsonResponse
+    public function comprobarToken(Request $request): JsonResponse
     {
         // Obtener el token enviado por el cliente
         $token = $request->query('token');
