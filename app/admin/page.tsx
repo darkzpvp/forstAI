@@ -31,22 +31,19 @@ const Page = ({
   const [query, setQuery] = useState("");
 
   const {
-    informacionUsuarioPanel,
     userPanel,
     setUserPanel,
     usuario,
     setUsuario,
     totalElements,
-    
+    mutateAvatar
   } = useUsuarioContext();
   const { setSelectedUsers } = useInformacionPersonal();
   const handleAction = (e: React.MouseEvent) => {
     e.stopPropagation();
     setAction(!action);
   };
-  useEffect(() => {
-    informacionUsuarioPanel();
-  }, [usuario]);
+
 
   const page = searchParams["page"] ?? "1";
   const per_page = searchParams["per_page"] ?? "9";

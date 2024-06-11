@@ -106,8 +106,8 @@ const { data: ingresosTotales } = useSWR('ingresosTotales', ingresosTotalesPanel
 
   return (
     <UsuarioContext.Provider value={{ 
-        modalOpen, setModalOpen, userPanel, showModal, setShowModal, usuario, setUsuario, informacionUsuarioPanel, totalElements, setTotalElements, usuarioSemanaPanel, beneficioSemanaPanel, ingresosTotalesPanel, ingresosTotales, 
-      usuarioSemana, beneficioSemana, errores, setErrores, mensaje, setMensaje, loading: !userPanel, loadingPage: !usuarioSemana || !beneficioSemana || !ingresosTotales
+        modalOpen, setModalOpen, userPanel, showModal, setShowModal, usuario, setUsuario, totalElements, setTotalElements, usuarioSemanaPanel, beneficioSemanaPanel, ingresosTotalesPanel, ingresosTotales, 
+      usuarioSemana, beneficioSemana, errores, setErrores, mensaje, setMensaje, loading: !userPanel, loadingPage: !usuarioSemana || !beneficioSemana || !ingresosTotales, mutateAvatar
 
 
 

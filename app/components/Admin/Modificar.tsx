@@ -5,6 +5,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import useInformacionPersonal from "@/app/hooks/useInformacionPersonal";
 import { actualizarUsuario, actualizarUsuarioSchema } from "@/app/validations/actualizarUsuarioSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import useUsuarioContext from "@/app/hooks/useUsuarioContext";
 
 const Modificar = ({
   clickModificar,
@@ -58,7 +59,7 @@ const {setSelectedUsers} = useInformacionPersonal()
     await actualizarDatosUserId(selectedUserId, data);
     setClickModificar(false);
     setSelectedUsers([])
-
+    mutateAvatar()
     notifyModificar();
     
   };
@@ -69,7 +70,7 @@ const {setSelectedUsers} = useInformacionPersonal()
     reset()
   };
   const { actualizarDatosUserId } = useInformacionPersonal();
-
+const {mutateAvatar} = useUsuarioContext()
 
 
   return (

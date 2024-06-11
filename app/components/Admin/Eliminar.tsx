@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 const Eliminar = ({ clickEliminar, setClickEliminar }) => {
   const { selectedUsers, setSelectedUsers, eliminarUsuario } =
     useInformacionPersonal();
-const {informacionUsuarioPanel} = useUsuarioContext()
+const {mutateAvatar} = useUsuarioContext()
   const notifyEliminar = () => {
     toast("¡Usuario eliminado con éxito! 🚀", {
       style: {
@@ -25,7 +25,7 @@ const {informacionUsuarioPanel} = useUsuarioContext()
     };
     setClickEliminar(false);
     await eliminarUsuario(usuarios);
-    informacionUsuarioPanel();
+    mutateAvatar()
 
     notifyEliminar();
   };

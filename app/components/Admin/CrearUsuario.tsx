@@ -25,7 +25,7 @@ const CrearUsuario = ({
       },
     });
   };
-  const {  informacionUsuarioPanel  } = useUsuarioContext()
+  const {  mutateAvatar  } = useUsuarioContext()
   const { crearUsuario } = useAuth({});
   const {
     register,
@@ -47,15 +47,14 @@ const CrearUsuario = ({
     await crearUsuario(data);
     setClickUsuario(false);
     notifyModificar();
-    informacionUsuarioPanel()
-
+    mutateAvatar()
   };
-
   const handleCerrarModal = (e) => {
     e.preventDefault();
     setClickUsuario(false);
     reset();
   };
+
   return (
     <>
       {clickUsuario && (
