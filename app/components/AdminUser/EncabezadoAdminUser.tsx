@@ -14,7 +14,7 @@ const EncabezadoAdminUser = ({informacion_personal, state, handleCloseMenu}) => 
     onClick={handleCloseMenu}
     >
     <div className="  text-center px-10 max-w-xl mx-auto">
-    <div className=" absolute top-5 left-5 cursor-pointer">
+    <div className=" absolute top-5 left-5 cursor-pointer p-1 text-sm rounded-lg ease-in duration-100 text-gray-400 hover:bg-gray-600 active:bg-gray-700">
       <Link href={`/admin`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"

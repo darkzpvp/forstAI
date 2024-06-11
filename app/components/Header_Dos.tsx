@@ -5,8 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "../hooks/useAuth";
 import { usePathname, useRouter } from "next/navigation";
-import useUsuarioContext from "../hooks/useUsuarioContext";
 import { motion, AnimatePresence } from "framer-motion";
+import useCambiarFotoPerfil from "../hooks/useCambiarFotoPerfil";
 
 interface InterfazProps {
   menu: boolean;
@@ -23,8 +23,7 @@ const Header_Dos = ({
 }: InterfazProps) => {
   const { logout, user } = useAuth({});
   const pathname = usePathname();
-  const { avatarUrl, obtenerAvatar } = useUsuarioContext();
-
+  const { avatarData } = useCambiarFotoPerfil(); 
   const handleMenu = () => {
     setMenu(!menu);
   };
@@ -57,9 +56,7 @@ const Header_Dos = ({
     }
   }, [menuHamburguesa, menu]);
 
-  useEffect(() => {
-    obtenerAvatar();
-  }, []);
+
 
   return (
     <>
@@ -150,7 +147,7 @@ const Header_Dos = ({
             > 
               <img
                 className="w-8 h-8 rounded-full "
-                src={avatarUrl || "/img/usuario.svg"}
+                src={avatarData || "/img/usuario.svg"}
                 alt="user photo"
               />
             </button>

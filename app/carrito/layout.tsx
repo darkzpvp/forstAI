@@ -1,4 +1,6 @@
-  'use client'
+// @ts-nocheck
+
+'use client'
 import "../globals.css";
 import { UsuarioProvider } from "../context/UsuarioProvider";
 import { useEffect } from "react";

@@ -10,15 +10,13 @@ const Cards = () => {
     ingresosTotales,
     usuarioSemana,
     beneficioSemana,
-
+    loadingPage
   } = useUsuarioContext();
-  const [loadingPage, setLoadingPage] = useState(true);
   useEffect(() => {
     const infoPanel = async () => {
       await usuarioSemanaPanel();
       await beneficioSemanaPanel();
       await ingresosTotalesPanel();
-      setLoadingPage(false);
     };
     infoPanel();
   }, []);

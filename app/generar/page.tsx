@@ -15,15 +15,13 @@ import "react-toastify/dist/ReactToastify.css";
 import './styles.css';
 
 const Generar = () => {
-  const { enviarFormulario, getPrompts } = usePrompt();
+  const { enviarFormulario, promptsData, loadingPage } = usePrompt();
   const { user } = useAuth({ middleware: "auth", url: "/generar" });
   const { imageBase64, generateImage } = useImageGeneration();
   const [menu, setMenu] = useState(false);
   const [errores, setErrores] = useState([]);
-  const [promptsDisponibles, setPromptsDisponibles] = useState(0);
   const [promptText, setPromptText] = useState("");
   const [loading, setLoading] = useState(false);
-  const [loadingPage, setLoadingPage] = useState(true);
   const [menuHamburguesa, setMenuHamburguesa] = useState(false);
 
   const [modal, setModal] = useState(false);
@@ -68,7 +66,6 @@ const Generar = () => {
     };
 
     enviarFormulario(datos, setErrores);
-    setPromptsDisponibles(promptsDisponibles - 1);
     await generateImage(promptText);
     setLoading(false);
   };
@@ -77,21 +74,7 @@ const Generar = () => {
     setPromptText(e.target.value);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const prompts = await getPrompts(user.id, setErrores);
-        setPromptsDisponibles(prompts);
-        setLoadingPage(false);
-      } catch (error) {
-        console.error("Error al obtener los prompts:", error);
-      }
-    };
-
-    if (user) {
-      fetchData();
-    }
-  }, [user]);
+ 
   // Esto es para hacer growing automático al textarea. Iban a sacar una clase, pero aún no lo han hecho
   useEffect(() => {
     if (!loadingPage && textAreaRef.current) {
@@ -205,14 +188,14 @@ const Generar = () => {
                     <textarea
                       type="text"
                       className={` resize-none z-0 block w-full max-w-3xl p-4 text-sm rounded-lg bg-gray-200 active:outline-none focus:outline-none ${
-                        promptsDisponibles === 0 || loading === true
+                        promptsData === 0 || loading === true
                           ? "cursor-not-allowed disabled"
                           : ""
                       }`}
-                      placeholder={`Escribe el prompt (${promptsDisponibles})`}
+                      placeholder={`Escribe el prompt (${promptsData})`}
                       onChange={handleChangePrompt}
                       value={promptText}
-                      disabled={promptsDisponibles === 0 || loading === true}
+                      disabled={promptsData === 0 || loading === true}
                       rows={1}
                       ref={textAreaRef}
                       onKeyDown={(e) => {
@@ -253,18 +236,18 @@ const Generar = () => {
                       <button
                         type="submit"
                         className={` z-40 ${
-                          promptsDisponibles === 0
+                          promptsData === 0
                             ? " bg-gray-600 cursor-not-allowed ease-in duration-100 hover:bg-gray-600 active:bg-gray-600"
                             : ""
                         } absolute right-0 ease-in duration-100 bottom-0 mb-2 mr-2 text-white bg-[#5D68CC] hover:bg-[#525cb7] active:bg-[#464f9d] font-medium rounded-lg text-sm px-4 py-2`}
-                        disabled={promptsDisponibles === 0}
+                        disabled={promptsData === 0}
                       >
                         Enviar
                       </button>
                     )}
                   </div>
                   <div className="flex md:justify-normal justify-center mt-5 w-full">
-                    {promptsDisponibles === 0 && !loading
+                    {promptsData === 0 && !loading
                       ? errores.map((error, i) => (
                           <Alerta key={i}>{error}</Alerta>
                         ))
@@ -274,7 +257,7 @@ const Generar = () => {
               )}
             </div>
 
-            <div className=" w-[100%] max-w-[50vh] mx-auto  sm:px-0 md:mt-16 mt-0">
+            <div className=" w-[100%] max-w-[50vh] mx-auto  sm:px-0 md:mt-12 mt-0">
                 {imageBase64 ? (
                   <>
                     <Modal

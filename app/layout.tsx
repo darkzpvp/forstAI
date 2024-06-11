@@ -9,7 +9,7 @@ import { DatosProvider } from "./context/DatosBancariosProvider";
 import { usePathname } from "next/navigation";
 import { EstadoProvider } from "./context/EstadoUsuario";
 import useEstadoUsuario from "./hooks/useEstadoUsuario";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 const kumbh = Kumbh_Sans({
   subsets: ['latin'],
   variable: '--font-kumbh',

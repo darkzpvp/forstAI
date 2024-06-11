@@ -8,15 +8,12 @@ import ReactCrop, {
 } from "react-image-crop";
 import setCanvasPreview from "@/app/setCanvasPreview";
 import useCambiarFotoPerfil from "@/app/hooks/useCambiarFotoPerfil";
-import useUsuarioContext from "@/app/hooks/useUsuarioContext";
 
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
 
-const ImageCropper = ({ closeModal, updateAvatar }) => {
-  const { cambiarFoto } = useCambiarFotoPerfil();
-
-  const {avatarUrl, setAvatarUrl} = useUsuarioContext()
+const ImageCropper = ({ closeModal }) => {
+  const { cambiarFoto, avatarUrl } = useCambiarFotoPerfil();
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);
   const [imgSrc, setImgSrc] = useState("");
@@ -26,20 +23,19 @@ const ImageCropper = ({ closeModal, updateAvatar }) => {
   const onSelectFile = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-  
-    // Verificar el tamaño del archivo
-    const maxSizeInBytes = 700000; // 1MB
+
+    const maxSizeInBytes = 700000; // 700KB
     if (file.size > maxSizeInBytes) {
       setError("El archivo no debe ser mayor a 700KB");
       return;
     }
-  
+
     const reader = new FileReader();
     reader.addEventListener("load", () => {
       const imageElement = new Image();
       const imageUrl = reader.result?.toString() || "";
       imageElement.src = imageUrl;
-  
+
       imageElement.addEventListener("load", (e) => {
         if (error) setError("");
         const { naturalWidth, naturalHeight } = e.currentTarget;
@@ -90,9 +86,25 @@ const ImageCropper = ({ closeModal, updateAvatar }) => {
     return file;
   };
 
+  const handleSaveImage = () => {
+    setCanvasPreview(
+      imgRef.current,
+      previewCanvasRef.current,
+      convertToPixelCrop(
+        crop,
+        imgRef.current.width,
+        imgRef.current.height
+      )
+    );
+    const dataUrl = previewCanvasRef.current.toDataURL();
+    const file = convertDataURLtoFile(dataUrl, "nombre_de_archivo.jpg");
+    cambiarFoto(file);
+    closeModal();
+  };
+
   return (
     <>
-          <label className="block mb-3 w-fit">
+      <label className="block mb-3 w-fit">
         <span className="sr-only">Choose profile photo</span>
         <input
           type="file"
@@ -122,26 +134,7 @@ const ImageCropper = ({ closeModal, updateAvatar }) => {
           </ReactCrop>
           <button
             className=" mt-4 px-3 text-gray-200 bg-[#5D68CC] hover:bg-[#525cb7]  active:bg-[#464f9d] rounded-lg text-sm py-2 custom:h-14  h-9 transition ease-in duration-100"
-            onClick={() => {
-              setCanvasPreview(
-                imgRef.current,
-                previewCanvasRef.current,
-                convertToPixelCrop(
-                  crop,
-                  imgRef.current.width,
-                  imgRef.current.height
-                )
-              );
-              const dataUrl = previewCanvasRef.current.toDataURL();
-              const file = convertDataURLtoFile(
-                dataUrl,
-                "nombre_de_archivo.jpg"
-              );
-
-              updateAvatar(file.url_imagen);
-              cambiarFoto(file, avatarUrl, setAvatarUrl);
-              closeModal();
-            }}
+            onClick={handleSaveImage}
           >
             Guardar imagen
           </button>

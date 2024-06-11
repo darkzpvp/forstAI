@@ -1,8 +1,11 @@
 // @ts-nocheck
 
+import { useEffect, useState } from "react";
 import clienteAxios from "../config/axios";
+import useSWR from "swr";
 
 export const usePrompt = () => {
+
   const enviarFormulario = async (datos, setErrores) => {
     const authToken = localStorage.getItem("AUTH_TOKEN");
     if (!authToken) {
@@ -24,52 +27,60 @@ export const usePrompt = () => {
         datos,
         config
       );
+      mutateData(); 
       return data.message;
     } catch (error) {
       console.log(error);
       setErrores(error?.response?.data?.errors);
     }
   };
-
-  const getPrompts = async (userId, setErrores) => {
+  const getPrompts = async () => {
     try {
       const token = localStorage.getItem("AUTH_TOKEN");
-      const response = await clienteAxios.get(
-        `/api/prompts?user_id=${userId}`,
+      const response = await clienteAxios(`/api/prompts`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
-      setErrores(response.data.errors);
-      return response.data.prompts;
-    } catch (error) {}
+      return response?.data?.prompts;
+    } catch (error) {
+
+    }
   };
-  const getTextPrompts = async (
-    setTextPrompt,
-    setLoading,
-    setTotalElements
-  ) => {
+  
+  const { data: promptsData, error: errorData, mutate: mutateData } = useSWR('promptsTotal', getPrompts);
+
+  useEffect(() => {
+    getPrompts()
+  }, [])
+
+  const getTextPrompts = async () => {
     try {
       const token = localStorage.getItem("AUTH_TOKEN");
-
       const response = await clienteAxios.get(`/api/ver-prompts`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setTextPrompt(response.data);
-      setLoading(false);
-      setTotalElements(response.data.length);
+      return response.data;
     } catch (error) {
       console.error("Error al hacer la petición:", error);
     }
   };
 
+  const { data, error, mutate } = useSWR('prompts', getTextPrompts);
+
   return {
+    textPrompt: data,
+    loading: !data && !error,
+    totalElements: data?.length,
+    error,
+    mutate,
     enviarFormulario,
     getPrompts,
-    getTextPrompts,
+    promptsData,
+    loadingPage: !promptsData
   };
 };

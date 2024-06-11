@@ -22,29 +22,14 @@ const Page = ({
   searchParams: { [key: string]: string | string[] | undefined };
 }) => {
   let entries: Entry[] = [];
-  const [textPrompt, setTextPrompt] = useState([]);
-  const [loading, setLoading] = useState(true);
+
   const page = searchParams["page"] ?? "1";
   const per_page = searchParams["per_page"] ?? "10";
-  const [totalElements, setTotalElements] = useState(0);
   const start = (Number(page) - 1) * Number(per_page);
   const end = start + Number(per_page);
-  const { getTextPrompts } = usePrompt();
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await getTextPrompts(
-          setTextPrompt,
-          setLoading,
-          setTotalElements
-        );
-      } catch (error) {
-        console.error("Error al hacer la petición:", error);
-      }
-    }
-    fetchData();
-  }, []);
-  entries = textPrompt.slice(start, end);
+
+const {textPrompt, loading, totalElements} = usePrompt()
+  entries = textPrompt?.slice(start, end);
 
   return (
     <>

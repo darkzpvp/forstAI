@@ -2,104 +2,43 @@
 
 'use client'
 import React, { createContext, useState } from "react";
-import useCambiarFotoPerfil from "../hooks/useCambiarFotoPerfil";
 import clienteAxios from "../config/axios";
+import useSWR from "swr";
 
 const UsuarioContext = createContext({});
-const UsuarioProvider = ({ children }) => {
+const UsuarioProvider = ({ children, id }) => {
   const [errores, setErrores] = useState([]);
   const [mensaje, setMensaje] = useState("");
-  const [avatarUrl, setAvatarUrl] = useState("");
-
   const [showModal, setShowModal] = useState(false);
-const [loading, setLoading] = useState(true)
 const [totalElements, setTotalElements] = useState(0)
 
-
-  const {recibirFoto  } = useCambiarFotoPerfil();
-
- 
-    const obtenerAvatar = async () => {
-      try {
-        const urlImagen = await recibirFoto(avatarUrl, setAvatarUrl);
-        if (urlImagen) {
-          setAvatarUrl(urlImagen?.url_imagen);
-      
-        } 
-      } catch (error) {
-        console.error("Error al obtener la imagen del perfil:", error);
-      }
-    };
-
-  
-    
-
-
   const [modalOpen, setModalOpen] = useState(false);
-  const [userPanel, setUserPanel] = useState([]);
   const [usuario, setUsuario] = useState({});
-  const informacionUsuarioPanel = async() => {
-   
-    try {
-      const authToken = localStorage.getItem("AUTH_TOKEN");
-      if (!authToken) {
-        console.log("Usuario no autenticado. Redirigiendo a la página de inicio de sesión...");
-        return;
-      }
 
-      const config = {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      };
-
-      const { data } = await clienteAxios("/api/ver-informacion-usuario", {
-        headers: config.headers,
-      
-      });
-
-      setUserPanel(data)
-
-      setLoading(false);
-      setTotalElements(data.length);
-
-    } catch (error) {
- console.log(error);
+  const informacionUsuarioPanel = async () => {
+      try {
+        const authToken = localStorage.getItem("AUTH_TOKEN");
+        if (!authToken) {
+          console.log("Usuario no autenticado. Redirigiendo a la página de inicio de sesión...");
+          return;
+        }
   
-    }
-  }
-
-const [usuarioId, setUsuarioId] = useState([])
-
-  const informacionUsuarioId = async(id, setTextPrompt, setLoading, setTotalElementsUser) => {
-   
-    try {
-      const authToken = localStorage.getItem("AUTH_TOKEN");
-      if (!authToken) {
-        console.log("Usuario no autenticado. Redirigiendo a la página de inicio de sesión...");
-        return;
-      }
-
-      const config = {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      };
-
-      const { data } = await clienteAxios(`api/informacion-usuario-panel/${id}`, {
-        headers: config.headers,
-      
-      });
-       setUsuarioId(data)
-       setTextPrompt(data?.prompts)
-       setLoading(false)
-       setTotalElementsUser(data?.prompts?.length)
-    } catch (error) {
- console.log(error);
+        const config = {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        };
   
+        const response = await clienteAxios.get('/api/ver-informacion-usuario', config);
+        return response.data;
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
     }
-  }
-const [usuarioSemana, setUsuarioSemana] = useState([])
+    const { data: userPanel, error: avatarError, mutate: mutateAvatar } = useSWR('usuarioPanel', informacionUsuarioPanel);
+
+  
 
 const usuarioSemanaPanel = async() => {
 try {
@@ -115,13 +54,13 @@ try {
   }
   const {data} = await clienteAxios('api/usuarios-ultima-semana', config)
 
-  setUsuarioSemana(data)
+return data
 } catch (error) {
   console.log(error);
 }
 }
+const { data: usuarioSemana } = useSWR('usuarioSemana', usuarioSemanaPanel);
 
-const [beneficioSemana, setBeneficioSemana] = useState([])
 
 const beneficioSemanaPanel = async() => {
 try {
@@ -137,13 +76,13 @@ try {
   }
   const {data} = await clienteAxios('api/suscripcion/beneficio', config)
 
-  setBeneficioSemana(data)
+  return data
 } catch (error) {
   console.log(error);
 }
 }
+const { data: beneficioSemana } = useSWR('beneficioSemana', beneficioSemanaPanel);
 
-const [ingresosTotales, setIngresosTotales] = useState([])
 
 const ingresosTotalesPanel = async() => {
 try {
@@ -158,17 +97,17 @@ try {
     },
   }
   const {data} = await clienteAxios('api/suscripcion/total', config)
-  setIngresosTotales(data)
+return data
 } catch (error) {
   console.log(error);
 }
 }
+const { data: ingresosTotales } = useSWR('ingresosTotales', ingresosTotalesPanel);
 
   return (
-    <UsuarioContext.Provider value={{ avatarUrl, setAvatarUrl,
-        modalOpen, setModalOpen, userPanel, showModal, setShowModal, usuario, setUsuario, informacionUsuarioPanel, loading,
-       setLoading, totalElements, setTotalElements, informacionUsuarioId, setUsuarioId, usuarioId, usuarioSemanaPanel, beneficioSemanaPanel, ingresosTotalesPanel, ingresosTotales, setIngresosTotales, 
-      usuarioSemana, setUsuarioSemana, beneficioSemana, setBeneficioSemana, errores, setErrores, mensaje, setMensaje, obtenerAvatar
+    <UsuarioContext.Provider value={{ 
+        modalOpen, setModalOpen, userPanel, showModal, setShowModal, usuario, setUsuario, informacionUsuarioPanel, totalElements, setTotalElements, usuarioSemanaPanel, beneficioSemanaPanel, ingresosTotalesPanel, ingresosTotales, 
+      usuarioSemana, beneficioSemana, errores, setErrores, mensaje, setMensaje, loading: !userPanel, loadingPage: !usuarioSemana || !beneficioSemana || !ingresosTotales
 
 
 

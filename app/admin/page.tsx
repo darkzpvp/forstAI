@@ -1,5 +1,4 @@
 // @ts-nocheck
-
 "use client";
 import React, { useEffect, useMemo, useState } from "react";
 import Header_Dos from "../components/Header_Dos";
@@ -38,6 +37,7 @@ const Page = ({
     usuario,
     setUsuario,
     totalElements,
+    
   } = useUsuarioContext();
   const { setSelectedUsers } = useInformacionPersonal();
   const handleAction = (e: React.MouseEvent) => {
@@ -52,7 +52,7 @@ const Page = ({
   const per_page = searchParams["per_page"] ?? "9";
   const start = (Number(page) - 1) * Number(per_page);
   const end = start + Number(per_page);
-  entries = userPanel.slice(start, end);
+  entries = userPanel?.slice(start, end);
 
   const handleCloseMenu = () => {
     if (action) {
@@ -106,7 +106,7 @@ const Page = ({
 
   //Filtrar la query
   const filteredItems = useMemo(() => {
-    return entries.filter((item) => {
+    return entries?.filter((item) => {
       if (item && typeof item.nombre === "string") {
         return item.nombre.toLowerCase().includes(query.toLowerCase());
       }
@@ -119,17 +119,16 @@ const Page = ({
 //Filtrar el numero de elemtos de la query
   const filteredItemsTotal = useMemo(() => {
     if (!query) {
-      return userPanel.length;
+      return userPanel?.length;
     }
-    const filtered = userPanel.filter((item) => {
+    const filtered = userPanel?.filter((item) => {
       const matchesQuery =
         !query ||
         (item.nombre && item.nombre.toLowerCase().includes(query.toLowerCase()));
       return matchesQuery;
     });
-    return filtered.length;
+    return filtered?.length;
   }, [userPanel, query]);
-console.log(filteredItemsTotal);
 
   return (
     <div
