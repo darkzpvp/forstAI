@@ -6,10 +6,11 @@ import { Kumbh_Sans} from 'next/font/google'
 import { UsuarioProvider } from "./context/UsuarioProvider";
 import { InformacionProvider } from "./context/InformacionProvider";
 import { DatosProvider } from "./context/DatosBancariosProvider";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import { EstadoProvider } from "./context/EstadoUsuario";
 import useEstadoUsuario from "./hooks/useEstadoUsuario";
 import { useEffect, useState } from "react";
+import { useAuth } from "./hooks/useAuth";
 const kumbh = Kumbh_Sans({
   subsets: ['latin'],
   variable: '--font-kumbh',
@@ -32,6 +33,18 @@ useEffect(() => {
     localStorage.removeItem('carrito');
   }
 }, [Path]);
+
+const {usuarioVerificado} = useAuth({})
+const rutasPrivadas = ['/carrito', '/generar', '/perfil']
+
+if (rutasPrivadas.includes(Path)) {
+  if(!usuarioVerificado){
+  redirect('/login')
+} else {
+redirect('/not-found')
+}
+}
+
   return (
     <html lang="en">
 <head>

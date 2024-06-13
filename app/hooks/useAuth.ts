@@ -188,6 +188,7 @@ export const useAuth = ({ middleware, url }) => {
     }
   };
   const isAdmin = user && user?.rol === 1;
+  const usuarioVerificado = user && user?.email_verified_at !== null;
 
   useEffect(() => {
     if (middleware === "guest" && url && user) {
@@ -215,6 +216,7 @@ export const useAuth = ({ middleware, url }) => {
     eliminarCuentaPerfil,
     crearUsuario,
     confirmarEmail,
-    isAdmin
+    isAdmin,
+    usuarioVerificado
   };
 };
