@@ -36,9 +36,7 @@ const Page = () => {
   const [eliminarCuenta, setEliminarCuenta] = useState(false);
   const [infoSuscripciones, setInfoSuscripciones] = useState([]);
   const [freePrompts, setFreePrompts] = useState([]);
-  const [mensaje, setMensaje] = useState(null);
-  const { setModalOpen} = useUsuarioContext();
-
+  const { setModalOpen, mensaje} = useUsuarioContext();
   const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_API_LARAVEL}/api/suscripciones`, Fetcher);
 
   useEffect(() => {
