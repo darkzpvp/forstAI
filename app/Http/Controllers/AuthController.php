@@ -45,16 +45,14 @@ class AuthController extends Controller
                 'email' => $request->input('email'),
                 'password' => bcrypt($request->input('password'))
             ]);
-            //haz algo como: $user->ip_address = obtenerIpPublica();
-            // Obtener la dirección IP pública del usuario
-            $publicIpResponse = Http::get('https://api.ipify.org?format=json');
-            $publicIpData = $publicIpResponse->json();
-            $publicIpAddress = $publicIpData['ip'];
-            
+    
+            // Obtener la dirección IP del usuario desde el encabezado 'X-Forwarded-For' o directamente desde la solicitud
+            $clientIp = $request->header('X-Forwarded-For') ?? $request->ip();
+    
             // Guardar la dirección IP del usuario
-            $user->ip_address = $publicIpAddress;
+            $user->ip_address = $clientIp;
             $user->save();
-            
+    
             // Retornar el token de autenticación y la información del usuario
             return [
                 'token' => $user->createToken('token')->plainTextToken,
@@ -62,7 +60,6 @@ class AuthController extends Controller
             ];
         } catch (\Exception $e) {
             // Manejar cualquier error que ocurra durante el proceso de registro
-            // Por ejemplo, registro fallido, error al obtener la dirección IP, etc.
             return response()->json(['error' => 'Error al registrar el usuario'], 500);
         }
     }
@@ -80,14 +77,12 @@ class AuthController extends Controller
             // Obtener al usuario autenticado
             $user = Auth::user();
     
-            // Obtener la dirección IP pública del usuario
-            $publicIpResponse = Http::get('https://api.ipify.org?format=json');
-            $publicIpData = $publicIpResponse->json();
-            $publicIpAddress = $publicIpData['ip'];
+            // Obtener la dirección IP del usuario desde el encabezado 'X-Forwarded-For' o directamente desde la solicitud
+            $clientIp = $request->header('X-Forwarded-For') ?? $request->ip();
     
             // Verificar si la dirección IP ha cambiado y actualizarla si es necesario
-            if ($user->ip_address !== $publicIpAddress) {
-                $user->ip_address = $publicIpAddress;
+            if ($user->ip_address !== $clientIp) {
+                $user->ip_address = $clientIp;
                 $user->save();
             }
     
