@@ -40,10 +40,8 @@ const rutasPrivadas = ['/carrito', '/generar', '/perfil']
 if (rutasPrivadas.includes(Path)) {
   if(!usuarioVerificado){
   redirect('/login')
-} else {
-redirect('/not-found')
-}
-}
+} 
+} 
 
   return (
     <html lang="en">
