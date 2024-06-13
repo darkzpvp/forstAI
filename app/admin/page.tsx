@@ -35,9 +35,7 @@ const Router = useRouter()
     userPanel,
     setUserPanel,
     usuario,
-    setUsuario,
-    totalElements,
-    mutateAvatar
+    setUsuario
   } = useUsuarioContext();
   const { setSelectedUsers } = useInformacionPersonal();
   const handleAction = (e: React.MouseEvent) => {

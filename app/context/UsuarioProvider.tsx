@@ -4,6 +4,7 @@
 import React, { createContext, useState } from "react";
 import clienteAxios from "../config/axios";
 import useSWR from "swr";
+import { useAuth } from "../hooks/useAuth";
 
 const UsuarioContext = createContext({});
 const UsuarioProvider = ({ children }) => {
@@ -14,6 +15,7 @@ const [totalElements, setTotalElements] = useState(0)
 
   const [modalOpen, setModalOpen] = useState(false);
   const [usuario, setUsuario] = useState({});
+  const {isAdmin} = useAuth({})
 
   const informacionUsuarioPanel = async () => {
       try {
@@ -28,7 +30,9 @@ const [totalElements, setTotalElements] = useState(0)
             Authorization: `Bearer ${authToken}`,
           },
         };
-  
+  if(!isAdmin){
+    return
+  }
         const response = await clienteAxios.get('/api/ver-informacion-usuario', config);
         return response.data;
       } catch (error) {
@@ -52,6 +56,9 @@ try {
       Authorization: `Bearer ${authToken}`,
     },
   }
+  if(!isAdmin){
+    return
+  }
   const {data} = await clienteAxios('api/usuarios-ultima-semana', config)
 
 return data
@@ -74,6 +81,9 @@ try {
       Authorization: `Bearer ${authToken}`,
     },
   }
+  if(!isAdmin){
+    return
+  }
   const {data} = await clienteAxios('api/suscripcion/beneficio', config)
 
   return data
@@ -95,6 +105,9 @@ try {
     headers: {
       Authorization: `Bearer ${authToken}`,
     },
+  }
+  if(!isAdmin){
+    return
   }
   const {data} = await clienteAxios('api/suscripcion/total', config)
 return data

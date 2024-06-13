@@ -92,11 +92,10 @@ const EstadoProvider = ({ children }) => {
             clearInterval(interval);
         };
     }, [getRemainingTime]);
-
     return (
         <EstadoContext.Provider
             value={{
-                state, setState, count, setCount, remaining, setRemaining, ultimaActividad
+                state, setState, count, setCount, remaining, setRemaining, ultimaActividad, enviarEstado
             }}
         >
             {children}

@@ -15,7 +15,7 @@ import Profile from "../components/CambiarPerfil/Profile";
 import NavegacionMobile from "../components/Perfil/NavegacionMobile";
 import Link from "next/link";
 import useSWR, { mutate } from "swr";
-import useCambiarFotoPerfil from "@/app/hooks/useCambiarFotoPerfil";
+import useUsuarioContext from "../hooks/useUsuarioContext";
 
 const Fetcher = async () => {
   const { getSuscripciones } = useGetSuscripciones();
@@ -37,9 +37,7 @@ const Page = () => {
   const [infoSuscripciones, setInfoSuscripciones] = useState([]);
   const [freePrompts, setFreePrompts] = useState([]);
   const [mensaje, setMensaje] = useState(null);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [avatarUrl, setAvatarUrl] = useState("");
-  const { cambiarFoto, recibirFoto } = useCambiarFotoPerfil();
+  const { setModalOpen} = useUsuarioContext();
 
   const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_API_LARAVEL}/api/suscripciones`, Fetcher);
 
@@ -83,7 +81,7 @@ const Page = () => {
               </svg>
             </Link>
           </div>
-          <Profile setModalOpen={setModalOpen} avatarUrl={avatarUrl} cambiarFoto={cambiarFoto} />
+          <Profile setModalOpen={setModalOpen} />
         </div>
         <div className="p-0 sm:px-4 sm:ml-64">
           <NavegacionMobile />

@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 /* eslint-disable */
 
 import clienteAxios from "../config/axios";
@@ -6,8 +7,10 @@ import useSWR from "swr";
 import { useEffect } from "react";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
+import useEstadoUsuario from "./useEstadoUsuario";
 
 export const useAuth = ({ middleware, url }) => {
+  const {enviarEstado} = useEstadoUsuario()
   const Router = useRouter();
   const { data: user, error, mutate } = useSWR(
     "/api/user",
@@ -31,6 +34,7 @@ export const useAuth = ({ middleware, url }) => {
     try {
       const { data } = await clienteAxios.post("/api/login", datos);
       localStorage.setItem("AUTH_TOKEN", data.token);
+      enviarEstado({ estado: "Conectado" });
       await mutate();
 
       if (data.user.email_verified_at === null) {
@@ -85,6 +89,7 @@ export const useAuth = ({ middleware, url }) => {
       };
 
       const { data } = await clienteAxios.get(url, config);
+      enviarEstado({ estado: "Conectado" });
       await mutate();
 
     } catch (error) {
@@ -131,6 +136,8 @@ export const useAuth = ({ middleware, url }) => {
 
   const logout = async () => {
     try {
+      enviarEstado({ estado: "Desconectado" });
+
       await clienteAxios.post("/api/logout", null, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("AUTH_TOKEN")}`,
@@ -180,6 +187,7 @@ export const useAuth = ({ middleware, url }) => {
       }, 5000);
     }
   };
+  const isAdmin = user && user?.rol === 1;
 
   useEffect(() => {
     if (middleware === "guest" && url && user) {
@@ -206,6 +214,7 @@ export const useAuth = ({ middleware, url }) => {
     error,
     eliminarCuentaPerfil,
     crearUsuario,
-    confirmarEmail
+    confirmarEmail,
+    isAdmin
   };
 };

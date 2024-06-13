@@ -13,13 +13,27 @@ const useCambiarFotoPerfil = () => {
           Authorization: `Bearer ${authToken}`,
         },
       });
-      const data = await response.json();
-      return data.url_imagen;
+  
+      if (!response.ok) {
+        if (response.status === 404) {
+          return null; // No image found
+        }
+        throw new Error('Error al obtener la imagen de perfil');
+      }
+  
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        const data = await response.json();
+        return data.url_imagen;
+      } else {
+        return null;
+      }
     } catch (error) {
       console.error('Error al obtener la imagen de perfil:', error);
-      throw error;
+      throw error; 
     }
   };
+  
 
   const { data: avatarData, error: avatarError, mutate: mutateAvatar } = useSWR('avatar', fetchAvatar);
 
