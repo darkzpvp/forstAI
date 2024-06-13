@@ -10,7 +10,6 @@ use App\Http\Controllers\EmailController;
 use App\Http\Controllers\CambiarPerfilController;
 use App\Http\Controllers\InformacionPersonalController;
 
-
 //USUARIOS VERIFICADOS
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/user', function (Request $request) {
@@ -30,9 +29,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/comprar-suscripcion', [SuscripcionesController::class, 'comprar']);
     Route::delete('/cancelar-suscripcion', [SuscripcionesController::class, 'eliminar']);
     Route::get('/ver-suscripcion', [SuscripcionesController::class, 'getAll']);
+    Route::post('/ultima-sesion-usuario', [AuthController::class, 'ultimaSesionUsuario']);
+    Route::post('/cambiar-estado-usuario', [AuthController::class, 'cambiarEstadoUsuario']);
 
 });
-
 
 //ADMINISTRADORES
 Route::middleware(['auth:sanctum', 'verified', 'role:1'])->group(function () {
@@ -43,10 +43,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:1'])->group(function () {
     Route::put('/informacion-usuario-panel/{id}', [AdministradorController::class, 'informacionUserIdActualizar']);
     Route::delete('/eliminar-cuenta-usuario', [AdministradorController::class, 'eliminarCuentasUsuarios']);
     Route::get('/usuarios-ultima-semana', [AdministradorController::class, 'usuariosUltimaSemana']);
-    Route::post('/cambiar-estado-usuario', [AdministradorController::class, 'cambiarEstadoUsuario']);
-    Route::post('/ultima-sesion-usuario', [AdministradorController::class, 'ultimaSesionUsuario']);
 });
-
 
 //RUTAS PUBLICAS
 

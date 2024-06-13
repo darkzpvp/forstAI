@@ -190,67 +190,6 @@ public function usuariosUltimaSemana()
 
 
 
-
-public function cambiarEstadoUsuario(Request $request)
-{
-    // Verificar que la solicitud sea de tipo POST
-    if ($request->isMethod('post')) {
-        // Obtener el usuario autenticado
-        $user = auth()->user();
-        
-        // Validar el valor del estado recibido
-        $request->validate([
-            'estado' => 'required|in:Conectado,Desconectado',
-        ]);
-        
-        // Actualizar el estado del usuario autenticado
-        $user->estado = $request->input('estado');
-        
-        // Guardar los cambios en la base de datos
-        if ($user->save()) {
-            // Retornar una respuesta de éxito
-            return response()->json(['message' => 'Estado actualizado correctamente.'], 200);
-        } else {
-            // Retornar una respuesta de error
-            return response()->json(['message' => 'Error al actualizar el estado.'], 500);
-        }
-    } else {
-        // Retornar una respuesta de método no permitido
-        return response()->json(['message' => 'Método no permitido.'], 405);
-    }
-}
-
-
-public function ultimaSesionUsuario(Request $request)
-{
-    // Verificar que la solicitud sea de tipo POST
-    if ($request->isMethod('post')) {
-        // Obtener el usuario autenticado
-        $user = auth()->user();
-        
-        // Validar el valor del estado recibido
-        $request->validate([
-            'ultima_sesion' => 'required',
-        ]);
-        
-        // Actualizar el estado del usuario autenticado
-        $user->ultima_sesion = $request->input('ultima_sesion');
-        
-        // Guardar los cambios en la base de datos
-        if ($user->save()) {
-            // Retornar una respuesta de éxito
-            return response()->json(['message' => 'Sesión actualizado correctamente.'], 200);
-        } else {
-            // Retornar una respuesta de error
-            return response()->json(['message' => 'Error al actualizar la sesión.'], 500);
-        }
-    } else {
-        // Retornar una respuesta de método no permitido
-        return response()->json(['message' => 'Método no permitido.'], 405);
-    }
-}
-
-
 public function informacionUserIdActualizar($id, Request $request): JsonResponse {
     $usuario = User::findOrFail($id);
 
