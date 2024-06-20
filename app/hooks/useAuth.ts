@@ -39,8 +39,8 @@ export const useAuth = ({ middleware, url }) => {
 
       if (data.user.email_verified_at === null) {
         await mandarEmailVerificacion(email, setMensajeOk);
-      } else {
         await mutate();
+      } else {
         Router.push('/generar')
       }
     
@@ -204,7 +204,7 @@ export const useAuth = ({ middleware, url }) => {
     }
   
     if (middleware === "auth" && error) {
-      redirect("/");
+      redirect("/login");
     }
   }, [user, error]);
   return {
@@ -217,6 +217,7 @@ export const useAuth = ({ middleware, url }) => {
     crearUsuario,
     confirmarEmail,
     isAdmin,
-    usuarioVerificado
+    usuarioVerificado,
+    mutate
   };
 };

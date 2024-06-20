@@ -112,7 +112,7 @@ const Router = useRouter()
   // Redireccionar cuando se filtra la lista
   useMemo(() => {
     Router.push(`/admin/?page=1&per_page=${per_page}`);
-  }, [filteredItems]);
+  }, []);
 
   const filteredItemsTotal = filteredItems?.length ?? 0;
 

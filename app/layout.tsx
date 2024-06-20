@@ -34,14 +34,25 @@ useEffect(() => {
   }
 }, [Path]);
 
-const {usuarioVerificado} = useAuth({})
-const rutasPrivadas = ['/carrito', '/generar', '/perfil']
+const {usuarioVerificado, mutate} = useAuth({})
+const rutasPrivadas = ['/carrito', '/generar', '/perfil', '/verificar'];
 
-if (rutasPrivadas.includes(Path)) {
-  if(!usuarioVerificado){
-  redirect('/login')
-} 
-} 
+const verificarYMutate = async () => {
+  if (Path === '/verificar') {
+    await mutate(); 
+  } else if (rutasPrivadas.includes(Path)) {
+    if (!usuarioVerificado) {
+      redirect('/login'); 
+    } 
+   
+  }
+
+};
+
+useEffect(() => {
+  verificarYMutate();
+
+}, [Path])
 
   return (
     <html lang="en">
