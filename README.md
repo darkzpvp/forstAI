@@ -1,10 +1,7 @@
-<h1>Anteproyecto</h1>
-<h1>Vídeo https://youtu.be/lLUtOqzvXV4</h1>
+<h1>Vídeo anteproyecto https://youtu.be/lLUtOqzvXV4</h1>
 <h1>Figma https://www.figma.com/file/6WtYirOMLAj0LMfy7B4ieR/Victor?type=design&node-id=0%3A1&mode=design&t=fNP7U6DKcMdvrzSe-1</h1>
-<h1>Documentación: PENDIENTE</h1>
-
-<h2>Notion</h2>
-https://faceted-binder-6cc.notion.site/Anteproyecto-1f21f41efbe444c48c01509a30aad739?pvs=25
+<h1>Documentación: https://faceted-binder-6cc.notion.site/TFG-57cc9842a7d546499f5093adaf6b6af9?pvs=4</h1>
+<h1>Vídeo definitivo: https://youtu.be/Zsud9NoZYdw</h1>
 <h2>Bitácora de tareas</h2>
 El proyecto lo empecé antes de Semana Santa, para tener un avance mientras compaginaba las prácticas
 <br>
