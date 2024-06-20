@@ -4,7 +4,7 @@ services:
     env: docker
     plan: free  # Cambia esto dependiendo del plan que elijas
     dockerfilePath: ./vendor/laravel/sail/runtimes/8.3/Dockerfile
-    dockerCommand: "php artisan serve --host=0.0.0.0 --port=10000"
+    dockerCommand: "php artisan serve --host=0.0.0.0 --port=8000"
     envVars:
       - key: APP_NAME
         value: ForstAI
@@ -109,7 +109,7 @@ services:
       - key: SANCTUM_STATEFUL_DOMAINS
         value: localhost
     ports:
-      - containerPort: 10000
+      - containerPort: 8000
         protocol: tcp
     healthCheckPath: "/health"  # Cambia esto dependiendo de tu ruta de verificación de salud
 
