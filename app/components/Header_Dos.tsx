@@ -147,7 +147,7 @@ const Header_Dos = ({
             > 
               <img
                 className="w-8 h-8 rounded-full "
-                src={avatarData || "/img/usuario.svg"}
+                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${avatarData}` || "/img/usuario.svg"}
                 alt="user photo"
               />
             </button>
