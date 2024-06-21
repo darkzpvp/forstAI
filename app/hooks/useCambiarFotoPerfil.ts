@@ -24,6 +24,7 @@ const useCambiarFotoPerfil = () => {
       const contentType = response.headers.get('content-type');
       if (contentType && contentType.includes('application/json')) {
         const data = await response.json();
+        console.log(data)
         return data.url_imagen;
       } else {
         return null;
