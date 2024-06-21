@@ -54,6 +54,7 @@ const Table = ({
   const handleRowClick = (user) => {
     handleCheckboxChange(user);
   };
+  const avatarSrc = avatarData ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${avatarData}` : "/img/usuario.svg";
 
   return (
     <table className="w-full text-sm text-left rtl:text-right text-gray-400">
@@ -106,12 +107,7 @@ const Table = ({
                 <th scope="row" className="flex items-center px-6 py-2 font-medium whitespace-nowrap text-gray-300">
                   <img
                     className="w-10 h-10 rounded-full"
-                    src={
-                      user?.imagen       
-
-                        ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${user?.imagen}`
-                        : "img/usuario.svg"
-                    }
+                    src={avatarSrc}
                     alt="Imagen usuario"
                   />
                   <div className="ps-3">

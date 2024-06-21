@@ -7,6 +7,8 @@ const EncabezadoAdminUser = ({informacion_personal, state, handleCloseMenu}) => 
     const myStyles = {
         backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.534), rgba(17, 24, 39, 0.5)), url('/img/admin/layeredUserr.jpg')`,
       };
+      const avatarSrc = avatarData ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${avatarData}` : "/img/usuario.svg";
+
   return (
     <div
     style={myStyles}
@@ -34,11 +36,7 @@ const EncabezadoAdminUser = ({informacion_personal, state, handleCloseMenu}) => 
     <div className=" relative mx-auto w-20">
       <img
         className=" w-20 h-20 mx-auto rounded-full"
-        src={
-          informacion_personal?.imagen 
-            ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${informacion_personal?.imagen}`
-            : "../../img/usuario.svg"
-        }
+        src={avatarSrc}
         alt="User"
       />
       {informacion_personal?.estado === "Conectado" ? (

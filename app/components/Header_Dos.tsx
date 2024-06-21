@@ -57,6 +57,7 @@ const Header_Dos = ({
   }, [menuHamburguesa, menu]);
 
 
+  const avatarSrc = avatarData ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${avatarData}` : "/img/usuario.svg";
 
   return (
     <>
@@ -147,7 +148,7 @@ const Header_Dos = ({
             > 
               <img
                 className="w-8 h-8 rounded-full "
-                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${avatarData}` || "/img/usuario.svg"}
+                src={avatarSrc}
                 alt="user photo"
               />
             </button>
