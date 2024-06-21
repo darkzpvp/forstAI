@@ -12,7 +12,7 @@ const Profile = ({ setModalOpen }) => {
     <div className="flex flex-col items-center pt-12">
       <div className="relative">
         <img
-          src={avatarData || "/img/usuario.svg"}
+          src={`https://php-laravel-docker-pkb1.onrender.com/${avatarData}` || "/img/usuario.svg"}
           alt="Avatar"
           className="w-[150px] h-[150px] rounded-full border-2 border-gray-400"
         />
