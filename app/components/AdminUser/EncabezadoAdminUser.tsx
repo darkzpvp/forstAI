@@ -9,7 +9,9 @@ const EncabezadoAdminUser = ({informacion_personal, state, handleCloseMenu}) => 
       };
       const imagenSrc = informacion_personal?.imagen
       ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${informacion_personal?.imagen}`
-      : "img/usuario.svg";
+      : "/img/usuario.svg";
+
+      
   return (
     <div
     style={myStyles}

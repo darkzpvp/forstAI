@@ -108,7 +108,7 @@ const Table = ({
                     className="w-10 h-10 rounded-full"
                     src={user?.imagen
                       ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${user?.imagen}`
-                      : "img/usuario.svg"}
+                      : "/img/usuario.svg"}
                     alt="Imagen usuario"
                   />
                   <div className="ps-3">
